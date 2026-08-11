@@ -10,7 +10,7 @@ export default function App() {
       <MainPane> 
         <Heading />
         <InfoPaneContainer>
-          <InfoPane>
+          <InfoPane name="Time">
             <TimeDate />
           </InfoPane>
         </InfoPaneContainer>

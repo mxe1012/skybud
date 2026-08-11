@@ -19,11 +19,14 @@ export function InfoPaneContainer({children}) {
     return <div className="InfoPaneContainer">{children}</div>;
 }
 
-export function InfoPane({children}) {
+export function InfoPane({name="", children}) {
     return (
-        <div className="TimeDatePane">
-            {children}
-        </div>
+        <>
+            <div className="InfoPane">
+            <p>{name}</p>
+                {children}
+            </div>
+        </>
     )
 }
 
