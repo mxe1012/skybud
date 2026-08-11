@@ -14,6 +14,11 @@ html {
     background-size: cover;
 }
 
+.InfoPaneContainer {
+    display: flex;
+    justify-content: center;
+}
+
 .TimeDatePane {
     animation-name: main-pane-fade;
     animation-duration: 0.5s;
