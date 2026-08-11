@@ -2,7 +2,15 @@
 import { useState } from 'react'
 import './styles.css'
 
+import { MainPane } from './Components';
+
 export default function App() {
 
-  return <h1>Hello World.</h1>
+  return (
+    <>
+      <MainPane>
+        hello
+      </MainPane>
+    </>
+  );
 }
