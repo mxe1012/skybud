@@ -11,7 +11,15 @@ export function MainPane({children}) {
     return <div>{children}</div>;
 }
 
-export function TimeDatePane({children}) {
+export function Heading() {
+    return <h1 style={{textAlign: "center"}}>Weather</h1>
+}
+
+export function InfoPaneContainer({children}) {
+    return <div className="InfoPaneContainer">{children}</div>;
+}
+
+export function InfoPane({children}) {
     return (
         <div className="TimeDatePane">
             {children}
