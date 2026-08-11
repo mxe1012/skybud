@@ -1,13 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import './styles.css'
 
-import { MainPane } from './Components';
+import { MainPane, TimeDate, TimeDatePane } from './Components';
 
 export default function App() {
 
   return (
     <>
       <MainPane>
-        hello
+        <TimeDatePane>
+          <TimeDate />
+          </TimeDatePane>
       </MainPane>
     </>
   );
