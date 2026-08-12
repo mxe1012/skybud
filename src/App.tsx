@@ -1,13 +1,16 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import './styles.css'
+ import './styles.css'
 
-import { MainPane, InfoPaneContainer, ExtraInfoPaneContainer, InfoPane, TimeDate } from './Components';
+import { MainPane, EventButton, InfoPaneContainer, ExtraInfoPaneContainer, InfoPane, TimeDate } from './Components.tsx';
+import { getLocation } from './functions.tsx';
 
 export default function App() {
 
   return (
     <>
       <MainPane> 
+        <EventButton text="Get Location" onClick={getLocation} />
+        <br />
+        <br />
         <InfoPaneContainer>
           <InfoPane name="Time">
             <TimeDate />
