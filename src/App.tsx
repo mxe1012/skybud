@@ -30,6 +30,9 @@ export default function App() {
           <InfoPane name="Sun">
             <p>sunrise, sunset</p>
           </InfoPane>
+          <InfoPane name="More">
+            <p>More Information</p>
+          </InfoPane>
         </ExtraInfoPaneContainer>
       </MainPane>
     </>
