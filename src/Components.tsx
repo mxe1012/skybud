@@ -51,14 +51,14 @@ export function Temperature() {
     const [error, setError] = useState("");
 
     async function handleClick() {
-        let lon = getLongitude();
-        let lat = getLatitude();
+        // let lon = getLongitude();
+        // let lat = getLatitude();
         
-        console.log(lon);
-        console.log(lat);
+        // console.log(lon);
+        // console.log(lat);
 
         try {
-      const result = await apiFetch(lon, lat);
+      const result = await apiFetch();
       //console.log(result);
       setTemp(result.main.temp);
       setFeelsLike(result.main.feels_like)
