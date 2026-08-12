@@ -11,10 +11,6 @@ export function MainPane({children}) {
     return <div className="MainPane">{children}</div>;
 }
 
-export function Heading() {
-    return <h1 style={{textAlign: "center"}}>Weather</h1>
-}
-
 export function InfoPaneContainer({children}) {
     return <div className="InfoPaneContainer">{children}</div>;
 }
@@ -27,13 +23,22 @@ export function InfoPane({name="", children}) {
                 {children}
             </span>
         </>
-    )
+    );
+}
+
+export function ExtraInfoPaneContainer({children}) {
+    return (
+        <>
+            <h1 style={{textAlign: "center"}}>More Information</h1>
+            <div className="ExtraInfoPaneContainer">
+                {children}
+            </div>
+        </>
+    );
 }
 
 export function TimeDate() {
     const time = new Date();
-
-
 
     return (
     <div className="TimeDate">
