@@ -22,12 +22,12 @@ export function InfoPane({name="", children}) {
 
 export function ExtraInfoPaneContainer({children}) {
     return (
-        <>
+        <div style={{textAlign: 'center'}}>
             <h1 style={{textAlign: "center", fontFamily: "comfortaa"}}>More Information</h1>
             <div className="ExtraInfoPaneContainer">
                 {children}
             </div>
-        </>
+        </div>
     );
 }
 
