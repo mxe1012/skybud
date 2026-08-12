@@ -43,8 +43,18 @@ html {
 }
 
 .ExtraInfoPaneContainer {
-    display: flex;
+    animation-name: info-pane-container-fade;
+    animation-duration: 0.5s;
+    background-color: #0cacf1;
+    border-radius: 50px;
+    box-shadow: 0px 0px 10px;
+    padding: 10px;
+    display: inline-grid;
     justify-content: center;
+    align-content: center;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto;
+    gap: 20px;
 }
 
 .InfoPane {
