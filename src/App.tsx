@@ -1,14 +1,14 @@
  import './styles.css'
 
 import { MainPane, EventButton, InfoPaneContainer, ExtraInfoPaneContainer, InfoPane, TimeDate } from './Components.tsx';
-import { getLocation } from './functions.tsx';
+import { getLongitude, getLatitude } from './functions.tsx';
 
 export default function App() {
 
   return (
     <>
       <MainPane> 
-        <EventButton text="Get Location" onClick={getLocation} />
+        <EventButton text="Get Location" onClick={() => {getLongitude(); getLatitude()}} />
         <br />
         <br />
         <InfoPaneContainer>
