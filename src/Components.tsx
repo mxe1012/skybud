@@ -1,11 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from "react";
-
-// type MainProps = {
-//   children: React.ReactNode;
-// };
-// export const MainPane: React.FC<MainProps> = ({children}) => <div className="MainPane">{children}</div>
-
+import { useState } from "react";
 
 export function MainPane({children}) {
     return <div className="MainPane">{children}</div>;
