@@ -23,7 +23,7 @@ export function InfoPane({name="", children}) {
 export function ExtraInfoPaneContainer({children}) {
     return (
         <>
-            <h1 style={{textAlign: "center"}}>More Information</h1>
+            <h1 style={{textAlign: "center", fontFamily: "comfortaa"}}>More Information</h1>
             <div className="ExtraInfoPaneContainer">
                 {children}
             </div>
