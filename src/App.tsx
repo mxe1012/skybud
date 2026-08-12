@@ -1,6 +1,7 @@
  import './styles.css'
 
-import { MainPane, EventButton, InfoPaneContainer, ExtraInfoPaneContainer, InfoPane, TimeDate } from './Components.tsx';
+import { MainPane, EventButton, InfoPaneContainer, 
+  ExtraInfoPaneContainer, InfoPane, TimeDate, Temperature } from './Components.tsx';
 import { getLongitude, getLatitude } from './functions.tsx';
 
 export default function App() {
@@ -19,7 +20,7 @@ export default function App() {
             <p>id, main, icon, description</p>
           </InfoPane>
           <InfoPane name='Temperature'>
-            <p>temp, feels like, humidity</p>
+            <Temperature />
           </InfoPane>
         </InfoPaneContainer>
         <br />
