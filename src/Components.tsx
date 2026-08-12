@@ -41,3 +41,7 @@ export function TimeDate() {
     </div>
   );
 }
+
+export function EventButton({text="", onClick}) {
+    return <button onClick={onClick}>{text}</button>
+}
