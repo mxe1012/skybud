@@ -8,7 +8,7 @@ import React, { useState } from "react";
 
 
 export function MainPane({children}) {
-    return <div>{children}</div>;
+    return <div className="MainPane">{children}</div>;
 }
 
 export function Heading() {
