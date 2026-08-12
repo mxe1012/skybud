@@ -1,7 +1,7 @@
 //api key: 0d4ede84419af940fb2ab828e552b3f0
 // base URL: https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 
-export async function apiFetchTemp(lon=0, lat=0) {
+export async function apiFetch(lon=0, lat=0) {
   try {
     const key = "0d4ede84419af940fb2ab828e552b3f0"
     const baseUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`;

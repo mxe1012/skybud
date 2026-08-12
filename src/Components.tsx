@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
-import { getLongitude, getLatitude, apiFetchTemp } from './functions.tsx';
+import { getLongitude, getLatitude, apiFetch } from './functions.tsx';
 
 export function MainPane({children}) {
     return <div className="MainPane">{children}</div>;
@@ -58,7 +58,7 @@ export function Temperature() {
         console.log(lat);
 
         try {
-      const result = await apiFetchTemp(lon, lat);
+      const result = await apiFetch(lon, lat);
       //console.log(result);
       setTemp(result.main.temp);
       setFeelsLike(result.main.feels_like)
