@@ -13,6 +13,9 @@ export default function App() {
           <InfoPane name="Time">
             <TimeDate />
           </InfoPane>
+          <InfoPane name='Current Weather'>
+            <p>Display weather component</p>
+          </InfoPane>
         </InfoPaneContainer>
       </MainPane>
     </>
