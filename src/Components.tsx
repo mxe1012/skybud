@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
+import { getLongitude, getLatitude, apiFetchTemp } from './functions.tsx';
 
 export function MainPane({children}) {
     return <div className="MainPane">{children}</div>;
@@ -40,6 +41,42 @@ export function TimeDate() {
       <h2>{time.toLocaleDateString()}</h2>
     </div>
   );
+}
+
+export function Temperature() {
+
+    const [temp, setTemp] = useState(0);
+    const [feelsLike, setFeelsLike] = useState(0);
+
+    const [error, setError] = useState("");
+
+    async function handleClick() {
+        let lon = getLongitude();
+        let lat = getLatitude();
+        
+        console.log(lon);
+        console.log(lat);
+
+        try {
+      const result = await apiFetchTemp(lon, lat);
+      //console.log(result);
+      setTemp(result.main.temp);
+      setFeelsLike(result.main.feels_like)
+      console.log(result.main);
+    } catch (e) {
+      setError("something went wrong");
+    } 
+
+    }
+
+    return (
+        <div>
+            <p>{temp}</p>
+            <p>{feelsLike}</p>
+            <br />
+            <EventButton text="Update" onClick={handleClick}/>
+        </div>
+    );
 }
 
 export function EventButton({text="", onClick}) {
