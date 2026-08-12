@@ -20,34 +20,30 @@ export async function apiFetchTemp(lon=0, lat=0) {
 
 export function getLongitude() {
 
-  let lon;
-
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
-      lon = position.coords.longitude;
+      const long = position.coords.longitude;
       console.log(position.coords.longitude);
+      return long;
     }, error);
   } 
   else {
     alert("Geolocation is not supported by this browser.");
   }
-  return lon;
 }
 
 export function getLatitude() {
 
-  let lat;
-
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
-      lat = position.coords.latitude;
+      const lat = position.coords.latitude;
       console.log(position.coords.latitude);
+      return lat;
     }, error);
   } 
   else {
     alert("Geolocation is not supported by this browser.");
   }
-  return lat;
 }
 
 function error() {
