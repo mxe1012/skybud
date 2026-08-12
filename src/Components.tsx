@@ -22,10 +22,10 @@ export function InfoPaneContainer({children}) {
 export function InfoPane({name="", children}) {
     return (
         <>
-            <div className="InfoPane">
+            <span className="InfoPane">
             <p>{name}</p>
                 {children}
-            </div>
+            </span>
         </>
     )
 }
