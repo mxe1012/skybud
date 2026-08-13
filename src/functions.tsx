@@ -7,6 +7,7 @@ export async function apiFetch(lon=0, lat=0) {
 
     if (res.ok) {
       const data = await res.json();
+      console.log(data);
       return data;
     }
   } catch (e) {
