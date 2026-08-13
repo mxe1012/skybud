@@ -29,7 +29,7 @@ html {
 .InfoPaneContainer {
     display: flex;
     justify-content: center;
-    /* align-content: center; */
+    align-content: center;
     flex-wrap: nowrap;
     /* grid-template-rows: auto auto;
     grid-template-columns: auto auto; */
