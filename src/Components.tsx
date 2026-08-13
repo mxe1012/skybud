@@ -12,7 +12,11 @@ export function MainPane({children}) {
 }
 
 export function InfoPaneContainer({children}) {
-    return <div className="InfoPaneContainer">{children}</div>;
+    return (
+        <div style={{textAlign: 'center'}}>
+            <div className="InfoPaneContainer">{children}</div>
+        </div>
+    );
 }
 
 export function InfoPane({name="", children}) {
@@ -30,9 +34,7 @@ export function ExtraInfoPaneContainer({children}) {
     return (
         <div style={{textAlign: 'center'}}>
             <h1 style={{textAlign: "center", fontFamily: "comfortaa"}}>More Information</h1>
-            <div className="ExtraInfoPaneContainer">
-                {children}
-            </div>
+            <div className="ExtraInfoPaneContainer">{children}</div>
         </div>
     );
 }
@@ -58,13 +60,14 @@ export function Temperature() {
         const lat = getLatitude();
 
         try {
-            const result = await apiFetch(-75.95723099199999, 40.395179184);
+            // const result = await apiFetch(-75.95723099199999, 40.395179184);
+            const result = await apiFetch(lon, lat);
             setTemp(result.main.temp);
             setFeelsLike(result.main.feels_like)
             console.log(result.main);
         }  
         catch (e) {
-            alert("something went wrong");
+            alert("something went wrong when fetching temperature.");
         } 
 
     }
@@ -137,15 +140,15 @@ export function Weather() {
     }
 
     return (
-        <>
-        {weather}
-        <br />
-         <img src={icon} />
-        <br />
-        {weatherDesc}
-        <br />
-        <EventButton text="Update" onClick={handleClick} />
-        </>
+        <div>
+            {weather}
+            <br />
+            <img src={icon} />
+            <br />
+            {weatherDesc}
+            <br />
+            <EventButton text="Update" onClick={handleClick} />
+        </div>
     );
 
 }
