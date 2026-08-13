@@ -71,9 +71,10 @@ export function Temperature() {
 
     return (
         <div>
-            <p style={{fontSize: '48px'}}><b>{Math.round(temp)}°F</b></p>
-            <p>Feels like</p>
-            <p style={{fontSize: '24px'}}>{Math.round(feelsLike)}°F</p>
+            <p style={{fontSize: '36px'}}><b>{Math.round(temp)}°F</b></p>
+            Feels like: {""}
+            <b>{Math.round(feelsLike)}°F</b>
+            <br />
             <br />
             <EventButton text="Update" onClick={handleClick}/>
         </div>
