@@ -102,7 +102,7 @@ export function Humidity() {
 
     return (
         <div>
-            {humidity}
+            <b>{humidity}%</b>
             <br />
             <EventButton text="Update" onClick={handleClick} />
         </div>
