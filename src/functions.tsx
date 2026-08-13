@@ -12,6 +12,7 @@ export async function apiFetch(lon=0, lat=0) {
     }
   } catch (e) {
     console.log(e);
+    alert("Error occured in fetching.");
   }
 };
 
