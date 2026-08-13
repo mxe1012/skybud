@@ -16,6 +16,9 @@ export async function apiFetch(lon=0, lat=0) {
   }
 };
 
+const options = {
+  maximumAge: 15000,
+};
 
 export function getLongitude() {
 
@@ -24,7 +27,7 @@ export function getLongitude() {
       const long = position.coords.longitude;
       console.log("Longitude from function: " + position.coords.longitude);
       return long;
-    }, error);
+    }, error, options);
   } 
   else {
     alert("Geolocation is not supported by this browser.");
@@ -38,7 +41,7 @@ export function getLatitude() {
       const lat = position.coords.latitude;
       console.log("Latitude from function: " + position.coords.latitude);
       return lat;
-    }, error);
+    }, error, options);
   } 
   else {
     alert("Geolocation is not supported by this browser.");
