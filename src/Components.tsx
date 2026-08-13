@@ -54,7 +54,6 @@ export function Temperature() {
 
         try {
             const result = await apiFetch(-75.95723099199999, 40.395179184);
-            //console.log(result);
             setTemp(result.main.temp);
             setFeelsLike(result.main.feels_like)
             console.log(result.main);
@@ -75,6 +74,35 @@ export function Temperature() {
             <EventButton text="Update" onClick={handleClick}/>
         </div>
     );
+}
+
+export function Humidity() {
+
+    const [humidity, setHumidity] = useState(0);
+
+    async function handleClick() {
+        // let lon = getLongitude();
+        // let lat = getLatitude();
+
+        try {
+            const result = await apiFetch(-75.95723099199999, 40.395179184);
+            setHumidity(result.main.humidity);
+            console.log(result.main);
+        }  
+        catch (e) {
+            alert("something went wrong");
+        } 
+
+    }
+
+    return (
+        <div>
+            {humidity}
+            <br />
+            <EventButton text="Update" onClick={handleClick} />
+        </div>
+    );
+
 }
 
 export function EventButton({text="", onClick}) {
