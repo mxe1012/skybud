@@ -48,8 +48,6 @@ export function Temperature() {
     const [temp, setTemp] = useState(0);
     const [feelsLike, setFeelsLike] = useState(0);
 
-    const [error, setError] = useState("");
-
     async function handleClick() {
         // let lon = getLongitude();
         // let lat = getLatitude();
@@ -58,14 +56,15 @@ export function Temperature() {
         // console.log(lat);
 
         try {
-        const result = await apiFetch(-75.95723099199999, 40.395179184);
-        //console.log(result);
-        setTemp(result.main.temp);
-        setFeelsLike(result.main.feels_like)
-        console.log(result.main);
-    }  catch (e) {
-      setError("something went wrong");
-    } 
+            const result = await apiFetch(-75.95723099199999, 40.395179184);
+            //console.log(result);
+            setTemp(result.main.temp);
+            setFeelsLike(result.main.feels_like)
+            console.log(result.main);
+        }  
+        catch (e) {
+            alert("something went wrong");
+        } 
 
     }
 
