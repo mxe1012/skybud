@@ -78,6 +78,13 @@ html {
     opacity: 1;
 }
 
+.EventButton {
+    border-style: none;
+    border-radius: 50px;
+    background-color: white;
+    padding: 10px
+}
+
 span {
     transition: transform 0.2s ease-in-out, backdrop-filter 0.2s ease-in-out;
 }
@@ -86,4 +93,12 @@ span:hover {
     transform: scale(1.1);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
+}
+
+button {
+    transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #c3c3c3;
 }
