@@ -58,12 +58,12 @@ export function Temperature() {
         // console.log(lat);
 
         try {
-      const result = await apiFetch();
-      //console.log(result);
-      setTemp(result.main.temp);
-      setFeelsLike(result.main.feels_like)
-      console.log(result.main);
-    } catch (e) {
+        const result = await apiFetch(-75.95723099199999, 40.395179184);
+        //console.log(result);
+        setTemp(result.main.temp);
+        setFeelsLike(result.main.feels_like)
+        console.log(result.main);
+    }  catch (e) {
       setError("something went wrong");
     } 
 
@@ -71,8 +71,9 @@ export function Temperature() {
 
     return (
         <div>
-            <p>{temp}</p>
-            <p>{feelsLike}</p>
+            <p style={{fontSize: '48px'}}><b>{Math.round(temp)}°F</b></p>
+            <p>Feels like</p>
+            <p style={{fontSize: '24px'}}>{Math.round(feelsLike)}°F</p>
             <br />
             <EventButton text="Update" onClick={handleClick}/>
         </div>
