@@ -51,9 +51,6 @@ export function Temperature() {
     async function handleClick() {
         // let lon = getLongitude();
         // let lat = getLatitude();
-        
-        // console.log(lon);
-        // console.log(lat);
 
         try {
             const result = await apiFetch(-75.95723099199999, 40.395179184);
