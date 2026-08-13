@@ -82,5 +82,5 @@ export function Temperature() {
 }
 
 export function EventButton({text="", onClick}) {
-    return <button onClick={onClick}>{text}</button>
+    return <button className="EventButton" onClick={onClick}>{text}</button>
 }
