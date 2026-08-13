@@ -109,3 +109,36 @@ export function Humidity() {
     );
 
 }
+
+
+export function Weather() {
+
+    const [weather, setWeather] = useState("");
+    const [weatherDesc, setWeatherDesc] = useState("");
+
+    async function handleClick() {
+        // let lon = getLongitude();
+        // let lat = getLatitude();
+
+        try {
+            const result = await apiFetch(-75.95723099199999, 40.395179184);
+            setWeather(result.weather[0].main);
+            setWeatherDesc(result.weather[0].description);
+            console.log(result.weather[0]);
+        }  
+        catch (e) {
+            alert("something went wrong");
+        } 
+
+    }
+
+    return (
+        <>
+        {weather}
+        <br />
+        {weatherDesc}
+        <EventButton text="Update" onClick={handleClick} />
+        </>
+    );
+
+}
