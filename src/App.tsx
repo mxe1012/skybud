@@ -1,7 +1,7 @@
  import './styles.css'
 
 import { MainPane, EventButton, InfoPaneContainer, 
-  ExtraInfoPaneContainer, InfoPane, TimeDate, Temperature } from './Components.tsx';
+  ExtraInfoPaneContainer, InfoPane, TimeDate, Temperature, Humidity } from './Components.tsx';
 import { getLongitude, getLatitude } from './functions.tsx';
 
 export default function App() {
@@ -35,7 +35,7 @@ export default function App() {
             <p>sunrise, sunset</p>
           </InfoPane>
           <InfoPane name="Humidity">
-            <p>Humidity</p>
+            <Humidity />
           </InfoPane>
         </ExtraInfoPaneContainer>
       </MainPane>
