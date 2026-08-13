@@ -1,14 +1,15 @@
  import './styles.css'
 
-import { MainPane, EventButton, InfoPaneContainer, ExtraInfoPaneContainer, InfoPane, TimeDate } from './Components.tsx';
-import { getLocation } from './functions.tsx';
+import { MainPane, EventButton, InfoPaneContainer, 
+  ExtraInfoPaneContainer, InfoPane, TimeDate, Temperature, Humidity, Weather } from './Components.tsx';
+import { getLongitude, getLatitude } from './functions.tsx';
 
 export default function App() {
 
   return (
     <>
       <MainPane> 
-        <EventButton text="Get Location" onClick={getLocation} />
+        <EventButton text="Get Location" onClick={() => {getLongitude(); getLatitude()}} />
         <br />
         <br />
         <InfoPaneContainer>
@@ -16,10 +17,10 @@ export default function App() {
             <TimeDate />
           </InfoPane>
           <InfoPane name='Current Weather'>
-            <p>id, main, icon, description</p>
+            <Weather />
           </InfoPane>
           <InfoPane name='Temperature'>
-            <p>temp, feels like, humidity</p>
+            <Temperature />
           </InfoPane>
         </InfoPaneContainer>
         <br />
@@ -33,8 +34,8 @@ export default function App() {
           <InfoPane name="Sun">
             <p>sunrise, sunset</p>
           </InfoPane>
-          <InfoPane name="More">
-            <p>More Information</p>
+          <InfoPane name="Humidity">
+            <Humidity />
           </InfoPane>
         </ExtraInfoPaneContainer>
       </MainPane>

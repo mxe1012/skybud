@@ -22,14 +22,17 @@
 
 html {
     background: #a8e5ff;
+    font-family: 'comfortaa';
     background: linear-gradient(90deg,rgba(227, 246, 255, 1) 0%, rgba(115, 218, 255, 1) 50%, rgba(61, 195, 252, 1) 100%);
 }
 
 .InfoPaneContainer {
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    align-content: center;
     flex-wrap: nowrap;
+    /* grid-template-rows: auto auto;
+    grid-template-columns: auto auto; */
     padding: 20px;
     border-radius: 35px;
     box-shadow: 0px 0px 10px;
@@ -75,17 +78,27 @@ html {
     opacity: 1;
 }
 
+.EventButton {
+    border-style: none;
+    border-radius: 50px;
+    background-color: white;
+    padding: 10px
+}
+
 span {
-    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, backdrop-filter 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, backdrop-filter 0.2s ease-in-out;
 }
 
 span:hover {
     transform: scale(1.1);
-    opacity: 1;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
 }
 
-p {
-    font-family: 'comfortaa';
+button {
+    transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #c3c3c3;
 }
