@@ -2,6 +2,11 @@
 import { useState } from "react";
 import { getLongitude, getLatitude, apiFetch } from './functions.tsx';
 
+
+export function EventButton({text="", onClick}) {
+    return <button className="EventButton" onClick={onClick}>{text}</button>
+}
+
 export function MainPane({children}) {
     return <div className="MainPane">{children}</div>;
 }
@@ -103,8 +108,4 @@ export function Humidity() {
         </div>
     );
 
-}
-
-export function EventButton({text="", onClick}) {
-    return <button className="EventButton" onClick={onClick}>{text}</button>
 }
