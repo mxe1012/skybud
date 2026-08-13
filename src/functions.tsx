@@ -22,7 +22,7 @@ export function getLongitude() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       const long = position.coords.longitude;
-      console.log(position.coords.longitude);
+      console.log("Longitude from function: " + position.coords.longitude);
       return long;
     }, error);
   } 
@@ -36,7 +36,7 @@ export function getLatitude() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       const lat = position.coords.latitude;
-      console.log(position.coords.latitude);
+      console.log("Latitude from function: " + position.coords.latitude);
       return lat;
     }, error);
   } 
