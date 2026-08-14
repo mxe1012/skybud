@@ -83,8 +83,8 @@ html {
     background-position: center;
     animation-name: info-pane-container-fade;
     animation-duration: 0.5s;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
 }
 
 .ExtraInfoPaneContainer {
@@ -101,8 +101,8 @@ html {
     grid-template-rows: auto auto;
     grid-template-columns: auto auto;
     gap: 20px;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
 }
 
 .InfoPane {
@@ -127,7 +127,14 @@ html {
     border-style: none;
     border-radius: 50px;
     background-color: white;
-    padding: 10px
+    padding: 10px;
+}
+
+.EventInput {
+    border-style: none;
+    border-radius: 50px;
+    Padding: 10px;
+
 }
 
 .TemperatureGrid {
@@ -139,15 +146,15 @@ html {
     grid-template-columns: auto auto;
 }
 
-/* span {
-    transition: transform 0.2s ease-in-out, backdrop-filter 0.2s ease-in-out;
+span {
+    background-color: rgba(0, 0, 0, 0);
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 span:hover {
+    background-color: rgba(255,255, 255, 0.5);
     transform: scale(1.1);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-} */
+}
 
 button {
     transition: background-color 0.2s ease-in-out;
