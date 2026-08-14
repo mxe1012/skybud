@@ -2,14 +2,13 @@
  import './styles.css'
 
 import { MainPane,
-  TimeDateContainer,
+  ClockContainer,
+  Clock,
   ControllerPane,
-  InfoPaneContainer, 
-  TimeDatePane, 
+  InfoPaneContainer,  
   WeatherInfoPaneContainer, 
   ExtraInfoPaneContainer, 
   InfoPane, 
-  TimeDate, 
   Temperature, 
   Humidity, 
   Weather } from './Components.tsx';
@@ -20,11 +19,9 @@ export default function App() {
   return (
     <>
       <MainPane>
-      <TimeDateContainer>
-        <TimeDatePane name="Time">
-            <TimeDate />
-          </TimeDatePane>
-        </TimeDateContainer> 
+        <ClockContainer>
+          <Clock />
+        </ClockContainer> 
         <ControllerPane />
         <br />
         <InfoPaneContainer>
