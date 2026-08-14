@@ -1,6 +1,6 @@
 # Weather App
 
-A simple, fast weather application built with React, TypeScript, and Vite. Search for a city and view current conditions and forecast data pulled from a weather API.
+A simple, fast weather application built with React, TypeScript, and Vite. Search for a city and view current conditions pulled from Openweather API.
 
 ## Features
 
