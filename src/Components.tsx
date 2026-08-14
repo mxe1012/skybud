@@ -14,11 +14,11 @@ export function TimeDateContainer({children}) {
     return <div className="TimeDateContainer">{children}</div>;
 }
 
-export function PaneContainer({children}) {
+export function InfoPaneContainer({children}) {
     return <div className="PaneContainer">{children}</div>
 }
 
-export function InfoPaneContainer({children}) {
+export function WeatherInfoPaneContainer({children}) {
     return (
         <div className="InfoPaneContainer">{children}</div>
     );
