@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
  import './styles.css'
 
 import { MainPane, EventButton, InfoPaneContainer, 
@@ -9,7 +10,6 @@ export default function App() {
   return (
     <>
       <MainPane> 
-        <EventButton text="Get Location" onClick={() => {getLongitude(); getLatitude()}} />
         <br />
         <br />
         <InfoPaneContainer>
