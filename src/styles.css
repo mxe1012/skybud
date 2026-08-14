@@ -30,10 +30,16 @@ html {
     background: linear-gradient(90deg,rgba(227, 246, 255, 1) 0%, rgba(115, 218, 255, 1) 50%, rgba(61, 195, 252, 1) 100%);
 }
 
-.TimeDateContainer {
+.ClockContainer {
     display: flex;
     justify-content: center;
-    text-align: center;
+}
+
+.ControllerPane {
+    animation-name: info-pane-fade;
+    animation-duration: 1s;
+    display: flex;
+    justify-content: center;
 }
 
 .TimeDatePane {
@@ -161,5 +167,13 @@ button {
 }
 
 button:hover {
+    background-color: #c3c3c3;
+}
+
+input {
+    transition: background-color 0.2s ease-in-out;
+}
+
+input:hover {
     background-color: #c3c3c3;
 }
