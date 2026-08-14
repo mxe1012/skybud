@@ -17,7 +17,7 @@ export async function apiFetch(lon=0, lat=0) {
 };
 
 const options = {
-  maximumAge: 15000, // cache longitude and latitude for 15 seconds
+  maximumAge: 60000, // cache longitude and latitude for 60 seconds
 };
 
 export function getLongitude(): Promise<number> {
