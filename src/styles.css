@@ -1,11 +1,15 @@
 @keyframes info-pane-fade {
     from {
         opacity: 0;
-        transform: scale(0.8);
+        transform: scale(1.2);
+        /* backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px); */
     }
     to {
         opacity: 1;
         transform: scale(1);
+        /* backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px); */
     }
 }
 
@@ -26,14 +30,31 @@ html {
     background: linear-gradient(90deg,rgba(227, 246, 255, 1) 0%, rgba(115, 218, 255, 1) 50%, rgba(61, 195, 252, 1) 100%);
 }
 
-.InfoPaneContainer {
+.TimeDateContainer {
     display: flex;
     justify-content: center;
-    align-content: center;
-    flex-wrap: nowrap;
-    /* grid-template-rows: auto auto;
+    text-align: center;
+}
+
+.TimeDatePane {
+    animation-name: info-pane-fade;
+    animation-duration: 1s;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    text-align: center;
+    box-shadow: 0px 0px 10px black;
+    border-radius: 50px;
+    margin: 10px;
+}
+
+.InfoPaneContainer {
+    display: flex;
+    justify-content: space-around;
+    /* align-content: center; */
+    flex-wrap: wrap;
+    /* grid-template-rows: auto;
     grid-template-columns: auto auto; */
-    padding: 20px;
+    padding: 30px;
     border-radius: 35px;
     box-shadow: 0px 0px 10px;
     background-color: rgba(0, 0, 0, 0);
@@ -45,32 +66,56 @@ html {
     animation-duration: 0.5s;
 }
 
+.WeatherInfoPaneContainer {
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    /* grid-template-rows: auto;
+    grid-template-columns: auto auto; */
+    padding: 50px;
+    border-radius: 35px;
+    box-shadow: 0px 0px 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    /* background-image: url(./src/assets/bg.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    animation-name: info-pane-container-fade;
+    animation-duration: 0.5s;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
 .ExtraInfoPaneContainer {
     animation-name: info-pane-container-fade;
     animation-duration: 0.5s;
-    background-color: #0cacf1;
+    /* background-color: #0cacf1; */
     border-radius: 50px;
     box-shadow: 0px 0px 10px;
     padding: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
     display: inline-grid;
     justify-content: center;
     align-content: center;
     grid-template-rows: auto auto;
     grid-template-columns: auto auto;
     gap: 20px;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
 }
 
 .InfoPane {
     animation-name: info-pane-fade;
     animation-duration: 1s;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.3);
+    /* background-color: rgba(255, 255, 255, 0.3); */
     text-align: center;
-    box-shadow: 0px 0px 10px white;
+    /* box-shadow: 0px 0px 10px white; */
     border-radius: 50px;
     margin: 10px;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    /* backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px); */
 }
 
 .TimeDate {
@@ -82,17 +127,33 @@ html {
     border-style: none;
     border-radius: 50px;
     background-color: white;
-    padding: 10px
+    padding: 10px;
+}
+
+.EventInput {
+    border-style: none;
+    border-radius: 50px;
+    Padding: 10px;
+
+}
+
+.TemperatureGrid {
+    padding: 20px;
+    display: inline-grid;
+    align-content: center;
+    justify-content: center;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto;
 }
 
 span {
-    transition: transform 0.2s ease-in-out, backdrop-filter 0.2s ease-in-out;
+    background-color: rgba(0, 0, 0, 0);
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 span:hover {
+    background-color: rgba(255,255, 255, 0.5);
     transform: scale(1.1);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
 }
 
 button {
