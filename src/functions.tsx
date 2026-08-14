@@ -17,37 +17,75 @@ export async function apiFetch(lon=0, lat=0) {
 };
 
 const options = {
-  maximumAge: 15000,
+  maximumAge: 15000, // cache longitude and latitude for 15 seconds
 };
 
-export function getLongitude() {
+export function getLongitude(): Promise<number> {
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const long = position.coords.longitude;
-      console.log("Longitude from function: " + position.coords.longitude);
-      return long;
-    }, error, options);
-  } 
-  else {
-    alert("Geolocation is not supported by this browser.");
+  console.log("Getting Longitude...");
+
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by this browser.");
+      reject(new Error("Geolocation not supported"));
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (position) => resolve(position.coords.longitude),
+      (error) => reject(error),
+      options
+    );
+  });
+}
+
+export function getLatitude(): Promise<number> {
+
+  console.log("Getting Latitude...");
+
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by this browser.");
+      reject(new Error("Geolocation not supported"));
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (position) => resolve(position.coords.latitude),
+      (error) => reject(error),
+      options
+    );
+  });
+}
+
+/* 
+export function getCoordinates(): Promise<{ lat: number; lon: number }> {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by this browser.");
+      reject(new Error("Geolocation not supported"));
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (position) => resolve({
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
+      }),
+      (error) => reject(error),
+      options
+    );
+  });
+}
+
+-- MOVE CODE TO App.tsx LATER --
+
+const [coords, setCoords] = useState<{ lat: number; lon: number } | null>(null);
+
+const handleGetLocation = async () => {
+  try {
+    const result = await getCoordinates();
+    setCoords(result);
+  } catch (err) {
+    console.error(err);
   }
-}
+};
+*/
 
-export function getLatitude() {
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const lat = position.coords.latitude;
-      console.log("Latitude from function: " + position.coords.latitude);
-      return lat;
-    }, error, options);
-  } 
-  else {
-    alert("Geolocation is not supported by this browser.");
-  }
-}
-
-function error() {
-    alert("No position available.");
-}
