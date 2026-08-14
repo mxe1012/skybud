@@ -87,6 +87,15 @@ html {
     padding: 10px
 }
 
+.TemperatureGrid {
+    padding: 20px;
+    display: inline-grid;
+    align-content: center;
+    justify-content: center;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto;
+}
+
 span {
     transition: transform 0.2s ease-in-out, backdrop-filter 0.2s ease-in-out;
 }
