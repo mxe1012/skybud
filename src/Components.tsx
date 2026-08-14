@@ -14,8 +14,8 @@ export function MainPane({children}) {
     return <div className="MainPane">{children}</div>;
 }
 
-export function TimeDateContainer({children}) {
-    return <div className="TimeDateContainer">{children}</div>;
+export function ClockContainer({children}) {
+    return <div className="ClockContainer">{children}</div>;
 }
 
 export function InfoPaneContainer({children}) {
@@ -32,19 +32,35 @@ export function ExtraInfoPaneContainer({children}) {
 
 export function ControllerPane() {
     return (
-        <div className="ControllerPaneContainer">
-            <EventInput onChange={undefined}/>
-            <EventButton text="Update" onClick={undefined}/>
+        <div className="ControllerPane">
+            <EventInput placeholder="Location" onChange={undefined}/>
+            {" "}
+            {/* <EventButton text="Update" onClick={undefined}/> */}
         </div>
     );
 }
 
-export function TimeDatePane({name="", children}) {
+export function Clock() {
+
+    const time = new Date();
+    
+    let textColor;
+
+    if(time.getHours() >= 19 && time.getHours() <= 23) {
+        textColor = 'white';
+    }
+    else {
+        textColor = 'black';
+    }
+
     return (
         <>
             <span className="TimeDatePane">
-            <p>{name}</p>
-                {children}
+                <h4>Clock</h4>
+                <div className="TimeDate">
+                    <h1 style={{color: textColor}}>{time.toLocaleTimeString()}</h1>
+                    <h2 style={{color: textColor}}>{time.toLocaleDateString()}</h2>
+                </div>
             </span>
         </>
     );
@@ -59,18 +75,6 @@ export function InfoPane({name="", children}) {
             </span>
         </>
     );
-}
-
-
-export function TimeDate() {
-    const time = new Date();
-    
-    return (
-    <div className="TimeDate">
-      <h1>{time.toLocaleTimeString()}</h1>
-      <h2>{time.toLocaleDateString()}</h2>
-    </div>
-  );
 }
 
 export function Temperature() {
