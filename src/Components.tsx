@@ -6,6 +6,10 @@ export function EventButton({text="", onClick}) {
     return <button className="EventButton" onClick={onClick}>{text}</button>
 }
 
+export function EventInput({value="", placeholder="Placeholder", onChange}) {
+    return <input className="EventInput" value={value} placeholder={placeholder} onChange={onChange}/>
+}
+
 export function MainPane({children}) {
     return <div className="MainPane">{children}</div>;
 }
@@ -15,19 +19,15 @@ export function TimeDateContainer({children}) {
 }
 
 export function InfoPaneContainer({children}) {
-    return (
-        <div style={{textAlign: 'center', padding: "15px"}}>
-            <div className="InfoPaneContainer">{children}</div>
-        </div>
-    );
+    return <div className="InfoPaneContainer">{children}</div>
+}
+
+export function WeatherInfoPaneContainer({children}) {
+    return <div className="WeatherInfoPaneContainer">{children}</div>;
 }
 
 export function ExtraInfoPaneContainer({children}) {
-    return (
-        <div style={{textAlign: 'center', padding: "15px"}}>
-            <div className="ExtraInfoPaneContainer">{children}</div>
-        </div>
-    );
+    return <div className="ExtraInfoPaneContainer">{children}</div>;
 }
 
 export function TimeDatePane({name="", children}) {
