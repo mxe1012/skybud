@@ -30,6 +30,15 @@ export function ExtraInfoPaneContainer({children}) {
     return <div className="ExtraInfoPaneContainer">{children}</div>;
 }
 
+export function ControllerPane() {
+    return (
+        <div className="ControllerPaneContainer">
+            <EventInput onChange={undefined}/>
+            <EventButton text="Update" onClick={undefined}/>
+        </div>
+    );
+}
+
 export function TimeDatePane({name="", children}) {
     return (
         <>
