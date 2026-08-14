@@ -40,7 +40,7 @@ export function ExtraInfoPaneContainer({children}) {
 
 export function TimeDate() {
     const time = new Date();
-
+    
     return (
     <div className="TimeDate">
       <h1>{time.toLocaleTimeString()}</h1>
@@ -53,6 +53,8 @@ export function Temperature() {
 
     const [temp, setTemp] = useState(0);
     const [feelsLike, setFeelsLike] = useState(0);
+    const [maxTemp, setMaxTemp] = useState(0);
+    const [minTemp, setMinTemp] = useState(0);
 
     async function handleClick() {
         const lon = await getLongitude();
@@ -64,7 +66,9 @@ export function Temperature() {
         try {
             const result = await apiFetch(lon, lat);
             setTemp(result.main.temp);
-            setFeelsLike(result.main.feels_like)
+            setFeelsLike(result.main.feels_like);
+            setMaxTemp(result.main.temp_max);
+            setMinTemp(result.main.temp_min);
             console.log(result.main);
         }  
         catch (e) {
@@ -76,13 +80,27 @@ export function Temperature() {
 
     return (
         <div>
-            <p style={{fontSize: '36px'}}><b>{Math.round(temp)}°F</b></p>
-            Feels like: {""}
-            <b>{Math.round(feelsLike)}°F</b>
-            <br />
-            <br />
-            <EventButton text="Update" onClick={handleClick}/>
-        </div>
+            <div className="TemperatureGrid">
+                <div style={{padding: '10px'}}>
+                    Current {" "}
+                    <h1><b>{Math.round(temp)}°F</b></h1>
+                </div>
+                <div style={{padding: '10px'}}>
+                    Feels like {" "}
+                    <h1>{Math.round(feelsLike)}°F</h1>
+                </div>
+                <div style={{padding: '10px'}}>
+                    Max {" "}
+                    <h2>{Math.round(maxTemp)}°F</h2>
+                </div>
+                <div style={{padding: '10px'}}>
+                    Min {" "}
+                    <h2>{Math.round(minTemp)}°F</h2>
+                </div>
+            </div>
+            <br/>
+                <EventButton text="Update" onClick={handleClick}/>
+            </div>
     );
 }
 
@@ -151,11 +169,10 @@ export function Weather() {
 
     return (
         <div>
-            {weather}
-            <br />
+            <h1>{weather}</h1>
             <img src={icon} />
             <br />
-            {weatherDesc}
+            <h2>{weatherDesc}</h2>
             <br />
             <EventButton text="Update" onClick={handleClick} />
         </div>
