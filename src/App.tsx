@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
  import './styles.css'
 
-import { MainPane, EventButton,TimeDateContainer, InfoPaneContainer, TimeDatePane, WeatherInfoPaneContainer, 
+import { MainPane, EventButton, EventInput, TimeDateContainer, InfoPaneContainer, TimeDatePane, WeatherInfoPaneContainer, 
   ExtraInfoPaneContainer, InfoPane, TimeDate, Temperature, Humidity, Weather } from './Components.tsx';
 import { getLongitude, getLatitude } from './functions.tsx';
 
@@ -40,6 +40,9 @@ export default function App() {
             </InfoPane>
         </ExtraInfoPaneContainer>
         </InfoPaneContainer>
+        <br />
+        <EventButton text="Update" onClick={undefined}/>
+        <EventInput onChange={undefined}/>
       </MainPane>
     </>
   );
