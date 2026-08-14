@@ -14,19 +14,19 @@ export function TimeDateContainer({children}) {
     return <div className="TimeDateContainer">{children}</div>;
 }
 
+export function PaneContainer({children}) {
+    return <div className="PaneContainer">{children}</div>
+}
+
 export function InfoPaneContainer({children}) {
     return (
-        <div style={{textAlign: 'center', padding: "15px"}}>
-            <div className="InfoPaneContainer">{children}</div>
-        </div>
+        <div className="InfoPaneContainer">{children}</div>
     );
 }
 
 export function ExtraInfoPaneContainer({children}) {
     return (
-        <div style={{textAlign: 'center', padding: "15px"}}>
-            <div className="ExtraInfoPaneContainer">{children}</div>
-        </div>
+        <div className="ExtraInfoPaneContainer">{children}</div>
     );
 }
 
