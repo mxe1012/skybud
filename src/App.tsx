@@ -10,8 +10,6 @@ export default function App() {
   return (
     <>
       <MainPane> 
-        <br />
-        <br />
         <InfoPaneContainer>
           <InfoPane name="Time">
             <TimeDate />
@@ -23,7 +21,7 @@ export default function App() {
             <Temperature />
           </InfoPane>
         </InfoPaneContainer>
-        <br />
+       
         <ExtraInfoPaneContainer>
           <InfoPane name="Wind">
             <p>speed degree gust</p>
