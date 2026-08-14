@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import { getLongitude, getLatitude, apiFetch } from './functions.tsx';
 
@@ -69,7 +68,8 @@ export function Temperature() {
             console.log(result.main);
         }  
         catch (e) {
-            alert("something went wrong when fetching temperature.");
+           console.error(e);
+            alert("something went wrong");
         } 
 
     }
@@ -103,6 +103,7 @@ export function Humidity() {
             console.log(result.main);
         }  
         catch (e) {
+            console.error(e);
             alert("something went wrong");
         } 
 
@@ -142,6 +143,7 @@ export function Weather() {
             console.log(result.weather[0]);
         }  
         catch (e) {
+            console.error(e);
             alert("something went wrong");
         } 
 
