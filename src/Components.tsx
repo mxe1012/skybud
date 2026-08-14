@@ -12,7 +12,7 @@ export function MainPane({children}) {
 
 export function InfoPaneContainer({children}) {
     return (
-        <div style={{textAlign: 'center'}}>
+        <div style={{textAlign: 'center', padding: "15px"}}>
             <div className="InfoPaneContainer">{children}</div>
         </div>
     );
@@ -31,7 +31,7 @@ export function InfoPane({name="", children}) {
 
 export function ExtraInfoPaneContainer({children}) {
     return (
-        <div style={{textAlign: 'center'}}>
+        <div style={{textAlign: 'center', padding: "15px"}}>
             <h1 style={{textAlign: "center", fontFamily: "comfortaa"}}>More Information</h1>
             <div className="ExtraInfoPaneContainer">{children}</div>
         </div>
