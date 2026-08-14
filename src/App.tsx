@@ -14,14 +14,13 @@ export default function App() {
           <InfoPane name="Time">
             <TimeDate />
           </InfoPane>
-          <InfoPane name='Current Weather'>
+          <InfoPane name='Weather'>
             <Weather />
           </InfoPane>
           <InfoPane name='Temperature'>
             <Temperature />
           </InfoPane>
         </InfoPaneContainer>
-       
         <ExtraInfoPaneContainer>
           <InfoPane name="Wind">
             <p>speed degree gust</p>
