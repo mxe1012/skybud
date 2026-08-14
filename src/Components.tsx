@@ -14,10 +14,6 @@ export function MainPane({children}) {
     return <div className="MainPane">{children}</div>;
 }
 
-export function ClockContainer({children}) {
-    return <div className="ClockContainer">{children}</div>;
-}
-
 export function InfoPaneContainer({children}) {
     return <div className="InfoPaneContainer">{children}</div>
 }
@@ -45,24 +41,28 @@ export function Clock() {
     const time = new Date();
     
     let textColor;
+    let bgColor;
 
     if(time.getHours() >= 19 && time.getHours() <= 23) {
         textColor = 'white';
+        bgColor = 'black';
     }
     else {
         textColor = 'black';
+        bgColor = 'white';
     }
 
+
     return (
-        <>
-            <span className="TimeDatePane">
-                <h4>Clock</h4>
+        <div className="Clock">
+            <span style={{backgroundColor: bgColor}} className="TimeDatePane">
+                <h4 style={{color: textColor}}>Clock</h4>
                 <div className="TimeDate">
                     <h1 style={{color: textColor}}>{time.toLocaleTimeString()}</h1>
                     <h2 style={{color: textColor}}>{time.toLocaleDateString()}</h2>
                 </div>
             </span>
-        </>
+        </div>
     );
 }
 

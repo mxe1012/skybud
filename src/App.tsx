@@ -2,7 +2,6 @@
  import './styles.css'
 
 import { MainPane,
-  ClockContainer,
   Clock,
   ControllerPane,
   InfoPaneContainer,  
@@ -19,9 +18,7 @@ export default function App() {
   return (
     <>
       <MainPane>
-        <ClockContainer>
-          <Clock />
-        </ClockContainer> 
+        <Clock /> 
         <ControllerPane />
         <br />
         <InfoPaneContainer>
