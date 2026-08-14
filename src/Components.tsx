@@ -56,11 +56,13 @@ export function Temperature() {
     const [feelsLike, setFeelsLike] = useState(0);
 
     async function handleClick() {
-        const lon = getLongitude();
-        const lat = getLatitude();
+        const lon = await getLongitude();
+        const lat = await getLatitude();
 
+        console.log(lon);
+        console.log(lat);
+        
         try {
-            // const result = await apiFetch(-75.95723099199999, 40.395179184);
             const result = await apiFetch(lon, lat);
             setTemp(result.main.temp);
             setFeelsLike(result.main.feels_like)
@@ -89,11 +91,14 @@ export function Humidity() {
     const [humidity, setHumidity] = useState(0);
 
     async function handleClick() {
-        // let lon = getLongitude();
-        // let lat = getLatitude();
+        const lon = await getLongitude();
+        const lat = await getLatitude();
+
+        console.log(lon);
+        console.log(lat);
 
         try {
-            const result = await apiFetch(-75.95723099199999, 40.395179184);
+            const result = await apiFetch(lon, lat);
             setHumidity(result.main.humidity);
             console.log(result.main);
         }  
@@ -123,11 +128,14 @@ export function Weather() {
     const iconUrl = "https://openweathermap.org/payload/api/media/file/"
 
     async function handleClick() {
-        // let lon = getLongitude();
-        // let lat = getLatitude();
+        const lon = await getLongitude();
+        const lat = await getLatitude();
+
+        console.log(lon);
+        console.log(lat);
 
         try {
-            const result = await apiFetch(-75.95723099199999, 40.395179184);
+            const result = await apiFetch(lon, lat);
             setWeather(result.weather[0].main);
             setWeatherDesc(result.weather[0].description);
             setIcon(iconUrl + result.weather[0].icon + ".png");
@@ -150,5 +158,4 @@ export function Weather() {
             <EventButton text="Update" onClick={handleClick} />
         </div>
     );
-
 }
