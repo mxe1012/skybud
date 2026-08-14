@@ -7,7 +7,7 @@ A simple, fast weather application built with React, TypeScript, and Vite. Searc
 - 🔍 Search weather by city name (Coming soon)
 - 📍 Geolocation support ("use my current location")
 - 🌡️ Current conditions: temperature, feels-like, humidity, wind
-- 🌗 Light/dark mode toggle
+- 🌗 Light/dark mode toggle (Coming soon)
 - 📱 Responsive layout
 
 ## Tech Stack
