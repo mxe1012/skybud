@@ -4,10 +4,9 @@ A simple, fast weather application built with React, TypeScript, and Vite. Searc
 
 ## Features
 
-- 🔍 Search weather by city name
-- 📍 Optional geolocation support ("use my current location")
+- 🔍 Search weather by city name (Coming soon)
+- 📍 Geolocation support ("use my current location")
 - 🌡️ Current conditions: temperature, feels-like, humidity, wind
-- 📅 Multi-day forecast
 - 🌗 Light/dark mode toggle
 - 📱 Responsive layout
 
@@ -28,7 +27,7 @@ A simple, fast weather application built with React, TypeScript, and Vite. Searc
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/weather-app.git
+git clone https://github.com/mxe1012/weather-app.git
 cd weather-app
 ```
 
@@ -43,7 +42,7 @@ yarn install
 Create a `.env` file in the project root (see `.env.example` if provided):
 
 ```bash
-VITE_WEATHER_API_KEY=your_api_key_here
+VITE_API_KEY=your_api_key_here
 VITE_WEATHER_API_BASE_URL=https://api.example.com
 ```
 
@@ -74,45 +73,21 @@ The app will be available at `http://localhost:5173` by default.
 weather-app/
 ├── public/              # Static assets
 ├── src/
-│   ├── api/             # API client & requests
-│   ├── components/      # Reusable UI components
+│   ├── assets/          # Icons and other assets
 │   ├── hooks/           # Custom React hooks
 │   ├── pages/           # Page-level components
 │   ├── types/           # Shared TypeScript types/interfaces
 │   ├── utils/           # Helper functions
 │   ├── App.tsx
-│   └── main.tsx
+│   ├── functions.tsx    # Helper sunctions
+|   ├── Components.tsx      # Reusable UI components
+│   └── index.tsx
 ├── .env.example
 ├── index.html
 ├── package.json
 ├── tsconfig.json
 ├── vite.config.ts
 └── README.md
-```
-
-## Building for Production
-
-```bash
-yarn build
-```
-
-This runs a type-check and outputs an optimized production build to the `dist/` directory. Preview it locally with:
-
-```bash
-yarn preview
-```
-
-## Linting & Formatting
-
-```bash
-yarn lint
-yarn format
-```
-
-## Testing
-
-```bash
-yarn test
 ```
 
 ## Contributing
