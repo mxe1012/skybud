@@ -2,14 +2,14 @@
     from {
         opacity: 0;
         transform: scale(1.2);
-        backdrop-filter: blur(0px);
-        -webkit-backdrop-filter: blur(0px);
+        /* backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px); */
     }
     to {
         opacity: 1;
         transform: scale(1);
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(2px);
+        /* backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px); */
     }
 }
 
@@ -47,16 +47,14 @@ html {
     margin: 10px;
 }
 
-.InfoPaneContainer {
-    display: inline-grid;
-    justify-content: center;
-    align-content: center;
-    flex-wrap: nowrap;
-    grid-template-rows: auto;
-    grid-template-columns: auto auto;
-    padding: 50px;
-    padding-left: 75px;
-    padding-right: 75px;
+.PaneContainer {
+    display: flex;
+    justify-content: space-around;
+    /* align-content: center; */
+    flex-wrap: wrap;
+    /* grid-template-rows: auto;
+    grid-template-columns: auto auto; */
+    padding: 30px;
     border-radius: 35px;
     box-shadow: 0px 0px 10px;
     background-color: rgba(0, 0, 0, 0);
@@ -68,32 +66,56 @@ html {
     animation-duration: 0.5s;
 }
 
+.InfoPaneContainer {
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    /* grid-template-rows: auto;
+    grid-template-columns: auto auto; */
+    padding: 50px;
+    border-radius: 35px;
+    box-shadow: 0px 0px 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    /* background-image: url(./src/assets/bg.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    animation-name: info-pane-container-fade;
+    animation-duration: 0.5s;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
 .ExtraInfoPaneContainer {
     animation-name: info-pane-container-fade;
     animation-duration: 0.5s;
-    background-color: #0cacf1;
+    /* background-color: #0cacf1; */
     border-radius: 50px;
     box-shadow: 0px 0px 10px;
     padding: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
     display: inline-grid;
     justify-content: center;
     align-content: center;
     grid-template-rows: auto auto;
     grid-template-columns: auto auto;
     gap: 20px;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
 
 .InfoPane {
     animation-name: info-pane-fade;
     animation-duration: 1s;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.3);
+    /* background-color: rgba(255, 255, 255, 0.3); */
     text-align: center;
-    box-shadow: 0px 0px 10px white;
+    /* box-shadow: 0px 0px 10px white; */
     border-radius: 50px;
     margin: 10px;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    /* backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px); */
 }
 
 .TimeDate {
@@ -117,7 +139,7 @@ html {
     grid-template-columns: auto auto;
 }
 
-span {
+/* span {
     transition: transform 0.2s ease-in-out, backdrop-filter 0.2s ease-in-out;
 }
 
@@ -125,7 +147,7 @@ span:hover {
     transform: scale(1.1);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-}
+} */
 
 button {
     transition: background-color 0.2s ease-in-out;
