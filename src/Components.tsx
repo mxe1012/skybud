@@ -15,12 +15,12 @@ export function TimeDateContainer({children}) {
 }
 
 export function InfoPaneContainer({children}) {
-    return <div className="PaneContainer">{children}</div>
+    return <div className="InfoPaneContainer">{children}</div>
 }
 
 export function WeatherInfoPaneContainer({children}) {
     return (
-        <div className="InfoPaneContainer">{children}</div>
+        <div className="WeatherInfoPaneContainer">{children}</div>
     );
 }
 
