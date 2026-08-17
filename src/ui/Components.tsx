@@ -120,3 +120,17 @@ export function Humidity({humidity}) {
     );
 
 }
+
+export function Wind({speed, degree, gust}) {
+    
+    return (
+        <div>
+            <b>Speed: {speed} mph</b>
+            <br />
+            <b>Direction: {degree}°</b>
+            <br />
+            <b>Gust: {gust} mph</b>
+        </div>
+    );
+
+}
