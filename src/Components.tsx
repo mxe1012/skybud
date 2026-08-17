@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { getLongitude, getLatitude, apiFetch } from './functions.tsx';
-
+// import { useState } from "react";
+// import { getLongitude, getLatitude, apiFetch } from './functions.tsx';
 
 export function EventButton({text="", onClick}) {
     return <button className="EventButton" onClick={onClick}>{text}</button>
@@ -71,34 +70,7 @@ export function Clock() {
     );
 }
 
-export function Weather() {
-
-    const [weather, setWeather] = useState("");
-    const [weatherDesc, setWeatherDesc] = useState("");
-    const [weatherIcon, setWeatherIcon] = useState("")
-
-    const iconUrl = "https://openweathermap.org/payload/api/media/file/"
-
-    async function handleClick() {
-        const lon = await getLongitude();
-        const lat = await getLatitude();
-
-        console.log(lon);
-        console.log(lat);
-
-        try {
-            const result = await apiFetch(lon, lat);
-            setWeather(result.weather[0].main);
-            setWeatherDesc(result.weather[0].description);
-            setWeatherIcon(iconUrl + result.weather[0].icon + ".png");
-            console.log(result.weather[0]);
-        }  
-        catch (e) {
-            console.error(e);
-            alert("something went wrong");
-        } 
-
-    }
+export function Weather({weather, weatherDesc, weatherIcon}) {
 
     return (
         <div>
@@ -107,40 +79,12 @@ export function Weather() {
             <br />
             <h2>{weatherDesc}</h2>
             <br />
-            <EventButton text="Update" onClick={handleClick} />
         </div>
     );
 }
 
 
-export function Temperature() {
-
-    const [temp, setTemp] = useState(0);
-    const [feelsLike, setFeelsLike] = useState(0);
-    const [maxTemp, setMaxTemp] = useState(0);
-    const [minTemp, setMinTemp] = useState(0);
-
-    async function handleClick() {
-        const lon = await getLongitude();
-        const lat = await getLatitude();
-
-        console.log(lon);
-        console.log(lat);
-        
-        try {
-            const result = await apiFetch(lon, lat);
-            setTemp(result.main.temp);
-            setFeelsLike(result.main.feels_like);
-            setMaxTemp(result.main.temp_max);
-            setMinTemp(result.main.temp_min);
-            console.log(result.main);
-        }  
-        catch (e) {
-           console.error(e);
-            alert("something went wrong");
-        } 
-
-    }
+export function Temperature({temp, feelsLike, maxTemp, minTemp}) {
 
     return (
         <div>
@@ -163,39 +107,16 @@ export function Temperature() {
                 </div>
             </div>
             <br/>
-                <EventButton text="Update" onClick={handleClick}/>
             </div>
     );
 }
 
-export function Humidity() {
-
-    const [humidity, setHumidity] = useState(0);
-
-    async function handleClick() {
-        const lon = await getLongitude();
-        const lat = await getLatitude();
-
-        console.log(lon);
-        console.log(lat);
-
-        try {
-            const result = await apiFetch(lon, lat);
-            setHumidity(result.main.humidity);
-            console.log(result.main);
-        }  
-        catch (e) {
-            console.error(e);
-            alert("something went wrong");
-        } 
-
-    }
+export function Humidity({humidity}) {
 
     return (
         <div>
             <b>{humidity}%</b>
             <br />
-            <EventButton text="Update" onClick={handleClick} />
         </div>
     );
 
