@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getLongitude, getLatitude, apiFetch } from '../utils/functions.tsx';
+import { getCoordinates, apiFetch } from '../utils/functions.tsx';
 import { InfoPaneContainer, EventButton, InfoPane, WeatherInfoPaneContainer, ExtraInfoPaneContainer, 
     Weather, Temperature, Humidity, Wind} from './Components.tsx';
 
@@ -30,11 +30,10 @@ export default function Dashboard() {
   const iconUrl = "https://openweathermap.org/payload/api/media/file/";
 
   async function handleClick() {
-    const lon = await getLongitude();
-    const lat = await getLatitude();
+    const coords = await getCoordinates();
 
     try {
-      const result = await apiFetch(lon, lat);
+      const result = await apiFetch(coords.lon, coords.lat);
 
       // Update location name
       setLocationName(result.name + ", " + result.sys.country);
