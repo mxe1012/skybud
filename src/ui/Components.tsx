@@ -83,7 +83,6 @@ export function Weather({weather, weatherDesc, weatherIcon}) {
     );
 }
 
-
 export function Temperature({temp, feelsLike, maxTemp, minTemp}) {
 
     return (

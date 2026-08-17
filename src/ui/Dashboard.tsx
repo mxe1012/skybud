@@ -1,18 +1,22 @@
 import { useState } from "react";
-import { getLongitude, getLatitude, apiFetch } from './functions.tsx';
+import { getLongitude, getLatitude, apiFetch } from '../utils/functions.tsx';
 import { InfoPaneContainer, EventButton, InfoPane, WeatherInfoPaneContainer, ExtraInfoPaneContainer, 
     Weather, Temperature, Humidity} from './Components.tsx';
 
 export default function Dashboard() {
+
+  //Weather component
   const [weather, setWeather] = useState("");
   const [weatherDesc, setWeatherDesc] = useState("");
   const [weatherIcon, setWeatherIcon] = useState("");
 
+  //Temperature component
   const [temp, setTemp] = useState(0);
   const [feelsLike, setFeelsLike] = useState(0);
   const [maxTemp, setMaxTemp] = useState(0);
   const [minTemp, setMinTemp] = useState(0);
 
+  //Humidity component
   const [humidity, setHumidity] = useState(0);
 
   const iconUrl = "https://openweathermap.org/payload/api/media/file/";
