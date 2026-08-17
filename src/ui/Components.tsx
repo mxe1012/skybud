@@ -123,11 +123,29 @@ export function Humidity({humidity}) {
 
 export function Wind({speed, degree, gust}) {
     
+    let compass;
+
+    if (degree >= 0 && degree < 90) {
+        compass = 'N';
+    }
+    else if (degree >= 90 && degree < 180) {
+        compass = 'E';
+    }
+    else if (degree >= 180 && degree < 270) {
+        compass = 'S';
+    }
+    else if (degree >= 270 && degree <= 350) {
+        compass = 'W';
+    }
+    else {
+        compass = '?'
+    }
+
     return (
         <div>
             <b>Speed: {speed} mph</b>
             <br />
-            <b>Direction: {degree}°</b>
+            <b>Direction: {degree}° ({compass})</b>
             <br />
             <b>Gust: {gust} mph</b>
         </div>
