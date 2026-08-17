@@ -71,23 +71,29 @@ The app will be available at `http://localhost:5173` by default.
 
 ```
 weather-app/
-├── public/              # Static assets
+├── public/
 ├── src/
-│   ├── assets/          # Icons and other assets
-│   ├── hooks/           # Custom React hooks
-│   ├── pages/           # Page-level components
-│   ├── types/           # Shared TypeScript types/interfaces
-│   ├── utils/           # Helper functions
+│   ├── assets/ # Images and other assets
+│   ├── ui/ # UI Components and containers
+│   │   ├── Components.tsx
+│   │   └── Dashboard.tsx
+│   ├── utils/ # Helper functions
+│   │   └── functions.tsx
 │   ├── App.tsx
-│   ├── functions.tsx    # Helper sunctions
-|   ├── Components.tsx      # Reusable UI components
-│   └── index.tsx
+│   ├── index.tsx
+│   └── styles.css 
 ├── .env.example
+├── .gitignore
+├── eslint.config.js
 ├── index.html
+├── package-lock.json
 ├── package.json
+├── README.md
+├── READMEbak.md
+├── tsconfig.app.json
 ├── tsconfig.json
-├── vite.config.ts
-└── README.md
+├── tsconfig.node.json
+└── vite.config.ts
 ```
 
 ## Contributing
