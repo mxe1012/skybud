@@ -143,11 +143,11 @@ export function Wind({speed, degree, gust}) {
 
     return (
         <div>
-            <b>Speed: {speed} mph</b>
+            <b>Speed: {Math.round(speed)} mph</b>
             <br />
             <b>Direction: {degree}° ({compass})</b>
             <br />
-            <b>Gust: {gust} mph</b>
+            <b>Gust: {Math.round(gust)} mph</b>
         </div>
     );
 
