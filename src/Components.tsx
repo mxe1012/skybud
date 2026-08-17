@@ -71,6 +71,47 @@ export function Clock() {
     );
 }
 
+export function Weather() {
+
+    const [weather, setWeather] = useState("");
+    const [weatherDesc, setWeatherDesc] = useState("");
+    const [icon, setIcon] = useState("")
+
+    const iconUrl = "https://openweathermap.org/payload/api/media/file/"
+
+    async function handleClick() {
+        const lon = await getLongitude();
+        const lat = await getLatitude();
+
+        console.log(lon);
+        console.log(lat);
+
+        try {
+            const result = await apiFetch(lon, lat);
+            setWeather(result.weather[0].main);
+            setWeatherDesc(result.weather[0].description);
+            setIcon(iconUrl + result.weather[0].icon + ".png");
+            console.log(result.weather[0]);
+        }  
+        catch (e) {
+            console.error(e);
+            alert("something went wrong");
+        } 
+
+    }
+
+    return (
+        <div>
+            <h1>{weather}</h1>
+            <img src={icon} />
+            <br />
+            <h2>{weatherDesc}</h2>
+            <br />
+            <EventButton text="Update" onClick={handleClick} />
+        </div>
+    );
+}
+
 
 export function Temperature() {
 
@@ -158,46 +199,4 @@ export function Humidity() {
         </div>
     );
 
-}
-
-
-export function Weather() {
-
-    const [weather, setWeather] = useState("");
-    const [weatherDesc, setWeatherDesc] = useState("");
-    const [icon, setIcon] = useState("")
-
-    const iconUrl = "https://openweathermap.org/payload/api/media/file/"
-
-    async function handleClick() {
-        const lon = await getLongitude();
-        const lat = await getLatitude();
-
-        console.log(lon);
-        console.log(lat);
-
-        try {
-            const result = await apiFetch(lon, lat);
-            setWeather(result.weather[0].main);
-            setWeatherDesc(result.weather[0].description);
-            setIcon(iconUrl + result.weather[0].icon + ".png");
-            console.log(result.weather[0]);
-        }  
-        catch (e) {
-            console.error(e);
-            alert("something went wrong");
-        } 
-
-    }
-
-    return (
-        <div>
-            <h1>{weather}</h1>
-            <img src={icon} />
-            <br />
-            <h2>{weatherDesc}</h2>
-            <br />
-            <EventButton text="Update" onClick={handleClick} />
-        </div>
-    );
 }
