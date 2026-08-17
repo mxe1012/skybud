@@ -20,44 +20,10 @@ const options = {
   maximumAge: 15000, // cache longitude and latitude for 15 seconds
 };
 
-export function getLongitude(): Promise<number> {
-
-  console.log("Getting Longitude...");
-
-  return new Promise((resolve, reject) => {
-    if (!navigator.geolocation) {
-      alert("Geolocation is not supported by this browser.");
-      reject(new Error("Geolocation not supported"));
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(
-      (position) => resolve(position.coords.longitude),
-      (error) => reject(error),
-      options
-    );
-  });
-}
-
-export function getLatitude(): Promise<number> {
-
-  console.log("Getting Latitude...");
-
-  return new Promise((resolve, reject) => {
-    if (!navigator.geolocation) {
-      alert("Geolocation is not supported by this browser.");
-      reject(new Error("Geolocation not supported"));
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(
-      (position) => resolve(position.coords.latitude),
-      (error) => reject(error),
-      options
-    );
-  });
-}
-
-/* 
 export function getCoordinates(): Promise<{ lat: number; lon: number }> {
+
+  console.log("Getting Latitude and Longitude...");
+
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {
       alert("Geolocation is not supported by this browser.");
@@ -74,18 +40,3 @@ export function getCoordinates(): Promise<{ lat: number; lon: number }> {
     );
   });
 }
-
--- MOVE CODE TO App.tsx LATER --
-
-const [coords, setCoords] = useState<{ lat: number; lon: number } | null>(null);
-
-const handleGetLocation = async () => {
-  try {
-    const result = await getCoordinates();
-    setCoords(result);
-  } catch (err) {
-    console.error(err);
-  }
-};
-*/
-
