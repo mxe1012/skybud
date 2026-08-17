@@ -26,14 +26,8 @@ export function ExtraInfoPaneContainer({children}) {
     return <div className="ExtraInfoPaneContainer">{children}</div>;
 }
 
-export function ControllerPane() {
-    return (
-        <div className="ControllerPane">
-            <EventInput placeholder="Location" onChange={undefined}/>
-            {" "}
-            {/* <EventButton text="Update" onClick={undefined}/> */}
-        </div>
-    );
+export function ControllerPane({children}) {
+    return <div className="ControllerPane">{children}</div>
 }
 
 export function Clock() {
