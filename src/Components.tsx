@@ -75,7 +75,7 @@ export function Weather() {
 
     const [weather, setWeather] = useState("");
     const [weatherDesc, setWeatherDesc] = useState("");
-    const [icon, setIcon] = useState("")
+    const [weatherIcon, setWeatherIcon] = useState("")
 
     const iconUrl = "https://openweathermap.org/payload/api/media/file/"
 
@@ -90,7 +90,7 @@ export function Weather() {
             const result = await apiFetch(lon, lat);
             setWeather(result.weather[0].main);
             setWeatherDesc(result.weather[0].description);
-            setIcon(iconUrl + result.weather[0].icon + ".png");
+            setWeatherIcon(iconUrl + result.weather[0].icon + ".png");
             console.log(result.weather[0]);
         }  
         catch (e) {
@@ -103,7 +103,7 @@ export function Weather() {
     return (
         <div>
             <h1>{weather}</h1>
-            <img src={icon} />
+            <img src={weatherIcon} />
             <br />
             <h2>{weatherDesc}</h2>
             <br />
