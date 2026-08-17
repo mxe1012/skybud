@@ -1,14 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
- import './styles.css'
+import './styles.css'
 
 import { MainPane,
   Clock,
   EventInput,
   ControllerPane,
-  } from './Components.tsx';
+  } from './ui/Components.tsx';
 
-import Dashboard from './Dashboard.tsx';
-import { getLongitude, getLatitude } from './functions.tsx';
+import Dashboard from './ui/Dashboard.tsx';
+// import { getLongitude, getLatitude } from './utils/functions.tsx';
 
 export default function App() {
 
