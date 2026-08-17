@@ -30,6 +30,17 @@ export function ControllerPane({children}) {
     return <div className="ControllerPane">{children}</div>
 }
 
+export function InfoPane({name="", children}) {
+    return (
+        <>
+            <span className="InfoPane">
+            <p>{name}</p>
+                {children}
+            </span>
+        </>
+    );
+}
+
 export function Clock() {
 
     const time = new Date();
@@ -60,16 +71,6 @@ export function Clock() {
     );
 }
 
-export function InfoPane({name="", children}) {
-    return (
-        <>
-            <span className="InfoPane">
-            <p>{name}</p>
-                {children}
-            </span>
-        </>
-    );
-}
 
 export function Temperature() {
 
