@@ -56,7 +56,12 @@ export default function Dashboard() {
       //Update Wind-related state
       setSpeed(result.wind.speed);
       setDegree(result.wind.deg);
+      if (!result.wind.gust) {
+        setGust(0);
+      }
+      else {
       setGust(result.wind.gust);
+      }
 
       console.log("Weather Data: ");
       console.log(result.weather[0])
@@ -90,6 +95,12 @@ export default function Dashboard() {
         </InfoPane>
         <InfoPane name='Wind'>
           <Wind speed={speed} degree={degree} gust={gust}/>
+        </InfoPane>
+        <InfoPane name="Visibility">
+          Visibility
+        </InfoPane>
+        <InfoPane name="Sunrise and Sunset">
+          Sunrise and Sunset
         </InfoPane>
       </ExtraInfoPaneContainer>
       </InfoPaneContainer>
