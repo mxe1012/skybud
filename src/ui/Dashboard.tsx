@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getLongitude, getLatitude, apiFetch } from '../utils/functions.tsx';
 import { InfoPaneContainer, EventButton, InfoPane, WeatherInfoPaneContainer, ExtraInfoPaneContainer, 
-    Weather, Temperature, Humidity} from './Components.tsx';
+    Weather, Temperature, Humidity, Wind} from './Components.tsx';
 
 export default function Dashboard() {
 
@@ -18,6 +18,11 @@ export default function Dashboard() {
 
   //Humidity component
   const [humidity, setHumidity] = useState(0);
+
+  //Wind component
+  const [speed, setSpeed] = useState(0);
+  const [degree, setDegree] = useState(0);
+  const [gust, setGust] = useState(0);
 
   const iconUrl = "https://openweathermap.org/payload/api/media/file/";
 
@@ -42,9 +47,19 @@ export default function Dashboard() {
       // Update Humidity-related state
       setHumidity(result.main.humidity);
 
+      //Update Wind-related state
+      setSpeed(result.wind.speed);
+      setDegree(result.wind.deg);
+      setGust(result.wind.gust);
+
+      console.log("Weather Data: " + result.weather[0]);
+      console.log("Temperature Data: " + result.main);
+      console.log("Wind Data: " + result.wind);
+
+
     } catch (e) {
       console.error(e);
-      alert("something went wrong");
+      alert("Something went wrong during the fetching of data.");
     }
   }
 
@@ -62,6 +77,9 @@ export default function Dashboard() {
       <ExtraInfoPaneContainer>
         <InfoPane name='Humidity'>
             <Humidity humidity={humidity} />
+        </InfoPane>
+        <InfoPane name='Wind'>
+          <Wind speed={speed} degree={degree} gust={gust}/>
         </InfoPane>
       </ExtraInfoPaneContainer>
       </InfoPaneContainer>
