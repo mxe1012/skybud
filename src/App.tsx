@@ -3,6 +3,8 @@
 
 import { MainPane,
   Clock,
+  EventInput,
+  EventButton,
   ControllerPane,
   InfoPaneContainer,  
   WeatherInfoPaneContainer, 
@@ -19,7 +21,9 @@ export default function App() {
     <>
       <MainPane>
         <Clock /> 
-        <ControllerPane />
+        <ControllerPane>
+          <EventInput placeholder="Location" onChange={undefined}/>
+        </ControllerPane>
         <br />
         <InfoPaneContainer>
           <WeatherInfoPaneContainer>
@@ -46,6 +50,9 @@ export default function App() {
         </ExtraInfoPaneContainer>
         </InfoPaneContainer>
         <br />
+        <ControllerPane>
+          <EventButton text="Update" onClick={undefined}/>
+        </ControllerPane>
       </MainPane>
     </>
   );
