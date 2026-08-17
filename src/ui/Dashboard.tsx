@@ -5,6 +5,9 @@ import { InfoPaneContainer, EventButton, InfoPane, WeatherInfoPaneContainer, Ext
 
 export default function Dashboard() {
 
+  // Current name of location
+  const [locationName, setLocationName] = useState("");
+
   //Weather component
   const [weather, setWeather] = useState("");
   const [weatherDesc, setWeatherDesc] = useState("");
@@ -33,6 +36,9 @@ export default function Dashboard() {
     try {
       const result = await apiFetch(lon, lat);
 
+      // Update location name
+      setLocationName(result.name + ", " + result.sys.country);
+
       // Update Weather-related state
       setWeather(result.weather[0].main);
       setWeatherDesc(result.weather[0].description);
@@ -52,9 +58,12 @@ export default function Dashboard() {
       setDegree(result.wind.deg);
       setGust(result.wind.gust);
 
-      console.log("Weather Data: " + result.weather[0]);
-      console.log("Temperature Data: " + result.main);
-      console.log("Wind Data: " + result.wind);
+      console.log("Weather Data: ");
+      console.log(result.weather[0])
+      console.log("Temperature Data: ");
+      console.log(result.main);
+      console.log("Wind Data: ");
+      console.log(result.wind);
 
 
     } catch (e) {
@@ -65,18 +74,19 @@ export default function Dashboard() {
 
   return (
     <>
-    <InfoPaneContainer>
-    <WeatherInfoPaneContainer>
-      <InfoPane name="Weather">
-        <Weather weather={weather} weatherDesc={weatherDesc} weatherIcon={weatherIcon} />
-      </InfoPane>
-      <InfoPane name="Temperature">
-      <Temperature temp={temp} feelsLike={feelsLike} maxTemp={maxTemp} minTemp={minTemp} />
-      </InfoPane>
+      <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
+      <InfoPaneContainer>
+      <WeatherInfoPaneContainer>
+        <InfoPane name="Weather">
+          <Weather weather={weather} weatherDesc={weatherDesc} weatherIcon={weatherIcon} />
+        </InfoPane>
+        <InfoPane name="Temperature">
+          <Temperature temp={temp} feelsLike={feelsLike} maxTemp={maxTemp} minTemp={minTemp} />
+        </InfoPane>
       </WeatherInfoPaneContainer>
       <ExtraInfoPaneContainer>
         <InfoPane name='Humidity'>
-            <Humidity humidity={humidity} />
+          <Humidity humidity={humidity} />
         </InfoPane>
         <InfoPane name='Wind'>
           <Wind speed={speed} degree={degree} gust={gust}/>
@@ -85,7 +95,7 @@ export default function Dashboard() {
       </InfoPaneContainer>
       <br />
       <div style={{textAlign: 'center'}}>
-      <EventButton text="Update" onClick={handleClick} />
+        <EventButton text="Update" onClick={handleClick} />
       </div>
     </>
   );
