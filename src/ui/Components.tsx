@@ -1,6 +1,8 @@
 // import { useState } from "react";
 // import { getLongitude, getLatitude, apiFetch } from './functions.tsx';
 
+import type { ChildrenProps, InfoPaneProps, WeatherProps, TemperatureProps, HumidityProps, WindProps } from "../utils/types";
+
 export function EventButton({text="", onClick}) {
     return <button className="EventButton" onClick={onClick}>{text}</button>
 }
@@ -9,27 +11,27 @@ export function EventInput({value="", placeholder="Placeholder", onChange}) {
     return <input className="EventInput" value={value} placeholder={placeholder} onChange={onChange}/>
 }
 
-export function MainPane({children}) {
+export function MainPane({children}: ChildrenProps) {
     return <div className="MainPane">{children}</div>;
 }
 
-export function InfoPaneContainer({children}) {
+export function InfoPaneContainer({children}: ChildrenProps) {
     return <div className="InfoPaneContainer">{children}</div>
 }
 
-export function WeatherInfoPaneContainer({children}) {
+export function WeatherInfoPaneContainer({children}: ChildrenProps) {
     return <div className="WeatherInfoPaneContainer">{children}</div>;
 }
 
-export function ExtraInfoPaneContainer({children}) {
+export function ExtraInfoPaneContainer({children}: ChildrenProps) {
     return <div className="ExtraInfoPaneContainer">{children}</div>;
 }
 
-export function ControllerPane({children}) {
+export function ControllerPane({children}: ChildrenProps) {
     return <div className="ControllerPane">{children}</div>
 }
 
-export function InfoPane({name="", children}) {
+export function InfoPane({name="", children}: InfoPaneProps) {
     return (
         <>
             <span className="InfoPane">
@@ -70,7 +72,7 @@ export function Clock() {
     );
 }
 
-export function Weather({weather, weatherDesc, weatherIcon}) {
+export function Weather({weather, weatherDesc, weatherIcon}: WeatherProps) {
 
     return (
         <div>
@@ -83,7 +85,7 @@ export function Weather({weather, weatherDesc, weatherIcon}) {
     );
 }
 
-export function Temperature({temp, feelsLike, maxTemp, minTemp}) {
+export function Temperature({temp, feelsLike, maxTemp, minTemp}: TemperatureProps) {
 
     return (
         <div>
@@ -110,7 +112,7 @@ export function Temperature({temp, feelsLike, maxTemp, minTemp}) {
     );
 }
 
-export function Humidity({humidity}) {
+export function Humidity({humidity}: HumidityProps) {
 
     return (
         <div>
@@ -121,7 +123,7 @@ export function Humidity({humidity}) {
 
 }
 
-export function Wind({speed, degree, gust}) {
+export function Wind({speed, degree, gust}: WindProps) {
     
     let compass;
 
