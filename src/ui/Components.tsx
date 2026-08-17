@@ -3,14 +3,6 @@
 
 import type { ChildrenProps, InfoPaneProps, WeatherProps, TemperatureProps, HumidityProps, WindProps } from "../utils/types";
 
-export function EventButton({text="", onClick}) {
-    return <button className="EventButton" onClick={onClick}>{text}</button>
-}
-
-export function EventInput({value="", placeholder="Placeholder", onChange}) {
-    return <input className="EventInput" value={value} placeholder={placeholder} onChange={onChange}/>
-}
-
 export function MainPane({children}: ChildrenProps) {
     return <div className="MainPane">{children}</div>;
 }
@@ -30,6 +22,15 @@ export function ExtraInfoPaneContainer({children}: ChildrenProps) {
 export function ControllerPane({children}: ChildrenProps) {
     return <div className="ControllerPane">{children}</div>
 }
+
+export function EventButton({text="", onClick}) {
+    return <button className="EventButton" onClick={onClick}>{text}</button>
+}
+
+export function EventInput({value="", placeholder="Placeholder", onChange}) {
+    return <input className="EventInput" value={value} placeholder={placeholder} onChange={onChange}/>
+}
+
 
 export function InfoPane({name="", children}: InfoPaneProps) {
     return (
