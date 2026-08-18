@@ -126,7 +126,7 @@ export function Wind({speed, degree, gust, units}: WindProps) {
     
     let compass;
 
-    if (degree >= 0 && degree < 90) {
+    if ((degree >= 0 && degree < 90 ) || degree == 360) {
         compass = 'N';
     }
     else if (degree >= 90 && degree < 180) {
