@@ -31,10 +31,10 @@ export default function Dashboard() {
   const [gust, setGust] = useState(0);
 
   const iconUrl = "https://openweathermap.org/payload/api/media/file/";
-
+  
   async function handleFetch() {
     const coords = await getCoordinates();
-    const selectedUnits = units ? "imperial" : "metric";
+    const selectedUnits = units ? 'imperial' : 'metric';
 
     try {
       const result = await apiFetch(coords.lon, coords.lat, selectedUnits);
@@ -115,9 +115,9 @@ export default function Dashboard() {
         <div style={{textAlign: 'center'}}>
           Units: 
           {" "}
-          <select id="unit" value={units} onChange={() => {setUnits(!units); handleFetch()}}>
-            <option value={true}>Imperial</option>
-            <option value={false}>Metric</option>
+          <select id="unit" value={units} onChange={() => {setUnits(!units)}}>
+            <option value={true} onClick={handleFetch}>Imperial</option>
+            <option value={false} onClick={handleFetch}>Metric</option>
           </select>
           {" "}
           <EventButton text="Update Weather Information" onClick={handleFetch} />
