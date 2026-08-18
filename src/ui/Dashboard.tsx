@@ -110,7 +110,7 @@ export default function Dashboard() {
         <InfoPane name='Wind' srcIcon="wi-wind-deg.svg">
           <Wind speed={speed} degree={degree} gust={gust} units={units}/>
         </InfoPane>
-        <InfoPane name="Visibility">
+        <InfoPane name="Visibility" srcIcon="wi-stars.svg">
           Visibility
         </InfoPane>
         <InfoPane srcIcon="wi-horizon.svg">

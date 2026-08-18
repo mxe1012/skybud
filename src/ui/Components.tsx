@@ -41,7 +41,7 @@ export function InfoPane({name="", srcIcon="wi-na.svg", children}: InfoPaneProps
     return (
         <>
             <span className="InfoPane">
-                <img src={img} width={25} height={25}/>
+            <img src={img} width={25} height={25}/>
             <p>{name}</p>
                 {children}
             </span>
@@ -132,18 +132,23 @@ export function Humidity({humidity}: HumidityProps) {
 export function Wind({speed, degree, gust, units}: WindProps) {
     
     let compass;
+    let compassIcon;
 
     if ((degree >= 0 && degree < 90 ) || degree == 360) {
         compass = 'N';
+        compassIcon = 'rotate(0deg)'
     }
     else if (degree >= 90 && degree < 180) {
         compass = 'E';
+        compassIcon = 'rotate(90deg)'
     }
     else if (degree >= 180 && degree < 270) {
         compass = 'S';
+        compassIcon = 'rotate(180deg)'
     }
     else if (degree >= 270 && degree <= 350) {
         compass = 'W';
+        compassIcon = 'rotate(350deg)'
     }
     else {
         compass = '?'
@@ -151,6 +156,8 @@ export function Wind({speed, degree, gust, units}: WindProps) {
 
     return (
         <div>
+            <img style={{transform: compassIcon}} src="./src/assets/wi-wind-deg.svg" width={50} height={50}/>
+            <br />
             <b>{units ? "Speed: " + Math.round(speed) + " mph" : "Speed: " + Math.round(speed) + " km/h"}</b>
             <br />
             <b>Direction: {degree}° ({compass})</b>
