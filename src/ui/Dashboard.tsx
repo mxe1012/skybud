@@ -32,7 +32,7 @@ export default function Dashboard() {
 
   const iconUrl = "https://openweathermap.org/payload/api/media/file/";
 
-  async function handleClick() {
+  async function handleFetch() {
     const coords = await getCoordinates();
     const selectedUnits = units ? "imperial" : "metric";
 
@@ -109,7 +109,7 @@ export default function Dashboard() {
       </InfoPaneContainer>
       <br />
       <div style={{textAlign: 'center'}}>
-        <EventButton text="Update" onClick={handleClick} />
+        <EventButton text="Update" onClick={handleFetch} />
         {" "}
         <select value={units} onChange={() => {setUnits(!units)}}>
           <option value={true}>Imperial</option>
