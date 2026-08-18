@@ -135,13 +135,14 @@ html {
     border-radius: 50px;
     background-color: white;
     padding: 10px;
+    font-family: Comfortaa;
 }
 
 .EventInput {
     border-style: none;
     border-radius: 50px;
     Padding: 10px;
-
+    font-family: Comfortaa;
 }
 
 .TemperatureGrid {
@@ -154,6 +155,7 @@ html {
 }
 
 #unit {
+    font-family: Comfortaa;
     border-style: none;
     border-radius: 50px;
     padding: 10px;
