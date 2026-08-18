@@ -85,26 +85,26 @@ export function Weather({weather, weatherDesc, weatherIcon}: WeatherProps) {
     );
 }
 
-export function Temperature({temp, feelsLike, maxTemp, minTemp}: TemperatureProps) {
+export function Temperature({temp, feelsLike, maxTemp, minTemp, units}: TemperatureProps) {
 
     return (
         <div>
             <div className="TemperatureGrid">
                 <div style={{padding: '10px'}}>
                     Current {" "}
-                    <h1><b>{Math.round(temp)}°F</b></h1>
+                    <h1><b>{units ? Math.round(temp) + "°F" : Math.round(temp) + "°C"}</b></h1>
                 </div>
                 <div style={{padding: '10px'}}>
                     Feels like {" "}
-                    <h1>{Math.round(feelsLike)}°F</h1>
+                    <h1><b>{units ? Math.round(feelsLike) + "°F" : Math.round(feelsLike) + "°C"}</b></h1>
                 </div>
                 <div style={{padding: '10px'}}>
                     Max {" "}
-                    <h2>{Math.round(maxTemp)}°F</h2>
+                    <h2>{units ? Math.round(maxTemp) + "°F" : Math.round(maxTemp) + "°C"}</h2>
                 </div>
                 <div style={{padding: '10px'}}>
                     Min {" "}
-                    <h2>{Math.round(minTemp)}°F</h2>
+                    <h2>{units ? Math.round(minTemp) + "°F" : Math.round(minTemp) + "°C"}</h2>
                 </div>
             </div>
             <br/>
@@ -123,7 +123,7 @@ export function Humidity({humidity}: HumidityProps) {
 
 }
 
-export function Wind({speed, degree, gust}: WindProps) {
+export function Wind({speed, degree, gust, units}: WindProps) {
     
     let compass;
 
@@ -145,11 +145,11 @@ export function Wind({speed, degree, gust}: WindProps) {
 
     return (
         <div>
-            <b>Speed: {Math.round(speed)} mph</b>
+            <b>{units ? "Speed: " + Math.round(speed) + " mph" : "Speed: " + Math.round(speed) + " km/h"}</b>
             <br />
             <b>Direction: {degree}° ({compass})</b>
             <br />
-            <b>Gust: {Math.round(gust)} mph</b>
+            <b>{units ? "Gust: " + Math.round(gust) + " mph" : "Gust: " + Math.round(gust) + " km/h"}</b>
         </div>
     );
 
