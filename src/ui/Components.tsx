@@ -34,11 +34,15 @@ export function EventInput({value="", placeholder="Placeholder", onChange}) {
 }
 
 
-export function InfoPane({name="", children}: InfoPaneProps) {
+export function InfoPane({name="", srcIcon="wi-na.svg", children}: InfoPaneProps) {
+
+    const img = "./src/assets/" + srcIcon;
+
     return (
         <>
             <span className="InfoPane">
-            <i className="wi wi-day-sunny"></i><p>{name}</p>
+                <img src={img} width={25} height={25}/>
+            <p>{name}</p>
                 {children}
             </span>
         </>

@@ -96,24 +96,24 @@ export default function Dashboard() {
       <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
       <InfoPaneContainer>
       <WeatherInfoPaneContainer>
-        <InfoPane name="Weather">
+        <InfoPane name="Weather" srcIcon="wi-day-cloudy.svg">
           <Weather weather={weather} weatherDesc={weatherDesc} weatherIcon={weatherIcon}/>
         </InfoPane>
-        <InfoPane name="Temperature">
+        <InfoPane name="Temperature" srcIcon="wi-thermometer.svg">
           <Temperature temp={temp} feelsLike={feelsLike} maxTemp={maxTemp} minTemp={minTemp} units={units}/>
         </InfoPane>
       </WeatherInfoPaneContainer>
       <ExtraInfoPaneContainer>
-        <InfoPane name='Humidity'>
+        <InfoPane name='Humidity' srcIcon="wi-humidity.svg">
           <Humidity humidity={humidity} />
         </InfoPane>
-        <InfoPane name='Wind'>
+        <InfoPane name='Wind' srcIcon="wi-wind-deg.svg">
           <Wind speed={speed} degree={degree} gust={gust} units={units}/>
         </InfoPane>
         <InfoPane name="Visibility">
           Visibility
         </InfoPane>
-        <InfoPane >
+        <InfoPane srcIcon="wi-horizon.svg">
           <SunriseAndSunset sunrise={sunrise} sunset= {sunset}/>
         </InfoPane>
       </ExtraInfoPaneContainer>

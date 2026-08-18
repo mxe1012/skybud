@@ -6,6 +6,7 @@ export interface ChildrenProps {
 
 export interface InfoPaneProps {
     name?: string;
+    srcIcon?: string;
     children: ReactNode;
 }
 
