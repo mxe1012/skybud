@@ -132,23 +132,19 @@ export function Humidity({humidity}: HumidityProps) {
 export function Wind({speed, degree, gust, units}: WindProps) {
     
     let compass;
-    let compassIcon;
+    const compassIcon = "rotate(" + degree + "deg)";
 
     if ((degree >= 0 && degree < 90 ) || degree == 360) {
         compass = 'N';
-        compassIcon = 'rotate(0deg)'
     }
     else if (degree >= 90 && degree < 180) {
         compass = 'E';
-        compassIcon = 'rotate(90deg)'
     }
     else if (degree >= 180 && degree < 270) {
         compass = 'S';
-        compassIcon = 'rotate(180deg)'
     }
     else if (degree >= 270 && degree <= 350) {
         compass = 'W';
-        compassIcon = 'rotate(350deg)'
     }
     else {
         compass = '?'
