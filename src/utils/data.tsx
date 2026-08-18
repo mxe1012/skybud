@@ -1,9 +1,9 @@
 
-export async function apiFetch(lon=0, lat=0) {
+export async function apiFetch(lon=0, lat=0, units="imperial") {
   try {
     const key = import.meta.env.VITE_API_KEY;
     const baseUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`;
-    const result = await fetch(`${baseUrl}&units=imperial`);
+    const result = await fetch(`${baseUrl}&units=${units}`);
 
     if (result.ok) {
       const data = await result.json();
