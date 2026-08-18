@@ -41,7 +41,7 @@ export function InfoPane({name="", srcIcon="wi-na.svg", children}: InfoPaneProps
     return (
         <>
             <span className="InfoPane">
-            <img src={img} width={25} height={25}/>
+            <img src={img} width={35} height={35}/>
             <p>{name}</p>
                 {children}
             </span>
