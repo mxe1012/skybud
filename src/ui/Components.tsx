@@ -18,8 +18,8 @@ export function ExtraInfoPaneContainer({children}: ChildrenProps) {
     return <div className="ExtraInfoPaneContainer">{children}</div>;
 }
 
-export function ControllerPane({children}: ChildrenProps) {
-    return <div className="ControllerPane">{children}</div>
+export function ControllerPaneContainer({children}: ChildrenProps) {
+    return <div className="ControllerPaneContainer">{children}</div>
 }
 
 export function EventButton({text="", onClick}) {
@@ -58,10 +58,9 @@ export function Clock() {
         bgColor = 'white';
     }
 
-
     return (
         <div className="Clock">
-            <span style={{backgroundColor: bgColor}} className="TimeDatePane">
+            <span style={{backgroundColor: bgColor, transform: "scale(1)"}} className="TimeDatePane">
                 <h4 style={{color: textColor}}>Clock</h4>
                 <div className="TimeDate">
                     <h1 style={{color: textColor}}>{time.toLocaleTimeString()}</h1>
