@@ -36,7 +36,7 @@ export function EventInput({value="", placeholder="Placeholder", onChange}) {
 
 export function InfoPane({name="", srcIcon="wi-na.svg", children}: InfoPaneProps) {
 
-    const img = "./src/assets/" + srcIcon;
+    const img = "./src/assets/icons/" + srcIcon;
 
     return (
         <>
@@ -152,7 +152,7 @@ export function Wind({speed, degree, gust, units}: WindProps) {
 
     return (
         <div>
-            <img style={{transform: compassIcon}} src="./src/assets/wi-wind-deg.svg" width={50} height={50}/>
+            <img style={{transform: compassIcon}} src="./src/assets/icons/wi-wind-deg.svg" width={50} height={50}/>
             <br />
             <b>{units ? "Speed: " + Math.round(speed) + " mph" : "Speed: " + Math.round(speed) + " km/h"}</b>
             <br />
