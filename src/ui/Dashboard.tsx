@@ -81,6 +81,8 @@ export default function Dashboard() {
     }
   }
 
+    //setTimeout(handleFetch, 10000); 
+
   return (
     <>
       <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
@@ -108,13 +110,12 @@ export default function Dashboard() {
         </InfoPane>
       </ExtraInfoPaneContainer>
       </InfoPaneContainer>
-      {/* {setTimeout(handleFetch, 5000)} handleFetch() */}
       <br />
       <ControllerPaneContainer>
         <div style={{textAlign: 'center'}}>
           Units: 
           {" "}
-          <select id="unit" value={units} onChange={() => {setUnits(!units);}}>
+          <select id="unit" value={units} onChange={() => {setUnits(!units); handleFetch()}}>
             <option value={true}>Imperial</option>
             <option value={false}>Metric</option>
           </select>
