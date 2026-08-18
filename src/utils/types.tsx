@@ -33,3 +33,8 @@ export interface WindProps {
     gust: number;
     units: boolean;
 }
+
+export interface SunriseAndSunsetProps {
+    sunrise: number
+    sunset: number;
+}

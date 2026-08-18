@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getCoordinates, apiFetch } from '../utils/data.tsx';
 import { ControllerPaneContainer, InfoPaneContainer, EventButton, InfoPane, WeatherInfoPaneContainer, ExtraInfoPaneContainer, 
-    Weather, Temperature, Humidity, Wind} from './Components.tsx';
+    Weather, Temperature, Humidity, Wind, SunriseAndSunset} from './Components.tsx';
 
 export default function Dashboard() {
 
@@ -29,6 +29,10 @@ export default function Dashboard() {
   const [speed, setSpeed] = useState(0);
   const [degree, setDegree] = useState(0);
   const [gust, setGust] = useState(0);
+
+  //Sunrise and sunset component
+  const [sunrise, setSunrise] = useState(0);
+  const [sunset, setSunset] = useState(0);
 
   const iconUrl = "https://openweathermap.org/payload/api/media/file/";
   
@@ -65,6 +69,10 @@ export default function Dashboard() {
       else {
         setGust(result.wind.gust);
       }
+
+      // Update Sunrise and Sunset related state
+      setSunrise(result.sys.sunrise);
+      setSunset(result.sys.sunset);
 
       console.log("Unit of measurement: " + selectedUnits);
 
@@ -105,8 +113,8 @@ export default function Dashboard() {
         <InfoPane name="Visibility">
           Visibility
         </InfoPane>
-        <InfoPane name="Sunrise and Sunset">
-          Sunrise and Sunset
+        <InfoPane >
+          <SunriseAndSunset sunrise={sunrise} sunset= {sunset}/>
         </InfoPane>
       </ExtraInfoPaneContainer>
       </InfoPaneContainer>

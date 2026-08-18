@@ -1,6 +1,9 @@
 // import { useState } from "react";
 
-import type { ChildrenProps, InfoPaneProps, WeatherProps, TemperatureProps, HumidityProps, WindProps } from "../utils/types";
+import type { ChildrenProps, InfoPaneProps, 
+    WeatherProps, TemperatureProps, 
+    HumidityProps, WindProps, 
+    SunriseAndSunsetProps } from "../utils/types";
 
 export function MainPane({children}: ChildrenProps) {
     return <div className="MainPane">{children}</div>;
@@ -152,4 +155,22 @@ export function Wind({speed, degree, gust, units}: WindProps) {
         </div>
     );
 
+}
+
+export function SunriseAndSunset({sunrise, sunset}: SunriseAndSunsetProps) {
+
+    const sunriseFormatted = new Date(sunrise * 1000);
+    const sunsetFormatted = new Date(sunset * 1000);
+
+    return (
+        <div>
+            Sunrise: 
+            <br />
+            <b>{sunriseFormatted.toLocaleTimeString()}</b>
+            <br />
+            Sunset: 
+            <br />
+            <b>{sunsetFormatted.toLocaleTimeString()}</b>
+        </div>
+    );
 }
