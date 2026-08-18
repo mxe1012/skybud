@@ -8,6 +8,9 @@ export default function Dashboard() {
   // Current name of location
   const [locationName, setLocationName] = useState("");
 
+  // Unit Switcher
+  const [units, setUnits] = useState(true);
+
   //Weather component
   const [weather, setWeather] = useState("");
   const [weatherDesc, setWeatherDesc] = useState("");
@@ -31,9 +34,10 @@ export default function Dashboard() {
 
   async function handleClick() {
     const coords = await getCoordinates();
+    const selectedUnits = units ? "imperial" : "metric";
 
     try {
-      const result = await apiFetch(coords.lon, coords.lat);
+      const result = await apiFetch(coords.lon, coords.lat, selectedUnits);
 
       // Update location name
       setLocationName(result.name + ", " + result.sys.country);
@@ -59,7 +63,7 @@ export default function Dashboard() {
         setGust(0);
       }
       else {
-      setGust(result.wind.gust);
+        setGust(result.wind.gust);
       }
 
       console.log("Weather Data: ");
@@ -82,10 +86,10 @@ export default function Dashboard() {
       <InfoPaneContainer>
       <WeatherInfoPaneContainer>
         <InfoPane name="Weather">
-          <Weather weather={weather} weatherDesc={weatherDesc} weatherIcon={weatherIcon} />
+          <Weather weather={weather} weatherDesc={weatherDesc} weatherIcon={weatherIcon}/>
         </InfoPane>
         <InfoPane name="Temperature">
-          <Temperature temp={temp} feelsLike={feelsLike} maxTemp={maxTemp} minTemp={minTemp} />
+          <Temperature temp={temp} feelsLike={feelsLike} maxTemp={maxTemp} minTemp={minTemp} units={units}/>
         </InfoPane>
       </WeatherInfoPaneContainer>
       <ExtraInfoPaneContainer>
@@ -93,7 +97,7 @@ export default function Dashboard() {
           <Humidity humidity={humidity} />
         </InfoPane>
         <InfoPane name='Wind'>
-          <Wind speed={speed} degree={degree} gust={gust}/>
+          <Wind speed={speed} degree={degree} gust={gust} units={units}/>
         </InfoPane>
         <InfoPane name="Visibility">
           Visibility
@@ -106,6 +110,11 @@ export default function Dashboard() {
       <br />
       <div style={{textAlign: 'center'}}>
         <EventButton text="Update" onClick={handleClick} />
+        {" "}
+        <select value={units} onChange={() => {setUnits(!units)}}>
+          <option value={true}>Imperial</option>
+          <option value={false}>Metric</option>
+        </select>
       </div>
     </>
   );
