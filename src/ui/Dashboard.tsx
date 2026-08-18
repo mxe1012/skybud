@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { getCoordinates, apiFetch } from '../utils/data.tsx';
-import { InfoPaneContainer, EventButton, InfoPane, WeatherInfoPaneContainer, ExtraInfoPaneContainer, 
+import { ControllerPaneContainer, InfoPaneContainer, EventButton, InfoPane, WeatherInfoPaneContainer, ExtraInfoPaneContainer, 
     Weather, Temperature, Humidity, Wind} from './Components.tsx';
 
 export default function Dashboard() {
@@ -66,6 +66,8 @@ export default function Dashboard() {
         setGust(result.wind.gust);
       }
 
+      console.log("Unit of measurement: " + selectedUnits);
+
       console.log("Weather Data: ");
       console.log(result.weather[0])
       console.log("Temperature Data: ");
@@ -108,14 +110,18 @@ export default function Dashboard() {
       </InfoPaneContainer>
       {/* {setTimeout(handleFetch, 5000)} handleFetch() */}
       <br />
-      <div style={{textAlign: 'center'}}>
-        <EventButton text="Update" onClick={handleFetch} />
-        {" "}
-        <select value={units} onChange={() => {setUnits(!units); console.log(units);}}>
-          <option value={true}>Imperial</option>
-          <option value={false}>Metric</option>
-        </select>
-      </div>
+      <ControllerPaneContainer>
+        <div style={{textAlign: 'center'}}>
+          Units: 
+          {" "}
+          <select id="unit" value={units} onChange={() => {setUnits(!units);}}>
+            <option value={true}>Imperial</option>
+            <option value={false}>Metric</option>
+          </select>
+          {" "}
+          <EventButton text="Update Weather Information" onClick={handleFetch} />
+        </div>
+      </ControllerPaneContainer>
     </>
   );
 }
