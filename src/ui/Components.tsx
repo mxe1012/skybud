@@ -1,5 +1,4 @@
 // import { useState } from "react";
-// import { getLongitude, getLatitude, apiFetch } from './functions.tsx';
 
 import type { ChildrenProps, InfoPaneProps, WeatherProps, TemperatureProps, HumidityProps, WindProps } from "../utils/types";
 
