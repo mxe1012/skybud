@@ -41,7 +41,7 @@ export default function Dashboard() {
 
       // Update location name
       setLocationName(result.name + ", " + result.sys.country);
-
+      
       // Update Weather-related state
       setWeather(result.weather[0].main);
       setWeatherDesc(result.weather[0].description);
@@ -72,7 +72,6 @@ export default function Dashboard() {
       console.log(result.main);
       console.log("Wind Data: ");
       console.log(result.wind);
-
 
     } catch (e) {
       console.error(e);
@@ -107,11 +106,12 @@ export default function Dashboard() {
         </InfoPane>
       </ExtraInfoPaneContainer>
       </InfoPaneContainer>
+      {/* {setTimeout(handleFetch, 5000)} handleFetch() */}
       <br />
       <div style={{textAlign: 'center'}}>
         <EventButton text="Update" onClick={handleFetch} />
         {" "}
-        <select value={units} onChange={() => {setUnits(!units)}}>
+        <select value={units} onChange={() => {setUnits(!units); console.log(units);}}>
           <option value={true}>Imperial</option>
           <option value={false}>Metric</option>
         </select>
