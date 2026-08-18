@@ -38,7 +38,7 @@ export function InfoPane({name="", children}: InfoPaneProps) {
     return (
         <>
             <span className="InfoPane">
-            <p>{name}</p>
+            <i className="wi wi-day-sunny"></i><p>{name}</p>
                 {children}
             </span>
         </>
