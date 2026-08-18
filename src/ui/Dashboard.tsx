@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getCoordinates, apiFetch } from '../utils/functions.tsx';
+import { getCoordinates, apiFetch } from '../utils/data.tsx';
 import { InfoPaneContainer, EventButton, InfoPane, WeatherInfoPaneContainer, ExtraInfoPaneContainer, 
     Weather, Temperature, Humidity, Wind} from './Components.tsx';
 
