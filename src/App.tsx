@@ -3,7 +3,7 @@ import './styles.css'
 import { MainPane,
   Clock,
   EventInput,
-  ControllerPane,
+  ControllerPaneContainer,
   } from './ui/Components.tsx';
 
 import Dashboard from './ui/Dashboard.tsx';
@@ -15,9 +15,9 @@ export default function App() {
     <>
       <MainPane>
         <Clock /> 
-        <ControllerPane>
+        <ControllerPaneContainer>
           <EventInput placeholder="Location" onChange={undefined}/>
-        </ControllerPane>
+        </ControllerPaneContainer>
         <br />
         <Dashboard />
       </MainPane>
