@@ -89,7 +89,6 @@ weather-app/
 ├── package-lock.json
 ├── package.json
 ├── README.md
-├── READMEbak.md
 ├── tsconfig.app.json
 ├── tsconfig.json
 ├── tsconfig.node.json
