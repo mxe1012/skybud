@@ -20,6 +20,7 @@ export interface TemperatureProps {
     feelsLike: number;
     maxTemp: number;
     minTemp: number;
+    units: boolean;
 }
 
 export interface HumidityProps {
@@ -30,4 +31,5 @@ export interface WindProps {
     speed: number;
     degree: number;
     gust: number;
+    units: boolean;
 }
