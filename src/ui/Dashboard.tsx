@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getCoordinates, apiFetch } from '../utils/data.tsx';
+import { getCoordinates, apiFetchWeather } from '../utils/data.tsx';
 import { ControllerPaneContainer, InfoPaneContainer, EventButton, InfoPane, WeatherInfoPaneContainer, ExtraInfoPaneContainer, 
     Weather, Temperature, Humidity, Wind, SunriseAndSunset} from './Components.tsx';
 
@@ -54,7 +54,7 @@ export default function Dashboard() {
     const selectedUnits = units ? 'imperial' : 'metric';
 
     try {
-      const result = await apiFetch(coords.lon, coords.lat, selectedUnits);
+      const result = await apiFetchWeather(coords.lon, coords.lat, selectedUnits);
 
       // Update location name
       setLocationName(result.name + ", " + result.sys.country);
