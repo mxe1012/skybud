@@ -71,7 +71,7 @@ export function Clock() {
 
     return (
         <div className="Clock">
-            <span style={{backgroundColor: bgColor, transform: "scale(1)"}} className="TimeDatePane">
+            <span style={{backgroundColor: bgColor, transform: "scale(1)"}} className="ClockTimeDatePane">
                 <h4 style={{color: textColor}}>Clock</h4>
                 <div className="TimeDate">
                     <h1 style={{color: textColor}}>{time.toLocaleTimeString()}</h1>
@@ -175,11 +175,11 @@ export function SunriseAndSunset({sunrise, sunset}: SunriseAndSunsetProps) {
 
     return (
         <div>
-            Sunrise: 
+            <InfoPaneIcon src="wi-sunrise.svg" />Sunrise 
             <br />
             <b>{sunriseFormatted.toLocaleTimeString()}</b>
             <br />
-            Sunset: 
+            <InfoPaneIcon src="wi-sunset.svg" />Sunset
             <br />
             <b>{sunsetFormatted.toLocaleTimeString()}</b>
         </div>
