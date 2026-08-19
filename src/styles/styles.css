@@ -53,6 +53,20 @@ html {
     margin: 10px;
 }
 
+.ForecastInfoContainer {
+    animation-name: info-pane-fade;
+    animation-duration: 1s;
+    display: flex;
+    justify-content: flex-start; 
+    flex-wrap: nowrap; 
+    padding: 25px;
+    border-radius: 35px;
+    margin-left: 75px;
+    margin-right: 75px;
+    background-color: green;
+    overflow-x: scroll;
+}
+
 .InfoPaneContainer {
     display: flex;
     justify-content: space-around;
