@@ -82,20 +82,24 @@ export function Clock() {
     );
 }
 
-export function Weather({weather, weatherDesc, weatherIcon}: WeatherProps) {
+export function Weather({weather}: WeatherProps) {
+
+    const {main, description, icon} = weather;
 
     return (
         <div>
-            <h1>{weather}</h1>
-            <img src={weatherIcon} />
+            <h1>{main}</h1>
+            <img src={icon} />
             <br />
-            <h2>{weatherDesc}</h2>
+            <h2>{description}</h2>
             <br />
         </div>
     );
 }
 
-export function Temperature({temp, feelsLike, maxTemp, minTemp, units}: TemperatureProps) {
+export function Temperature({temperature, units}: TemperatureProps) {
+
+    const {temp, feels_like, temp_max, temp_min} = temperature
 
     return (
         <div>
@@ -106,15 +110,15 @@ export function Temperature({temp, feelsLike, maxTemp, minTemp, units}: Temperat
                 </div>
                 <div style={{padding: '10px'}}>
                     Feels like {" "}
-                    <h1><b>{units ? Math.round(feelsLike) + "°F" : Math.round(feelsLike) + "°C"}</b></h1>
+                    <h1><b>{units ? Math.round(feels_like) + "°F" : Math.round(feels_like) + "°C"}</b></h1>
                 </div>
                 <div style={{padding: '10px'}}>
                     Max {" "}
-                    <h2>{units ? Math.round(maxTemp) + "°F" : Math.round(maxTemp) + "°C"}</h2>
+                    <h2>{units ? Math.round(temp_max) + "°F" : Math.round(temp_max) + "°C"}</h2>
                 </div>
                 <div style={{padding: '10px'}}>
                     Min {" "}
-                    <h2>{units ? Math.round(minTemp) + "°F" : Math.round(minTemp) + "°C"}</h2>
+                    <h2>{units ? Math.round(temp_min) + "°F" : Math.round(temp_min) + "°C"}</h2>
                 </div>
             </div>
             <br/>
@@ -133,21 +137,26 @@ export function Humidity({humidity}: HumidityProps) {
 
 }
 
-export function Wind({speed, degree, gust, units}: WindProps) {
+export function Wind({wind, units}: WindProps) {
     
-    let compass;
-    const compassIcon = "rotate(" + degree + "deg)";
+    const {speed, deg, gust} = wind;
 
-    if ((degree >= 0 && degree < 90 ) || degree == 360) {
+    let compass;
+    const compassIcon = "rotate(" + deg + "deg)";
+
+    const gustStr = !gust ? "Gust: 0 mph" : 
+    units ? "Gust: " + Math.round(gust) + " mph" : "Gust: " + Math.round(gust) + " km/h";
+
+    if ((deg >= 0 && deg < 90 ) || deg == 360) {
         compass = 'N';
     }
-    else if (degree >= 90 && degree < 180) {
+    else if (deg >= 90 && deg < 180) {
         compass = 'E';
     }
-    else if (degree >= 180 && degree < 270) {
+    else if (deg >= 180 && deg < 270) {
         compass = 'S';
     }
-    else if (degree >= 270 && degree <= 350) {
+    else if (deg >= 270 && deg <= 350) {
         compass = 'W';
     }
     else {
@@ -160,9 +169,9 @@ export function Wind({speed, degree, gust, units}: WindProps) {
             <br />
             <b>{units ? "Speed: " + Math.round(speed) + " mph" : "Speed: " + Math.round(speed) + " km/h"}</b>
             <br />
-            <b>Direction: {degree}° ({compass})</b>
+            <b>Direction: {deg}° ({compass})</b>
             <br />
-            <b>{units ? "Gust: " + Math.round(gust) + " mph" : "Gust: " + Math.round(gust) + " km/h"}</b>
+            <b>{gustStr}</b>
         </div>
     );
 

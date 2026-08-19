@@ -16,17 +16,25 @@ export interface InfoPaneIconProps {
 }
 
 export interface WeatherProps {
-    weather: string;
-    weatherDesc: string;
-    weatherIcon: string;
+    weather: WeatherObjectProps;
+}
+
+export interface WeatherObjectProps {
+    main: string;
+    description: string;
+    icon: string;
 }
 
 export interface TemperatureProps {
-    temp: number;
-    feelsLike: number;
-    maxTemp: number;
-    minTemp: number;
+    temperature: TempObjectProps;
     units: boolean;
+}
+
+export interface TempObjectProps {
+    temp: number;
+    feels_like: number;
+    temp_max: number;
+    temp_min: number;
 }
 
 export interface HumidityProps {
@@ -34,10 +42,14 @@ export interface HumidityProps {
 }
 
 export interface WindProps {
-    speed: number;
-    degree: number;
-    gust: number;
+    wind: WindObjectProps;
     units: boolean;
+}
+
+export interface WindObjectProps {
+    speed: number;
+    deg: number;
+    gust: number;
 }
 
 export interface SunriseAndSunsetProps {

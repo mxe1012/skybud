@@ -12,25 +12,31 @@ export default function Dashboard() {
   const [units, setUnits] = useState(true);
 
   //Weather component
-  const [weather, setWeather] = useState("");
-  const [weatherDesc, setWeatherDesc] = useState("");
-  const [weatherIcon, setWeatherIcon] = useState("");
+  const [weather, setWeather] = useState({
+    main: "",
+    description: "",
+    icon: ""
+  });
 
   const iconUrl = "https://openweathermap.org/payload/api/media/file/";
 
   //Temperature component
-  const [temp, setTemp] = useState(0);
-  const [feelsLike, setFeelsLike] = useState(0);
-  const [maxTemp, setMaxTemp] = useState(0);
-  const [minTemp, setMinTemp] = useState(0);
+  const [temp, setTemp] = useState({
+    temp: 0,
+    feels_like: 0,
+    temp_max: 0,
+    temp_min: 0
+  });
 
   //Humidity component
   const [humidity, setHumidity] = useState(0);
 
   //Wind component
-  const [speed, setSpeed] = useState(0);
-  const [degree, setDegree] = useState(0);
-  const [gust, setGust] = useState(0);
+  const [wind, setWind] = useState({
+    speed: 0,
+    deg: 0,
+    gust: 0,
+  });
 
   //Sunrise and sunset component
   const [sunrise, setSunrise] = useState(0);
@@ -54,28 +60,27 @@ export default function Dashboard() {
       setLocationName(result.name + ", " + result.sys.country);
       
       // Update Weather-related state
-      setWeather(result.weather[0].main);
-      setWeatherDesc(result.weather[0].description);
-      setWeatherIcon(iconUrl + result.weather[0].icon + ".png");
+      const {main, description} = result.weather[0];
+      setWeather({
+        main,
+        description,
+        icon: iconUrl + result.weather[0].icon + ".png"
+      });
 
       // Update Temperature-related state
-      setTemp(result.main.temp);
-      setFeelsLike(result.main.feels_like);
-      setMaxTemp(result.main.temp_max);
-      setMinTemp(result.main.temp_min);
+      const {temp, feels_like, temp_max, temp_min} = result.main;
+      setTemp({
+        temp, feels_like, temp_max, temp_min
+      });
 
       // Update Humidity-related state
       setHumidity(result.main.humidity);
 
       //Update Wind-related state
-      setSpeed(result.wind.speed);
-      setDegree(result.wind.deg);
-      if (!result.wind.gust) {
-        setGust(0);
-      }
-      else {
-        setGust(result.wind.gust);
-      }
+      const {speed, deg, gust} = result.wind;
+      setWind({
+        speed, deg, gust
+      });
 
       // Update Sunrise and Sunset related state
       setSunrise(result.sys.sunrise);
@@ -99,10 +104,10 @@ export default function Dashboard() {
       <InfoPaneContainer>
       <WeatherInfoPaneContainer>
         <InfoPane name="Weather" icon="wi-day-cloudy.svg">
-          <Weather weather={weather} weatherDesc={weatherDesc} weatherIcon={weatherIcon}/>
+          <Weather weather={weather} />
         </InfoPane>
         <InfoPane name="Temperature" icon="wi-thermometer.svg">
-          <Temperature temp={temp} feelsLike={feelsLike} maxTemp={maxTemp} minTemp={minTemp} units={units}/>
+          <Temperature temperature={temp} units={units}/>
         </InfoPane>
       </WeatherInfoPaneContainer>
       <ExtraInfoPaneContainer>
@@ -110,7 +115,7 @@ export default function Dashboard() {
           <Humidity humidity={humidity} />
         </InfoPane>
         <InfoPane name='Wind' icon="wi-windy.svg">
-          <Wind speed={speed} degree={degree} gust={gust} units={units}/>
+          <Wind wind={wind} units={units}/>
         </InfoPane>
         <InfoPane name="Visibility" icon="wi-stars.svg">
           Visibility
