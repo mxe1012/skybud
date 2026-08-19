@@ -25,8 +25,8 @@ export function ControllerPaneContainer({children}: ChildrenProps) {
     return <div className="ControllerPaneContainer">{children}</div>
 }
 
-export function EventButton({text="", onClick}) {
-    return <button className="EventButton" onClick={onClick}>{text}</button>
+export function EventButton({text="", disabled=false, onClick}) {
+    return <button className="EventButton" disabled={disabled} onClick={onClick}>{text}</button>
 }
 
 export function EventInput({value="", placeholder="Placeholder", onChange}) {

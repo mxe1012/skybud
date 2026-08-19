@@ -37,10 +37,12 @@ export default function Dashboard() {
   const [sunset, setSunset] = useState(0);
   
   const [notice, setNotice] = useState("");
+  const [disabled, setDisabled] = useState(false);
 
   async function handleFetch() {
 
     setNotice("Acquiring weather info...");
+    setDisabled(true);
 
     const coords = await getCoordinates();
     const selectedUnits = units ? 'imperial' : 'metric';
@@ -79,16 +81,8 @@ export default function Dashboard() {
       setSunrise(result.sys.sunrise);
       setSunset(result.sys.sunset);
 
-      console.log("Unit of measurement: " + selectedUnits);
-
-      console.log("Weather Data: ");
-      console.log(result.weather[0])
-      console.log("Temperature Data: ");
-      console.log(result.main);
-      console.log("Wind Data: ");
-      console.log(result.wind);
-
       setNotice("");
+      setDisabled(false);
 
     } catch (e) {
       console.error(e);
@@ -96,7 +90,7 @@ export default function Dashboard() {
     }
   }
 
-    //setTimeout(handleFetch, 10000); 
+    //setTimeout(handleFetch, 2000); 
 
   return (
     <>
@@ -131,12 +125,12 @@ export default function Dashboard() {
         <div style={{textAlign: 'center'}}>
           Units: 
           {" "}
-          <select id="unit" value={units} onChange={() => {setUnits(!units)}}>
+          <select id="unit" value={units} onChange={() => {setUnits(!units)}} disabled={disabled}>
             <option value={true} onClick={handleFetch}>Imperial</option>
             <option value={false} onClick={handleFetch}>Metric</option>
           </select>
           {" "}
-          <EventButton text="Update Weather Information" onClick={handleFetch} />
+          <EventButton text="Update Weather Information" disabled={disabled} onClick={handleFetch} />
         </div>
       </ControllerPaneContainer>
     </>
