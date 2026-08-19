@@ -16,6 +16,8 @@ export default function Dashboard() {
   const [weatherDesc, setWeatherDesc] = useState("");
   const [weatherIcon, setWeatherIcon] = useState("");
 
+  const iconUrl = "https://openweathermap.org/payload/api/media/file/";
+
   //Temperature component
   const [temp, setTemp] = useState(0);
   const [feelsLike, setFeelsLike] = useState(0);
@@ -33,10 +35,13 @@ export default function Dashboard() {
   //Sunrise and sunset component
   const [sunrise, setSunrise] = useState(0);
   const [sunset, setSunset] = useState(0);
-
-  const iconUrl = "https://openweathermap.org/payload/api/media/file/";
   
+  const [notice, setNotice] = useState("");
+
   async function handleFetch() {
+
+    setNotice("Acquiring weather info...");
+
     const coords = await getCoordinates();
     const selectedUnits = units ? 'imperial' : 'metric';
 
@@ -83,6 +88,8 @@ export default function Dashboard() {
       console.log("Wind Data: ");
       console.log(result.wind);
 
+      setNotice("");
+
     } catch (e) {
       console.error(e);
       alert("Something went wrong during the fetching of data.");
@@ -94,6 +101,7 @@ export default function Dashboard() {
   return (
     <>
       <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
+      <h3 style={{textAlign: 'center'}}>{notice}</h3>
       <InfoPaneContainer>
       <WeatherInfoPaneContainer>
         <InfoPane name="Weather" icon="wi-day-cloudy.svg">
