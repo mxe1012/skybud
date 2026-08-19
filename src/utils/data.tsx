@@ -16,6 +16,24 @@ export async function apiFetchWeather(lon=0, lat=0, units="imperial") {
   }
 };
 
+export async function apiFetchForecast(lon=0, lat=0, units="imperial") {
+  try {
+    const key = import.meta.env.VITE_WEATHER_API_KEY;
+    const baseUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}`;
+    const result = await fetch(`${baseUrl}&units=${units}`);
+
+    if (result.ok) {
+      const data = await result.json();
+      console.log(data);
+      return data;
+    }
+  } catch (e) {
+    console.log(e);
+    alert("Error occured in fetching.");
+  }
+};
+
+
 const options = {
   maximumAge: 120000, // cache longitude and latitude for 2 minutes
 };
