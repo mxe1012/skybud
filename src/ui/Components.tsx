@@ -26,7 +26,7 @@ export function ControllerPaneContainer({children}: ChildrenProps) {
 }
 
 export function ForecastInfoContainer({children}: ChildrenProps) {
-    return <div>{children}</div>;
+    return <div className="ForecastInfoContainer">{children}</div>;
 }
 
 export function EventButton({text="", disabled=false, onClick}) {
@@ -117,11 +117,11 @@ export function Temperature({temperature, units}: TemperatureProps) {
                     <h1><b>{units ? Math.round(feels_like) + "°F" : Math.round(feels_like) + "°C"}</b></h1>
                 </div>
                 <div style={{padding: '10px'}}>
-                    Max {" "}
+                    High {" "}
                     <h2>{units ? Math.round(temp_max) + "°F" : Math.round(temp_max) + "°C"}</h2>
                 </div>
                 <div style={{padding: '10px'}}>
-                    Min {" "}
+                    Low {" "}
                     <h2>{units ? Math.round(temp_min) + "°F" : Math.round(temp_min) + "°C"}</h2>
                 </div>
             </div>
