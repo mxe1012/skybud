@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getCoordinates, apiFetch } from '../utils/data.tsx';
 import { ControllerPaneContainer, InfoPaneContainer, EventButton, InfoPane, WeatherInfoPaneContainer, ExtraInfoPaneContainer, 
     Weather, Temperature, Humidity, Wind, SunriseAndSunset} from './Components.tsx';
@@ -95,7 +95,12 @@ export default function Dashboard() {
     }
   }
 
-    //setTimeout(handleFetch, 2000); 
+    useEffect(() => {
+
+      setTimeout(handleFetch, 2000);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
   return (
     <>
