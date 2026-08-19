@@ -6,8 +6,13 @@ export interface ChildrenProps {
 
 export interface InfoPaneProps {
     name?: string;
-    srcIcon?: string;
+    icon?: string;
     children: ReactNode;
+}
+
+export interface InfoPaneIconProps {
+    src?: string;
+    size?: number;
 }
 
 export interface WeatherProps {
