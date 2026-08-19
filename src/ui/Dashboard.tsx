@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getCoordinates, apiFetch } from '../utils/data.tsx';
 import { ControllerPaneContainer, InfoPaneContainer, EventButton, InfoPane, WeatherInfoPaneContainer, ExtraInfoPaneContainer, 
     Weather, Temperature, Humidity, Wind, SunriseAndSunset} from './Components.tsx';
@@ -12,31 +12,44 @@ export default function Dashboard() {
   const [units, setUnits] = useState(true);
 
   //Weather component
-  const [weather, setWeather] = useState("");
-  const [weatherDesc, setWeatherDesc] = useState("");
-  const [weatherIcon, setWeatherIcon] = useState("");
+  const [weather, setWeather] = useState({
+    main: "",
+    description: "",
+    icon: ""
+  });
+
+  const iconUrl = "https://openweathermap.org/payload/api/media/file/";
 
   //Temperature component
-  const [temp, setTemp] = useState(0);
-  const [feelsLike, setFeelsLike] = useState(0);
-  const [maxTemp, setMaxTemp] = useState(0);
-  const [minTemp, setMinTemp] = useState(0);
+  const [temp, setTemp] = useState({
+    temp: 0,
+    feels_like: 0,
+    temp_max: 0,
+    temp_min: 0
+  });
 
   //Humidity component
   const [humidity, setHumidity] = useState(0);
 
   //Wind component
-  const [speed, setSpeed] = useState(0);
-  const [degree, setDegree] = useState(0);
-  const [gust, setGust] = useState(0);
+  const [wind, setWind] = useState({
+    speed: 0,
+    deg: 0,
+    gust: 0,
+  });
 
   //Sunrise and sunset component
   const [sunrise, setSunrise] = useState(0);
   const [sunset, setSunset] = useState(0);
-
-  const iconUrl = "https://openweathermap.org/payload/api/media/file/";
   
+  const [notice, setNotice] = useState("");
+  const [disabled, setDisabled] = useState(false);
+
   async function handleFetch() {
+
+    setNotice("Acquiring weather info...");
+    setDisabled(true);
+
     const coords = await getCoordinates();
     const selectedUnits = units ? 'imperial' : 'metric';
 
@@ -47,41 +60,34 @@ export default function Dashboard() {
       setLocationName(result.name + ", " + result.sys.country);
       
       // Update Weather-related state
-      setWeather(result.weather[0].main);
-      setWeatherDesc(result.weather[0].description);
-      setWeatherIcon(iconUrl + result.weather[0].icon + ".png");
+      const {main, description} = result.weather[0];
+      setWeather({
+        main,
+        description,
+        icon: iconUrl + result.weather[0].icon + ".png"
+      });
 
       // Update Temperature-related state
-      setTemp(result.main.temp);
-      setFeelsLike(result.main.feels_like);
-      setMaxTemp(result.main.temp_max);
-      setMinTemp(result.main.temp_min);
+      const {temp, feels_like, temp_max, temp_min} = result.main;
+      setTemp({
+        temp, feels_like, temp_max, temp_min
+      });
 
       // Update Humidity-related state
       setHumidity(result.main.humidity);
 
       //Update Wind-related state
-      setSpeed(result.wind.speed);
-      setDegree(result.wind.deg);
-      if (!result.wind.gust) {
-        setGust(0);
-      }
-      else {
-        setGust(result.wind.gust);
-      }
+      const {speed, deg, gust} = result.wind;
+      setWind({
+        speed, deg, gust
+      });
 
       // Update Sunrise and Sunset related state
       setSunrise(result.sys.sunrise);
       setSunset(result.sys.sunset);
 
-      console.log("Unit of measurement: " + selectedUnits);
-
-      console.log("Weather Data: ");
-      console.log(result.weather[0])
-      console.log("Temperature Data: ");
-      console.log(result.main);
-      console.log("Wind Data: ");
-      console.log(result.wind);
+      setNotice("");
+      setDisabled(false);
 
     } catch (e) {
       console.error(e);
@@ -89,31 +95,37 @@ export default function Dashboard() {
     }
   }
 
-    //setTimeout(handleFetch, 10000); 
+    useEffect(() => {
+
+      setTimeout(handleFetch, 2000);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
   return (
     <>
       <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
+      <h3 style={{textAlign: 'center'}}>{notice}</h3>
       <InfoPaneContainer>
       <WeatherInfoPaneContainer>
-        <InfoPane name="Weather" srcIcon="wi-day-cloudy.svg">
-          <Weather weather={weather} weatherDesc={weatherDesc} weatherIcon={weatherIcon}/>
+        <InfoPane name="Weather" icon="wi-day-cloudy.svg">
+          <Weather weather={weather} />
         </InfoPane>
-        <InfoPane name="Temperature" srcIcon="wi-thermometer.svg">
-          <Temperature temp={temp} feelsLike={feelsLike} maxTemp={maxTemp} minTemp={minTemp} units={units}/>
+        <InfoPane name="Temperature" icon="wi-thermometer.svg">
+          <Temperature temperature={temp} units={units}/>
         </InfoPane>
       </WeatherInfoPaneContainer>
       <ExtraInfoPaneContainer>
-        <InfoPane name='Humidity' srcIcon="wi-humidity.svg">
+        <InfoPane name='Humidity' icon="wi-humidity.svg">
           <Humidity humidity={humidity} />
         </InfoPane>
-        <InfoPane name='Wind' srcIcon="wi-wind-deg.svg">
-          <Wind speed={speed} degree={degree} gust={gust} units={units}/>
+        <InfoPane name='Wind' icon="wi-windy.svg">
+          <Wind wind={wind} units={units}/>
         </InfoPane>
-        <InfoPane name="Visibility" srcIcon="wi-stars.svg">
+        <InfoPane name="Visibility" icon="wi-stars.svg">
           Visibility
         </InfoPane>
-        <InfoPane srcIcon="wi-horizon.svg">
+        <InfoPane name="" icon="wi-horizon.svg">
           <SunriseAndSunset sunrise={sunrise} sunset= {sunset}/>
         </InfoPane>
       </ExtraInfoPaneContainer>
@@ -123,12 +135,12 @@ export default function Dashboard() {
         <div style={{textAlign: 'center'}}>
           Units: 
           {" "}
-          <select id="unit" value={units} onChange={() => {setUnits(!units)}}>
+          <select id="unit" value={units} onChange={() => {setUnits(!units)}} disabled={disabled}>
             <option value={true} onClick={handleFetch}>Imperial</option>
             <option value={false} onClick={handleFetch}>Metric</option>
           </select>
           {" "}
-          <EventButton text="Update Weather Information" onClick={handleFetch} />
+          <EventButton text="Update Weather Information" disabled={disabled} onClick={handleFetch} />
         </div>
       </ControllerPaneContainer>
     </>

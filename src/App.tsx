@@ -17,7 +17,6 @@ export default function App() {
         <ControllerPaneContainer>
           <EventInput placeholder="Location" onChange={undefined}/>
         </ControllerPaneContainer>
-        <br />
         <Dashboard />
       </MainPane>
     </>

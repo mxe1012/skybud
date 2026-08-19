@@ -3,7 +3,7 @@
 import type { ChildrenProps, InfoPaneProps, 
     WeatherProps, TemperatureProps, 
     HumidityProps, WindProps, 
-    SunriseAndSunsetProps } from "../utils/types";
+    SunriseAndSunsetProps, InfoPaneIconProps } from "../utils/types";
 
 export function MainPane({children}: ChildrenProps) {
     return <div className="MainPane">{children}</div>;
@@ -25,23 +25,27 @@ export function ControllerPaneContainer({children}: ChildrenProps) {
     return <div className="ControllerPaneContainer">{children}</div>
 }
 
-export function EventButton({text="", onClick}) {
-    return <button className="EventButton" onClick={onClick}>{text}</button>
+export function EventButton({text="", disabled=false, onClick}) {
+    return <button className="EventButton" disabled={disabled} onClick={onClick}>{text}</button>
 }
 
 export function EventInput({value="", placeholder="Placeholder", onChange}) {
     return <input className="EventInput" value={value} placeholder={placeholder} onChange={onChange}/>
 }
 
+export function InfoPaneIcon({src="wi-na.svg", size=25}: InfoPaneIconProps) {
 
-export function InfoPane({name="", srcIcon="wi-na.svg", children}: InfoPaneProps) {
+    const img = "./src/assets/icons/" + src;
 
-    const img = "./src/assets/" + srcIcon;
+    return <img src={img} width={size} height={size} />;
+}
+
+export function InfoPane({name="", icon="wi-na.svg", children}: InfoPaneProps) {
 
     return (
         <>
             <span className="InfoPane">
-            <img src={img} width={35} height={35}/>
+            <InfoPaneIcon src={icon} size={35} />
             <p>{name}</p>
                 {children}
             </span>
@@ -67,7 +71,7 @@ export function Clock() {
 
     return (
         <div className="Clock">
-            <span style={{backgroundColor: bgColor, transform: "scale(1)"}} className="TimeDatePane">
+            <span style={{backgroundColor: bgColor, transform: "scale(1)"}} className="ClockTimeDatePane">
                 <h4 style={{color: textColor}}>Clock</h4>
                 <div className="TimeDate">
                     <h1 style={{color: textColor}}>{time.toLocaleTimeString()}</h1>
@@ -78,20 +82,24 @@ export function Clock() {
     );
 }
 
-export function Weather({weather, weatherDesc, weatherIcon}: WeatherProps) {
+export function Weather({weather}: WeatherProps) {
+
+    const {main, description, icon} = weather;
 
     return (
         <div>
-            <h1>{weather}</h1>
-            <img src={weatherIcon} />
+            <h1>{main}</h1>
+            <img src={icon} />
             <br />
-            <h2>{weatherDesc}</h2>
+            <h2>{description}</h2>
             <br />
         </div>
     );
 }
 
-export function Temperature({temp, feelsLike, maxTemp, minTemp, units}: TemperatureProps) {
+export function Temperature({temperature, units}: TemperatureProps) {
+
+    const {temp, feels_like, temp_max, temp_min} = temperature
 
     return (
         <div>
@@ -102,15 +110,15 @@ export function Temperature({temp, feelsLike, maxTemp, minTemp, units}: Temperat
                 </div>
                 <div style={{padding: '10px'}}>
                     Feels like {" "}
-                    <h1><b>{units ? Math.round(feelsLike) + "°F" : Math.round(feelsLike) + "°C"}</b></h1>
+                    <h1><b>{units ? Math.round(feels_like) + "°F" : Math.round(feels_like) + "°C"}</b></h1>
                 </div>
                 <div style={{padding: '10px'}}>
                     Max {" "}
-                    <h2>{units ? Math.round(maxTemp) + "°F" : Math.round(maxTemp) + "°C"}</h2>
+                    <h2>{units ? Math.round(temp_max) + "°F" : Math.round(temp_max) + "°C"}</h2>
                 </div>
                 <div style={{padding: '10px'}}>
                     Min {" "}
-                    <h2>{units ? Math.round(minTemp) + "°F" : Math.round(minTemp) + "°C"}</h2>
+                    <h2>{units ? Math.round(temp_min) + "°F" : Math.round(temp_min) + "°C"}</h2>
                 </div>
             </div>
             <br/>
@@ -129,26 +137,27 @@ export function Humidity({humidity}: HumidityProps) {
 
 }
 
-export function Wind({speed, degree, gust, units}: WindProps) {
+export function Wind({wind, units}: WindProps) {
     
-    let compass;
-    let compassIcon;
+    const {speed, deg, gust} = wind;
 
-    if ((degree >= 0 && degree < 90 ) || degree == 360) {
+    let compass;
+    const compassIcon = "rotate(" + deg + "deg)";
+
+    const gustStr = !gust ? "Gust: 0 mph" : 
+    units ? "Gust: " + Math.round(gust) + " mph" : "Gust: " + Math.round(gust) + " km/h";
+
+    if ((deg >= 0 && deg < 90 ) || deg == 360) {
         compass = 'N';
-        compassIcon = 'rotate(0deg)'
     }
-    else if (degree >= 90 && degree < 180) {
+    else if (deg >= 90 && deg < 180) {
         compass = 'E';
-        compassIcon = 'rotate(90deg)'
     }
-    else if (degree >= 180 && degree < 270) {
+    else if (deg >= 180 && deg < 270) {
         compass = 'S';
-        compassIcon = 'rotate(180deg)'
     }
-    else if (degree >= 270 && degree <= 350) {
+    else if (deg >= 270 && deg <= 350) {
         compass = 'W';
-        compassIcon = 'rotate(350deg)'
     }
     else {
         compass = '?'
@@ -156,13 +165,13 @@ export function Wind({speed, degree, gust, units}: WindProps) {
 
     return (
         <div>
-            <img style={{transform: compassIcon}} src="./src/assets/wi-wind-deg.svg" width={50} height={50}/>
+            <img style={{transform: compassIcon}} src="./src/assets/icons/wi-wind-deg.svg" width={50} height={50}/>
             <br />
             <b>{units ? "Speed: " + Math.round(speed) + " mph" : "Speed: " + Math.round(speed) + " km/h"}</b>
             <br />
-            <b>Direction: {degree}° ({compass})</b>
+            <b>Direction: {deg}° ({compass})</b>
             <br />
-            <b>{units ? "Gust: " + Math.round(gust) + " mph" : "Gust: " + Math.round(gust) + " km/h"}</b>
+            <b>{gustStr}</b>
         </div>
     );
 
@@ -175,11 +184,11 @@ export function SunriseAndSunset({sunrise, sunset}: SunriseAndSunsetProps) {
 
     return (
         <div>
-            Sunrise: 
+            <InfoPaneIcon src="wi-sunrise.svg" />Sunrise 
             <br />
             <b>{sunriseFormatted.toLocaleTimeString()}</b>
             <br />
-            Sunset: 
+            <InfoPaneIcon src="wi-sunset.svg" />Sunset
             <br />
             <b>{sunsetFormatted.toLocaleTimeString()}</b>
         </div>

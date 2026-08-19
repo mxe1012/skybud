@@ -42,13 +42,13 @@ html {
     justify-content: center;
 }
 
-.TimeDatePane {
+.ClockTimeDatePane {
     animation-name: info-pane-fade;
     animation-duration: 1s;
     padding: 10px;
     background-color: rgba(255, 255, 255, 1);
     text-align: center;
-    box-shadow: 0px 0px 10px black;
+    box-shadow: 0px 0px 5px black;
     border-radius: 50px;
     margin: 10px;
 }
@@ -63,7 +63,7 @@ html {
     grid-template-columns: auto auto; */
     padding: 30px;
     border-radius: 35px;
-    box-shadow: 0px 0px 10px;
+    /* box-shadow: 0px 0px 10px; */
     background-color: rgba(0, 0, 0, 0);
     background-image: url(./src/assets/bg.jpg);
     background-repeat: no-repeat;
@@ -77,7 +77,7 @@ html {
     display: inline-flex;
     justify-content: center;
     align-content: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     /* grid-template-rows: auto;
     grid-template-columns: auto auto; */
     padding: 35px;
