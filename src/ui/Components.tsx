@@ -25,6 +25,10 @@ export function ControllerPaneContainer({children}: ChildrenProps) {
     return <div className="ControllerPaneContainer">{children}</div>
 }
 
+export function ForecastInfoContainer({children}: ChildrenProps) {
+    return <div>{children}</div>;
+}
+
 export function EventButton({text="", disabled=false, onClick}) {
     return <button className="EventButton" disabled={disabled} onClick={onClick}>{text}</button>
 }
