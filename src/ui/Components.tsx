@@ -3,7 +3,7 @@
 import type { ChildrenProps, InfoPaneProps, 
     WeatherProps, TemperatureProps, 
     HumidityProps, WindProps, 
-    SunriseAndSunsetProps } from "../utils/types";
+    SunriseAndSunsetProps, InfoPaneIconProps } from "../utils/types";
 
 export function MainPane({children}: ChildrenProps) {
     return <div className="MainPane">{children}</div>;
@@ -33,15 +33,19 @@ export function EventInput({value="", placeholder="Placeholder", onChange}) {
     return <input className="EventInput" value={value} placeholder={placeholder} onChange={onChange}/>
 }
 
+export function InfoPaneIcon({src="wi-na.svg", size=25}: InfoPaneIconProps) {
 
-export function InfoPane({name="", srcIcon="wi-na.svg", children}: InfoPaneProps) {
+    const img = "./src/assets/icons/" + src;
 
-    const img = "./src/assets/icons/" + srcIcon;
+    return <img src={img} width={size} height={size} />;
+}
+
+export function InfoPane({name="", icon="wi-na.svg", children}: InfoPaneProps) {
 
     return (
         <>
             <span className="InfoPane">
-            <img src={img} width={35} height={35}/>
+            <InfoPaneIcon src={icon} size={35} />
             <p>{name}</p>
                 {children}
             </span>

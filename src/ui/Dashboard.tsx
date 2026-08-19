@@ -96,24 +96,24 @@ export default function Dashboard() {
       <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
       <InfoPaneContainer>
       <WeatherInfoPaneContainer>
-        <InfoPane name="Weather" srcIcon="wi-day-cloudy.svg">
+        <InfoPane name="Weather" icon="wi-day-cloudy.svg">
           <Weather weather={weather} weatherDesc={weatherDesc} weatherIcon={weatherIcon}/>
         </InfoPane>
-        <InfoPane name="Temperature" srcIcon="wi-thermometer.svg">
+        <InfoPane name="Temperature" icon="wi-thermometer.svg">
           <Temperature temp={temp} feelsLike={feelsLike} maxTemp={maxTemp} minTemp={minTemp} units={units}/>
         </InfoPane>
       </WeatherInfoPaneContainer>
       <ExtraInfoPaneContainer>
-        <InfoPane name='Humidity' srcIcon="wi-humidity.svg">
+        <InfoPane name='Humidity' icon="wi-humidity.svg">
           <Humidity humidity={humidity} />
         </InfoPane>
-        <InfoPane name='Wind' srcIcon="wi-wind-deg.svg">
+        <InfoPane name='Wind' icon="wi-windy.svg">
           <Wind speed={speed} degree={degree} gust={gust} units={units}/>
         </InfoPane>
-        <InfoPane name="Visibility" srcIcon="wi-stars.svg">
+        <InfoPane name="Visibility" icon="wi-stars.svg">
           Visibility
         </InfoPane>
-        <InfoPane srcIcon="wi-horizon.svg">
+        <InfoPane name="" icon="wi-horizon.svg">
           <SunriseAndSunset sunrise={sunrise} sunset= {sunset}/>
         </InfoPane>
       </ExtraInfoPaneContainer>
