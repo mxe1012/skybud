@@ -54,7 +54,7 @@ export default function Dashboard() {
     const selectedUnits = units ? 'imperial' : 'metric';
 
     try {
-      const result = await apiFetch(coords.lon, coords.lat, selectedUnits);
+      const result = await apiFetch(coords.lon, coords.lat, "weather", selectedUnits);
 
       // Update location name
       setLocationName(result.name + ", " + result.sys.country);
@@ -97,7 +97,7 @@ export default function Dashboard() {
 
     useEffect(() => {
 
-      setTimeout(handleFetch, 2000);
+      setTimeout(handleFetch, 2000); //2000
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

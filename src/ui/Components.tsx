@@ -3,7 +3,9 @@
 import type { ChildrenProps, InfoPaneProps, 
     WeatherProps, TemperatureProps, 
     HumidityProps, WindProps, 
-    SunriseAndSunsetProps, InfoPaneIconProps } from "../utils/types";
+    SunriseAndSunsetProps, InfoPaneIconProps, ForecastInfoProps } from "../utils/types";
+
+import { optimizedCompass } from "../utils/helpers";
 
 export function MainPane({children}: ChildrenProps) {
     return <div className="MainPane">{children}</div>;
@@ -23,6 +25,17 @@ export function ExtraInfoPaneContainer({children}: ChildrenProps) {
 
 export function ControllerPaneContainer({children}: ChildrenProps) {
     return <div className="ControllerPaneContainer">{children}</div>
+}
+
+export function ForecastInfoContainer({children}: ChildrenProps) {
+    return (
+        <>
+            <h1 style={{textAlign: 'center'}}>Forecast</h1>
+            <div className="ForecastInfoContainer">
+                <ul>{children}</ul>
+            </div>
+        </>
+    );
 }
 
 export function EventButton({text="", disabled=false, onClick}) {
@@ -50,6 +63,14 @@ export function InfoPane({name="", icon="wi-na.svg", children}: InfoPaneProps) {
                 {children}
             </span>
         </>
+    );
+}
+
+export function ForecastInfoPane({children}: ChildrenProps) {
+    return (
+        <span className="ForecastInfoPane">
+            {children}
+        </span>
     );
 }
 
@@ -113,11 +134,11 @@ export function Temperature({temperature, units}: TemperatureProps) {
                     <h1><b>{units ? Math.round(feels_like) + "°F" : Math.round(feels_like) + "°C"}</b></h1>
                 </div>
                 <div style={{padding: '10px'}}>
-                    Max {" "}
+                    High {" "}
                     <h2>{units ? Math.round(temp_max) + "°F" : Math.round(temp_max) + "°C"}</h2>
                 </div>
                 <div style={{padding: '10px'}}>
-                    Min {" "}
+                    Low {" "}
                     <h2>{units ? Math.round(temp_min) + "°F" : Math.round(temp_min) + "°C"}</h2>
                 </div>
             </div>
@@ -141,27 +162,11 @@ export function Wind({wind, units}: WindProps) {
     
     const {speed, deg, gust} = wind;
 
-    let compass;
+    const compass = optimizedCompass(deg);
     const compassIcon = "rotate(" + deg + "deg)";
 
     const gustStr = !gust ? "Gust: 0 mph" : 
     units ? "Gust: " + Math.round(gust) + " mph" : "Gust: " + Math.round(gust) + " km/h";
-
-    if ((deg >= 0 && deg < 90 ) || deg == 360) {
-        compass = 'N';
-    }
-    else if (deg >= 90 && deg < 180) {
-        compass = 'E';
-    }
-    else if (deg >= 180 && deg < 270) {
-        compass = 'S';
-    }
-    else if (deg >= 270 && deg <= 350) {
-        compass = 'W';
-    }
-    else {
-        compass = '?'
-    }
 
     return (
         <div>
@@ -192,5 +197,25 @@ export function SunriseAndSunset({sunrise, sunset}: SunriseAndSunsetProps) {
             <br />
             <b>{sunsetFormatted.toLocaleTimeString()}</b>
         </div>
+    );
+}
+
+export function ForecastItem({weather, temperature}: ForecastInfoProps) {
+    return (
+        <>
+            <div>
+                <h2>{weather.main}</h2>
+                <img src={weather.icon} width={50} height={50}/>
+            </div>
+            <br />
+            <div id="MiniTempRow">
+                <div style={{padding: '10px'}}>
+                    <h3>High: {Math.round(temperature.temp_max)}</h3>
+                </div>
+                <div style={{padding: '10px'}}>
+                    <h3>Low: {Math.round(temperature.temp_min)}</h3>
+                </div>
+            </div>
+        </>
     );
 }

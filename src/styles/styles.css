@@ -48,9 +48,26 @@ html {
     padding: 10px;
     background-color: rgba(255, 255, 255, 1);
     text-align: center;
-    box-shadow: 0px 0px 5px black;
+    box-shadow: 0px 0px 2px;
     border-radius: 50px;
     margin: 10px;
+}
+
+.ForecastInfoContainer {
+    animation-name: info-pane-fade;
+    animation-duration: 1s;
+    display: flex;
+    justify-content: flex-start; 
+    flex-wrap: nowrap; 
+    white-space: nowrap;
+    padding: 15px;
+    max-width: 75%;
+    margin: auto;
+    box-shadow: 0px 0px 2px;
+    border-radius: 35px;
+    background-color: white;
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 .InfoPaneContainer {
@@ -125,6 +142,20 @@ html {
     -webkit-backdrop-filter: blur(2px); */
 }
 
+.ForecastInfoPane {
+    display: grid;
+    grid-template-rows: 25px 25px 25px 25px;
+    grid-template-columns: auto;
+    row-gap: 25px;
+    animation-name: info-pane-fade;
+    animation-duration: 1s;
+    background-color: grey;
+    padding: 20px;
+    text-align: center;
+    border-radius: 25px;
+    margin: 10px;
+}
+
 .TimeDate {
     font-family: Comfortaa;
     opacity: 1;
@@ -160,6 +191,16 @@ html {
     border-radius: 50px;
     padding: 10px;
     background-color: white;
+}
+
+#MiniTempRow {
+    display: flex;
+    justify-content: center;
+}
+
+ul > li {
+    display: inline-block;
+    padding-left: 5px;
 }
 
 span {

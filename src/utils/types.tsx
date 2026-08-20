@@ -56,3 +56,26 @@ export interface SunriseAndSunsetProps {
     sunrise: number
     sunset: number;
 }
+
+export interface ForecastInfoProps {
+    weather: ForecastInfoObjectWeatherProps;
+    temperature: ForecastInfoObjectTemperatureProps;
+}
+
+export interface ForecastInfoObjectWeatherProps {
+    main: string;
+    icon: string;
+}
+
+export interface ForecastInfoObjectTemperatureProps {
+    temp_max: number;
+    temp_min: number;
+}
+
+export interface ForecastEntry {
+    dt: number;
+    main: string;
+    icon: string;
+    temp_max: number;
+    temp_min: number;
+}
