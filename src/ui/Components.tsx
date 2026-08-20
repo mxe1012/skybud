@@ -166,17 +166,29 @@ export function Wind({wind, units}: WindProps) {
     const gustStr = !gust ? "Gust: 0 mph" : 
     units ? "Gust: " + Math.round(gust) + " mph" : "Gust: " + Math.round(gust) + " km/h";
 
-    if ((deg >= 0 && deg < 90 ) || deg == 360) {
+    if (deg == 0 || deg == 360) {
         compass = 'N';
     }
-    else if (deg >= 90 && deg < 180) {
+    else if (deg >= 1 && deg <= 89) {
+        compass = 'NE';
+    }
+    else if (deg == 90) {
         compass = 'E';
     }
-    else if (deg >= 180 && deg < 270) {
+    else if (deg >= 91 && deg <= 179) {
+        compass = 'SE';
+    }
+    else if (deg == 180) {
         compass = 'S';
     }
-    else if (deg >= 270 && deg <= 350) {
+    else if (deg >= 181 && deg <= 269) {
+        compass = 'SW';
+    }
+    else if (deg == 270 ) {
         compass = 'W';
+    }
+    else if (deg >= 271 && deg <= 350 ) {
+        compass = 'NW';
     }
     else {
         compass = '?'
