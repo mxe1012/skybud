@@ -1,39 +1,67 @@
-import {ForecastInfoContainer, Weather} from './Components.tsx';
+import {EventButton, ForecastInfoContainer, ForecastInfoPane, ForecastItem} from './Components.tsx';
 import { getCoordinates, apiFetchForecast } from '../utils/data.tsx';
-import { use, useState } from 'react';
+import  type{ ForecastEntry } from '../utils/types.tsx';
+import { useState } from 'react';
 
 export default function Forecast() {
 
-    const [list, setList] = useState([]);
+    const [notice, setNotice] = useState("");
 
-    const [weather, setWeather] = useState({
-        main: "",
-        description: "",
-        icon: ""
-    })
+    const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
 
-    const [units, setUnits] = useState(true);
+    const iconUrl = "https://openweathermap.org/payload/api/media/file/";
 
     async function handleFetch() {
+        setNotice("Getting forecast data...");
 
         const coords = await getCoordinates();
-         const selectedUnits = units ? 'imperial' : 'metric';
 
         try {
-            const result = await apiFetchForecast(coords.lon, coords.lat, selectedUnits);
-        } catch(e) {
+            const result = await apiFetchForecast(coords.lon, coords.lat);
+
+            const newForecastList: ForecastEntry[] = result.list.map((element) => {
+
+            const {dt} = element.dt;
+
+            const { main, icon } = element.weather[0];
+            const { temp_max, temp_min } = element.main;
+
+            return {
+                dt,
+                main,
+                icon: iconUrl + icon + ".png",
+                temp_max,
+                temp_min,
+            };
+        });
+
+        setForecastList(newForecastList);
+        setNotice("Done");
+
+        } catch (e) {
             console.log(e);
             alert("Something went wrong in fetching the forecast");
         }
-
-
     }
 
     return (
         <>
+            <h3>{notice}</h3>
             <ForecastInfoContainer>
-                aaa
+                {forecastList.map((forecast) => (
+                <li key={forecast.dt}>
+                    <ForecastInfoPane>
+                        <ForecastItem
+                            weather={{ main: forecast.main, icon: forecast.icon }}
+                            temperature={{ temp_max: forecast.temp_max, temp_min: forecast.temp_min }}
+                    />
+                    </ForecastInfoPane>
+                </li>
+                )
+            )}
             </ForecastInfoContainer>
+            <br />
+            <EventButton text="Get Forecast" onClick={handleFetch}/>
         </>
     );
 
