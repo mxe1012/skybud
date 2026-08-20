@@ -48,7 +48,7 @@ html {
     padding: 10px;
     background-color: rgba(255, 255, 255, 1);
     text-align: center;
-    box-shadow: 0px 0px 5px black;
+    box-shadow: 0px 0px 2px;
     border-radius: 50px;
     margin: 10px;
 }
@@ -59,12 +59,15 @@ html {
     display: flex;
     justify-content: flex-start; 
     flex-wrap: nowrap; 
-    padding: 25px;
+    white-space: nowrap;
+    padding: 15px;
+    max-width: 75%;
+    margin: auto;
+    box-shadow: 0px 0px 2px;
     border-radius: 35px;
-    margin-left: 75px;
-    margin-right: 75px;
-    background-color: green;
+    background-color: white;
     overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 .InfoPaneContainer {
@@ -140,12 +143,16 @@ html {
 }
 
 .ForecastInfoPane {
-    display: inline-flex;
+    display: grid;
+    grid-template-rows: 25px 25px 25px 25px;
+    grid-template-columns: auto;
+    row-gap: 25px;
     animation-name: info-pane-fade;
     animation-duration: 1s;
-    padding: 10px;
+    background-color: grey;
+    padding: 20px;
     text-align: center;
-    border-radius: 50px;
+    border-radius: 25px;
     margin: 10px;
 }
 
