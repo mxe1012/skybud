@@ -210,10 +210,10 @@ export function ForecastItem({weather, temperature}: ForecastInfoProps) {
             <br />
             <div id="MiniTempRow">
                 <div style={{padding: '10px'}}>
-                    <h3>High: {Math.round(temperature.temp_max)}</h3>
+                    <h3>High: {Math.round(temperature.temp_max)}°F</h3>
                 </div>
                 <div style={{padding: '10px'}}>
-                    <h3>Low: {Math.round(temperature.temp_min)}</h3>
+                    <h3>Low: {Math.round(temperature.temp_min)}°F</h3>
                 </div>
             </div>
         </>
