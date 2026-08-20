@@ -97,7 +97,7 @@ export default function Dashboard() {
 
     useEffect(() => {
 
-      setTimeout(handleFetch, 2000);
+      setTimeout(handleFetch, 2000); //2000
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
