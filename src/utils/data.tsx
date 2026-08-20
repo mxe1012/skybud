@@ -1,7 +1,7 @@
 
 export async function apiFetchWeather(lon=0, lat=0, units="imperial") {
   try {
-    const key = import.meta.env.VITE_API_KEY;
+    const key = import.meta.env.VITE_WEATHER_API_KEY;
     const baseUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`;
     const result = await fetch(`${baseUrl}&units=${units}`);
 
@@ -18,9 +18,9 @@ export async function apiFetchWeather(lon=0, lat=0, units="imperial") {
 
 export async function apiFetchForecast(lon=0, lat=0, units="imperial") {
   try {
-    const key = import.meta.env.VITE_WEATHER_API_KEY;
+    const key = import.meta.env.VITE_FORECAST_API_KEY;
     const baseUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}`;
-    const result = await fetch(`${baseUrl}&units=${units}`);
+    const result = await fetch(`${baseUrl}&units=${units}&cnt=4`);
 
     if (result.ok) {
       const data = await result.json();
