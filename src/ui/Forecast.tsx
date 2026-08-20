@@ -1,23 +1,20 @@
 import {EventButton, ForecastInfoContainer, ForecastInfoPane, ForecastItem} from './Components.tsx';
-import { getCoordinates, apiFetchForecast } from '../utils/data.tsx';
+import { getCoordinates, apiFetch } from '../utils/data.tsx';
 import  type{ ForecastEntry } from '../utils/types.tsx';
 import { useState } from 'react';
 
 export default function Forecast() {
-
-    const [notice, setNotice] = useState("");
 
     const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
 
     const iconUrl = "https://openweathermap.org/payload/api/media/file/";
 
     async function handleFetch() {
-        setNotice("Getting forecast data...");
 
         const coords = await getCoordinates();
 
         try {
-            const result = await apiFetchForecast(coords.lon, coords.lat);
+            const result = await apiFetch(coords.lon, coords.lat, "forecast");
 
             const newForecastList: ForecastEntry[] = result.list.map((element) => {
 
@@ -36,7 +33,6 @@ export default function Forecast() {
         });
 
         setForecastList(newForecastList);
-        setNotice("Done");
 
         } catch (e) {
             console.log(e);
@@ -46,7 +42,6 @@ export default function Forecast() {
 
     return (
         <>
-            <h3>{notice}</h3>
             <ForecastInfoContainer>
                 {forecastList.map((forecast) => (
                 <li key={forecast.dt}>
