@@ -27,9 +27,12 @@ export function ControllerPaneContainer({children}: ChildrenProps) {
 
 export function ForecastInfoContainer({children}: ChildrenProps) {
     return (
-        <div className="ForecastInfoContainer">
-            <ul>{children}</ul>
-        </div>
+        <>
+            <h1 style={{textAlign: 'center'}}>Forecast</h1>
+            <div className="ForecastInfoContainer">
+                <ul>{children}</ul>
+            </div>
+        </>
     );
 }
 
@@ -215,10 +218,14 @@ export function ForecastItem({weather, temperature}: ForecastInfoProps) {
     return (
         <>
             <h2>{weather.main}</h2>
-            <img src={weather.icon} width={45} height={45}/>
-            <div>
-                <p>High: {Math.round(temperature.temp_max)}</p>
-                <p>Low: {Math.round(temperature.temp_min)}</p>
+            <img src={weather.icon} width={50} height={50}/>
+            <div id="MiniTempRow">
+                <div style={{padding: '10px'}}>
+                    <h3>High: {Math.round(temperature.temp_max)}</h3>
+                </div>
+                <div style={{padding: '10px'}}>
+                    <h3>Low: {Math.round(temperature.temp_min)}</h3>
+                </div>
             </div>
         </>
     );
