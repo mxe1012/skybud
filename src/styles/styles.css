@@ -139,6 +139,16 @@ html {
     -webkit-backdrop-filter: blur(2px); */
 }
 
+.ForecastInfoPane {
+    display: inline-flex;
+    animation-name: info-pane-fade;
+    animation-duration: 1s;
+    padding: 10px;
+    text-align: center;
+    border-radius: 50px;
+    margin: 10px;
+}
+
 .TimeDate {
     font-family: Comfortaa;
     opacity: 1;
