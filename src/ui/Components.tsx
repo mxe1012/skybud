@@ -217,8 +217,11 @@ export function SunriseAndSunset({sunrise, sunset}: SunriseAndSunsetProps) {
 export function ForecastItem({weather, temperature}: ForecastInfoProps) {
     return (
         <>
-            <h2>{weather.main}</h2>
-            <img src={weather.icon} width={50} height={50}/>
+            <div>
+                <h2>{weather.main}</h2>
+                <img src={weather.icon} width={50} height={50}/>
+            </div>
+            <br />
             <div id="MiniTempRow">
                 <div style={{padding: '10px'}}>
                     <h3>High: {Math.round(temperature.temp_max)}</h3>
