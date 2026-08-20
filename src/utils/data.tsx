@@ -1,8 +1,11 @@
 
-export async function apiFetchWeather(lon=0, lat=0, units="imperial") {
+export async function apiFetch(lon=0, lat=0, endpoint="none", units="imperial") {
+
+  const key = endpoint === "weather" 
+  ? import.meta.env.VITE_WEATHER_API_KEY : import.meta.env.VITE_FORECAST_API_KEY;
+
   try {
-    const key = import.meta.env.VITE_WEATHER_API_KEY;
-    const baseUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`;
+    const baseUrl = `https://api.openweathermap.org/data/2.5/${endpoint}?lat=${lat}&lon=${lon}&appid=${key}`;
     const result = await fetch(`${baseUrl}&units=${units}`);
 
     if (result.ok) {
@@ -15,24 +18,6 @@ export async function apiFetchWeather(lon=0, lat=0, units="imperial") {
     alert("Error occured in fetching.");
   }
 };
-
-export async function apiFetchForecast(lon=0, lat=0, units="imperial") {
-  try {
-    const key = import.meta.env.VITE_FORECAST_API_KEY;
-    const baseUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}`;
-    const result = await fetch(`${baseUrl}&units=${units}&cnt=4`);
-
-    if (result.ok) {
-      const data = await result.json();
-      console.log(data);
-      return data;
-    }
-  } catch (e) {
-    console.log(e);
-    alert("Error occured in fetching.");
-  }
-};
-
 
 const options = {
   maximumAge: 120000, // cache longitude and latitude for 2 minutes
