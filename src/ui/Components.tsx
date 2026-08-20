@@ -3,7 +3,7 @@
 import type { ChildrenProps, InfoPaneProps, 
     WeatherProps, TemperatureProps, 
     HumidityProps, WindProps, 
-    SunriseAndSunsetProps, InfoPaneIconProps } from "../utils/types";
+    SunriseAndSunsetProps, InfoPaneIconProps, ForecastInfoProps } from "../utils/types";
 
 export function MainPane({children}: ChildrenProps) {
     return <div className="MainPane">{children}</div>;
@@ -26,7 +26,11 @@ export function ControllerPaneContainer({children}: ChildrenProps) {
 }
 
 export function ForecastInfoContainer({children}: ChildrenProps) {
-    return <div className="ForecastInfoContainer">{children}</div>;
+    return (
+        <div className="ForecastInfoContainer">
+            <ul>{children}</ul>
+        </div>
+    );
 }
 
 export function EventButton({text="", disabled=false, onClick}) {
@@ -54,6 +58,14 @@ export function InfoPane({name="", icon="wi-na.svg", children}: InfoPaneProps) {
                 {children}
             </span>
         </>
+    );
+}
+
+export function ForecastInfoPane({children}: ChildrenProps) {
+    return (
+        <span className="ForecastInfoPane">
+            {children}
+        </span>
     );
 }
 
@@ -196,5 +208,16 @@ export function SunriseAndSunset({sunrise, sunset}: SunriseAndSunsetProps) {
             <br />
             <b>{sunsetFormatted.toLocaleTimeString()}</b>
         </div>
+    );
+}
+
+export function ForecastItem({weather, temperature}: ForecastInfoProps) {
+    return (
+        <>
+            <p>{weather.main}</p>
+            <img src={weather.icon} width={25} height={25}/>
+            <p>{temperature.temp_max}</p>
+            <p>{temperature.temp_min}</p>
+        </>
     );
 }
