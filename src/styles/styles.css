@@ -25,9 +25,9 @@
 }
 
 html {
-    background: #a8e5ff;
     font-family: 'comfortaa';
-    background: linear-gradient(90deg,rgba(227, 246, 255, 1) 0%, rgba(115, 218, 255, 1) 50%, rgba(61, 195, 252, 1) 100%);
+    background: #ffffff;
+    background: linear-gradient(0deg,rgba(255, 255, 255, 1) 0%, rgba(65, 196, 240, 1) 50%, rgba(154, 216, 252, 1) 100%);
 }
 
 .Clock {

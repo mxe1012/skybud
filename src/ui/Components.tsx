@@ -93,7 +93,6 @@ export function Clock() {
     return (
         <div className="Clock">
             <span style={{backgroundColor: bgColor, transform: "scale(1)"}} className="ClockTimeDatePane">
-                <h4 style={{color: textColor}}>Clock</h4>
                 <div className="TimeDate">
                     <h1 style={{color: textColor}}>{time.toLocaleTimeString()}</h1>
                     <h2 style={{color: textColor}}>{time.toLocaleDateString()}</h2>
