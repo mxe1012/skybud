@@ -58,6 +58,7 @@ export interface SunriseAndSunsetProps {
 }
 
 export interface ForecastInfoProps {
+    dt: number;
     weather: ForecastInfoObjectWeatherProps;
     temperature: ForecastInfoObjectTemperatureProps;
 }
