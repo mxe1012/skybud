@@ -66,6 +66,10 @@ html {
     box-shadow: 0px 0px 2px;
     border-radius: 35px;
     background-color: white;
+    background-image: url(./src/assets/bg_fore.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     overflow-x: scroll;
     overflow-y: hidden;
 }
@@ -144,16 +148,18 @@ html {
 
 .ForecastInfoPane {
     display: grid;
-    grid-template-rows: 25px 25px 25px 25px;
+    grid-template-rows: 25px, 25px 25px 25px 25px;
     grid-template-columns: auto;
-    row-gap: 25px;
     animation-name: info-pane-fade;
     animation-duration: 1s;
-    background-color: grey;
-    padding: 20px;
+    box-shadow: 0px 0px 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 10px;
     text-align: center;
     border-radius: 25px;
     margin: 10px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .TimeDate {
@@ -184,6 +190,30 @@ html {
     grid-template-rows: auto auto;
     grid-template-columns: auto auto;
 }
+
+.gauge {
+    --size: 90px;
+    --cutout: 50%;
+    --color-start: rgb(223, 246, 255);
+    --color-end: #7fd0ff;
+    --background: white;
+    font-size: 25px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: calc(var(--size) / 2);
+    background:
+    radial-gradient(
+        var(--background) 0 var(--cutout),
+        transparent var(--cutout) 100%),
+        conic-gradient(from -180deg, 
+        var(--color-start) 0deg,
+        var(--color-end) calc(360deg*var(--value)),
+        grey calc(360deg*var(--value)) 360deg, 
+        transparent 360deg);
+    text-align: center;
+    line-height: var(--size);
+}
+
 
 #unit {
     font-family: Comfortaa;
