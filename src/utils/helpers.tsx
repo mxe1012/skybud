@@ -77,7 +77,7 @@ export function backgroundImageLookup(id: number): string {
             bg = "url(./src/assets/backgrounds/bg_thunder.png)";
             break;
         case 800:
-            bg = "url(./src/assets/backgrounds/bg_fore.png)";
+            bg = "url(./src/assets/backgrounds/bg_sunny_clear.png)";
             break;
         case 801:
             bg = "url(./src/assets/backgrounds/bg_sunny_clouds.png)";
