@@ -92,7 +92,7 @@ export default function Dashboard() {
 
     } catch (e) {
       console.error(e);
-      alert("Something went wrong during the fetching of data.");
+      setNotice("Something went wrong during the fetching of data.");
     }
   }
 
