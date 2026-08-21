@@ -4,6 +4,11 @@ export interface ChildrenProps {
     children: ReactNode;
 }
 
+export interface InfoPaneContainerProps {
+    id: number;
+    children: ReactNode;
+}
+
 export interface InfoPaneProps {
     name?: string;
     icon?: string;

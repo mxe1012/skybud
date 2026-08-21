@@ -14,6 +14,7 @@ export default function Dashboard() {
 
   //Weather component
   const [weather, setWeather] = useState({
+    id: 0,
     main: "",
     description: "",
     icon: ""
@@ -61,8 +62,9 @@ export default function Dashboard() {
       setLocationName(result.name + ", " + result.sys.country);
       
       // Update Weather-related state
-      const {main, description} = result.weather[0];
+      const {id, main, description} = result.weather[0];
       setWeather({
+        id,
         main,
         description,
         icon: iconUrl + result.weather[0].icon + ".png"
@@ -121,7 +123,7 @@ export default function Dashboard() {
       </ControllerPaneContainer>
       <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
       <h3 style={{textAlign: 'center'}}>{notice}</h3>
-      <InfoPaneContainer>
+      <InfoPaneContainer id={weather.id}>
       <WeatherInfoPaneContainer>
         <InfoPane name="Weather" icon="wi-day-cloudy.svg">
           <Weather weather={weather} />

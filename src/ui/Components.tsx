@@ -3,16 +3,20 @@
 import type { ChildrenProps, InfoPaneProps, 
     WeatherProps, TemperatureProps, 
     HumidityProps, WindProps, 
-    SunriseAndSunsetProps, InfoPaneIconProps, ForecastInfoProps } from "../utils/types";
+    SunriseAndSunsetProps, InfoPaneIconProps, ForecastInfoProps, 
+    InfoPaneContainerProps} from "../utils/types";
 
-import { optimizedCompass } from "../utils/helpers";
+import { optimizedCompass, backgroundImageLookup } from "../utils/helpers";
 
 export function MainPane({children}: ChildrenProps) {
     return <div className="MainPane">{children}</div>;
 }
 
-export function InfoPaneContainer({children}: ChildrenProps) {
-    return <div className="InfoPaneContainer">{children}</div>
+export function InfoPaneContainer({id, children}: InfoPaneContainerProps) {
+
+    const bg = backgroundImageLookup(id);
+
+    return <div style={{backgroundImage: bg}} className="InfoPaneContainer">{children}</div>
 }
 
 export function WeatherInfoPaneContainer({children}: ChildrenProps) {
@@ -152,7 +156,7 @@ export function Humidity({humidity}: HumidityProps) {
     
     return (
         <div>
-            <div class="gauge" style={{"--value": gaugeValue, "--size": "90px"}}><b>{humidity}%</b></div>
+            <div className="gauge" style={{"--value": gaugeValue, "--size": "90px"}}><b>{humidity}%</b></div>
         </div>
     );
 }
