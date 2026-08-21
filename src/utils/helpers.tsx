@@ -6,3 +6,8 @@ export function optimizedCompass(degree: number): string {
     return directions[current];
 
 }
+
+export function fahrenheitToCelsius(far: number): number {
+    return Math.round((far - 32) * 5 / 9);
+}
+
