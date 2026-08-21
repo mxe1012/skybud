@@ -62,7 +62,7 @@ export function backgroundImageLookup(id: number): string {
         case 620:
         case 621:
         case 622:
-            bg = "url(./src/assets/backgrounds/bg_thunder.png)";
+            bg = "url(./src/assets/backgrounds/bg_thunder.png)"; // should be snow
             break;
         case 701:
         case 711:
@@ -74,7 +74,7 @@ export function backgroundImageLookup(id: number): string {
         case 762:
         case 771:
         case 781:
-            bg = "url(./src/assets/backgrounds/bg_thunder.png)";
+            bg = "url(./src/assets/backgrounds/bg_thunder.png)"; // should be atmospheric 
             break;
         case 800:
             bg = "url(./src/assets/backgrounds/bg_sunny_clear.png)";
