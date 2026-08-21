@@ -18,7 +18,7 @@ export default function Forecast() {
 
             const newForecastList: ForecastEntry[] = result.list.map((element) => {
 
-            const {dt} = element.dt;
+            const dt = element.dt;
 
             const { main, icon } = element.weather[0];
             const { temp_max, temp_min } = element.main;
@@ -40,6 +40,8 @@ export default function Forecast() {
         }
     }
 
+    console.log(forecastList);
+
     return (
         <>
             <ForecastInfoContainer>
@@ -47,6 +49,7 @@ export default function Forecast() {
                 <li key={forecast.dt}>
                     <ForecastInfoPane>
                         <ForecastItem
+                            dt={forecast.dt}
                             weather={{ main: forecast.main, icon: forecast.icon }}
                             temperature={{ temp_max: forecast.temp_max, temp_min: forecast.temp_min }}
                     />
