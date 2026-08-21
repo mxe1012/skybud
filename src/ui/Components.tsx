@@ -148,13 +148,13 @@ export function Temperature({temperature, units}: TemperatureProps) {
 
 export function Humidity({humidity}: HumidityProps) {
 
+    const gaugeValue = String(humidity / 100);
+    
     return (
         <div>
-            <b>{humidity}%</b>
-            <br />
+            <div class="gauge" style={{"--value": gaugeValue, "--size": "90px"}}><b>{humidity}%</b></div>
         </div>
     );
-
 }
 
 export function Wind({wind, units}: WindProps) {
@@ -164,14 +164,16 @@ export function Wind({wind, units}: WindProps) {
     const compass = optimizedCompass(deg);
     const compassIcon = "rotate(" + deg + "deg)";
 
+    const speedStr = units ? "Speed: " + Math.round(speed) + " mph" : "Speed: " + Math.round(speed) + " m/s";
+
     const gustStr = !gust ? "Gust: 0 mph" : 
-    units ? "Gust: " + Math.round(gust) + " mph" : "Gust: " + Math.round(gust) + " km/h";
+    units ? "Gust: " + Math.round(gust) + " mph" : "Gust: " + Math.round(gust) + " m/s";
 
     return (
         <div>
             <img style={{transform: compassIcon}} src="./src/assets/icons/wi-wind-deg.svg" width={50} height={50}/>
             <br />
-            <b>{units ? "Speed: " + Math.round(speed) + " mph" : "Speed: " + Math.round(speed) + " km/h"}</b>
+            <b>{speedStr}</b>
             <br />
             <b>Direction: {deg}° ({compass})</b>
             <br />
@@ -199,9 +201,17 @@ export function SunriseAndSunset({sunrise, sunset}: SunriseAndSunsetProps) {
     );
 }
 
-export function ForecastItem({weather, temperature}: ForecastInfoProps) {
+export function ForecastItem({dt, weather, temperature}: ForecastInfoProps) {
+
+    const formattedDt = new Date(dt * 1000);
+
     return (
         <>
+            <div>
+                {formattedDt.toLocaleDateString()}
+                <br />
+                {formattedDt.toLocaleTimeString()}
+            </div>
             <div>
                 <h2>{weather.main}</h2>
                 <img src={weather.icon} width={50} height={50}/>
