@@ -11,6 +11,10 @@ export function fahrenheitToCelsius(far: number): number {
     return Math.round((far - 32) * 5 / 9);
 }
 
+export function milesPerHourtoMS(mph: number): number {
+    return mph / 2.237;
+}
+
 export function backgroundImageLookup(id: number): string {
     
     let bg;
