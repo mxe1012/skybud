@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { getCoordinates, apiFetch } from '../utils/data.tsx';
 import { ControllerPaneContainer, InfoPaneContainer, EventButton, InfoPane, WeatherInfoPaneContainer, ExtraInfoPaneContainer, 
-    Weather, Temperature, Humidity, Wind, SunriseAndSunset} from './Components.tsx';
+    Weather, Temperature, Humidity, Wind, SunriseAndSunset,
+    EventInput} from './Components.tsx';
 
 export default function Dashboard() {
 
@@ -104,6 +105,20 @@ export default function Dashboard() {
 
   return (
     <>
+      <ControllerPaneContainer>
+        <div style={{textAlign: 'center'}}>
+          Units: 
+          {" "}
+          <select id="unit" value={units} onChange={() => {setUnits(!units)}} disabled={disabled}>
+            <option value={true} onClick={handleFetch}>Imperial</option>
+            <option value={false} onClick={handleFetch}>Metric</option>
+          </select>
+          {" "}
+          <EventInput placeholder="Location" onChange={undefined}/>
+          {" "}
+          <EventButton text="Update Weather Information" disabled={disabled} onClick={handleFetch} />
+        </div>
+      </ControllerPaneContainer>
       <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
       <h3 style={{textAlign: 'center'}}>{notice}</h3>
       <InfoPaneContainer>
@@ -130,19 +145,6 @@ export default function Dashboard() {
         </InfoPane>
       </ExtraInfoPaneContainer>
       </InfoPaneContainer>
-      <br />
-      <ControllerPaneContainer>
-        <div style={{textAlign: 'center'}}>
-          Units: 
-          {" "}
-          <select id="unit" value={units} onChange={() => {setUnits(!units)}} disabled={disabled}>
-            <option value={true} onClick={handleFetch}>Imperial</option>
-            <option value={false} onClick={handleFetch}>Metric</option>
-          </select>
-          {" "}
-          <EventButton text="Update Weather Information" disabled={disabled} onClick={handleFetch} />
-        </div>
-      </ControllerPaneContainer>
     </>
   );
 }
