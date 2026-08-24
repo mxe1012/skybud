@@ -25,6 +25,7 @@ export interface WeatherProps {
 }
 
 export interface WeatherObjectProps {
+    id: number;
     main: string;
     description: string;
     icon: string;
@@ -84,4 +85,14 @@ export interface ForecastEntry {
     icon: string;
     temp_max: number;
     temp_min: number;
+}
+
+export interface CurrentWeatherProps {
+    weather: WeatherObjectProps;
+    temperature: TempObjectProps;
+    humidity: number;
+    wind: WindObjectProps;
+    sunset: number;
+    sunrise: number;
+    units: boolean;
 }
