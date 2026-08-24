@@ -194,9 +194,9 @@ export default function Dashboard() {
                     </select>
                     {" "}
                     <EventInput placeholder="Location" value={locationName} onChange={handleSearch}/>
-                    <ul>
-                        {locationList.map((element) => (
-                            <li>{element.name}, {element.state}, {element.country}</li>
+                    <ul className="locations">
+                        {locationList.length == 0 ? "" : locationList.map((element) => (
+                            <li className="locations">{element.name}, {element.state}, {element.country}</li>
                         ))}
                     </ul>
                     {" "}
