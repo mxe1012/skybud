@@ -61,8 +61,8 @@ export default function Dashboard() {
     const selectedUnits = units ? 'imperial' : 'metric';
 
     try {
-        const resultWeather = await apiFetch(coords.lon, coords.lat, "weather", selectedUnits);
-        const resultForecast = await apiFetch(coords.lon, coords.lat, "forecast");
+      const resultWeather = await apiFetch(coords.lon, coords.lat, "weather", selectedUnits);
+      const resultForecast = await apiFetch(coords.lon, coords.lat, "forecast");
 
       // Update location name
       setLocationName(resultWeather.name + ", " + resultWeather.sys.country);
@@ -97,22 +97,22 @@ export default function Dashboard() {
 
       
 
-        const newForecastList: ForecastEntry[] = resultForecast.list.map((element) => {
+      const newForecastList: ForecastEntry[] = resultForecast.list.map((element) => {
 
-        const dt = element.dt;
+      const dt = element.dt;
 
-        const { main, icon } = element.weather[0];
-        const { temp_max, temp_min } = element.main;
-        return {
-            dt,
-            main,
-            icon: iconUrl + icon + ".png",
-            temp_max,
-            temp_min,
-            };
+      const { main, icon } = element.weather[0];
+      const { temp_max, temp_min } = element.main;
+      return {
+          dt,
+          main,
+          icon: iconUrl + icon + ".png",
+          temp_max,
+          temp_min,
+          };
         });
 
-        setForecastList(newForecastList);
+      setForecastList(newForecastList);
 
       setNotice("");
       setDisabled(false);
@@ -133,26 +133,26 @@ export default function Dashboard() {
     return (
 
         <>
-            <ControllerPaneContainer>
-        <div style={{textAlign: 'center'}}>
-          Units: 
-          {" "}
-          <select id="unit" value={units} onChange={() => {setUnits(!units)}} disabled={disabled}>
-            <option value={true} onClick={handleFetch}>Imperial</option>
-            <option value={false} onClick={handleFetch}>Metric</option>
-          </select>
-          {" "}
-          <EventInput placeholder="Location" onChange={undefined}/>
-          {" "}
-          <EventButton text="Update Weather Information" disabled={disabled} onClick={handleFetch} />
-        </div>
-      </ControllerPaneContainer>
-      <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
-      <h3 style={{textAlign: 'center'}}>{notice}</h3>
-      <br />
-      <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
-      wind={wind} sunrise={sunrise} sunset={sunset} units={units}/>
-      <Forecast forecastList={forecastList}/>
+          <ControllerPaneContainer>
+            <div style={{textAlign: 'center'}}>
+              Units: 
+              {" "}
+              <select id="unit" value={units} onChange={() => {setUnits(!units)}} disabled={disabled}>
+                <option value={true} onClick={handleFetch}>Imperial</option>
+                <option value={false} onClick={handleFetch}>Metric</option>
+              </select>
+              {" "}
+              <EventInput placeholder="Location" onChange={undefined}/>
+              {" "}
+              <EventButton text="Update Weather Information" disabled={disabled} onClick={handleFetch} />
+            </div>
+        </ControllerPaneContainer>
+        <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
+        <h3 style={{textAlign: 'center'}}>{notice}</h3>
+        <br />
+        <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
+        wind={wind} sunrise={sunrise} sunset={sunset} units={units}/>
+        <Forecast forecastList={forecastList}/>
         </>
 
     );
