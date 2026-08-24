@@ -1,8 +1,14 @@
-import type { ChildrenProps, InfoPaneProps, 
-    WeatherProps, TemperatureProps, 
-    HumidityProps, WindProps, 
-    SunriseAndSunsetProps, InfoPaneIconProps, ForecastInfoProps, 
-    InfoPaneContainerProps} from "../utils/types";
+import type { ChildrenProps, 
+    InfoPaneProps, 
+    WeatherProps, 
+    TemperatureProps, 
+    HumidityProps, 
+    WindProps, 
+    SunriseAndSunsetProps, 
+    InfoPaneIconProps, 
+    ForecastInfoProps, 
+    InfoPaneContainerProps
+} from "../utils/types";
 
 import { optimizedCompass, backgroundImageLookup } from "../utils/helpers";
 
