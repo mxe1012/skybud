@@ -1,4 +1,5 @@
 import './styles/styles.css'
+import './styles/snackbar.css'
 
 import { MainPane, Clock } from './ui/Components.tsx';
 
