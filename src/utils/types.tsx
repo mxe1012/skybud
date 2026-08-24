@@ -67,6 +67,7 @@ export interface ForecastInfoProps {
     dt: number;
     weather: ForecastInfoObjectWeatherProps;
     temperature: ForecastInfoObjectTemperatureProps;
+    units: boolean;
 }
 
 export interface ForecastInfoObjectWeatherProps {

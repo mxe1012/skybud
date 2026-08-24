@@ -62,7 +62,7 @@ export default function Dashboard() {
 
     try {
       const resultWeather = await apiFetch(coords.lon, coords.lat, "weather", selectedUnits);
-      const resultForecast = await apiFetch(coords.lon, coords.lat, "forecast");
+      const resultForecast = await apiFetch(coords.lon, coords.lat, "forecast", selectedUnits);
 
       // Update location name
       setLocationName(resultWeather.name + ", " + resultWeather.sys.country);
@@ -152,7 +152,7 @@ export default function Dashboard() {
         <br />
         <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
         wind={wind} sunrise={sunrise} sunset={sunset} units={units}/>
-        <Forecast forecastList={forecastList}/>
+        <Forecast forecastList={forecastList} units={units}/>
         </>
 
     );

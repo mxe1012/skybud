@@ -1,6 +1,6 @@
 import {ForecastInfoContainer, ForecastInfoPane, ForecastItem} from './Components.tsx';
 
-export default function Forecast({forecastList}) {
+export default function Forecast({forecastList, units}) {
 
     return (
         <>
@@ -12,6 +12,7 @@ export default function Forecast({forecastList}) {
                             dt={forecast.dt}
                             weather={{ main: forecast.main, icon: forecast.icon }}
                             temperature={{ temp_max: forecast.temp_max, temp_min: forecast.temp_min }}
+                            units={units}
                     />
                     </ForecastInfoPane>
                 </li>
