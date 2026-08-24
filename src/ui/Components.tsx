@@ -160,7 +160,9 @@ export function Humidity({humidity}: HumidityProps) {
     
     return (
         <div>
-            <div className="gauge" style={{"--value": gaugeValue, "--size": "90px"}}><b>{humidity}%</b></div>
+            <div className="gauge" style={{"--value": gaugeValue, "--size": "90px"} as React.CSSProperties}>
+                <b>{humidity}%</b>
+            </div>
         </div>
     );
 }
