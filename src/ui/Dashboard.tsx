@@ -1,12 +1,15 @@
+import CurrentWeather from "./CurrentWeather.tsx";
+import Forecast from "./Forecast.tsx";
+
 import { useState, useEffect } from "react";
 import { getCoordinates, apiFetch } from '../utils/data.tsx';
-import { ControllerPaneContainer, InfoPaneContainer, EventButton, InfoPane, WeatherInfoPaneContainer, ExtraInfoPaneContainer, 
-    Weather, Temperature, Humidity, Wind, SunriseAndSunset,
-    EventInput} from './Components.tsx';
+import type { ForecastEntry } from "../utils/types.tsx";
+
+import { ControllerPaneContainer, EventButton, EventInput} from './Components.tsx';
 
 export default function Dashboard() {
 
-  // Current name of location
+// Current name of location
   const [locationName, setLocationName] = useState("");
 
   // Unit Switcher
@@ -47,6 +50,8 @@ export default function Dashboard() {
   const [notice, setNotice] = useState("");
   const [disabled, setDisabled] = useState(false);
 
+  const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
+
   async function handleFetch() {
 
     setNotice("Acquiring weather info...");
@@ -56,38 +61,58 @@ export default function Dashboard() {
     const selectedUnits = units ? 'imperial' : 'metric';
 
     try {
-      const result = await apiFetch(coords.lon, coords.lat, "weather", selectedUnits);
+        const resultWeather = await apiFetch(coords.lon, coords.lat, "weather", selectedUnits);
+        const resultForecast = await apiFetch(coords.lon, coords.lat, "forecast");
 
       // Update location name
-      setLocationName(result.name + ", " + result.sys.country);
+      setLocationName(resultWeather.name + ", " + resultWeather.sys.country);
       
       // Update Weather-related state
-      const {id, main, description} = result.weather[0];
+      const {id, main, description} = resultWeather.weather[0];
       setWeather({
         id,
         main,
         description,
-        icon: iconUrl + result.weather[0].icon + ".png"
+        icon: iconUrl + resultWeather.weather[0].icon + ".png"
       });
 
       // Update Temperature-related state
-      const {temp, feels_like, temp_max, temp_min} = result.main;
+      const {temp, feels_like, temp_max, temp_min} = resultWeather.main;
       setTemp({
         temp, feels_like, temp_max, temp_min
       });
 
       // Update Humidity-related state
-      setHumidity(result.main.humidity);
+      setHumidity(resultWeather.main.humidity);
 
       //Update Wind-related state
-      const {speed, deg, gust} = result.wind;
+      const {speed, deg, gust} = resultWeather.wind;
       setWind({
         speed, deg, gust
       });
 
       // Update Sunrise and Sunset related state
-      setSunrise(result.sys.sunrise);
-      setSunset(result.sys.sunset);
+      setSunrise(resultWeather.sys.sunrise);
+      setSunset(resultWeather.sys.sunset);
+
+      
+
+        const newForecastList: ForecastEntry[] = resultForecast.list.map((element) => {
+
+        const dt = element.dt;
+
+        const { main, icon } = element.weather[0];
+        const { temp_max, temp_min } = element.main;
+        return {
+            dt,
+            main,
+            icon: iconUrl + icon + ".png",
+            temp_max,
+            temp_min,
+            };
+        });
+
+        setForecastList(newForecastList);
 
       setNotice("");
       setDisabled(false);
@@ -105,9 +130,10 @@ export default function Dashboard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-  return (
-    <>
-      <ControllerPaneContainer>
+    return (
+
+        <>
+            <ControllerPaneContainer>
         <div style={{textAlign: 'center'}}>
           Units: 
           {" "}
@@ -123,31 +149,12 @@ export default function Dashboard() {
       </ControllerPaneContainer>
       <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
       <h3 style={{textAlign: 'center'}}>{notice}</h3>
-      <InfoPaneContainer id={weather.id}>
-      <WeatherInfoPaneContainer>
-        <InfoPane name="Weather" icon="wi-day-cloudy.svg">
-          <Weather weather={weather} />
-        </InfoPane>
-        <InfoPane name="Temperature" icon="wi-thermometer.svg">
-          <Temperature temperature={temp} units={units}/>
-        </InfoPane>
-      </WeatherInfoPaneContainer>
-      <ExtraInfoPaneContainer>
-        <InfoPane name='Humidity' icon="wi-humidity.svg">
-          <Humidity humidity={humidity} />
-        </InfoPane>
-        <InfoPane name='Wind' icon="wi-windy.svg">
-          <Wind wind={wind} units={units}/>
-        </InfoPane>
-        <InfoPane name="Visibility" icon="wi-stars.svg">
-          Visibility
-        </InfoPane>
-        <InfoPane name="" icon="wi-horizon.svg">
-          <SunriseAndSunset sunrise={sunrise} sunset= {sunset}/>
-        </InfoPane>
-      </ExtraInfoPaneContainer>
-      </InfoPaneContainer>
-    </>
-  );
+      <br />
+      <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
+      wind={wind} sunrise={sunrise} sunset={sunset} units={units}/>
+      <Forecast forecastList={forecastList}/>
+        </>
+
+    );
 }
 
