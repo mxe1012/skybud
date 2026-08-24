@@ -4,7 +4,7 @@ A simple, fast weather application built with React, TypeScript, and Vite. Searc
 
 ## Features
 
-- 🔍 Search weather by city name (Coming soon)
+- 🔍 Search weather by city name 
 - 📍 Geolocation support ("use my current location")
 - 🌡️ Current conditions (e.g., temperature, feels-like, humidity, wind)
 - 🗓️ Five-day/Three-hour forecast  
