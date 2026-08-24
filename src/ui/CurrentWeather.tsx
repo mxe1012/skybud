@@ -1,5 +1,13 @@
-import { InfoPaneContainer, InfoPane, WeatherInfoPaneContainer, ExtraInfoPaneContainer, 
-    Weather, Temperature, Humidity, Wind, SunriseAndSunset } from './Components.tsx';
+import { InfoPaneContainer, 
+    InfoPane, 
+    WeatherInfoPaneContainer, 
+    ExtraInfoPaneContainer, 
+    Weather, 
+    Temperature, 
+    Humidity, 
+    Wind, 
+    SunriseAndSunset 
+} from './Components.tsx';
     
 import type { CurrentWeatherProps } from "../utils/types.tsx";
 
