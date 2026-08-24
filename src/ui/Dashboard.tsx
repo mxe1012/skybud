@@ -9,123 +9,128 @@ import { ControllerPaneContainer, EventButton, EventInput} from './Components.ts
 
 export default function Dashboard() {
 
-// Current name of location
-  const [locationName, setLocationName] = useState("");
+    // Current name of location
+    const [locationName, setLocationName] = useState("");
 
-  // Unit Switcher
-  const [units, setUnits] = useState(true);
+    // Unit Switcher
+    const [units, setUnits] = useState(true);
 
-  //Weather component
-  const [weather, setWeather] = useState({
+    //Weather component
+    const [weather, setWeather] = useState({
     id: 0,
     main: "",
     description: "",
     icon: ""
-  });
+    });
 
   const iconUrl = "https://openweathermap.org/payload/api/media/file/";
 
-  //Temperature component
-  const [temp, setTemp] = useState({
+    //Temperature component
+    const [temp, setTemp] = useState({
     temp: 0,
     feels_like: 0,
     temp_max: 0,
     temp_min: 0
-  });
+    });
 
-  //Humidity component
-  const [humidity, setHumidity] = useState(0);
+    //Humidity component
+    const [humidity, setHumidity] = useState(0);
 
-  //Wind component
-  const [wind, setWind] = useState({
+    //Wind component
+    const [wind, setWind] = useState({
     speed: 0,
     deg: 0,
     gust: 0,
-  });
+    });
 
-  //Sunrise and sunset component
-  const [sunrise, setSunrise] = useState(0);
-  const [sunset, setSunset] = useState(0);
+    //Sunrise and sunset component
+    const [sunrise, setSunrise] = useState(0);
+    const [sunset, setSunset] = useState(0);
   
-  const [notice, setNotice] = useState("");
-  const [disabled, setDisabled] = useState(false);
+    const [notice, setNotice] = useState("");
+    const [disabled, setDisabled] = useState(false);
 
-  const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
+    const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
 
-  async function handleFetch() {
+    async function handleFetch() {
 
-    setNotice("Acquiring weather info...");
-    setDisabled(true);
+        setNotice("Acquiring weather info...");
+        setDisabled(true);
 
-    const coords = await getCoordinates();
-    const selectedUnits = units ? 'imperial' : 'metric';
+        const coords = await getCoordinates();
+        const selectedUnits = units ? 'imperial' : 'metric';
 
     try {
-      const resultWeather = await apiFetch(coords.lon, coords.lat, "weather", selectedUnits);
-      const resultForecast = await apiFetch(coords.lon, coords.lat, "forecast", selectedUnits);
+        const resultWeather = await apiFetch(coords.lon, coords.lat, "weather", selectedUnits);
+        const resultForecast = await apiFetch(coords.lon, coords.lat, "forecast", selectedUnits);
 
-      // Update location name
-      setLocationName(resultWeather.name + ", " + resultWeather.sys.country);
+        // Update location name
+        setLocationName(resultWeather.name + ", " + resultWeather.sys.country);
       
-      // Update Weather-related state
-      const {id, main, description} = resultWeather.weather[0];
-      setWeather({
+        // Update Weather-related state
+        const {id, main, description} = resultWeather.weather[0];
+        setWeather({
         id,
         main,
         description,
         icon: iconUrl + resultWeather.weather[0].icon + ".png"
-      });
+        });
 
-      // Update Temperature-related state
-      const {temp, feels_like, temp_max, temp_min} = resultWeather.main;
-      setTemp({
-        temp, feels_like, temp_max, temp_min
-      });
+        // Update Temperature-related state
+        const {temp, feels_like, temp_max, temp_min} = resultWeather.main;
+        setTemp({
+        temp, 
+        feels_like, 
+        temp_max, 
+        temp_min
+        });
 
-      // Update Humidity-related state
-      setHumidity(resultWeather.main.humidity);
+        // Update Humidity-related state
+        setHumidity(resultWeather.main.humidity);
 
-      //Update Wind-related state
-      const {speed, deg, gust} = resultWeather.wind;
-      setWind({
-        speed, deg, gust
-      });
+        //Update Wind-related state
+        const {speed, deg, gust} = resultWeather.wind;
+        setWind({
+        speed, 
+        deg, 
+        gust
+        });
 
-      // Update Sunrise and Sunset related state
-      setSunrise(resultWeather.sys.sunrise);
-      setSunset(resultWeather.sys.sunset);
+        // Update Sunrise and Sunset related state
+        setSunrise(resultWeather.sys.sunrise);
+        setSunset(resultWeather.sys.sunset);
 
       
 
-      const newForecastList: ForecastEntry[] = resultForecast.list.map((element) => {
+        const newForecastList: ForecastEntry[] = resultForecast.list.map((element) => {
 
-      const dt = element.dt;
+        const dt = element.dt;
 
-      const { main, icon } = element.weather[0];
-      const { temp_max, temp_min } = element.main;
-      return {
-          dt,
-          main,
-          icon: iconUrl + icon + ".png",
-          temp_max,
-          temp_min,
-          };
+        const { main, icon } = element.weather[0];
+        const { temp_max, temp_min } = element.main;
+        return {
+            dt,
+            main,
+            icon: iconUrl + icon + ".png",
+            temp_max,
+            temp_min,
+            };
         });
 
-      setForecastList(newForecastList);
+        setForecastList(newForecastList);
 
-      setNotice("");
-      setDisabled(false);
+        setNotice("");
+        setDisabled(false);
 
     } catch (e) {
-      console.error(e);
-      setNotice("Something went wrong during the fetching of data.");
+        console.error(e);
+        setNotice("Something went wrong during the fetching of data.");
     }
   }
 
     useEffect(() => {
 
-      setTimeout(handleFetch, 2000); //2000
+        setTimeout(handleFetch, 2000);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -133,28 +138,27 @@ export default function Dashboard() {
     return (
 
         <>
-          <ControllerPaneContainer>
-            <div style={{textAlign: 'center'}}>
-              Units: 
-              {" "}
-              <select id="unit" value={units} onChange={() => {setUnits(!units)}} disabled={disabled}>
-                <option value={true} onClick={handleFetch}>Imperial</option>
-                <option value={false} onClick={handleFetch}>Metric</option>
-              </select>
-              {" "}
-              <EventInput placeholder="Location" onChange={undefined}/>
-              {" "}
-              <EventButton text="Update Weather Information" disabled={disabled} onClick={handleFetch} />
-            </div>
-        </ControllerPaneContainer>
-        <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
-        <h3 style={{textAlign: 'center'}}>{notice}</h3>
-        <br />
-        <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
-        wind={wind} sunrise={sunrise} sunset={sunset} units={units}/>
-        <Forecast forecastList={forecastList} units={units}/>
+            <ControllerPaneContainer>
+                <div style={{textAlign: 'center'}}>
+                    Units: 
+                    {" "}
+                    <select id="unit" value={units} onChange={() => {setUnits(!units)}} disabled={disabled}>
+                        <option value={true} onClick={handleFetch}>Imperial</option>
+                        <option value={false} onClick={handleFetch}>Metric</option>
+                    </select>
+                    {" "}
+                    <EventInput placeholder="Location" onChange={undefined}/>
+                    {" "}
+                    <EventButton text="Update Weather Information" disabled={disabled} onClick={handleFetch} />
+                </div>
+            </ControllerPaneContainer>
+            <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
+            <h3 style={{textAlign: 'center'}}>{notice}</h3>
+            <br />
+            <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
+            wind={wind} sunrise={sunrise} sunset={sunset} units={units}/>
+            <Forecast forecastList={forecastList} units={units}/>
         </>
 
     );
 }
-
