@@ -3,7 +3,7 @@ import Forecast from "./Forecast.tsx";
 
 import { useState, useEffect } from "react";
 
-import { getCoordinates, apiFetch } from '../utils/data.tsx';
+import { getCoordinates, apiFetch, apiFetchLocations } from '../utils/data.tsx';
 import type { ForecastEntry } from "../utils/types.tsx";
 
 import { ControllerPaneContainer, EventButton, EventInput} from './Components.tsx';
@@ -14,6 +14,10 @@ export default function Dashboard() {
     const [currentLocationName, setCurrentLocationName] = useState("");
 
     const [locationName, setLocationName] = useState("");
+    // const [locationCoords, setLocationCoords] = useState({
+    //     lon: 0,
+    //     lan: 0
+    // });
 
     // Unit Switcher
     const [units, setUnits] = useState(true);
@@ -136,7 +140,19 @@ export default function Dashboard() {
   }
 
     async function handleSearch(e) {
+
         setLocationName(e.target.value);
+        console.log("query: " + locationName);
+
+        try {
+            const result = await apiFetchLocations(locationName);
+            console.log(result)
+        }
+        catch (e) {
+            console.error(e);
+            setNotice("Something went wrong during the fetching of location data.");
+        }
+
     }
 
     useEffect(() => {
