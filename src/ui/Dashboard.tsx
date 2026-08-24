@@ -11,6 +11,8 @@ import { ControllerPaneContainer, EventButton, EventInput} from './Components.ts
 export default function Dashboard() {
 
     // Current name of location
+    const [currentLocationName, setCurrentLocationName] = useState("");
+
     const [locationName, setLocationName] = useState("");
 
     // Unit Switcher
@@ -70,7 +72,7 @@ export default function Dashboard() {
         const resultForecast = await apiFetch(coords.lon, coords.lat, "forecast", selectedUnits);
 
         // Update location name
-        setLocationName(resultWeather.name + ", " + resultWeather.sys.country);
+        setCurrentLocationName(resultWeather.name + ", " + resultWeather.sys.country);
       
         // Update Weather-related state
         const {id, main, description} = resultWeather.weather[0];
@@ -133,6 +135,10 @@ export default function Dashboard() {
     }
   }
 
+    async function handleSearch(e) {
+        setLocationName(e.target.value);
+    }
+
     useEffect(() => {
 
         setTimeout(handleFetch, 2000);
@@ -152,13 +158,13 @@ export default function Dashboard() {
                         <option value={false} onClick={handleFetch}>Metric</option>
                     </select>
                     {" "}
-                    <EventInput placeholder="Location" onChange={undefined}/>
+                    <EventInput placeholder="Location" value={locationName} onChange={handleSearch}/>
                     {" "}
                     <EventButton text="Update Weather Information" disabled={disabled} onClick={handleFetch} />
                 </div>
             </ControllerPaneContainer>
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
-            <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
+            <h1 style={{textAlign: 'center'}}>📍 <b>{currentLocationName}</b></h1>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
             wind={wind} sunrise={sunrise} sunset={sunset} units={units}/>
             <Forecast forecastList={forecastList} units={units}/>
