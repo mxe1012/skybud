@@ -20,6 +20,25 @@ export async function apiFetch(lon=0, lat=0, endpoint="none", units="imperial") 
   }
 };
 
+export async function apiFetchLocations(query="none") {
+
+    const key = import.meta.env.VITE_GEOLOCATION_API_KEY;
+
+    try {
+        const result = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${query}&appid=${key}&limit=5`);
+
+        if (result.ok) {
+            const data = await result.json();
+            console.log(data);
+            return data;
+        }
+
+  } catch (e) {
+    console.log(e);
+    alert("Error occured in fetching.");
+  }
+};
+
 const options = {
     maximumAge: 120000, // cache longitude and latitude for 2 minutes
 };
