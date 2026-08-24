@@ -1,5 +1,3 @@
-// import { useState } from "react";
-
 import type { ChildrenProps, InfoPaneProps, 
     WeatherProps, TemperatureProps, 
     HumidityProps, WindProps, 
