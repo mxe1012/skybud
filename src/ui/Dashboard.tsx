@@ -2,6 +2,7 @@ import CurrentWeather from "./CurrentWeather.tsx";
 import Forecast from "./Forecast.tsx";
 
 import { useState, useEffect } from "react";
+
 import { getCoordinates, apiFetch } from '../utils/data.tsx';
 import type { ForecastEntry } from "../utils/types.tsx";
 
@@ -48,6 +49,8 @@ export default function Dashboard() {
     const [sunset, setSunset] = useState(0);
   
     const [notice, setNotice] = useState("");
+    const [showSnackbar, setShowSnackbar] = useState(false);
+
     const [disabled, setDisabled] = useState(false);
 
     const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
@@ -56,6 +59,8 @@ export default function Dashboard() {
 
         setNotice("Acquiring weather info...");
         setDisabled(true);
+
+        setShowSnackbar(true);
 
         const coords = await getCoordinates();
         const selectedUnits = units ? 'imperial' : 'metric';
@@ -100,8 +105,6 @@ export default function Dashboard() {
         setSunrise(resultWeather.sys.sunrise);
         setSunset(resultWeather.sys.sunset);
 
-      
-
         const newForecastList: ForecastEntry[] = resultForecast.list.map((element) => {
 
         const dt = element.dt;
@@ -119,7 +122,9 @@ export default function Dashboard() {
 
         setForecastList(newForecastList);
 
-        setNotice("");
+        setNotice("Weather info acquired!");
+        setTimeout(() => setShowSnackbar(false), 6000);
+
         setDisabled(false);
 
     } catch (e) {
@@ -152,8 +157,8 @@ export default function Dashboard() {
                     <EventButton text="Update Weather Information" disabled={disabled} onClick={handleFetch} />
                 </div>
             </ControllerPaneContainer>
+            <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
             <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
-            <h3 style={{textAlign: 'center'}}>{notice}</h3>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
             wind={wind} sunrise={sunrise} sunset={sunset} units={units}/>
             <Forecast forecastList={forecastList} units={units}/>
