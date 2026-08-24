@@ -205,10 +205,16 @@ export function SunriseAndSunset({sunrise, sunset}: SunriseAndSunsetProps) {
     );
 }
 
-export function ForecastItem({dt, weather, temperature}: ForecastInfoProps) {
+export function ForecastItem({dt, weather, temperature, units}: ForecastInfoProps) {
 
     const formattedDt = new Date(dt * 1000);
 
+    const strTempMax = units ? "High:" + Math.round(temperature.temp_max) + "°F" :
+    "High:" + Math.round(temperature.temp_max) + "°C";
+
+    const strTempMin = units ? "Low:" + Math.round(temperature.temp_min) + "°F" :
+    "High:" + Math.round(temperature.temp_min) + "°C";
+    
     return (
         <>
             <div>
@@ -223,10 +229,10 @@ export function ForecastItem({dt, weather, temperature}: ForecastInfoProps) {
             <br />
             <div id="MiniTempRow">
                 <div style={{padding: '10px'}}>
-                    <h3>High: {Math.round(temperature.temp_max)}°F</h3>
+                    <h3>{strTempMax}</h3>
                 </div>
                 <div style={{padding: '10px'}}>
-                    <h3>Low: {Math.round(temperature.temp_min)}°F</h3>
+                    <h3>{strTempMin}</h3>
                 </div>
             </div>
         </>
