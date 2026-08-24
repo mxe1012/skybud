@@ -21,7 +21,7 @@ export default function Dashboard() {
     id: 0,
     main: "",
     description: "",
-    icon: ""
+    icon: "./src/assets/icons/wi-cloud.svg"
     });
 
     const iconUrl = "https://openweathermap.org/payload/api/media/file/";
