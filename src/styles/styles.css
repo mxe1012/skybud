@@ -248,6 +248,22 @@ ul.forecast > li.forecast {
     padding-left: 5px;
 }
 
+ul.locations {
+    list-style-type: none;
+}
+
+li.locations {
+     padding: 5px;
+     background-color: white;
+     border-radius: 20px;
+     margin: 3px;
+     transition: background-color 0.2s ease;
+}
+
+li.locations:hover {
+     background-color: grey;
+}
+
 span {
     background-color: rgba(0, 0, 0, 0);
     transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, box-shadow 0.2s ease;
