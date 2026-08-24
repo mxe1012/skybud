@@ -97,3 +97,11 @@ export interface CurrentWeatherProps {
     sunrise: number;
     units: boolean;
 }
+
+export interface LocationEntry {
+    name: string;
+    country: string;
+    state: string;
+    lon: number;
+    lat: number;
+}
