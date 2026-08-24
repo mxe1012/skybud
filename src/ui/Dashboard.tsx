@@ -23,7 +23,7 @@ export default function Dashboard() {
     icon: ""
     });
 
-  const iconUrl = "https://openweathermap.org/payload/api/media/file/";
+    const iconUrl = "https://openweathermap.org/payload/api/media/file/";
 
     //Temperature component
     const [temp, setTemp] = useState({
@@ -154,7 +154,6 @@ export default function Dashboard() {
             </ControllerPaneContainer>
             <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
             <h3 style={{textAlign: 'center'}}>{notice}</h3>
-            <br />
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
             wind={wind} sunrise={sunrise} sunset={sunset} units={units}/>
             <Forecast forecastList={forecastList} units={units}/>
