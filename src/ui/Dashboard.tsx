@@ -18,20 +18,20 @@ export default function Dashboard() {
 
     //Weather component
     const [weather, setWeather] = useState({
-    id: 0,
-    main: "",
-    description: "",
-    icon: "./src/assets/icons/wi-cloud.svg"
+        id: 0,
+        main: "",
+        description: "",
+        icon: "./src/assets/icons/wi-cloud.svg"
     });
 
     const iconUrl = "https://openweathermap.org/payload/api/media/file/";
 
     //Temperature component
     const [temp, setTemp] = useState({
-    temp: 0,
-    feels_like: 0,
-    temp_max: 0,
-    temp_min: 0
+        temp: 0,
+        feels_like: 0,
+        temp_max: 0,
+        temp_min: 0
     });
 
     //Humidity component
@@ -39,9 +39,9 @@ export default function Dashboard() {
 
     //Wind component
     const [wind, setWind] = useState({
-    speed: 0,
-    deg: 0,
-    gust: 0,
+        speed: 0,
+        deg: 0,
+        gust: 0,
     });
 
     //Sunrise and sunset component
@@ -75,19 +75,19 @@ export default function Dashboard() {
         // Update Weather-related state
         const {id, main, description} = resultWeather.weather[0];
         setWeather({
-        id,
-        main,
-        description,
-        icon: iconUrl + resultWeather.weather[0].icon + ".png"
+            id,
+            main,
+            description,
+            icon: iconUrl + resultWeather.weather[0].icon + ".png"
         });
 
         // Update Temperature-related state
         const {temp, feels_like, temp_max, temp_min} = resultWeather.main;
         setTemp({
-        temp, 
-        feels_like, 
-        temp_max, 
-        temp_min
+            temp, 
+            feels_like, 
+            temp_max, 
+            temp_min
         });
 
         // Update Humidity-related state
@@ -96,9 +96,9 @@ export default function Dashboard() {
         //Update Wind-related state
         const {speed, deg, gust} = resultWeather.wind;
         setWind({
-        speed, 
-        deg, 
-        gust
+            speed, 
+            deg, 
+            gust
         });
 
         // Update Sunrise and Sunset related state
