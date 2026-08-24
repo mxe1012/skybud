@@ -20,7 +20,7 @@ export function backgroundImageLookup(id: number): string {
     let bg;
 
     switch(id){
-        case 200:
+        case 200: // Thunderous conditions
         case 201:
         case 202:
         case 210:
@@ -32,7 +32,7 @@ export function backgroundImageLookup(id: number): string {
         case 232:
             bg = "url(./src/assets/backgrounds/bg_thunder.png)";
             break;
-        case 300:
+        case 300: // Rainy (Drizzle) conditions
         case 301:
         case 302:
         case 310:
@@ -43,7 +43,7 @@ export function backgroundImageLookup(id: number): string {
         case 321:
             bg = "url(./src/assets/backgrounds/bg_rain.png)";
             break;
-        case 500:
+        case 500: // Rainy conditions
         case 501:
         case 502:
         case 503:
@@ -55,7 +55,7 @@ export function backgroundImageLookup(id: number): string {
         case 531:
             bg = "url(./src/assets/backgrounds/bg_rain.png)";
             break;
-        case 600:
+        case 600: // Snowy conditions
         case 601:
         case 602:
         case 611:
@@ -66,9 +66,9 @@ export function backgroundImageLookup(id: number): string {
         case 620:
         case 621:
         case 622:
-            bg = "url(./src/assets/backgrounds/bg_thunder.png)"; // should be snow
+            bg = "url(./src/assets/backgrounds/bg_snow.png)"; 
             break;
-        case 701:
+        case 701: // Atmospheric conditions
         case 711:
         case 721:
         case 731:
@@ -78,15 +78,15 @@ export function backgroundImageLookup(id: number): string {
         case 762:
         case 771:
         case 781:
-            bg = "url(./src/assets/backgrounds/bg_thunder.png)"; // should be atmospheric 
+            bg = "url(./src/assets/backgrounds/bg_atmosphere.png)"; 
             break;
-        case 800:
+        case 800: // Sunny condition
             bg = "url(./src/assets/backgrounds/bg_sunny_clear.png)";
             break;
-        case 801:
+        case 801: // Sunny (few clouds) condition
             bg = "url(./src/assets/backgrounds/bg_sunny_clouds.png)";
             break;
-        case 802:
+        case 802: // Cloudy conditions
         case 803:
         case 804:
             bg = "url(./src/assets/backgrounds/bg_cloudy.png)";
