@@ -40,7 +40,7 @@ export function ForecastInfoContainer({children}: ChildrenProps) {
         <>
             <h1 style={{textAlign: 'center'}}>Forecast</h1>
             <div className="ForecastInfoContainer">
-                <ul>{children}</ul>
+                <ul className="forecast">{children}</ul>
             </div>
         </>
     );

@@ -6,7 +6,7 @@ export default function Forecast({forecastList, units}) {
         <>
             <ForecastInfoContainer>
                 {forecastList.map((forecast) => (
-                <li key={forecast.dt}>
+                <li key={forecast.dt} className="forecast">
                     <ForecastInfoPane>
                         <ForecastItem
                             dt={forecast.dt}
