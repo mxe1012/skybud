@@ -4,7 +4,7 @@ import Forecast from "./Forecast.tsx";
 import { useState, useEffect } from "react";
 
 import { getCoordinates, apiFetch, apiFetchLocations } from '../utils/data.tsx';
-import type { ForecastEntry } from "../utils/types.tsx";
+import type { ForecastEntry, LocationEntry } from "../utils/types.tsx";
 
 import { ControllerPaneContainer, EventButton, EventInput} from './Components.tsx';
 
@@ -14,6 +14,7 @@ export default function Dashboard() {
     const [currentLocationName, setCurrentLocationName] = useState("");
 
     const [locationName, setLocationName] = useState("");
+    const [locationList, setLocationList] = useState<LocationEntry[]>([]);
     // const [locationCoords, setLocationCoords] = useState({
     //     lon: 0,
     //     lan: 0
@@ -141,12 +142,30 @@ export default function Dashboard() {
 
     async function handleSearch(e) {
 
-        setLocationName(e.target.value);
-        console.log("query: " + locationName);
+        const query = e.target.value;
+        setLocationName(query);
+
+        console.log("query: " + query);
 
         try {
-            const result = await apiFetchLocations(locationName);
-            console.log(result)
+            const result = await apiFetchLocations(query);
+
+            const newLocationList: LocationEntry[] = result.map((element) => {
+
+                const {name, country, state, lon, lat} = element;
+
+                return {
+                    name,
+                    country,
+                    state,
+                    lon,
+                    lat
+                };
+
+            });
+
+            setLocationList(newLocationList);
+            console.log(newLocationList);
         }
         catch (e) {
             console.error(e);
@@ -175,6 +194,11 @@ export default function Dashboard() {
                     </select>
                     {" "}
                     <EventInput placeholder="Location" value={locationName} onChange={handleSearch}/>
+                    <ul>
+                        {locationList.map((element) => (
+                            <li>{element.name}, {element.state}, {element.country}</li>
+                        ))}
+                    </ul>
                     {" "}
                     <EventButton text="Update Weather Information" disabled={disabled} onClick={handleFetch} />
                 </div>
