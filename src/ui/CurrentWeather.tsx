@@ -1,4 +1,5 @@
-import { InfoPaneContainer, 
+import { 
+    InfoPaneContainer, 
     InfoPane, 
     WeatherInfoPaneContainer, 
     ExtraInfoPaneContainer, 
