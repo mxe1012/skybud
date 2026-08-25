@@ -7,13 +7,14 @@ import {
     
 import Weather from './components/Weather.tsx';
 import Temperature from './components/Temperature.tsx';
-import  Humidity  from './components/Humidity.tsx';
+import Humidity from './components/Humidity.tsx';
 import Wind from './components/Wind.tsx';
+import Visibility from './components/Visiblity.tsx';
 import SunriseAndSunset from './components/SunriseSunset.tsx';
 
 import type { CurrentWeatherProps } from "../utils/types.tsx";
 
-export default function CurrentWeather({weather, temperature, humidity, wind, sunrise, sunset, units}: CurrentWeatherProps) {
+export default function CurrentWeather({weather, temperature, humidity, wind, visibility, sunrise, sunset, units}: CurrentWeatherProps) {
 
     return (
         <>
@@ -34,7 +35,7 @@ export default function CurrentWeather({weather, temperature, humidity, wind, su
                         <Wind wind={wind} units={units}/>
                     </InfoPane>
                     <InfoPane name="Visibility" icon="wi-stars.svg">
-                        Visibility
+                        <Visibility visiblity={visibility}/>
                     </InfoPane>
                     <InfoPane name="" icon="wi-horizon.svg">
                         <SunriseAndSunset sunrise={sunrise} sunset= {sunset}/>
