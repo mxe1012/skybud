@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { apiFetch, apiFetchLocations } from '../utils/data.tsx';
 import type { ForecastEntry, LocationEntry } from "../utils/types.tsx";
 
-import { ControllerPaneContainer, EventButton, EventInput} from './Components.tsx';
+import { ControllerPaneContainer, EventButton, EventInput} from './Containers.tsx';
 
 export default function Dashboard() {
 
