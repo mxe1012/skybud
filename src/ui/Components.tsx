@@ -1,18 +1,26 @@
-// import { useState } from "react";
+import type { ChildrenProps, 
+    InfoPaneProps, 
+    WeatherProps, 
+    TemperatureProps, 
+    HumidityProps, 
+    WindProps, 
+    SunriseAndSunsetProps, 
+    InfoPaneIconProps, 
+    ForecastInfoProps, 
+    InfoPaneContainerProps
+} from "../utils/types";
 
-import type { ChildrenProps, InfoPaneProps, 
-    WeatherProps, TemperatureProps, 
-    HumidityProps, WindProps, 
-    SunriseAndSunsetProps, InfoPaneIconProps, ForecastInfoProps } from "../utils/types";
-
-import { optimizedCompass } from "../utils/helpers";
+import { optimizedCompass, backgroundImageLookup } from "../utils/helpers";
 
 export function MainPane({children}: ChildrenProps) {
     return <div className="MainPane">{children}</div>;
 }
 
-export function InfoPaneContainer({children}: ChildrenProps) {
-    return <div className="InfoPaneContainer">{children}</div>
+export function InfoPaneContainer({id, children}: InfoPaneContainerProps) {
+
+    const bg = backgroundImageLookup(id);
+
+    return <div style={{backgroundImage: bg}} className="InfoPaneContainer">{children}</div>
 }
 
 export function WeatherInfoPaneContainer({children}: ChildrenProps) {
@@ -32,7 +40,7 @@ export function ForecastInfoContainer({children}: ChildrenProps) {
         <>
             <h1 style={{textAlign: 'center'}}>Forecast</h1>
             <div className="ForecastInfoContainer">
-                <ul>{children}</ul>
+                <ul className="forecast">{children}</ul>
             </div>
         </>
     );
@@ -48,7 +56,7 @@ export function EventInput({value="", placeholder="Placeholder", onChange}) {
 
 export function InfoPaneIcon({src="wi-na.svg", size=25}: InfoPaneIconProps) {
 
-    const img = "./src/assets/icons/" + src;
+    const img = "/assets/icons/" + src;
 
     return <img src={img} width={size} height={size} />;
 }
@@ -93,7 +101,6 @@ export function Clock() {
     return (
         <div className="Clock">
             <span style={{backgroundColor: bgColor, transform: "scale(1)"}} className="ClockTimeDatePane">
-                <h4 style={{color: textColor}}>Clock</h4>
                 <div className="TimeDate">
                     <h1 style={{color: textColor}}>{time.toLocaleTimeString()}</h1>
                     <h2 style={{color: textColor}}>{time.toLocaleDateString()}</h2>
@@ -149,13 +156,15 @@ export function Temperature({temperature, units}: TemperatureProps) {
 
 export function Humidity({humidity}: HumidityProps) {
 
+    const gaugeValue = String(humidity / 100);
+    
     return (
         <div>
-            <b>{humidity}%</b>
-            <br />
+            <div className="gauge" style={{"--value": gaugeValue, "--size": "90px"} as React.CSSProperties}>
+                <b>{humidity}%</b>
+            </div>
         </div>
     );
-
 }
 
 export function Wind({wind, units}: WindProps) {
@@ -165,14 +174,16 @@ export function Wind({wind, units}: WindProps) {
     const compass = optimizedCompass(deg);
     const compassIcon = "rotate(" + deg + "deg)";
 
+    const speedStr = units ? "Speed: " + Math.round(speed) + " mph" : "Speed: " + Math.round(speed) + " m/s";
+
     const gustStr = !gust ? "Gust: 0 mph" : 
-    units ? "Gust: " + Math.round(gust) + " mph" : "Gust: " + Math.round(gust) + " km/h";
+    units ? "Gust: " + Math.round(gust) + " mph" : "Gust: " + Math.round(gust) + " m/s";
 
     return (
         <div>
-            <img style={{transform: compassIcon}} src="./src/assets/icons/wi-wind-deg.svg" width={50} height={50}/>
+            <img style={{transform: compassIcon}} src="/assets/icons/wi-wind-deg.svg" width={50} height={50}/>
             <br />
-            <b>{units ? "Speed: " + Math.round(speed) + " mph" : "Speed: " + Math.round(speed) + " km/h"}</b>
+            <b>{speedStr}</b>
             <br />
             <b>Direction: {deg}° ({compass})</b>
             <br />
@@ -200,9 +211,23 @@ export function SunriseAndSunset({sunrise, sunset}: SunriseAndSunsetProps) {
     );
 }
 
-export function ForecastItem({weather, temperature}: ForecastInfoProps) {
+export function ForecastItem({dt, weather, temperature, units}: ForecastInfoProps) {
+
+    const formattedDt = new Date(dt * 1000);
+
+    const strTempMax = units ? "High:" + Math.round(temperature.temp_max) + "°F" :
+    "High:" + Math.round(temperature.temp_max) + "°C";
+
+    const strTempMin = units ? "Low:" + Math.round(temperature.temp_min) + "°F" :
+    "High:" + Math.round(temperature.temp_min) + "°C";
+    
     return (
         <>
+            <div>
+                {formattedDt.toLocaleDateString()}
+                <br />
+                {formattedDt.toLocaleTimeString()}
+            </div>
             <div>
                 <h2>{weather.main}</h2>
                 <img src={weather.icon} width={50} height={50}/>
@@ -210,10 +235,10 @@ export function ForecastItem({weather, temperature}: ForecastInfoProps) {
             <br />
             <div id="MiniTempRow">
                 <div style={{padding: '10px'}}>
-                    <h3>High: {Math.round(temperature.temp_max)}</h3>
+                    <h3>{strTempMax}</h3>
                 </div>
                 <div style={{padding: '10px'}}>
-                    <h3>Low: {Math.round(temperature.temp_min)}</h3>
+                    <h3>{strTempMin}</h3>
                 </div>
             </div>
         </>

@@ -1,149 +1,227 @@
+import CurrentWeather from "./CurrentWeather.tsx";
+import Forecast from "./Forecast.tsx";
+
 import { useState, useEffect } from "react";
-import { getCoordinates, apiFetch } from '../utils/data.tsx';
-import { ControllerPaneContainer, InfoPaneContainer, EventButton, InfoPane, WeatherInfoPaneContainer, ExtraInfoPaneContainer, 
-    Weather, Temperature, Humidity, Wind, SunriseAndSunset} from './Components.tsx';
+
+import { apiFetch, apiFetchLocations } from '../utils/data.tsx';
+import type { ForecastEntry, LocationEntry } from "../utils/types.tsx";
+
+import { ControllerPaneContainer, EventButton, EventInput} from './Components.tsx';
 
 export default function Dashboard() {
 
-  // Current name of location
-  const [locationName, setLocationName] = useState("");
+    // Current name of location
+    const [currentLocationName, setCurrentLocationName] = useState("");
 
-  // Unit Switcher
-  const [units, setUnits] = useState(true);
+    // Location related information
+    const [locationName, setLocationName] = useState("");
+    const [locationList, setLocationList] = useState<LocationEntry[]>([]);
+    const [locationCoords, setLocationCoords] = useState({
+        lon: 0,
+        lat: 0
+    });
 
-  //Weather component
-  const [weather, setWeather] = useState({
-    main: "",
-    description: "",
-    icon: ""
-  });
+    // Unit Switcher
+    const [units, setUnits] = useState(true);
 
-  const iconUrl = "https://openweathermap.org/payload/api/media/file/";
+    //Weather component
+    const [weather, setWeather] = useState({
+        id: 0,
+        main: "",
+        description: "",
+        icon: "/assets/icons/wi-cloud.svg"
+    });
 
-  //Temperature component
-  const [temp, setTemp] = useState({
-    temp: 0,
-    feels_like: 0,
-    temp_max: 0,
-    temp_min: 0
-  });
+    const iconUrl = "https://openweathermap.org/payload/api/media/file/";
 
-  //Humidity component
-  const [humidity, setHumidity] = useState(0);
+    //Temperature component
+    const [temp, setTemp] = useState({
+        temp: 0,
+        feels_like: 0,
+        temp_max: 0,
+        temp_min: 0
+    });
 
-  //Wind component
-  const [wind, setWind] = useState({
-    speed: 0,
-    deg: 0,
-    gust: 0,
-  });
+    //Humidity component
+    const [humidity, setHumidity] = useState(0);
 
-  //Sunrise and sunset component
-  const [sunrise, setSunrise] = useState(0);
-  const [sunset, setSunset] = useState(0);
-  
-  const [notice, setNotice] = useState("");
-  const [disabled, setDisabled] = useState(false);
+    //Wind component
+    const [wind, setWind] = useState({
+        speed: 0,
+        deg: 0,
+        gust: 0,
+    });
 
-  async function handleFetch() {
+    //Sunrise and sunset component
+    const [sunrise, setSunrise] = useState(0);
+    const [sunset, setSunset] = useState(0);
+    
+    // Notices
+    const [notice, setNotice] = useState("");
+    const [showSnackbar, setShowSnackbar] = useState(false);
 
-    setNotice("Acquiring weather info...");
-    setDisabled(true);
+    // Button states
+    const [disabled, setDisabled] = useState(false);
 
-    const coords = await getCoordinates();
-    const selectedUnits = units ? 'imperial' : 'metric';
+    // Forecast component
+    const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
+
+    async function handleFetch(lon, lat) {
+
+        setNotice("Acquiring weather info...");
+        setDisabled(true);
+
+        setShowSnackbar(true);
+
+        // const exactCoords = await getCoordinates();
+        const selectedUnits = units ? 'imperial' : 'metric';
 
     try {
-      const result = await apiFetch(coords.lon, coords.lat, "weather", selectedUnits);
+        const resultWeather = await apiFetch(lon, lat, "weather", selectedUnits);
+        const resultForecast = await apiFetch(lon, lat, "forecast", selectedUnits);
 
-      // Update location name
-      setLocationName(result.name + ", " + result.sys.country);
+        // Update location name
+        const current = resultWeather.sys.country ? resultWeather.name + ", " + resultWeather.sys.country
+        : resultWeather.name;
+        setCurrentLocationName(current);
       
-      // Update Weather-related state
-      const {main, description} = result.weather[0];
-      setWeather({
-        main,
-        description,
-        icon: iconUrl + result.weather[0].icon + ".png"
-      });
+        // Update Weather-related state
+        const {id, main, description} = resultWeather.weather[0];
+        setWeather({
+            id,
+            main,
+            description,
+            icon: iconUrl + resultWeather.weather[0].icon + ".png"
+        });
 
-      // Update Temperature-related state
-      const {temp, feels_like, temp_max, temp_min} = result.main;
-      setTemp({
-        temp, feels_like, temp_max, temp_min
-      });
+        // Update Temperature-related state
+        const {temp, feels_like, temp_max, temp_min} = resultWeather.main;
+        setTemp({
+            temp, 
+            feels_like, 
+            temp_max, 
+            temp_min
+        });
 
-      // Update Humidity-related state
-      setHumidity(result.main.humidity);
+        // Update Humidity-related state
+        setHumidity(resultWeather.main.humidity);
 
-      //Update Wind-related state
-      const {speed, deg, gust} = result.wind;
-      setWind({
-        speed, deg, gust
-      });
+        //Update Wind-related state
+        const {speed, deg, gust} = resultWeather.wind;
+        setWind({
+            speed, 
+            deg, 
+            gust
+        });
 
-      // Update Sunrise and Sunset related state
-      setSunrise(result.sys.sunrise);
-      setSunset(result.sys.sunset);
+        // Update Sunrise and Sunset related state
+        setSunrise(resultWeather.sys.sunrise);
+        setSunset(resultWeather.sys.sunset);
 
-      setNotice("");
-      setDisabled(false);
+        const newForecastList: ForecastEntry[] = resultForecast.list.map((element) => {
+
+        const dt = element.dt;
+
+        const { main, icon } = element.weather[0];
+        const { temp_max, temp_min } = element.main;
+        return {
+            dt,
+            main,
+            icon: iconUrl + icon + ".png",
+            temp_max,
+            temp_min,
+            };
+        });
+
+        setForecastList(newForecastList);
+
+        setNotice("Weather info acquired!");
+        setTimeout(() => setShowSnackbar(false), 6000);
+
+        setDisabled(false);
 
     } catch (e) {
-      console.error(e);
-      alert("Something went wrong during the fetching of data.");
+        console.error(e);
+        setNotice("Something went wrong during the fetching of weather data.");
     }
   }
 
+    async function handleSearch(e) {
+
+        const query = e.target.value;
+        setLocationName(query);
+        
+        console.log("query: " + query);
+
+        try {
+            const result = await apiFetchLocations(query);
+
+            const newLocationList: LocationEntry[] = result.map((element) => {
+
+                const {name, country, state, lon, lat} = element;
+
+                return {
+                    name,
+                    country,
+                    state,
+                    lon,
+                    lat
+                };
+
+            });
+
+            setLocationList(newLocationList);
+            console.log(newLocationList);
+
+        }
+        catch (e) {
+            console.error(e);
+            setNotice("Something went wrong during the fetching of location data.");
+        }
+
+    }
+
     useEffect(() => {
 
-      setTimeout(handleFetch, 2000); //2000
+        setTimeout(handleFetch, 800);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-  return (
-    <>
-      <h1 style={{textAlign: 'center'}}>📍 <b>{locationName}</b></h1>
-      <h3 style={{textAlign: 'center'}}>{notice}</h3>
-      <InfoPaneContainer>
-      <WeatherInfoPaneContainer>
-        <InfoPane name="Weather" icon="wi-day-cloudy.svg">
-          <Weather weather={weather} />
-        </InfoPane>
-        <InfoPane name="Temperature" icon="wi-thermometer.svg">
-          <Temperature temperature={temp} units={units}/>
-        </InfoPane>
-      </WeatherInfoPaneContainer>
-      <ExtraInfoPaneContainer>
-        <InfoPane name='Humidity' icon="wi-humidity.svg">
-          <Humidity humidity={humidity} />
-        </InfoPane>
-        <InfoPane name='Wind' icon="wi-windy.svg">
-          <Wind wind={wind} units={units}/>
-        </InfoPane>
-        <InfoPane name="Visibility" icon="wi-stars.svg">
-          Visibility
-        </InfoPane>
-        <InfoPane name="" icon="wi-horizon.svg">
-          <SunriseAndSunset sunrise={sunrise} sunset= {sunset}/>
-        </InfoPane>
-      </ExtraInfoPaneContainer>
-      </InfoPaneContainer>
-      <br />
-      <ControllerPaneContainer>
-        <div style={{textAlign: 'center'}}>
-          Units: 
-          {" "}
-          <select id="unit" value={units} onChange={() => {setUnits(!units)}} disabled={disabled}>
-            <option value={true} onClick={handleFetch}>Imperial</option>
-            <option value={false} onClick={handleFetch}>Metric</option>
-          </select>
-          {" "}
-          <EventButton text="Update Weather Information" disabled={disabled} onClick={handleFetch} />
-        </div>
-      </ControllerPaneContainer>
-    </>
-  );
-}
+    return (
 
+        <>
+            <ControllerPaneContainer>
+                <div style={{textAlign: 'center'}}>
+                    Units: 
+                    {" "}
+                    <select id="unit" value={units} onChange={() => {setUnits(!units)}} disabled={disabled}>
+                        <option value={true} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Imperial</option>
+                        <option value={false} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
+                    </select>
+                    {" "}
+                    <EventInput placeholder="Location" value={locationName} onChange={handleSearch}/>
+                    <ul className="locations">
+                        {locationList.length == 0 ? "" : locationList.map((element, index) => (
+                            <li key={index} className="locations" onClick={() => {
+                            handleFetch(element.lon, element.lat);
+                            setLocationCoords(element); 
+                            setLocationList([]);
+                            }}>
+                                {element.name}, {element.state}, {element.country}
+                            </li>
+                        ))}
+                    </ul>
+                    {" "}
+                    <EventButton text="Update Weather Information" disabled={disabled} onClick={handleFetch} />
+                </div>
+            </ControllerPaneContainer>
+            <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
+            <h1 style={{textAlign: 'center'}}>📍 <b>{currentLocationName}</b></h1>
+            <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
+            wind={wind} sunrise={sunrise} sunset={sunset} units={units}/>
+            <Forecast forecastList={forecastList} units={units}/>
+        </>
+
+    );
+}

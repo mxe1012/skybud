@@ -4,6 +4,11 @@ export interface ChildrenProps {
     children: ReactNode;
 }
 
+export interface InfoPaneContainerProps {
+    id: number;
+    children: ReactNode;
+}
+
 export interface InfoPaneProps {
     name?: string;
     icon?: string;
@@ -20,6 +25,7 @@ export interface WeatherProps {
 }
 
 export interface WeatherObjectProps {
+    id: number;
     main: string;
     description: string;
     icon: string;
@@ -58,8 +64,10 @@ export interface SunriseAndSunsetProps {
 }
 
 export interface ForecastInfoProps {
+    dt: number;
     weather: ForecastInfoObjectWeatherProps;
     temperature: ForecastInfoObjectTemperatureProps;
+    units: boolean;
 }
 
 export interface ForecastInfoObjectWeatherProps {
@@ -78,4 +86,22 @@ export interface ForecastEntry {
     icon: string;
     temp_max: number;
     temp_min: number;
+}
+
+export interface CurrentWeatherProps {
+    weather: WeatherObjectProps;
+    temperature: TempObjectProps;
+    humidity: number;
+    wind: WindObjectProps;
+    sunset: number;
+    sunrise: number;
+    units: boolean;
+}
+
+export interface LocationEntry {
+    name: string;
+    country: string;
+    state: string;
+    lon: number;
+    lat: number;
 }
