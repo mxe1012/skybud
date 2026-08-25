@@ -20,7 +20,7 @@ export async function apiFetch(lon=0, lat=0, endpoint="none", units="imperial") 
   }
 };
 
-export async function apiFetchLocations(query="none") {
+export async function apiFetchLocations(query="") {
 
     const key = import.meta.env.VITE_GEOLOCATION_API_KEY;
 
