@@ -1,7 +1,7 @@
 import './styles/styles.css'
 import './styles/snackbar.css'
 
-import { MainPane, Clock } from './ui/Components.tsx';
+import { MainPane, Clock } from './ui/Containers.tsx';
 
 import Dashboard from './ui/Dashboard.tsx';
 

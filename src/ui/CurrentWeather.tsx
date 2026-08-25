@@ -7,7 +7,7 @@ import { InfoPaneContainer,
     Humidity, 
     Wind, 
     SunriseAndSunset 
-} from './Components.tsx';
+} from './Containers.tsx';
     
 import type { CurrentWeatherProps } from "../utils/types.tsx";
 
