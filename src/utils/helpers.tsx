@@ -81,7 +81,7 @@ export function backgroundImageLookup(id: number): string {
             bg = "url(./src/assets/backgrounds/bg_atmosphere.png)"; 
             break;
         case 800: // Sunny condition
-            bg = "url(./src/assets/backgrounds/bg_sunny_clear.png)";
+            bg = "url(./src/assets/backgrounds/bg_sunny_clear.jpg)";
             break;
         case 801: // Sunny (few clouds) condition
             bg = "url(./src/assets/backgrounds/bg_sunny_clouds.png)";
