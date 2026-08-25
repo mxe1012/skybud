@@ -58,6 +58,10 @@ export interface WindObjectProps {
     gust: number;
 }
 
+export interface VisiblityProps {
+    visiblity: number;
+}
+
 export interface SunriseAndSunsetProps {
     sunrise: number
     sunset: number;
@@ -93,6 +97,7 @@ export interface CurrentWeatherProps {
     temperature: TempObjectProps;
     humidity: number;
     wind: WindObjectProps;
+    visibility: number;
     sunset: number;
     sunrise: number;
     units: boolean;
