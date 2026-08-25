@@ -210,7 +210,9 @@ export default function Dashboard() {
                                 lat: element.lat,
                             }); 
                             handleFetch(); 
-                            setLocationList([])}}>
+                            setLocationList([]);
+                            setLocationName("");
+                            }}>
                                 {element.name}, {element.state}, {element.country}
                             </li>
                         ))}
