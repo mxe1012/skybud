@@ -74,7 +74,7 @@ export default function Dashboard() {
 
         setShowSnackbar(true);
 
-        // const coords = await getCoordinates();
+        // const exactCoords = await getCoordinates();
         const selectedUnits = units ? 'imperial' : 'metric';
 
     try {
