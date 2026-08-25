@@ -1,4 +1,4 @@
-import type { WeatherProps } from "../utils/types";
+import type { WeatherProps } from "../../utils/types";
 
 export default function Weather({weather}: WeatherProps) {
 

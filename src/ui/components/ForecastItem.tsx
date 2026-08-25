@@ -1,4 +1,4 @@
-import type { ForecastInfoProps } from "../utils/types";
+import type { ForecastInfoProps } from "../../utils/types";
 
 export default function ForecastItem({dt, weather, temperature, units}: ForecastInfoProps) {
 

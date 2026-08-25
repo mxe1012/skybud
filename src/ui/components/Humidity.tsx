@@ -1,4 +1,4 @@
-import type { HumidityProps } from "../utils/types";
+import type { HumidityProps } from "../../utils/types";
 
 export default function Humidity({humidity}: HumidityProps) {
 

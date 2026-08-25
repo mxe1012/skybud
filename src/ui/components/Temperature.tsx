@@ -1,4 +1,4 @@
-import type { TemperatureProps } from "../utils/types";
+import type { TemperatureProps } from "../../utils/types";
 
 export default function Temperature({temperature, units}: TemperatureProps) {
 
