@@ -52,6 +52,9 @@ export default function Dashboard() {
         gust: 0,
     });
 
+    // Visiblity component
+    const [visiblity, setVisiblity] = useState(0);
+
     //Sunrise and sunset component
     const [sunrise, setSunrise] = useState(0);
     const [sunset, setSunset] = useState(0);
@@ -113,6 +116,8 @@ export default function Dashboard() {
             deg, 
             gust
         });
+
+        setVisiblity(resultWeather.visibility);
 
         // Update Sunrise and Sunset related state
         setSunrise(resultWeather.sys.sunrise);
@@ -219,7 +224,7 @@ export default function Dashboard() {
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
             <h1 style={{textAlign: 'center'}}>📍 <b>{currentLocationName}</b></h1>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
-            wind={wind} sunrise={sunrise} sunset={sunset} units={units}/>
+            wind={wind} visibility={visiblity} sunrise={sunrise} sunset={sunset} units={units}/>
             <Forecast forecastList={forecastList} units={units}/>
         </>
 
