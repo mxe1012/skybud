@@ -15,12 +15,12 @@ A simple, fast weather application built with React, TypeScript, and Vite. Searc
 - [React](https://react.dev/) — UI library
 - [TypeScript](https://www.typescriptlang.org/) — static typing
 - [Vite](https://vitejs.dev/) — build tool & dev server
-- [Yarn](https://yarnpkg.com/) — package manager
+- [npm](https://www.npmjs.com/) — package manager
 
 ## Prerequisites
 
 - Node.js 18+
-- Yarn (v1 classic or Berry — update as appropriate for your setup)
+- npm (bundled with Node.js)
 
 ## Getting Started
 
@@ -34,16 +34,17 @@ cd weather-app
 ### 2. Install dependencies
 
 ```bash
-yarn install
+npm install
 ```
 
 ### 3. Configure environment variables
 
-Create a `.env` file in the project root (see `.env.example` if provided):
+Create a `.env` file in the project root (see `.env.example`):
 
 ```bash
-VITE_API_KEY=your_api_key_here
+VITE_API_KEY=https://api.example.com
 VITE_WEATHER_API_BASE_URL=https://api.example.com
+VITE_GEOLOCATION_API_KEY=https://api.example.com
 ```
 
 > Note: Vite only exposes env variables prefixed with `VITE_` to client-side code.
@@ -51,7 +52,7 @@ VITE_WEATHER_API_BASE_URL=https://api.example.com
 ### 4. Run the dev server
 
 ```bash
-yarn dev
+npm run dev
 ```
 
 The app will be available at `http://localhost:5173` by default.
@@ -60,12 +61,12 @@ The app will be available at `http://localhost:5173` by default.
 
 | Command          | Description                              |
 |------------------|-------------------------------------------|
-| `yarn dev`       | Start the local development server        |
-| `yarn build`     | Type-check and build for production        |
-| `yarn preview`   | Preview the production build locally       |
-| `yarn lint`      | Run ESLint against the codebase            |
-| `yarn format`    | Run Prettier to format the codebase        |
-| `yarn test`      | Run the test suite                         |
+| `npm run dev`    | Start the local development server        |
+| `npm run build`  | Type-check and build for production        |
+| `npm run preview`| Preview the production build locally       |
+| `npm run lint`   | Run ESLint against the codebase            |
+| `npm run format` | Run Prettier to format the codebase        |
+| `npm test`       | Run the test suite                         |
 
 ## Project Structure
 
@@ -102,4 +103,3 @@ weather-app/
 3. Commit your changes (`git commit -m 'Add my feature'`)
 4. Push to the branch (`git push origin feature/my-feature`)
 5. Open a Pull Request
-
