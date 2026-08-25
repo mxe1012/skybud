@@ -27,7 +27,6 @@
 html {
     font-family: "Inter", sans-serif;
     background: #d5e8ff;
-    /* background: linear-gradient(0deg,rgba(255, 255, 255, 1) 0%, rgba(65, 196, 240, 1) 50%, rgba(154, 216, 252, 1) 100%); */
     background: radial-gradient(circle,rgba(255, 255, 255, 1) 0%, rgba(65, 196, 240, 1) 50%, rgba(154, 216, 252, 1) 100%);
     background-repeat: no-repeat;
     background-attachment: fixed;
