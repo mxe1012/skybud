@@ -56,7 +56,7 @@ export function EventInput({value="", placeholder="Placeholder", onChange}) {
 
 export function InfoPaneIcon({src="wi-na.svg", size=25}: InfoPaneIconProps) {
 
-    const img = "./src/assets/icons/" + src;
+    const img = "/assets/icons/" + src;
 
     return <img src={img} width={size} height={size} />;
 }
@@ -181,7 +181,7 @@ export function Wind({wind, units}: WindProps) {
 
     return (
         <div>
-            <img style={{transform: compassIcon}} src="./src/assets/icons/wi-wind-deg.svg" width={50} height={50}/>
+            <img style={{transform: compassIcon}} src="/assets/icons/wi-wind-deg.svg" width={50} height={50}/>
             <br />
             <b>{speedStr}</b>
             <br />
