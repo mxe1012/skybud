@@ -222,7 +222,10 @@ export default function Dashboard() {
                 </div>
             </ControllerPaneContainer>
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
-            <h1 style={{textAlign: 'center'}}><b>{currentLocationName}</b></h1>
+            <h1 style={{textAlign: 'center'}}><img src="/assets/icons/location.png" width={25} height={35}/>
+                {" "}
+                <b>{currentLocationName}</b>
+            </h1>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
             wind={wind} visibility={visiblity} sunrise={sunrise} sunset={sunset} units={units}/>
             <Forecast forecastList={forecastList} units={units}/>
