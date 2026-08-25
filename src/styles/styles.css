@@ -45,7 +45,6 @@ button {
     display: flex;
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     padding: 10px;
@@ -127,7 +126,6 @@ button {
     animation-name: info-pane-container-fade;
     animation-duration: 0.5s;
     backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
     z-index: 1;
 }
 
@@ -146,7 +144,6 @@ button {
     grid-template-columns: auto auto;
     gap: 20px;
     backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
     z-index: 1;
 }
 
@@ -177,7 +174,6 @@ button {
     border-radius: 25px;
     margin: 10px;
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     z-index: 2;
 }
 
