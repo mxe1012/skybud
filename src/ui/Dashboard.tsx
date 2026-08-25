@@ -184,7 +184,7 @@ export default function Dashboard() {
 
     useEffect(() => {
 
-        setTimeout(handleFetch, 2000);
+        setTimeout(handleFetch, 800);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -228,11 +228,3 @@ export default function Dashboard() {
 
     );
 }
-
-// fox chase
-//lat: 40.0771601
-// lon: -75.0771797
-
-// rockledge
-// lat: 40.0772
-// lon: -75.0772
