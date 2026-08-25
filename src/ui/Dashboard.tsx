@@ -3,6 +3,7 @@ import Forecast from "./Forecast.tsx";
 
 import { useState, useEffect } from "react";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { getCoordinates, apiFetch, apiFetchLocations } from '../utils/data.tsx';
 import type { ForecastEntry, LocationEntry } from "../utils/types.tsx";
 
@@ -13,12 +14,13 @@ export default function Dashboard() {
     // Current name of location
     const [currentLocationName, setCurrentLocationName] = useState("");
 
+    // Location related information
     const [locationName, setLocationName] = useState("");
     const [locationList, setLocationList] = useState<LocationEntry[]>([]);
-    // const [locationCoords, setLocationCoords] = useState({
-    //     lon: 0,
-    //     lan: 0
-    // });
+    const [locationCoords, setLocationCoords] = useState({
+        lon: 0,
+        lat: 0
+    });
 
     // Unit Switcher
     const [units, setUnits] = useState(true);
@@ -54,12 +56,15 @@ export default function Dashboard() {
     //Sunrise and sunset component
     const [sunrise, setSunrise] = useState(0);
     const [sunset, setSunset] = useState(0);
-  
+    
+    // Notices
     const [notice, setNotice] = useState("");
     const [showSnackbar, setShowSnackbar] = useState(false);
 
+    // Button states
     const [disabled, setDisabled] = useState(false);
 
+    // Forecast component
     const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
 
     async function handleFetch() {
@@ -69,15 +74,17 @@ export default function Dashboard() {
 
         setShowSnackbar(true);
 
-        const coords = await getCoordinates();
+        // const coords = await getCoordinates();
         const selectedUnits = units ? 'imperial' : 'metric';
 
     try {
-        const resultWeather = await apiFetch(coords.lon, coords.lat, "weather", selectedUnits);
-        const resultForecast = await apiFetch(coords.lon, coords.lat, "forecast", selectedUnits);
+        const resultWeather = await apiFetch(locationCoords.lon, locationCoords.lat, "weather", selectedUnits);
+        const resultForecast = await apiFetch(locationCoords.lon, locationCoords.lat, "forecast", selectedUnits);
 
         // Update location name
-        setCurrentLocationName(resultWeather.name + ", " + resultWeather.sys.country);
+        const current = resultWeather.sys.country ? resultWeather.name + ", " + resultWeather.sys.country
+        : resultWeather.name;
+        setCurrentLocationName(current);
       
         // Update Weather-related state
         const {id, main, description} = resultWeather.weather[0];
@@ -166,6 +173,7 @@ export default function Dashboard() {
 
             setLocationList(newLocationList);
             console.log(newLocationList);
+
         }
         catch (e) {
             console.error(e);
@@ -196,7 +204,13 @@ export default function Dashboard() {
                     <EventInput placeholder="Location" value={locationName} onChange={handleSearch}/>
                     <ul className="locations">
                         {locationList.length == 0 ? "" : locationList.map((element, index) => (
-                            <li key={index} className="locations">
+                            <li key={index} className="locations" onClick={() => {
+                            setLocationCoords({
+                                lon: element.lon,
+                                lat: element.lat,
+                            }); 
+                            handleFetch(); 
+                            setLocationList([])}}>
                                 {element.name}, {element.state}, {element.country}
                             </li>
                         ))}
@@ -214,3 +228,11 @@ export default function Dashboard() {
 
     );
 }
+
+// fox chase
+//lat: 40.0771601
+// lon: -75.0771797
+
+// rockledge
+// lat: 40.0772
+// lon: -75.0772
