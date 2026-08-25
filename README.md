@@ -73,23 +73,34 @@ The app will be available at `http://localhost:5173` by default.
 ```
 weather-app/
 ├── public/
+│   ├── assets/
+│   ├── favicon.svg
+│   └── icons.svg
 ├── src/
-│   ├── assets/ # Images and other assets
-│   ├── ui/ # UI Components and containers
-│   │   ├── Components.tsx
-│   │   └── Dashboard.tsx
-│   ├── utils/ # Helper functions
-│   │   └── functions.tsx
+│   ├── styles/
+│   │   ├── snackbar.css
+│   │   └── styles.css
+│   ├── ui/
+│   │   ├── components/
+│   │   │   ├── ForecastItem.tsx
+│   │   │   ├── Humidity.tsx
+│   │   │   ├── SunriseSunset.tsx
+│   │   │   ├── Temperature.tsx
+│   │   │   ├── Weather.tsx
+│   │   │   └── Wind.tsx
+│   │   ├── Containers.tsx
+│   │   ├── CurrentWeather.tsx
+│   │   ├── Dashboard.tsx
+│   │   └── Forecast.tsx
+│   ├── utils/
 │   ├── App.tsx
-│   ├── index.tsx
-│   └── styles.css 
+│   └── index.tsx
 ├── .env.example
 ├── .gitignore
 ├── eslint.config.js
 ├── index.html
 ├── package-lock.json
 ├── package.json
-├── README.md
 ├── tsconfig.app.json
 ├── tsconfig.json
 ├── tsconfig.node.json
