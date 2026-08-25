@@ -3,7 +3,6 @@ import Forecast from "./Forecast.tsx";
 
 import { useState, useEffect } from "react";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { apiFetch, apiFetchLocations } from '../utils/data.tsx';
 import type { ForecastEntry, LocationEntry } from "../utils/types.tsx";
 
