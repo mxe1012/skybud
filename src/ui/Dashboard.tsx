@@ -4,7 +4,7 @@ import Forecast from "./Forecast.tsx";
 import { useState, useEffect } from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { getCoordinates, apiFetch, apiFetchLocations } from '../utils/data.tsx';
+import { apiFetch, apiFetchLocations } from '../utils/data.tsx';
 import type { ForecastEntry, LocationEntry } from "../utils/types.tsx";
 
 import { ControllerPaneContainer, EventButton, EventInput} from './Components.tsx';
@@ -30,7 +30,7 @@ export default function Dashboard() {
         id: 0,
         main: "",
         description: "",
-        icon: "./src/assets/icons/wi-cloud.svg"
+        icon: "/assets/icons/wi-cloud.svg"
     });
 
     const iconUrl = "https://openweathermap.org/payload/api/media/file/";
@@ -67,7 +67,7 @@ export default function Dashboard() {
     // Forecast component
     const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
 
-    async function handleFetch() {
+    async function handleFetch(lon, lat) {
 
         setNotice("Acquiring weather info...");
         setDisabled(true);
@@ -78,8 +78,8 @@ export default function Dashboard() {
         const selectedUnits = units ? 'imperial' : 'metric';
 
     try {
-        const resultWeather = await apiFetch(locationCoords.lon, locationCoords.lat, "weather", selectedUnits);
-        const resultForecast = await apiFetch(locationCoords.lon, locationCoords.lat, "forecast", selectedUnits);
+        const resultWeather = await apiFetch(lon, lat, "weather", selectedUnits);
+        const resultForecast = await apiFetch(lon, lat, "forecast", selectedUnits);
 
         // Update location name
         const current = resultWeather.sys.country ? resultWeather.name + ", " + resultWeather.sys.country
@@ -151,7 +151,7 @@ export default function Dashboard() {
 
         const query = e.target.value;
         setLocationName(query);
-
+        
         console.log("query: " + query);
 
         try {
@@ -197,21 +197,17 @@ export default function Dashboard() {
                     Units: 
                     {" "}
                     <select id="unit" value={units} onChange={() => {setUnits(!units)}} disabled={disabled}>
-                        <option value={true} onClick={handleFetch}>Imperial</option>
-                        <option value={false} onClick={handleFetch}>Metric</option>
+                        <option value={true} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Imperial</option>
+                        <option value={false} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
                     </select>
                     {" "}
                     <EventInput placeholder="Location" value={locationName} onChange={handleSearch}/>
                     <ul className="locations">
                         {locationList.length == 0 ? "" : locationList.map((element, index) => (
                             <li key={index} className="locations" onClick={() => {
-                            setLocationCoords({
-                                lon: element.lon,
-                                lat: element.lat,
-                            }); 
-                            handleFetch(); 
+                            handleFetch(element.lon, element.lat);
+                            setLocationCoords(element); 
                             setLocationList([]);
-                            setLocationName("");
                             }}>
                                 {element.name}, {element.state}, {element.country}
                             </li>
