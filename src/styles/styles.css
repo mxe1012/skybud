@@ -24,10 +24,24 @@
     }
 }
 
+@keyframes locations-li-anim {
+    from {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 html {
     font-family: "Inter", sans-serif;
-    background: #ffffff;
-    background: linear-gradient(0deg,rgba(255, 255, 255, 1) 0%, rgba(65, 196, 240, 1) 50%, rgba(154, 216, 252, 1) 100%);
+    background: #d5e8ff;
+    background: radial-gradient(circle,rgba(255, 255, 255, 1) 0%, rgba(65, 196, 240, 1) 50%, rgba(154, 216, 252, 1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 button {
@@ -253,11 +267,14 @@ ul.locations {
 }
 
 li.locations {
+    animation-name: locations-li-anim;
+    animation-duration: 0.2s;
      padding: 5px;
      background-color: white;
      border-radius: 20px;
      margin: 3px;
      transition: background-color 0.2s ease;
+     cursor: pointer;
 }
 
 li.locations:hover {

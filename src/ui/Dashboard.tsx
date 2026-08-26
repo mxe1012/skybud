@@ -3,7 +3,7 @@ import Forecast from "./Forecast.tsx";
 
 import { useState, useEffect } from "react";
 
-import { apiFetch, apiFetchLocations } from '../utils/data.tsx';
+import { getCoordinates, apiFetch, apiFetchLocations } from '../utils/data.tsx';
 import type { ForecastEntry, LocationEntry } from "../utils/types.tsx";
 
 import { ControllerPaneContainer, EventButton, EventInput} from './Containers.tsx';
@@ -52,6 +52,9 @@ export default function Dashboard() {
         gust: 0,
     });
 
+    // Visiblity component
+    const [visiblity, setVisiblity] = useState(0);
+
     //Sunrise and sunset component
     const [sunrise, setSunrise] = useState(0);
     const [sunset, setSunset] = useState(0);
@@ -66,14 +69,19 @@ export default function Dashboard() {
     // Forecast component
     const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
 
-    async function handleFetch(lon, lat) {
+    async function handleFetch(lon, lat, useExactLocation=false) {
 
         setNotice("Acquiring weather info...");
         setDisabled(true);
 
         setShowSnackbar(true);
 
-        // const exactCoords = await getCoordinates();
+        if (useExactLocation === true) {
+            const exactCoords = await getCoordinates();
+            lon = exactCoords.lon;
+            lat = exactCoords.lat;
+        }
+
         const selectedUnits = units ? 'imperial' : 'metric';
 
     try {
@@ -114,6 +122,8 @@ export default function Dashboard() {
             gust
         });
 
+        setVisiblity(resultWeather.visibility);
+
         // Update Sunrise and Sunset related state
         setSunrise(resultWeather.sys.sunrise);
         setSunset(resultWeather.sys.sunset);
@@ -150,8 +160,6 @@ export default function Dashboard() {
 
         const query = e.target.value;
         setLocationName(query);
-        
-        console.log("query: " + query);
 
         try {
             const result = await apiFetchLocations(query);
@@ -171,7 +179,6 @@ export default function Dashboard() {
             });
 
             setLocationList(newLocationList);
-            console.log(newLocationList);
 
         }
         catch (e) {
@@ -195,31 +202,39 @@ export default function Dashboard() {
                 <div style={{textAlign: 'center'}}>
                     Units: 
                     {" "}
-                    <select id="unit" value={units} onChange={() => {setUnits(!units)}} disabled={disabled}>
-                        <option value={true} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Imperial</option>
-                        <option value={false} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
+                    <select id="unit" value={String(units)} onChange={() => {setUnits(Boolean(!units))}} disabled={disabled}>
+                        <option value={"true"} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Imperial</option>
+                        <option value={"false"} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
                     </select>
                     {" "}
-                    <EventInput placeholder="Location" value={locationName} onChange={handleSearch}/>
+                    <EventInput disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
                     <ul className="locations">
                         {locationList.length == 0 ? "" : locationList.map((element, index) => (
                             <li key={index} className="locations" onClick={() => {
-                            handleFetch(element.lon, element.lat);
-                            setLocationCoords(element); 
-                            setLocationList([]);
+                                handleFetch(element.lon, element.lat);
+                                setLocationCoords(element); 
+                                setLocationList([]);
                             }}>
-                                {element.name}, {element.state}, {element.country}
+                                {element.state ? element.name + ", " + element.state + ", " + element.country : 
+                                 element.name + ", " + element.country}
                             </li>
                         ))}
                     </ul>
                     {" "}
-                    <EventButton text="Update Weather Information" disabled={disabled} onClick={handleFetch} />
+                    <EventButton text="Update Weather Information" disabled={disabled} 
+                     onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)} />
+                    {" "}
+                    <EventButton text="Use Exact Location" disabled={disabled} 
+                     onClick={() => handleFetch(locationCoords.lon, locationCoords.lat, true)} />
                 </div>
             </ControllerPaneContainer>
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
-            <h1 style={{textAlign: 'center'}}>📍 <b>{currentLocationName}</b></h1>
+            <h1 style={{textAlign: 'center'}}><img src="/assets/icons/location.png" width={25} height={35}/>
+                {" "}
+                <b>{currentLocationName}</b>
+            </h1>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
-            wind={wind} sunrise={sunrise} sunset={sunset} units={units}/>
+            wind={wind} visibility={visiblity} sunrise={sunrise} sunset={sunset} units={units}/>
             <Forecast forecastList={forecastList} units={units}/>
         </>
 
