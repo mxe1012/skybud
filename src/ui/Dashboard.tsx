@@ -3,7 +3,7 @@ import Forecast from "./Forecast.tsx";
 
 import { useState, useEffect } from "react";
 
-import { apiFetch, apiFetchLocations } from '../utils/data.tsx';
+import { getCoordinates, apiFetch, apiFetchLocations } from '../utils/data.tsx';
 import type { ForecastEntry, LocationEntry } from "../utils/types.tsx";
 
 import { ControllerPaneContainer, EventButton, EventInput} from './Containers.tsx';
@@ -20,6 +20,7 @@ export default function Dashboard() {
         lon: 0,
         lat: 0
     });
+    const [exactLocation, setExactLocation] = useState(false);
 
     // Unit Switcher
     const [units, setUnits] = useState(true);
@@ -76,7 +77,13 @@ export default function Dashboard() {
 
         setShowSnackbar(true);
 
-        // const exactCoords = await getCoordinates();
+        if (exactLocation === true) {
+            const exactCoords = await getCoordinates();
+            lon = exactCoords.lon;
+            lat = exactCoords.lat;
+            setExactLocation(false);
+        }
+        
         const selectedUnits = units ? 'imperial' : 'metric';
 
     try {
@@ -202,13 +209,13 @@ export default function Dashboard() {
                         <option value={false} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
                     </select>
                     {" "}
-                    <EventInput placeholder="Location" value={locationName} onChange={handleSearch}/>
+                    <EventInput disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
                     <ul className="locations">
                         {locationList.length == 0 ? "" : locationList.map((element, index) => (
                             <li key={index} className="locations" onClick={() => {
-                            handleFetch(element.lon, element.lat);
-                            setLocationCoords(element); 
-                            setLocationList([]);
+                                handleFetch(element.lon, element.lat);
+                                setLocationCoords(element); 
+                                setLocationList([]);
                             }}>
                                 {element.state ? element.name + ", " + element.state + ", " + element.country : 
                                  element.name + ", " + element.country}
@@ -218,6 +225,12 @@ export default function Dashboard() {
                     {" "}
                     <EventButton text="Update Weather Information" disabled={disabled} 
                      onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)} />
+                    {" "}
+                    <EventButton text="Use Exact Location" disabled={disabled} 
+                     onClick={() => {
+                        setExactLocation(true)
+                        handleFetch(locationCoords.lon, locationCoords.lat);
+                     }} />
                 </div>
             </ControllerPaneContainer>
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
