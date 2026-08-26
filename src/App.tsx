@@ -10,8 +10,8 @@ export default function App() {
     return (
     <>
         <MainPane>
-            <Clock /> 
             <Dashboard />
+            <Clock /> 
         </MainPane>
     </>
     );
