@@ -155,8 +155,6 @@ export default function Dashboard() {
 
         const query = e.target.value;
         setLocationName(query);
-        
-        console.log("query: " + query);
 
         try {
             const result = await apiFetchLocations(query);
@@ -212,12 +210,14 @@ export default function Dashboard() {
                             setLocationCoords(element); 
                             setLocationList([]);
                             }}>
-                                {element.name}, {element.state}, {element.country}
+                                {element.state ? element.name + ", " + element.state + ", " + element.country : 
+                                 element.name + ", " + element.country}
                             </li>
                         ))}
                     </ul>
                     {" "}
-                    <EventButton text="Update Weather Information" disabled={disabled} onClick={handleFetch} />
+                    <EventButton text="Update Weather Information" disabled={disabled} 
+                     onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)} />
                 </div>
             </ControllerPaneContainer>
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
