@@ -176,7 +176,6 @@ export default function Dashboard() {
             });
 
             setLocationList(newLocationList);
-            console.log(newLocationList);
 
         }
         catch (e) {
