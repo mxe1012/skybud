@@ -202,9 +202,9 @@ export default function Dashboard() {
                 <div style={{textAlign: 'center'}}>
                     Units: 
                     {" "}
-                    <select id="unit" value={units} onChange={() => {setUnits(!units)}} disabled={disabled}>
-                        <option value={true} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Imperial</option>
-                        <option value={false} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
+                    <select id="unit" value={String(units)} onChange={() => {setUnits(Boolean(!units))}} disabled={disabled}>
+                        <option value={"true"} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Imperial</option>
+                        <option value={"false"} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
                     </select>
                     {" "}
                     <EventInput disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
