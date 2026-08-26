@@ -44,8 +44,8 @@ export function EventButton({text="", disabled=false, onClick}) {
     return <button className="EventButton" disabled={disabled} onClick={onClick}>{text}</button>
 }
 
-export function EventInput({value="", placeholder="Placeholder", onChange}) {
-    return <input className="EventInput" value={value} placeholder={placeholder} onChange={onChange}/>
+export function EventInput({value="", disabled=false, placeholder="Placeholder", onChange}) {
+    return <input className="EventInput" disabled={disabled} value={value} placeholder={placeholder} onChange={onChange}/>
 }
 
 export function InfoPaneIcon({src="wi-na.svg", size=25}: InfoPaneIconProps) {
