@@ -24,6 +24,17 @@
     }
 }
 
+@keyframes locations-li-anim {
+    from {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 html {
     font-family: "Inter", sans-serif;
     background: #d5e8ff;
@@ -256,6 +267,8 @@ ul.locations {
 }
 
 li.locations {
+    animation-name: locations-li-anim;
+    animation-duration: 0.2s;
      padding: 5px;
      background-color: white;
      border-radius: 20px;
