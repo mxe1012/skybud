@@ -156,6 +156,19 @@ export default function Dashboard() {
     }
   }
 
+    function debounce(callback, delay) {
+  let timer
+  return function() {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      callback();
+    }, delay)
+  }
+}   
+    async function debounceSearch(e) {
+        debounce(handleSearch(e), 8000);
+    }
+
     async function handleSearch(e) {
 
         const query = e.target.value;
@@ -207,7 +220,7 @@ export default function Dashboard() {
                         <option value={"false"} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
                     </select>
                     {" "}
-                    <EventInput disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
+                    <EventInput disabled={disabled} value={locationName} placeholder="Location" onChange={debounceSearch}/>
                     <ul className="locations">
                         {locationList.length == 0 ? "" : locationList.map((element, index) => (
                             <li key={index} className="locations" onClick={() => {
