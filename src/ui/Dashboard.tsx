@@ -20,7 +20,6 @@ export default function Dashboard() {
         lon: 0,
         lat: 0
     });
-    const [exactLocation, setExactLocation] = useState(false);
 
     // Unit Switcher
     const [units, setUnits] = useState(true);
@@ -70,20 +69,19 @@ export default function Dashboard() {
     // Forecast component
     const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
 
-    async function handleFetch(lon, lat) {
+    async function handleFetch(lon, lat, useExactLocation=false) {
 
         setNotice("Acquiring weather info...");
         setDisabled(true);
 
         setShowSnackbar(true);
 
-        if (exactLocation === true) {
+        if (useExactLocation === true) {
             const exactCoords = await getCoordinates();
             lon = exactCoords.lon;
             lat = exactCoords.lat;
-            setExactLocation(false);
         }
-        
+
         const selectedUnits = units ? 'imperial' : 'metric';
 
     try {
@@ -227,10 +225,7 @@ export default function Dashboard() {
                      onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)} />
                     {" "}
                     <EventButton text="Use Exact Location" disabled={disabled} 
-                     onClick={() => {
-                        setExactLocation(true)
-                        handleFetch(locationCoords.lon, locationCoords.lat);
-                     }} />
+                     onClick={() => handleFetch(locationCoords.lon, locationCoords.lat, true)} />
                 </div>
             </ControllerPaneContainer>
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
