@@ -1,7 +1,7 @@
 import CurrentWeather from "./CurrentWeather.tsx";
 import Forecast from "./Forecast.tsx";
 
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 
 import { getCoordinates, apiFetch, apiFetchLocations } from '../utils/data.tsx';
 import type { ForecastEntry, LocationEntry } from "../utils/types.tsx";
@@ -156,24 +156,23 @@ export default function Dashboard() {
     }
   }
 
-    function debounce(callback, delay) {
-  let timer
-  return function() {
-    clearTimeout(timer)
-    timer = setTimeout(() => {
-      callback();
-    }, delay)
-  }
-}   
-    async function debounceSearch(e) {
-        debounce(handleSearch(e), 8000);
-    }
+    const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    async function handleSearch(e) {
-
+    function handleSearch(e) {
         const query = e.target.value;
         setLocationName(query);
 
+        if (debounceTimer.current) {
+            clearTimeout(debounceTimer.current);
+        }
+
+        debounceTimer.current = setTimeout(() => {
+            fetchLocations(query);
+        }, 400); // adjust delay to taste
+    }
+
+    async function fetchLocations(query) {
+        
         try {
             const result = await apiFetchLocations(query);
 
@@ -220,7 +219,7 @@ export default function Dashboard() {
                         <option value={"false"} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
                     </select>
                     {" "}
-                    <EventInput disabled={disabled} value={locationName} placeholder="Location" onChange={debounceSearch}/>
+                    <EventInput disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
                     <ul className="locations">
                         {locationList.length == 0 ? "" : locationList.map((element, index) => (
                             <li key={index} className="locations" onClick={() => {
