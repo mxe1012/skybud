@@ -1,7 +1,7 @@
 import CurrentWeather from "./CurrentWeather.tsx";
 import Forecast from "./Forecast.tsx";
 
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 
 import { getCoordinates, apiFetch, apiFetchLocations } from '../utils/data.tsx';
 import type { ForecastEntry, LocationEntry } from "../utils/types.tsx";
@@ -156,11 +156,23 @@ export default function Dashboard() {
     }
   }
 
-    async function handleSearch(e) {
+    const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+    function handleSearch(e) {
         const query = e.target.value;
         setLocationName(query);
 
+        if (debounceTimer.current) {
+            clearTimeout(debounceTimer.current);
+        }
+
+        debounceTimer.current = setTimeout(() => {
+            fetchLocations(query);
+        }, 400); // adjust delay to taste
+    }
+
+    async function fetchLocations(query) {
+        
         try {
             const result = await apiFetchLocations(query);
 

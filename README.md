@@ -1,4 +1,4 @@
-# Weather App
+# Skybud
 
 A simple, fast weather application built with React, TypeScript, and Vite. Search for a city and view current conditions pulled from Openweather API.
 
