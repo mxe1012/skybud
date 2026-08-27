@@ -20,6 +20,7 @@ export default function Visibility({visiblity}: VisiblityProps) {
             <div className="gauge2" style={{"--value": gaugeValue, "--size": "90px", fontSize: "15px"} as React.CSSProperties}>
                 <b>{visStr}</b>
             </div>
+            {visiblity}
         </div>
     );
 }
