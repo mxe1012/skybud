@@ -152,7 +152,7 @@ export default function Dashboard() {
 
     } catch (e) {
         console.error(e);
-        setNotice("Something went wrong during the fetching of weather data.");
+        setNotice("Weather info fetching error!");
     }
   }
 
@@ -168,7 +168,7 @@ export default function Dashboard() {
 
         debounceTimer.current = setTimeout(() => {
             fetchLocations(query);
-        }, 400); // adjust delay to taste
+        }, 400); // debounce delay
     }
 
     async function fetchLocations(query) {
@@ -195,14 +195,14 @@ export default function Dashboard() {
         }
         catch (e) {
             console.error(e);
-            setNotice("Something went wrong during the fetching of location data.");
+            setNotice("Location info fetching error!");
         }
 
     }
 
     useEffect(() => {
 
-        setTimeout(handleFetch, 800);
+        setTimeout(handleFetch, 200);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
