@@ -2,7 +2,8 @@ import type {
     ChildrenProps, 
     InfoPaneProps, 
     InfoPaneIconProps, 
-    InfoPaneContainerProps
+    InfoPaneContainerProps,
+    ControllerPaneContainerProps
 } from "../utils/types";
 
 import { backgroundImageLookup } from "../utils/helpers";
@@ -26,8 +27,8 @@ export function ExtraInfoPaneContainer({children}: ChildrenProps) {
     return <div className="ExtraInfoPaneContainer">{children}</div>;
 }
 
-export function ControllerPaneContainer({children}: ChildrenProps) {
-    return <div className="ControllerPaneContainer">{children}</div>
+export function ControllerPaneContainer({styles, children}: ControllerPaneContainerProps) {
+    return <div style={styles} className="ControllerPaneContainer">{children}</div>
 }
 
 export function ForecastInfoContainer({children}: ChildrenProps) {
