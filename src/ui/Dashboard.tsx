@@ -68,7 +68,7 @@ export default function Dashboard() {
 
     // Forecast component
     const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
-
+    
     async function handleFetch(lon, lat, useExactLocation=false) {
 
         setNotice("Acquiring weather info...");
@@ -232,7 +232,6 @@ export default function Dashboard() {
                             </li>
                         ))}
                     </ul>
-                    {" "}
                     <EventButton text="Update Weather Information" disabled={disabled} 
                      onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)} />
                     {" "}
