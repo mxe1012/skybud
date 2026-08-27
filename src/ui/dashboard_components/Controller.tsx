@@ -54,7 +54,6 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
             }
             catch (e) {
                 console.error(e);
-                //setNotice("Location info fetching error!");
             }
     
     }
@@ -73,7 +72,9 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
         <>
             <ControllerPaneContainer styles={{
                 backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.5)' : "",
-                backdropFilter: isScrolled ? "blur(2px)" : ""
+                backdropFilter: isScrolled ? "blur(2px)" : "",
+                boxShadow: isScrolled ? "0px 0px 10px" : "",
+                transition: "background-color 0.2s ease, backdrop-filter 0.2s ease, box-shadow 0.2s ease"
                 }}>
                 <div style={{textAlign: 'center'}}>
                     Units: 
