@@ -2,7 +2,9 @@ import {ForecastInfoContainer, ForecastInfoPane} from './Containers.tsx';
 
 import ForecastItem from './dashboard_components/ForecastItem.tsx';
 
-export default function Forecast({forecastList, units}) {
+import type { ForecastProps } from '../utils/types.tsx';
+
+export default function Forecast({forecastList, units}: ForecastProps) {
 
     return (
         <>
