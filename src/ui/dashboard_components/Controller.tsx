@@ -77,12 +77,6 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
                 transition: "background-color 0.2s ease, backdrop-filter 0.2s ease, box-shadow 0.2s ease"
                 }}>
                 <div style={{textAlign: 'center'}}>
-                    Units: 
-                    {" "}
-                    <select id="unit" value={String(units)} onChange={() => {onSetUnits(Boolean(!units))}} disabled={disabled}>
-                        <option value={"true"} onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)}>Imperial</option>
-                        <option value={"false"} onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
-                    </select>
                     {" "}
                     <EventInput disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
                     <ul className="locations">
@@ -97,6 +91,12 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
                             </li>
                         ))}
                     </ul>
+                    Units: 
+                    <select id="unit" value={String(units)} onChange={() => {onSetUnits(Boolean(!units))}} disabled={disabled}>
+                        <option value={"true"} onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)}>Imperial</option>
+                        <option value={"false"} onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
+                    </select>
+                    {" "}
                     <EventButton text="Update Weather Information" disabled={disabled} 
                         onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
                     {" "}
