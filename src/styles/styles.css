@@ -235,7 +235,7 @@ button {
         conic-gradient(from -180deg, 
         var(--color-start) 0deg,
         var(--color-end) calc(360deg*var(--value)),
-        grey calc(360deg*var(--value)) 360deg, 
+        rgba(143, 138, 138, 0.4) calc(360deg*var(--value)) 360deg, 
         transparent 360deg);
     text-align: center;
     line-height: var(--size);
@@ -258,7 +258,7 @@ button {
         conic-gradient(from -180deg, 
         var(--color-start) 0deg,
         var(--color-end) calc(360deg*var(--value)),
-        grey calc(360deg*var(--value)) 360deg, 
+        rgba(143, 138, 138, 0.4) calc(360deg*var(--value)) 360deg, 
         transparent 360deg);
     text-align: center;
     line-height: var(--size);
