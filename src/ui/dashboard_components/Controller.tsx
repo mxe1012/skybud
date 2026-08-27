@@ -1,35 +1,93 @@
-import { ControllerPaneContainer, EventInput, EventButton } from "./Containers";
+import { ControllerPaneContainer, EventInput, EventButton } from "../Containers";
+import { useRef, useState } from "react";
 
-export function Controller({lon, lat, disabled}) {
+import { apiFetchLocations } from "../../utils/data";
 
-    <ControllerPaneContainer>
-        <div style={{textAlign: 'center'}}>
-            Units: 
-            {" "}
-            <select id="unit" value={String(units)} onChange={() => {setUnits(Boolean(!units))}} disabled={disabled}>
-                <option value={"true"} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Imperial</option>
-                <option value={"false"} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
-            </select>
-            {" "}
-            <EventInput disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
-            <ul className="locations">
-                {locationList.length == 0 ? "" : locationList.map((element, index) => (
-                    <li key={index} className="locations" onClick={() => {
-                        handleFetch(element.lon, element.lat);
-                        setLocationCoords(element); 
-                        setLocationList([]);
-                    }}>
-                        {element.state ? element.name + ", " + element.state + ", " + element.country : 
-                        element.name + ", " + element.country}
-                    </li>
-                    ))}
-            </ul>
-            <EventButton text="Update Weather Information" disabled={disabled} 
-                onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)} />
-            {" "}
-            <EventButton text="Use Exact Location" disabled={disabled} 
-                onClick={() => handleFetch(locationCoords.lon, locationCoords.lat, true)} />
-        </div>
-    </ControllerPaneContainer>
+import type { LocationEntry } from "../../utils/types";
 
+export default function Controller({units, onSetUnits, disabled, onHandleFetch}) {
+
+    const [locationName, setLocationName] = useState("");
+    const [locationList, setLocationList] = useState<LocationEntry[]>([]);
+    const [locationCoords, setLocationCoords] = useState({
+        lon: 0,
+        lat: 0
+    });
+
+    const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    
+    function handleSearch(e) {
+        const query = e.target.value;
+        setLocationName(query);
+    
+        if (debounceTimer.current) {
+            clearTimeout(debounceTimer.current);
+        }
+    
+        debounceTimer.current = setTimeout(() => {
+                fetchLocations(query);
+            }, 400); // debounce delay
+        }
+    
+    async function fetchLocations(query) {
+            
+        try {
+            const result = await apiFetchLocations(query);
+    
+            const newLocationList: LocationEntry[] = result.map((element) => {
+    
+            const {name, country, state, lon, lat} = element;
+    
+                return {
+                    name,
+                    country,
+                    state,
+                    lon,
+                    lat
+                    };
+                });
+    
+                setLocationList(newLocationList);
+    
+            }
+            catch (e) {
+                console.error(e);
+                //setNotice("Location info fetching error!");
+            }
+    
+        }
+    
+    return (
+        <>
+            <ControllerPaneContainer>
+                <div style={{textAlign: 'center'}}>
+                    Units: 
+                    {" "}
+                    <select id="unit" value={String(units)} onChange={() => {onSetUnits(Boolean(!units))}} disabled={disabled}>
+                        <option value={"true"} onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)}>Imperial</option>
+                        <option value={"false"} onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
+                    </select>
+                    {" "}
+                    <EventInput disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
+                    <ul className="locations">
+                        {locationList.length == 0 ? "" : locationList.map((element, index) => (
+                            <li key={index} className="locations" onClick={() => {
+                                onHandleFetch(element.lon, element.lat);
+                                setLocationCoords(element); 
+                                setLocationList([]);
+                            }}>
+                                {element.state ? element.name + ", " + element.state + ", " + element.country : 
+                                element.name + ", " + element.country}
+                            </li>
+                        ))}
+                    </ul>
+                    <EventButton text="Update Weather Information" disabled={disabled} 
+                        onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
+                    {" "}
+                    <EventButton text="Use Exact Location" disabled={disabled} 
+                        onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat, true)} />
+                </div>
+            </ControllerPaneContainer>
+        </>
+    );
 }
