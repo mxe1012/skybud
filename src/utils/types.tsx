@@ -103,6 +103,11 @@ export interface CurrentWeatherProps {
     units: boolean;
 }
 
+export interface ForecastProps {
+    forecastList: ForecastEntry[];
+    units: boolean;
+}
+
 export interface LocationEntry {
     name: string;
     country: string;
