@@ -220,11 +220,34 @@ button {
     grid-template-columns: auto auto;
 }
 
-.gauge {
+.gauge1 {
     --size: 90px;
     --cutout: 50%;
     --color-start: rgb(223, 246, 255);
     --color-end: #7fd0ff;
+    --background: white;
+    font-size: 25px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: calc(var(--size) / 2);
+    background:
+    radial-gradient(
+        var(--background) 0 var(--cutout),
+        transparent var(--cutout) 100%),
+        conic-gradient(from -180deg, 
+        var(--color-start) 0deg,
+        var(--color-end) calc(360deg*var(--value)),
+        grey calc(360deg*var(--value)) 360deg, 
+        transparent 360deg);
+    text-align: center;
+    line-height: var(--size);
+}
+
+.gauge2 {
+    --size: 90px;
+    --cutout: 50%;
+    --color-start: rgb(150, 15, 223);
+    --color-end: #d97fff;
     --background: white;
     font-size: 25px;
     width: var(--size);

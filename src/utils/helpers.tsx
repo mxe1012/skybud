@@ -41,7 +41,7 @@ export function backgroundImageLookup(id: number): string {
         case 313:
         case 314:
         case 321:
-            bg = "url(/assets/backgrounds/bg_rain.png)";
+            bg = "url(/assets/backgrounds/bg_drizzle.png)";
             break;
         case 500: // Rainy conditions
         case 501:

@@ -5,12 +5,12 @@ import {
     ExtraInfoPaneContainer, 
 } from './Containers.tsx';
     
-import Weather from './components/Weather.tsx';
-import Temperature from './components/Temperature.tsx';
-import Humidity from './components/Humidity.tsx';
-import Wind from './components/Wind.tsx';
-import Visibility from './components/Visiblity.tsx';
-import SunriseAndSunset from './components/SunriseSunset.tsx';
+import Weather from './dashboard_components/Weather.tsx';
+import Temperature from './dashboard_components/Temperature.tsx';
+import Humidity from './dashboard_components/Humidity.tsx';
+import Wind from './dashboard_components/Wind.tsx';
+import Visibility from './dashboard_components/Visiblity.tsx';
+import SunriseAndSunset from './dashboard_components/SunriseSunset.tsx';
 
 import type { CurrentWeatherProps } from "../utils/types.tsx";
 
