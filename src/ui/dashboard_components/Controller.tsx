@@ -1,5 +1,5 @@
 import { ControllerPaneContainer, EventInput, EventButton } from "../Containers";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 import { apiFetchLocations } from "../../utils/data";
 
@@ -14,6 +14,8 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
         lat: 0
     });
 
+    const [isScrolled, setIsScrolled] = useState(false);
+
     const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     
     function handleSearch(e) {
@@ -27,7 +29,7 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
         debounceTimer.current = setTimeout(() => {
                 fetchLocations(query);
             }, 400); // debounce delay
-        }
+    }
     
     async function fetchLocations(query) {
             
@@ -55,11 +57,24 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
                 //setNotice("Location info fetching error!");
             }
     
-        }
+    }
+
+    useEffect(() => {
+            const handleScroll = () => {
+            const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            setIsScrolled(scrollTop > 190);
+        };
+
+            window.addEventListener('scroll', handleScroll);
+            return () => window.removeEventListener('scroll', handleScroll);
+        }, []);
     
     return (
         <>
-            <ControllerPaneContainer>
+            <ControllerPaneContainer styles={{
+                backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.5)' : "",
+                backdropFilter: isScrolled ? "blur(2px)" : ""
+                }}>
                 <div style={{textAlign: 'center'}}>
                     Units: 
                     {" "}
