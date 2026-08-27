@@ -1,6 +1,6 @@
 import {ForecastInfoContainer, ForecastInfoPane} from './Containers.tsx';
 
-import ForecastItem from './components/ForecastItem.tsx';
+import ForecastItem from './dashboard_components/ForecastItem.tsx';
 
 export default function Forecast({forecastList, units}) {
 
