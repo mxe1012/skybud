@@ -64,8 +64,8 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
             setIsScrolled(scrollTop > 190);
         };
 
-            window.addEventListener('scroll', handleScroll);
-            return () => window.removeEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
         }, []);
     
     return (
