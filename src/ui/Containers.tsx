@@ -1,4 +1,5 @@
-import type { ChildrenProps, 
+import type { 
+    ChildrenProps, 
     InfoPaneProps, 
     InfoPaneIconProps, 
     InfoPaneContainerProps
