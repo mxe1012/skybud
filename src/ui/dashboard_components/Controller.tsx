@@ -14,6 +14,9 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
         lat: 0
     });
 
+    const [history, setHistory] = useState<LocationEntry[]>([]);
+    const [isShowDrop, setIsShowDrop] = useState(false)
+
     const [isScrolled, setIsScrolled] = useState(false);
 
     const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -85,6 +88,10 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
                                 onHandleFetch(element.lon, element.lat);
                                 setLocationCoords(element); 
                                 setLocationList([]);
+                                setHistory([
+                                    ...history,
+                                    element
+                                ])
                             }}>
                                 {element.state ? element.name + ", " + element.state + ", " + element.country : 
                                 element.name + ", " + element.country}
@@ -102,6 +109,18 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
                     {" "}
                     <EventButton text="Use Exact Location" disabled={disabled} 
                         onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat, true)} />
+                        <br />
+                    <ul>
+                        {history.length == 0 ? "" : history.map((element, index) => (
+                            <li key={index} className="locations" onClick={() => {
+                                onHandleFetch(element.lon, element.lat);
+                                setLocationCoords(element);
+                            }}>
+                                {element.state ? element.name + ", " + element.state + ", " + element.country : 
+                                element.name + ", " + element.country}
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </ControllerPaneContainer>
         </>
