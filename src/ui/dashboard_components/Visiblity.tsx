@@ -1,8 +1,12 @@
 import type { VisiblityProps } from "../../utils/types";
 
-export default function Visibility({visiblity}: VisiblityProps) {
+import { kmToMi } from "../../utils/helpers";
 
-    let visStr
+export default function Visibility({visiblity, units}: VisiblityProps) {
+
+    let visStr;
+    const formatVis = units ? String(Math.round(kmToMi(visiblity / 1000))) + " mi" : String(visiblity / 1000) + " km";
+
     const gaugeValue = String(visiblity / 10000);
 
     if (visiblity >= 7500) {
@@ -20,7 +24,7 @@ export default function Visibility({visiblity}: VisiblityProps) {
             <div className="gauge2" style={{"--value": gaugeValue, "--size": "90px", fontSize: "15px"} as React.CSSProperties}>
                 <b>{visStr}</b>
             </div>
-            {visiblity}
+            {formatVis}
         </div>
     );
 }
