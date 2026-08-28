@@ -57,8 +57,6 @@ button {
     animation-name: info-pane-fade;
     animation-duration: 1s;
     display: flex;
-    background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(2px);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     padding: 10px;
@@ -74,7 +72,7 @@ button {
     padding: 10px;
     background-color: rgba(255, 255, 255, 1);
     text-align: center;
-    box-shadow: 0px 0px 2px;
+    box-shadow: 0px 0px 10px;
     border-radius: 50px;
     margin: 10px;
 }
@@ -220,53 +218,6 @@ button {
     grid-template-columns: auto auto;
 }
 
-.gauge1 {
-    --size: 90px;
-    --cutout: 50%;
-    --color-start: rgb(223, 246, 255);
-    --color-end: #7fd0ff;
-    --background: white;
-    font-size: 25px;
-    width: var(--size);
-    height: var(--size);
-    border-radius: calc(var(--size) / 2);
-    background:
-    radial-gradient(
-        var(--background) 0 var(--cutout),
-        transparent var(--cutout) 100%),
-        conic-gradient(from -180deg, 
-        var(--color-start) 0deg,
-        var(--color-end) calc(360deg*var(--value)),
-        grey calc(360deg*var(--value)) 360deg, 
-        transparent 360deg);
-    text-align: center;
-    line-height: var(--size);
-}
-
-.gauge2 {
-    --size: 90px;
-    --cutout: 50%;
-    --color-start: rgb(150, 15, 223);
-    --color-end: #d97fff;
-    --background: white;
-    font-size: 25px;
-    width: var(--size);
-    height: var(--size);
-    border-radius: calc(var(--size) / 2);
-    background:
-    radial-gradient(
-        var(--background) 0 var(--cutout),
-        transparent var(--cutout) 100%),
-        conic-gradient(from -180deg, 
-        var(--color-start) 0deg,
-        var(--color-end) calc(360deg*var(--value)),
-        grey calc(360deg*var(--value)) 360deg, 
-        transparent 360deg);
-    text-align: center;
-    line-height: var(--size);
-}
-
-
 #unit {
     font-family: "Inter", sans-serif;
     border-style: none;
@@ -292,16 +243,16 @@ ul.locations {
 li.locations {
     animation-name: locations-li-anim;
     animation-duration: 0.2s;
-     padding: 5px;
-     background-color: white;
-     border-radius: 20px;
-     margin: 3px;
-     transition: background-color 0.2s ease;
-     cursor: pointer;
+    padding: 5px;
+    background-color: white;
+    border-radius: 20px;
+    margin: 3px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
 }
 
 li.locations:hover {
-     background-color: grey;
+    background-color: grey;
 }
 
 span {

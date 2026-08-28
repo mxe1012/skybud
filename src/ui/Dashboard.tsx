@@ -1,25 +1,17 @@
 import CurrentWeather from "./CurrentWeather.tsx";
 import Forecast from "./Forecast.tsx";
+import Controller from "./dashboard_components/Controller.tsx";
 
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-import { getCoordinates, apiFetch, apiFetchLocations } from '../utils/data.tsx';
-import type { ForecastEntry, LocationEntry } from "../utils/types.tsx";
-
-import { ControllerPaneContainer, EventButton, EventInput} from './Containers.tsx';
+import { getCoordinates, apiFetch, } from '../utils/data.tsx';
+import type { ForecastEntry, } from "../utils/types.tsx";
+import Clock from "./dashboard_components/Clock.tsx";
 
 export default function Dashboard() {
 
     // Current name of location
     const [currentLocationName, setCurrentLocationName] = useState("");
-
-    // Location related information
-    const [locationName, setLocationName] = useState("");
-    const [locationList, setLocationList] = useState<LocationEntry[]>([]);
-    const [locationCoords, setLocationCoords] = useState({
-        lon: 0,
-        lat: 0
-    });
 
     // Unit Switcher
     const [units, setUnits] = useState(true);
@@ -156,50 +148,7 @@ export default function Dashboard() {
     }
   }
 
-    const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-    function handleSearch(e) {
-        const query = e.target.value;
-        setLocationName(query);
-
-        if (debounceTimer.current) {
-            clearTimeout(debounceTimer.current);
-        }
-
-        debounceTimer.current = setTimeout(() => {
-            fetchLocations(query);
-        }, 400); // debounce delay
-    }
-
-    async function fetchLocations(query) {
-        
-        try {
-            const result = await apiFetchLocations(query);
-
-            const newLocationList: LocationEntry[] = result.map((element) => {
-
-                const {name, country, state, lon, lat} = element;
-
-                return {
-                    name,
-                    country,
-                    state,
-                    lon,
-                    lat
-                };
-
-            });
-
-            setLocationList(newLocationList);
-
-        }
-        catch (e) {
-            console.error(e);
-            setNotice("Location info fetching error!");
-        }
-
-    }
-
+    
     useEffect(() => {
 
         setTimeout(handleFetch, 200);
@@ -210,35 +159,9 @@ export default function Dashboard() {
     return (
 
         <>
-            <ControllerPaneContainer>
-                <div style={{textAlign: 'center'}}>
-                    Units: 
-                    {" "}
-                    <select id="unit" value={String(units)} onChange={() => {setUnits(Boolean(!units))}} disabled={disabled}>
-                        <option value={"true"} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Imperial</option>
-                        <option value={"false"} onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
-                    </select>
-                    {" "}
-                    <EventInput disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
-                    <ul className="locations">
-                        {locationList.length == 0 ? "" : locationList.map((element, index) => (
-                            <li key={index} className="locations" onClick={() => {
-                                handleFetch(element.lon, element.lat);
-                                setLocationCoords(element); 
-                                setLocationList([]);
-                            }}>
-                                {element.state ? element.name + ", " + element.state + ", " + element.country : 
-                                 element.name + ", " + element.country}
-                            </li>
-                        ))}
-                    </ul>
-                    <EventButton text="Update Weather Information" disabled={disabled} 
-                     onClick={() => handleFetch(locationCoords.lon, locationCoords.lat)} />
-                    {" "}
-                    <EventButton text="Use Exact Location" disabled={disabled} 
-                     onClick={() => handleFetch(locationCoords.lon, locationCoords.lat, true)} />
-                </div>
-            </ControllerPaneContainer>
+            <Clock />
+            <Controller disabled={disabled} units={units} 
+            onSetUnits={setUnits} onHandleFetch={handleFetch}/>
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
             <h1 style={{textAlign: 'center'}}><img src="/assets/icons/location.png" width={25} height={35}/>
                 {" "}
@@ -247,6 +170,7 @@ export default function Dashboard() {
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
             wind={wind} visibility={visiblity} sunrise={sunrise} sunset={sunset} units={units}/>
             <Forecast forecastList={forecastList} units={units}/>
+            
         </>
 
     );

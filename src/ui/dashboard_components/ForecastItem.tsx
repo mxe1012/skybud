@@ -10,10 +10,12 @@ export default function ForecastItem({dt, weather, temperature, units}: Forecast
     const strTempMin = units ? "Low:" + Math.round(temperature.temp_min) + "°F" :
     "High:" + Math.round(temperature.temp_min) + "°C";
     
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
     return (
         <>
             <div>
-                {formattedDt.toLocaleDateString()}
+                {formattedDt.toLocaleDateString()} ({days[formattedDt.getDay()]})
                 <br />
                 {formattedDt.toLocaleTimeString()}
             </div>

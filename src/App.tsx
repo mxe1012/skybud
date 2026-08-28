@@ -1,7 +1,9 @@
 import './styles/styles.css'
 import './styles/snackbar.css'
+import './styles/history.css'
+import './styles/gauges.css'
 
-import { MainPane, Clock } from './ui/Containers.tsx';
+import { MainPane } from './ui/Containers.tsx';
 
 import Dashboard from './ui/Dashboard.tsx';
 
@@ -11,7 +13,6 @@ export default function App() {
     <>
         <MainPane>
             <Dashboard />
-            <Clock /> 
         </MainPane>
     </>
     );

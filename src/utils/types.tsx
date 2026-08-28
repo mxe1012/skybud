@@ -1,3 +1,4 @@
+import type React from "react";
 import type { ReactNode } from "react";
 
 export interface ChildrenProps {
@@ -7,6 +8,11 @@ export interface ChildrenProps {
 export interface InfoPaneContainerProps {
     id: number;
     children: ReactNode;
+}
+
+export interface ControllerPaneContainerProps {
+    children: ReactNode;
+    styles?: React.CSSProperties;
 }
 
 export interface InfoPaneProps {
@@ -60,6 +66,7 @@ export interface WindObjectProps {
 
 export interface VisiblityProps {
     visiblity: number;
+    units: boolean;
 }
 
 export interface SunriseAndSunsetProps {
@@ -100,6 +107,11 @@ export interface CurrentWeatherProps {
     visibility: number;
     sunset: number;
     sunrise: number;
+    units: boolean;
+}
+
+export interface ForecastProps {
+    forecastList: ForecastEntry[];
     units: boolean;
 }
 
