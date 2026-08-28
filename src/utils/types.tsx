@@ -66,6 +66,7 @@ export interface WindObjectProps {
 
 export interface VisiblityProps {
     visiblity: number;
+    units: boolean;
 }
 
 export interface SunriseAndSunsetProps {
