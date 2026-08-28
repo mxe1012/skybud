@@ -22,10 +22,8 @@ export async function apiFetch(lon=0, lat=0, endpoint="none", units="imperial") 
 
 export async function apiFetchLocations(query="") {
 
-    const key = import.meta.env.VITE_GEOLOCATION_API_KEY;
-
     try {
-        const result = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${query}&appid=${key}&limit=5`);
+        const result = await fetch(`/api/geolocation?query=${encodeURIComponent(query)}`);
 
         if (result.ok) {
             const data = await result.json();
