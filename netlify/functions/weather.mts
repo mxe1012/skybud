@@ -14,7 +14,7 @@ export default async (req: Request, context: Context) => {
 
     try {
         const result = await fetch(`https://api.openweathermap.org/data/2.5/${endpoint}?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}&appid=${key}&units=${encodeURIComponent(units)}`);
-        console.log(result)
+        //console.log(result)
         if (result.ok) {
         const data = await result.json()
         return new Response(JSON.stringify(data), {

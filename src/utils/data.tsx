@@ -6,7 +6,7 @@ export async function apiFetch(lon=0, lat=0, endpoint="none", units="imperial") 
         
         if (result.ok) {
             const data = await result.json();
-            console.log(data);
+            // console.log(data);
             return data;
         }
 
@@ -23,7 +23,7 @@ export async function apiFetchLocations(query="") {
 
         if (result.ok) {
             const data = await result.json();
-            console.log(data);
+            // console.log(data);
             return data;
         }
 
