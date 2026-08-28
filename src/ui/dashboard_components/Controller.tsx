@@ -113,7 +113,7 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
                         onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat, true)} />
                     <br />
                     <ul className={isShowHisDrop ? "history show" : "history hide"}>
-                        {history.length == 0 ? "" : history.map((element, index) => (
+                        {history.map((element, index) => (
                             <li key={index} className={isShowHisDrop ? "history show" : "history hide"} onClick={() => {
                                 onHandleFetch(element.lon, element.lat);
                                 setLocationCoords(element);
