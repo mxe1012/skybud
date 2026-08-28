@@ -117,6 +117,7 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
                             <li key={index} className={isShowHisDrop ? "history show" : "history hide"} onClick={() => {
                                 onHandleFetch(element.lon, element.lat);
                                 setLocationCoords(element);
+                                setLocationName(element.name)
                             }}>
                                 {element.state ? element.name + ", " + element.state + ", " + element.country : 
                                 element.name + ", " + element.country}
