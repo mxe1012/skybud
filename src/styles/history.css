@@ -1,4 +1,4 @@
-@keyframes locations-li-anim {
+@keyframes history-li-anim {
     from {
         transform: scale(0.8);
         opacity: 0;
@@ -16,7 +16,7 @@ ul.history.hide > li.history.hide {
 }
 
 ul.history.show > li.history.show {
-    animation-name: locations-li-anim;
+    animation-name: history-li-anim;
     animation-duration: 0.2s;
     list-style-type: none;
     visibility: visible;
@@ -28,6 +28,6 @@ ul.history.show > li.history.show {
     cursor: pointer;
 }
 
-li.history.show:hover {
+ul.history.show > li.history.show:hover {
     background-color: grey;
 }
