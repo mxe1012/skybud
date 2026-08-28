@@ -290,16 +290,16 @@ ul.locations {
 li.locations {
     animation-name: locations-li-anim;
     animation-duration: 0.2s;
-     padding: 5px;
-     background-color: white;
-     border-radius: 20px;
-     margin: 3px;
-     transition: background-color 0.2s ease;
-     cursor: pointer;
+    padding: 5px;
+    background-color: white;
+    border-radius: 20px;
+    margin: 3px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
 }
 
 li.locations:hover {
-     background-color: grey;
+    background-color: grey;
 }
 
 span {

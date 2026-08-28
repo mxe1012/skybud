@@ -1,0 +1,33 @@
+@keyframes locations-li-anim {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+ul.history.hide > li.history.hide {
+    list-style-type: none;
+    visibility: hidden;
+    display: none;
+}
+
+ul.history.show > li.history.show {
+    animation-name: locations-li-anim;
+    animation-duration: 0.2s;
+    list-style-type: none;
+    visibility: visible;
+    padding: 5px;
+    background-color: white;
+    border-radius: 20px;
+    margin: 3px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+li.history.show:hover {
+    background-color: grey;
+}
