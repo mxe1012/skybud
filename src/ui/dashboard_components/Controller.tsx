@@ -109,7 +109,7 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
                     <EventButton text="Update Weather Information" disabled={disabled} 
                         onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
                     {" "}
-                    <EventButton text="Use Exact Location" disabled={disabled} 
+                    <EventButton text="Use Cuurent Location" disabled={disabled} 
                         onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat, true)} />
                     <br />
                     <ul className={isShowHisDrop ? "history show" : "history hide"}>
