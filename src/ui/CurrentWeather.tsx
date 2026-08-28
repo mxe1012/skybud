@@ -35,7 +35,7 @@ export default function CurrentWeather({weather, temperature, humidity, wind, vi
                         <Wind wind={wind} units={units}/>
                     </InfoPane>
                     <InfoPane name="Visibility" icon="wi-stars.svg">
-                        <Visibility visiblity={visibility}/>
+                        <Visibility visiblity={visibility} units={units}/>
                     </InfoPane>
                     <InfoPane name="Sunrise/Sunset" icon="wi-horizon.svg">
                         <SunriseAndSunset sunrise={sunrise} sunset= {sunset}/>
