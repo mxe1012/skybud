@@ -1,13 +1,9 @@
 
 export async function apiFetch(lon=0, lat=0, endpoint="none", units="imperial") {
 
-    const key = endpoint === "weather" 
-    ? import.meta.env.VITE_WEATHER_API_KEY : import.meta.env.VITE_FORECAST_API_KEY;
-
     try {
-        const baseUrl = `https://api.openweathermap.org/data/2.5/${endpoint}?lat=${lat}&lon=${lon}&appid=${key}`;
-        const result = await fetch(`${baseUrl}&units=${units}`);
-
+        const result = await fetch(`/api/current?endpoint=${endpoint}&lon=${encodeURIComponent(lon)}&lat=${encodeURIComponent(lat)}&units=${encodeURIComponent(units)}`)
+        
         if (result.ok) {
             const data = await result.json();
             console.log(data);
