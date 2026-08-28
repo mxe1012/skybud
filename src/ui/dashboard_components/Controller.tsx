@@ -15,8 +15,8 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
     });
 
     const [history, setHistory] = useState<LocationEntry[]>([]);
-    const [isShowDrop, setIsShowDrop] = useState(false)
 
+    const [isShowHisDrop, setisShowHisDrop] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false);
 
     const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -58,9 +58,8 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
             catch (e) {
                 console.error(e);
             }
-    
     }
-
+    
     useEffect(() => {
             const handleScroll = () => {
             const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
@@ -82,6 +81,9 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
                 <div style={{textAlign: 'center'}}>
                     {" "}
                     <EventInput disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
+                    {" "}
+                    <EventButton text={isShowHisDrop ? "Hide History" : "Show History"} disabled={disabled} 
+                    onClick={() => setisShowHisDrop(!isShowHisDrop)}/>
                     <ul className="locations">
                         {locationList.length == 0 ? "" : locationList.map((element, index) => (
                             <li key={index} className="locations" onClick={() => {
@@ -109,10 +111,10 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
                     {" "}
                     <EventButton text="Use Exact Location" disabled={disabled} 
                         onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat, true)} />
-                        <br />
-                    <ul>
+                    <br />
+                    <ul className={isShowHisDrop ? "history show" : "history hide"}>
                         {history.length == 0 ? "" : history.map((element, index) => (
-                            <li key={index} className="locations" onClick={() => {
+                            <li key={index} className={isShowHisDrop ? "history show" : "history hide"} onClick={() => {
                                 onHandleFetch(element.lon, element.lat);
                                 setLocationCoords(element);
                             }}>
