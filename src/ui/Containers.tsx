@@ -1,5 +1,6 @@
 import type { 
     ChildrenProps, 
+    AppearanceProps,
     InfoPaneProps, 
     InfoPaneIconProps, 
     InfoPaneContainerProps,
@@ -19,12 +20,12 @@ export function InfoPaneContainer({id, children}: InfoPaneContainerProps) {
     return <div style={{backgroundImage: bg}} className="InfoPaneContainer">{children}</div>
 }
 
-export function WeatherInfoPaneContainer({children}: ChildrenProps) {
-    return <div className="WeatherInfoPaneContainer">{children}</div>;
+export function WeatherInfoPaneContainer({styles, className, children}: AppearanceProps) {
+    return <div style={styles} className={className}>{children}</div>;
 }
 
-export function ExtraInfoPaneContainer({children}: ChildrenProps) {
-    return <div className="ExtraInfoPaneContainer">{children}</div>;
+export function ExtraInfoPaneContainer({styles, className, children}: AppearanceProps) {
+    return <div style={styles} className={className}>{children}</div>;
 }
 
 export function ControllerPaneContainer({styles, children}: ControllerPaneContainerProps) {
