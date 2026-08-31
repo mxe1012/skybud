@@ -18,7 +18,8 @@ export default function CurrentWeather({weather, temperature, humidity, wind, vi
 
     return (
         <>
-            <InfoPaneContainer id={weather.id}>
+            <InfoPaneContainer className={darkMode ? "InfoPaneContainer dark" : "InfoPaneContainer light"} 
+                id={weather.id} darkModeBG={darkMode}>
                 <WeatherInfoPaneContainer className={darkMode ? "WeatherInfoPaneContainer dark" : "WeatherInfoPaneContainer light"}>
                     <InfoPane name="Weather" icon="wi-day-cloudy.svg">
                         <Weather weather={weather} />

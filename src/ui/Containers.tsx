@@ -15,11 +15,11 @@ export function MainPane({children}: ChildrenProps) {
     return <div className="MainPane">{children}</div>;
 }
 
-export function InfoPaneContainer({id, children}: InfoPaneContainerProps) {
+export function InfoPaneContainer({id, className, darkModeBG, children}: InfoPaneContainerProps) {
 
-    const bg = backgroundImageLookup(id);
+    const bg = backgroundImageLookup(id, darkModeBG);
 
-    return <div style={{backgroundImage: bg}} className="InfoPaneContainer">{children}</div>
+    return <div style={{backgroundImage: bg}} className={className}>{children}</div>
 }
 
 export function WeatherInfoPaneContainer({styles, className, children}: AppearanceProps) {
