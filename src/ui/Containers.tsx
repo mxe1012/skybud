@@ -34,11 +34,10 @@ export function ControllerPaneContainer({styles, children}: ControllerPaneContai
     return <div style={styles} className="ControllerPaneContainer">{children}</div>
 }
 
-export function ForecastInfoContainer({children}: ChildrenProps) {
+export function ForecastInfoContainer({className, children}: AppearanceProps) {
     return (
         <>
-            <h1 style={{textAlign: 'center'}}>Forecast</h1>
-            <div className="ForecastInfoContainer">
+            <div className={className}>
                 <ul className="forecast">{children}</ul>
             </div>
         </>
