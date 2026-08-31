@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { getCoordinates, apiFetch, } from '../utils/data.tsx';
 import type { ForecastEntry, } from "../utils/types.tsx";
 import Clock from "./dashboard_components/Clock.tsx";
+import { EventButton } from "./Containers.tsx";
 
 export default function Dashboard() {
 
@@ -61,6 +62,8 @@ export default function Dashboard() {
     // Forecast component
     const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
     
+    const [isDarkModde, setIsDarkMode] = useState(false);
+
     async function handleFetch(lon, lat, useExactLocation=false) {
 
         setNotice("Acquiring weather info...");
@@ -160,6 +163,7 @@ export default function Dashboard() {
 
         <>
             <Clock />
+            <EventButton text="Toggle dark mode" disabled={false} onClick={() => setIsDarkMode(!isDarkModde)}/>
             <Controller disabled={disabled} units={units} 
             onSetUnits={setUnits} onHandleFetch={handleFetch}/>
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
@@ -168,7 +172,7 @@ export default function Dashboard() {
                 <b>{currentLocationName}</b>
             </h1>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
-            wind={wind} visibility={visiblity} sunrise={sunrise} sunset={sunset} units={units}/>
+            wind={wind} visibility={visiblity} sunrise={sunrise} sunset={sunset} units={units} darkMode={isDarkModde}/>
             <Forecast forecastList={forecastList} units={units}/>
             
         </>

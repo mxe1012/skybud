@@ -14,12 +14,12 @@ import SunriseAndSunset from './dashboard_components/SunriseSunset.tsx';
 
 import type { CurrentWeatherProps } from "../utils/types.tsx";
 
-export default function CurrentWeather({weather, temperature, humidity, wind, visibility, sunrise, sunset, units}: CurrentWeatherProps) {
+export default function CurrentWeather({weather, temperature, humidity, wind, visibility, sunrise, sunset, units, darkMode}: CurrentWeatherProps) {
 
     return (
         <>
             <InfoPaneContainer id={weather.id}>
-                <WeatherInfoPaneContainer>
+                <WeatherInfoPaneContainer className={darkMode ? "WeatherInfoPaneContainer dark" : "WeatherInfoPaneContainer light"}>
                     <InfoPane name="Weather" icon="wi-day-cloudy.svg">
                         <Weather weather={weather} />
                     </InfoPane>
@@ -27,7 +27,7 @@ export default function CurrentWeather({weather, temperature, humidity, wind, vi
                         <Temperature temperature={temperature} units={units}/>
                     </InfoPane>
                 </WeatherInfoPaneContainer>
-                <ExtraInfoPaneContainer>
+                <ExtraInfoPaneContainer className={darkMode ? "ExtraInfoPaneContainer dark" : "ExtraInfoPaneContainer light"}>
                     <InfoPane name='Humidity' icon="wi-humidity.svg">
                         <Humidity humidity={humidity} />
                     </InfoPane>
