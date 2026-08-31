@@ -8,12 +8,10 @@ export default async (req: Request, context: Context) => {
     const lat = url.searchParams.get("lat") || ""
     const lon = url.searchParams.get("lon") || ""
 
-    const units = url.searchParams.get("units") || ""
-
     const key = endpoint === "weather" ? Netlify.env.get("VITE_WEATHER_API_KEY") : Netlify.env.get("VITE_FORECAST_API_KEY")
 
     try {
-        const result = await fetch(`https://api.openweathermap.org/data/2.5/${endpoint}?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}&appid=${key}&units=${encodeURIComponent(units)}`);
+        const result = await fetch(`https://api.openweathermap.org/data/2.5/${endpoint}?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}&appid=${key}&units=imperial`);
         //console.log(result)
         if (result.ok) {
         const data = await result.json()

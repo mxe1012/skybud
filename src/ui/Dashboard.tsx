@@ -77,11 +77,9 @@ export default function Dashboard() {
             lat = exactCoords.lat;
         }
 
-        // const selectedUnits = units ? 'imperial' : 'metric';
-
     try {
-        const resultWeather = await apiFetch(lon, lat, "weather", "imperial");
-        const resultForecast = await apiFetch(lon, lat, "forecast", "imperial");
+        const resultWeather = await apiFetch(lon, lat, "weather");
+        const resultForecast = await apiFetch(lon, lat, "forecast");
 
         // Update location name
         const current = resultWeather.sys.country ? resultWeather.name + ", " + resultWeather.sys.country

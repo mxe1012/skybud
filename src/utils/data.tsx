@@ -1,8 +1,8 @@
 
-export async function apiFetch(lon=0, lat=0, endpoint="none", units="imperial") {
+export async function apiFetch(lon=0, lat=0, endpoint="none") {
 
     try {
-        const result = await fetch(`/api/current?endpoint=${endpoint}&lon=${encodeURIComponent(lon)}&lat=${encodeURIComponent(lat)}&units=${encodeURIComponent(units)}`)
+        const result = await fetch(`/api/current?endpoint=${endpoint}&lon=${encodeURIComponent(lon)}&lat=${encodeURIComponent(lat)}`)
         
         if (result.ok) {
             const data = await result.json();
