@@ -5,7 +5,7 @@ import { apiFetchLocations } from "../../utils/data";
 
 import type { LocationEntry } from "../../utils/types";
 
-export default function Controller({units, onSetUnits, disabled, onHandleFetch}) {
+export default function Controller({units, onSetUnits, disabled, onHandleFetch, darkMode}) {
 
     const [locationName, setLocationName] = useState("");
     const [locationList, setLocationList] = useState<LocationEntry[]>([]);
@@ -70,29 +70,53 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
     
+    let bgColorStr;
+    let boxShadowStr;
+
+    if (isScrolled && darkMode == false) {
+        bgColorStr = "rgba(255, 255, 255, 0.5)";
+        boxShadowStr = "0px 0px 10px"
+    }
+    else if (isScrolled && darkMode) {
+        bgColorStr = "rgba(23, 2, 2, 0.3)";
+        boxShadowStr = "0px 0px 10px 0px white"
+    }
+
     return (
         <>
             <ControllerPaneContainer styles={{
-                backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.5)' : "",
+                backgroundColor: bgColorStr,
                 backdropFilter: isScrolled ? "blur(2px)" : "",
-                boxShadow: isScrolled ? "0px 0px 10px" : "",
+                boxShadow: boxShadowStr,
                 transition: "background-color 0.2s ease, backdrop-filter 0.2s ease, box-shadow 0.2s ease"
                 }}>
                 <div style={{textAlign: 'center'}}>
                     {" "}
-                    <EventInput disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
+                    <EventInput styles={{
+                        backgroundColor: darkMode ? "black" : "",
+                        color: darkMode ? "white" : ""
+                    }} 
+                    disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
                     {" "}
-                    <EventButton text={isShowHisDrop ? "Hide History" : "Show History"} disabled={disabled} 
+                    <EventButton styles={{
+                        backgroundColor: darkMode ? "black" : "",
+                        color: darkMode ? "white" : ""
+                    }} 
+                    text={isShowHisDrop ? "Hide History" : "Show History"} disabled={disabled} 
                     onClick={() => setisShowHisDrop(!isShowHisDrop)}/>
                     <ul className="locations">
                         {locationList.length == 0 ? "" : locationList.map((element, index) => (
-                            <li key={index} className="locations" onClick={() => {
-                                onHandleFetch(element.lon, element.lat);
-                                setLocationCoords(element); 
-                                setLocationList([]);
-                                setHistory([
-                                    ...history,
-                                    element
+                            <li style={{
+                                backgroundColor: darkMode ? "black" : "",
+                                color: darkMode ? "white" : ""
+                            }} 
+                            key={index} className="locations" onClick={() => {
+                            onHandleFetch(element.lon, element.lat);
+                            setLocationCoords(element); 
+                            setLocationList([]);
+                            setHistory([
+                                ...history,
+                                element
                                 ])
                             }}>
                                 {element.state ? element.name + ", " + element.state + ", " + element.country : 
@@ -101,24 +125,40 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch})
                         ))}
                     </ul>
                     Units: 
-                    <select id="unit" value={String(units)} onChange={() => {onSetUnits(Boolean(!units))}} disabled={disabled}>
+                    <select style={{
+                        backgroundColor: darkMode ? "black" : "",
+                        color: darkMode ? "white" : ""
+                    }} 
+                    id="unit" value={String(units)} onChange={() => {onSetUnits(Boolean(!units))}} disabled={disabled}>
                         <option value={"true"} onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)}>Imperial</option>
                         <option value={"false"} onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
                     </select>
                     {" "}
-                    <EventButton text="Update Weather Information" disabled={disabled} 
-                        onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
+                    <EventButton styles={{
+                        backgroundColor: darkMode ? "black" : "",
+                        color: darkMode ? "white" : ""
+                    }} 
+                    text="Update Weather Information" disabled={disabled} 
+                    onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
                     {" "}
-                    <EventButton text="Use Current Location" disabled={disabled} 
-                        onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat, true)} />
+                    <EventButton styles={{
+                        backgroundColor: darkMode ? "black" : "",
+                        color: darkMode ? "white" : ""
+                    }} 
+                    text="Use Current Location" disabled={disabled} 
+                    onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat, true)} />
                     <br />
                     <ul className={isShowHisDrop ? "history show" : "history hide"}>
                         {history.map((element, index) => (
-                            <li key={index} className={isShowHisDrop ? "history show" : "history hide"} onClick={() => {
-                                onHandleFetch(element.lon, element.lat);
-                                setLocationCoords(element);
-                                setLocationName(element.name)
-                            }}>
+                            <li style={{
+                                backgroundColor: darkMode ? "black" : "",
+                                color: darkMode ? "white" : ""
+                            }} 
+                            key={index} className={isShowHisDrop ? "history show" : "history hide"} onClick={() => {
+                            onHandleFetch(element.lon, element.lat);
+                            setLocationCoords(element);
+                            setLocationName(element.name)
+                        }}>
                                 {element.state ? element.name + ", " + element.state + ", " + element.country : 
                                 element.name + ", " + element.country}
                             </li>
