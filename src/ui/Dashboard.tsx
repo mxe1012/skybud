@@ -173,7 +173,7 @@ export default function Dashboard() {
             </h1>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
             wind={wind} visibility={visiblity} sunrise={sunrise} sunset={sunset} units={units} darkMode={isDarkModde}/>
-            <Forecast forecastList={forecastList} units={units}/>
+            <Forecast forecastList={forecastList} units={units} darkMode={isDarkModde}/>
             
         </>
 
