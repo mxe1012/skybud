@@ -12,7 +12,7 @@ export function fahrenheitToCelsius(far: number): number {
 }
 
 export function milesPerHourtoMS(mph: number): number {
-    return mph / 2.237;
+    return Math.round(mph / 2.237);
 }
 
 export function kmToMi(km: number): number {
