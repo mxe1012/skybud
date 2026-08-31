@@ -1,6 +1,6 @@
 import type { WindProps } from "../../utils/types";
 
-import { optimizedCompass } from "../../utils/helpers";
+import { optimizedCompass, milesPerHourtoMS } from "../../utils/helpers";
 
 export default function Wind({wind, units}: WindProps) {
     
@@ -9,10 +9,10 @@ export default function Wind({wind, units}: WindProps) {
     const compass = optimizedCompass(deg);
     const compassIcon = "rotate(" + deg + "deg)";
 
-    const speedStr = units ? "Speed: " + Math.round(speed) + " mph" : "Speed: " + Math.round(speed) + " m/s";
+    const speedStr = units ? "Speed: " + Math.round(speed) + " mph" : "Speed: " + milesPerHourtoMS(speed) + " m/s";
 
     const gustStr = !gust ? "Gust: 0 mph" : 
-    units ? "Gust: " + Math.round(gust) + " mph" : "Gust: " + Math.round(gust) + " m/s";
+    units ? "Gust: " + Math.round(gust) + " mph" : "Gust: " + milesPerHourtoMS(speed) + " m/s";
 
     return (
         <div>

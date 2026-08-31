@@ -1,14 +1,16 @@
 import type { ForecastInfoProps } from "../../utils/types";
 
+import { fahrenheitToCelsius } from "../../utils/helpers";
+
 export default function ForecastItem({dt, weather, temperature, units}: ForecastInfoProps) {
 
     const formattedDt = new Date(dt * 1000);
 
     const strTempMax = units ? "High:" + Math.round(temperature.temp_max) + "°F" :
-    "High:" + Math.round(temperature.temp_max) + "°C";
+    "High:" + fahrenheitToCelsius(temperature.temp_max) + "°C";
 
     const strTempMin = units ? "Low:" + Math.round(temperature.temp_min) + "°F" :
-    "High:" + Math.round(temperature.temp_min) + "°C";
+    "High:" + fahrenheitToCelsius(temperature.temp_min) + "°C";
     
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 

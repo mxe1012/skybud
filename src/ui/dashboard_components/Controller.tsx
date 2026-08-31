@@ -130,8 +130,8 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                         color: darkMode ? "white" : ""
                     }} 
                     id="unit" value={String(units)} onChange={() => {onSetUnits(Boolean(!units))}} disabled={disabled}>
-                        <option value={"true"} onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)}>Imperial</option>
-                        <option value={"false"} onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)}>Metric</option>
+                        <option value={"true"}>Imperial</option>
+                        <option value={"false"}>Metric</option>
                     </select>
                     {" "}
                     <EventButton styles={{
