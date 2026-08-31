@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type React from "react";
 import type { ReactNode } from "react";
 
@@ -19,6 +20,21 @@ export interface AppearanceProps {
     children: ReactNode;
     styles?: React.CSSProperties;
     className?: string;
+}
+
+export interface EventButtonProps {
+    text: string;
+    styles?: React.CSSProperties;
+    disabled: boolean;
+    onClick: any;
+}
+
+export interface EventInputProps {
+    value: string;
+    styles?: React.CSSProperties;
+    disabled: boolean;
+    placeholder: string;
+    onChange: any;
 }
 
 export interface InfoPaneProps {
