@@ -15,6 +15,12 @@ export interface ControllerPaneContainerProps {
     styles?: React.CSSProperties;
 }
 
+export interface AppearanceProps {
+    children: ReactNode;
+    styles?: React.CSSProperties;
+    className?: string;
+}
+
 export interface InfoPaneProps {
     name?: string;
     icon?: string;
@@ -108,6 +114,7 @@ export interface CurrentWeatherProps {
     sunset: number;
     sunrise: number;
     units: boolean;
+    darkMode: boolean;
 }
 
 export interface ForecastProps {
