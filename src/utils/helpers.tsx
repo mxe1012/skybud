@@ -16,7 +16,7 @@ export function milesPerHourtoMS(mph: number): number {
 }
 
 export function kmToMi(km: number): number {
-    return km / 1.609
+    return Math.round(km / 1.609);
 }
 
 export function backgroundImageLookup(id: number, isDarkMode: boolean): string {
