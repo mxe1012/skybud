@@ -8,6 +8,8 @@ export interface ChildrenProps {
 
 export interface InfoPaneContainerProps {
     id: number;
+    className?: string;
+    darkModeBG: boolean;
     children: ReactNode;
 }
 
@@ -136,6 +138,7 @@ export interface CurrentWeatherProps {
 export interface ForecastProps {
     forecastList: ForecastEntry[];
     units: boolean;
+    darkMode: boolean;
 }
 
 export interface LocationEntry {
