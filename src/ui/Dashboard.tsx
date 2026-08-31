@@ -165,7 +165,7 @@ export default function Dashboard() {
             <Controller disabled={disabled} units={units} 
             onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={isDarkModde}/>
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
-            <h1 style={{textAlign: 'center'}}><img src="/assets/icons/location.png" width={25} height={35}/>
+            <h1 style={{color: isDarkModde ? 'white' : 'black', textAlign: 'center'}}><img src="/assets/icons/location.png" width={25} height={35}/>
                 {" "}
                 <b>{currentLocationName}</b>
             </h1>

@@ -73,9 +73,9 @@ export function InfoPane({name="", icon="wi-na.svg", children}: InfoPaneProps) {
     );
 }
 
-export function ForecastInfoPane({children}: ChildrenProps) {
+export function ForecastInfoPane({className, children}: AppearanceProps) {
     return (
-        <span className="ForecastInfoPane">
+        <span className={className}>
             {children}
         </span>
     );

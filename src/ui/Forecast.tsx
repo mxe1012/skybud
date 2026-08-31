@@ -10,10 +10,8 @@ export default function Forecast({forecastList, units, darkMode}: ForecastProps)
         <>
             <ForecastInfoContainer>
                 {forecastList.map((forecast) => (
-                <li style={{
-                        color: darkMode ? "white" : ""
-                    }} key={forecast.dt} className="forecast">
-                    <ForecastInfoPane>
+                <li key={forecast.dt} className="forecast">
+                    <ForecastInfoPane className={darkMode ? 'ForecastInfoPane dark' : 'ForecastInfoPane light'}>
                         <ForecastItem
                             dt={forecast.dt}
                             weather={{ main: forecast.main, icon: forecast.icon }}
