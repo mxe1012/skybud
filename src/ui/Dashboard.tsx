@@ -165,7 +165,7 @@ export default function Dashboard() {
             <Clock />
             <EventButton text="Toggle dark mode" disabled={false} onClick={() => setIsDarkMode(!isDarkModde)}/>
             <Controller disabled={disabled} units={units} 
-            onSetUnits={setUnits} onHandleFetch={handleFetch}/>
+            onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={isDarkModde}/>
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
             <h1 style={{textAlign: 'center'}}><img src="/assets/icons/location.png" width={25} height={35}/>
                 {" "}
