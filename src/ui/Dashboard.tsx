@@ -7,9 +7,8 @@ import { useState, useEffect } from "react";
 import { getCoordinates, apiFetch, } from '../utils/data.tsx';
 import type { ForecastEntry, } from "../utils/types.tsx";
 import Clock from "./dashboard_components/Clock.tsx";
-import { EventButton } from "./Containers.tsx";
 
-export default function Dashboard() {
+export default function Dashboard({darkMode}) {
 
     // Current name of location
     const [currentLocationName, setCurrentLocationName] = useState("");
@@ -61,8 +60,6 @@ export default function Dashboard() {
 
     // Forecast component
     const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
-    
-    const [isDarkModde, setIsDarkMode] = useState(false);
 
     async function handleFetch(lon, lat, useExactLocation=false) {
 
@@ -160,19 +157,18 @@ export default function Dashboard() {
     return (
 
         <>
-            <Clock darkMode={isDarkModde}/>
-            <EventButton text="Toggle dark mode" disabled={false} onClick={() => setIsDarkMode(!isDarkModde)}/>
+            <Clock darkMode={darkMode}/>
             <Controller disabled={disabled} units={units} 
-            onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={isDarkModde}/>
+            onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode}/>
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
-            <h1 style={{color: isDarkModde ? 'white' : 'black', textAlign: 'center'}}><img src="/assets/icons/location.png" width={25} height={35}/>
+            <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}><img src="/assets/icons/location.png" width={25} height={35}/>
                 {" "}
                 <b>{currentLocationName}</b>
             </h1>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
-            wind={wind} visibility={visiblity} sunrise={sunrise} sunset={sunset} units={units} darkMode={isDarkModde}/>
-            <h1 style={{color: isDarkModde ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
-            <Forecast forecastList={forecastList} units={units} darkMode={isDarkModde}/>
+            wind={wind} visibility={visiblity} sunrise={sunrise} sunset={sunset} units={units} darkMode={darkMode}/>
+            <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
+            <Forecast forecastList={forecastList} units={units} darkMode={darkMode}/>
             
         </>
 
