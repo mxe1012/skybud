@@ -11,10 +11,10 @@ import Dashboard from './ui/Dashboard.tsx';
 export default function App() {
 
     return (
-    <>
-        <MainPane>
-            <Dashboard />
-        </MainPane>
-    </>
+        <>
+            <MainPane>
+                <Dashboard />
+            </MainPane>
+        </>
     );
 }
