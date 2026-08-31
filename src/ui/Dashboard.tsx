@@ -162,7 +162,7 @@ export default function Dashboard() {
     return (
 
         <>
-            <Clock />
+            <Clock darkMode={isDarkModde}/>
             <EventButton text="Toggle dark mode" disabled={false} onClick={() => setIsDarkMode(!isDarkModde)}/>
             <Controller disabled={disabled} units={units} 
             onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={isDarkModde}/>
