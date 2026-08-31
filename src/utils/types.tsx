@@ -39,6 +39,10 @@ export interface EventInputProps {
     onChange: any;
 }
 
+export interface ClockProps {
+    darkMode: boolean;
+}
+
 export interface InfoPaneProps {
     name?: string;
     icon?: string;
