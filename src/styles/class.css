@@ -105,7 +105,7 @@
     z-index: 0;
 }
 
-.ForecastInfoContainer {
+.ForecastInfoContainer.light {
     animation-name: info-pane-fade;
     animation-duration: 1s;
     display: flex;
@@ -118,7 +118,29 @@
     box-shadow: 0px 0px 2px;
     border-radius: 35px;
     background-color: white;
-    background-image: url(/assets/backgrounds_light/bg_fore.jpg);
+    /* background-image: url(/assets/backgrounds_light/bg_fore.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    z-index: 0;
+}
+
+.ForecastInfoContainer.dark {
+    animation-name: info-pane-fade;
+    animation-duration: 1s;
+    display: flex;
+    justify-content: flex-start; 
+    flex-wrap: nowrap; 
+    white-space: nowrap;
+    padding: 15px;
+    max-width: 75%;
+    margin: auto;
+    box-shadow: 0px 0px 2px 0px 'white';
+    border-radius: 35px;
+    background-color: black;
+    /* background-image: url(/assets/backgrounds_light/bg_fore.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -149,7 +171,7 @@
     grid-template-columns: auto;
     animation-name: info-pane-fade;
     animation-duration: 1s;
-    background-color: rgba(23, 2, 2, 0.3);
+    background-color: rgba(255, 255, 255, 0.3);
     color: white;
     padding: 10px;
     text-align: center;
