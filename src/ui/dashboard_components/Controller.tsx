@@ -125,6 +125,7 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                         ))}
                     </ul>
                     Units: 
+                    {" "}
                     <select style={{
                         backgroundColor: darkMode ? "black" : "",
                         color: darkMode ? "white" : ""
