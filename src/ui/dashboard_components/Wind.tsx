@@ -12,7 +12,7 @@ export default function Wind({wind, units}: WindProps) {
     const speedStr = units ? "Speed: " + Math.round(speed) + " mph" : "Speed: " + milesPerHourtoMS(speed) + " m/s";
 
     const gustStr = !gust ? "Gust: 0 mph" : 
-    units ? "Gust: " + Math.round(gust) + " mph" : "Gust: " + milesPerHourtoMS(speed) + " m/s";
+    units ? "Gust: " + Math.round(gust) + " mph" : "Gust: " + milesPerHourtoMS(gust) + " m/s";
 
     return (
         <div>
