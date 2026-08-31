@@ -4,7 +4,9 @@ import type {
     InfoPaneProps, 
     InfoPaneIconProps, 
     InfoPaneContainerProps,
-    ControllerPaneContainerProps
+    ControllerPaneContainerProps,
+    EventButtonProps,
+    EventInputProps
 } from "../utils/types";
 
 import { backgroundImageLookup } from "../utils/helpers";
@@ -43,12 +45,12 @@ export function ForecastInfoContainer({children}: ChildrenProps) {
     );
 }
 
-export function EventButton({text="", disabled=false, onClick}) {
-    return <button className="EventButton" disabled={disabled} onClick={onClick}>{text}</button>
+export function EventButton({text="", styles, disabled=false, onClick}: EventButtonProps) {
+    return <button style={styles} className="EventButton" disabled={disabled} onClick={onClick}>{text}</button>
 }
 
-export function EventInput({value="", disabled=false, placeholder="Placeholder", onChange}) {
-    return <input className="EventInput" disabled={disabled} value={value} placeholder={placeholder} onChange={onChange}/>
+export function EventInput({value="", styles, disabled=false, placeholder="Placeholder", onChange}: EventInputProps) {
+    return <input style={styles} className="EventInput" disabled={disabled} value={value} placeholder={placeholder} onChange={onChange}/>
 }
 
 export function InfoPaneIcon({src="wi-na.svg", size=25}: InfoPaneIconProps) {
@@ -63,8 +65,8 @@ export function InfoPane({name="", icon="wi-na.svg", children}: InfoPaneProps) {
     return (
         <>
             <span className="InfoPane">
-            <InfoPaneIcon src={icon} size={35} />
-            <p>{name}</p>
+                <InfoPaneIcon src={icon} size={35} />
+                <p>{name}</p>
                 {children}
             </span>
         </>
