@@ -115,7 +115,7 @@
     padding: 15px;
     max-width: 75%;
     margin: auto;
-    box-shadow: 0px 0px 2px;
+    box-shadow: 0px 0px 10px;
     border-radius: 35px;
     background-color: white;
     /* background-image: url(/assets/backgrounds_light/bg_fore.jpg); */
@@ -137,7 +137,7 @@
     padding: 15px;
     max-width: 75%;
     margin: auto;
-    box-shadow: 0px 0px 2px 0px 'white';
+    box-shadow: 0px 0px 10px 0px white;
     border-radius: 35px;
     background-color: black;
     /* background-image: url(/assets/backgrounds_light/bg_fore.jpg); */
