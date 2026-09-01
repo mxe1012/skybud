@@ -117,7 +117,7 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                             </li>
                         ))}
                     </ul>
-                    Units: 
+                    <span style={{color: darkMode ? "white" : "black"}}>Units:</span> 
                     {" "}
                     <select style={darkMode ? darkModeStyle : lightModeStyle}
                     id="unit" value={String(units)} onChange={() => {onSetUnits(Boolean(!units))}} disabled={disabled}>
