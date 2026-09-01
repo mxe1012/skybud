@@ -152,3 +152,7 @@ export interface LocationEntry {
     lon: number;
     lat: number;
 }
+
+export interface DashboardProps {
+    darkMode: boolean;
+}

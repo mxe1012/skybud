@@ -5,10 +5,10 @@ import Controller from "./dashboard_components/Controller.tsx";
 import { useState, useEffect } from "react";
 
 import { getCoordinates, apiFetch, } from '../utils/data.tsx';
-import type { ForecastEntry, } from "../utils/types.tsx";
+import type { ForecastEntry, DashboardProps} from "../utils/types.tsx";
 import Clock from "./dashboard_components/Clock.tsx";
 
-export default function Dashboard({darkMode}) {
+export default function Dashboard({darkMode}: DashboardProps) {
 
     // Current name of location
     const [currentLocationName, setCurrentLocationName] = useState("");
