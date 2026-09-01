@@ -26,14 +26,14 @@ export interface AppearanceProps {
 
 export interface EventButtonProps {
     text: string;
-    styles?: React.CSSProperties;
     disabled: boolean;
+    className?: string;
     onClick: any;
 }
 
 export interface EventInputProps {
     value: string;
-    styles?: React.CSSProperties;
+    className?: string;
     disabled: boolean;
     placeholder: string;
     onChange: any;
