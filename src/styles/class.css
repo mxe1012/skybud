@@ -216,10 +216,11 @@
     grid-template-columns: auto auto; */
     padding: 35px;
     font-weight: 400;
+    border: 1px solid;
     color: white;
     border-radius: 35px;
     box-shadow: 0px 0px 10px 0px white;
-    background-color: rgba(23, 2, 2, 0.3);
+    background-color: rgba(52, 52, 52, 0.5);
     /* background-image: url(./src/assets/bg.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
@@ -255,8 +256,9 @@
     border-radius: 50px;
     box-shadow: 0px 0px 10px 0px white;
     padding: 35px;
+    border: 1px solid;
     color: white;
-    background-color: rgba(23, 2, 2, 0.3);
+    background-color: rgba(52, 52, 52, 0.5);
     display: inline-grid;
     justify-content: center;
     align-content: center;
@@ -286,7 +288,7 @@
     opacity: 1;
 }
 
-.EventButton {
+.EventButton.light {
     border-style: none;
     border-radius: 50px;
     background-color: white;
@@ -294,11 +296,45 @@
     font-family: "Inter", sans-serif;
 }
 
-.EventInput {
+.EventButton.dark {
+    border-style: none;
+    border-radius: 50px;
+    color: whitesmoke;
+    background-color: #3a3a3a;
+    padding: 10px;
+    font-family: "Inter", sans-serif;
+}
+
+.EventInput.light {
     border-style: none;
     border-radius: 50px;
     Padding: 10px;
     font-family: "Inter", sans-serif;
+}
+
+.EventInput.dark {
+    border-style: none;
+    border-radius: 50px;
+    background-color: #3a3a3a;
+    color: whitesmoke;
+    Padding: 10px;
+    font-family: "Inter", sans-serif;
+}
+
+.EventButton.light:disabled {
+    cursor: not-allowed;
+}
+
+.EventButton.dark:disabled {
+    cursor: not-allowed;
+}
+
+.EventInput.light:disabled {
+    cursor: not-allowed;
+}
+
+.EventInput.dark:disabled {
+    cursor: not-allowed;
 }
 
 .TemperatureGrid {
