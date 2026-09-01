@@ -1,9 +1,12 @@
 import type { 
     ChildrenProps, 
+    AppearanceProps,
     InfoPaneProps, 
     InfoPaneIconProps, 
     InfoPaneContainerProps,
-    ControllerPaneContainerProps
+    ControllerPaneContainerProps,
+    EventButtonProps,
+    EventInputProps
 } from "../utils/types";
 
 import { backgroundImageLookup } from "../utils/helpers";
@@ -12,42 +15,41 @@ export function MainPane({children}: ChildrenProps) {
     return <div className="MainPane">{children}</div>;
 }
 
-export function InfoPaneContainer({id, children}: InfoPaneContainerProps) {
+export function InfoPaneContainer({id, className, darkModeBG, children}: InfoPaneContainerProps) {
 
-    const bg = backgroundImageLookup(id);
+    const bg = backgroundImageLookup(id, darkModeBG);
 
-    return <div style={{backgroundImage: bg}} className="InfoPaneContainer">{children}</div>
+    return <div style={{backgroundImage: bg}} className={className}>{children}</div>
 }
 
-export function WeatherInfoPaneContainer({children}: ChildrenProps) {
-    return <div className="WeatherInfoPaneContainer">{children}</div>;
+export function WeatherInfoPaneContainer({styles, className, children}: AppearanceProps) {
+    return <div style={styles} className={className}>{children}</div>;
 }
 
-export function ExtraInfoPaneContainer({children}: ChildrenProps) {
-    return <div className="ExtraInfoPaneContainer">{children}</div>;
+export function ExtraInfoPaneContainer({styles, className, children}: AppearanceProps) {
+    return <div style={styles} className={className}>{children}</div>;
 }
 
 export function ControllerPaneContainer({styles, children}: ControllerPaneContainerProps) {
     return <div style={styles} className="ControllerPaneContainer">{children}</div>
 }
 
-export function ForecastInfoContainer({children}: ChildrenProps) {
+export function ForecastInfoContainer({className, children}: AppearanceProps) {
     return (
         <>
-            <h1 style={{textAlign: 'center'}}>Forecast</h1>
-            <div className="ForecastInfoContainer">
+            <div className={className}>
                 <ul className="forecast">{children}</ul>
             </div>
         </>
     );
 }
 
-export function EventButton({text="", disabled=false, onClick}) {
-    return <button className="EventButton" disabled={disabled} onClick={onClick}>{text}</button>
+export function EventButton({text="", styles, disabled=false, onClick}: EventButtonProps) {
+    return <button style={styles} className="EventButton" disabled={disabled} onClick={onClick}>{text}</button>
 }
 
-export function EventInput({value="", disabled=false, placeholder="Placeholder", onChange}) {
-    return <input className="EventInput" disabled={disabled} value={value} placeholder={placeholder} onChange={onChange}/>
+export function EventInput({value="", styles, disabled=false, placeholder="Placeholder", onChange}: EventInputProps) {
+    return <input style={styles} className="EventInput" disabled={disabled} value={value} placeholder={placeholder} onChange={onChange}/>
 }
 
 export function InfoPaneIcon({src="wi-na.svg", size=25}: InfoPaneIconProps) {
@@ -62,17 +64,17 @@ export function InfoPane({name="", icon="wi-na.svg", children}: InfoPaneProps) {
     return (
         <>
             <span className="InfoPane">
-            <InfoPaneIcon src={icon} size={35} />
-            <p>{name}</p>
+                <InfoPaneIcon src={icon} size={35} />
+                <p>{name}</p>
                 {children}
             </span>
         </>
     );
 }
 
-export function ForecastInfoPane({children}: ChildrenProps) {
+export function ForecastInfoPane({className, children}: AppearanceProps) {
     return (
-        <span className="ForecastInfoPane">
+        <span className={className}>
             {children}
         </span>
     );

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type React from "react";
 import type { ReactNode } from "react";
 
@@ -7,12 +8,39 @@ export interface ChildrenProps {
 
 export interface InfoPaneContainerProps {
     id: number;
+    className?: string;
+    darkModeBG: boolean;
     children: ReactNode;
 }
 
 export interface ControllerPaneContainerProps {
     children: ReactNode;
     styles?: React.CSSProperties;
+}
+
+export interface AppearanceProps {
+    children: ReactNode;
+    styles?: React.CSSProperties;
+    className?: string;
+}
+
+export interface EventButtonProps {
+    text: string;
+    styles?: React.CSSProperties;
+    disabled: boolean;
+    onClick: any;
+}
+
+export interface EventInputProps {
+    value: string;
+    styles?: React.CSSProperties;
+    disabled: boolean;
+    placeholder: string;
+    onChange: any;
+}
+
+export interface ClockProps {
+    darkMode: boolean;
 }
 
 export interface InfoPaneProps {
@@ -108,11 +136,13 @@ export interface CurrentWeatherProps {
     sunset: number;
     sunrise: number;
     units: boolean;
+    darkMode: boolean;
 }
 
 export interface ForecastProps {
     forecastList: ForecastEntry[];
     units: boolean;
+    darkMode: boolean;
 }
 
 export interface LocationEntry {
@@ -121,4 +151,8 @@ export interface LocationEntry {
     state: string;
     lon: number;
     lat: number;
+}
+
+export interface DashboardProps {
+    darkMode: boolean;
 }

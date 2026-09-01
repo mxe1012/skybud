@@ -4,14 +4,14 @@ import ForecastItem from './dashboard_components/ForecastItem.tsx';
 
 import type { ForecastProps } from '../utils/types.tsx';
 
-export default function Forecast({forecastList, units}: ForecastProps) {
+export default function Forecast({forecastList, units, darkMode}: ForecastProps) {
 
     return (
         <>
-            <ForecastInfoContainer>
+            <ForecastInfoContainer className={darkMode ? 'ForecastInfoContainer dark' : 'ForecastInfoContainer light'}>
                 {forecastList.map((forecast) => (
                 <li key={forecast.dt} className="forecast">
-                    <ForecastInfoPane>
+                    <ForecastInfoPane className={darkMode ? 'ForecastInfoPane dark' : 'ForecastInfoPane light'}>
                         <ForecastItem
                             dt={forecast.dt}
                             weather={{ main: forecast.main, icon: forecast.icon }}

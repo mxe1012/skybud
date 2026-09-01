@@ -5,10 +5,10 @@ import Controller from "./dashboard_components/Controller.tsx";
 import { useState, useEffect } from "react";
 
 import { getCoordinates, apiFetch, } from '../utils/data.tsx';
-import type { ForecastEntry, } from "../utils/types.tsx";
+import type { ForecastEntry, DashboardProps} from "../utils/types.tsx";
 import Clock from "./dashboard_components/Clock.tsx";
 
-export default function Dashboard() {
+export default function Dashboard({darkMode}: DashboardProps) {
 
     // Current name of location
     const [currentLocationName, setCurrentLocationName] = useState("");
@@ -60,7 +60,7 @@ export default function Dashboard() {
 
     // Forecast component
     const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
-    
+
     async function handleFetch(lon, lat, useExactLocation=false) {
 
         setNotice("Acquiring weather info...");
@@ -74,11 +74,9 @@ export default function Dashboard() {
             lat = exactCoords.lat;
         }
 
-        const selectedUnits = units ? 'imperial' : 'metric';
-
     try {
-        const resultWeather = await apiFetch(lon, lat, "weather", selectedUnits);
-        const resultForecast = await apiFetch(lon, lat, "forecast", selectedUnits);
+        const resultWeather = await apiFetch(lon, lat, "weather");
+        const resultForecast = await apiFetch(lon, lat, "forecast");
 
         // Update location name
         const current = resultWeather.sys.country ? resultWeather.name + ", " + resultWeather.sys.country
@@ -153,23 +151,24 @@ export default function Dashboard() {
 
         setTimeout(handleFetch, 200);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
     }, []);
 
     return (
 
         <>
-            <Clock />
+            <Clock darkMode={darkMode}/>
             <Controller disabled={disabled} units={units} 
-            onSetUnits={setUnits} onHandleFetch={handleFetch}/>
+            onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode}/>
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
-            <h1 style={{textAlign: 'center'}}><img src="/assets/icons/location.png" width={25} height={35}/>
+            <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}><img src="/assets/icons/location.png" width={25} height={35}/>
                 {" "}
                 <b>{currentLocationName}</b>
             </h1>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
-            wind={wind} visibility={visiblity} sunrise={sunrise} sunset={sunset} units={units}/>
-            <Forecast forecastList={forecastList} units={units}/>
+            wind={wind} visibility={visiblity} sunrise={sunrise} sunset={sunset} units={units} darkMode={darkMode}/>
+            <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
+            <Forecast forecastList={forecastList} units={units} darkMode={darkMode}/>
             
         </>
 

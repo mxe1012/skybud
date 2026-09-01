@@ -5,7 +5,7 @@ import { kmToMi } from "../../utils/helpers";
 export default function Visibility({visiblity, units}: VisiblityProps) {
 
     let visStr;
-    const formatVis = units ? String(Math.round(kmToMi(visiblity / 1000))) + " mi" : String(visiblity / 1000) + " km";
+    const formatVis = units ? String(kmToMi(visiblity / 1000)) + " mi" : String(visiblity / 1000) + " km";
 
     const gaugeValue = String(visiblity / 10000);
 

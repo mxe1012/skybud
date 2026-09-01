@@ -9,6 +9,7 @@ A simple, fast weather application built with React, TypeScript, and Vite. Searc
 - 🌡️ Current conditions (e.g., temperature, feels-like, humidity, wind)
 - 🗓️ Five-day/Three-hour forecast  
 - 📱 Responsive layout
+- 🌙 Dark mode
 
 ## Tech Stack
 
