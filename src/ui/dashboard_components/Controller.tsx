@@ -3,6 +3,8 @@ import { useRef, useState, useEffect } from "react";
 
 import { apiFetchLocations } from "../../utils/data";
 
+import { lightModeStyle, darkModeStyle } from "../../utils/helpers";
+
 import type { LocationEntry } from "../../utils/types";
 
 export default function Controller({units, onSetUnits, disabled, onHandleFetch, darkMode}) {
@@ -92,24 +94,15 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                 }}>
                 <div style={{textAlign: 'center'}}>
                     {" "}
-                    <EventInput styles={{
-                        backgroundColor: darkMode ? "black" : "",
-                        color: darkMode ? "white" : ""
-                    }} 
+                    <EventInput styles={darkMode ? darkModeStyle : lightModeStyle} 
                     disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
                     {" "}
-                    <EventButton styles={{
-                        backgroundColor: darkMode ? "black" : "",
-                        color: darkMode ? "white" : ""
-                    }} 
+                    <EventButton styles={darkMode ? darkModeStyle : lightModeStyle} 
                     text={isShowHisDrop ? "Hide History" : "Show History"} disabled={disabled} 
                     onClick={() => setisShowHisDrop(!isShowHisDrop)}/>
                     <ul className="locations">
                         {locationList.length == 0 ? "" : locationList.map((element, index) => (
-                            <li style={{
-                                backgroundColor: darkMode ? "black" : "",
-                                color: darkMode ? "white" : ""
-                            }} 
+                            <li style={darkMode ? darkModeStyle : lightModeStyle} 
                             key={index} className="locations" onClick={() => {
                             onHandleFetch(element.lon, element.lat);
                             setLocationCoords(element); 
@@ -126,35 +119,23 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                     </ul>
                     Units: 
                     {" "}
-                    <select style={{
-                        backgroundColor: darkMode ? "black" : "",
-                        color: darkMode ? "white" : ""
-                    }} 
+                    <select style={darkMode ? darkModeStyle : lightModeStyle}
                     id="unit" value={String(units)} onChange={() => {onSetUnits(Boolean(!units))}} disabled={disabled}>
                         <option value={"true"}>Imperial</option>
                         <option value={"false"}>Metric</option>
                     </select>
                     {" "}
-                    <EventButton styles={{
-                        backgroundColor: darkMode ? "black" : "",
-                        color: darkMode ? "white" : ""
-                    }} 
+                    <EventButton styles={darkMode ? darkModeStyle : lightModeStyle} 
                     text="Update Weather Information" disabled={disabled} 
                     onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
                     {" "}
-                    <EventButton styles={{
-                        backgroundColor: darkMode ? "black" : "",
-                        color: darkMode ? "white" : ""
-                    }} 
+                    <EventButton styles={darkMode ? darkModeStyle : lightModeStyle} 
                     text="Use Current Location" disabled={disabled} 
                     onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat, true)} />
                     <br />
                     <ul className={isShowHisDrop ? "history show" : "history hide"}>
                         {history.map((element, index) => (
-                            <li style={{
-                                backgroundColor: darkMode ? "black" : "",
-                                color: darkMode ? "white" : ""
-                            }} 
+                            <li style={darkMode ? darkModeStyle : lightModeStyle}
                             key={index} className={isShowHisDrop ? "history show" : "history hide"} onClick={() => {
                             onHandleFetch(element.lon, element.lat);
                             setLocationCoords(element);

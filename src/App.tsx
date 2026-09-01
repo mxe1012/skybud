@@ -6,7 +6,9 @@ import './styles/class.css'
 
 import { useState } from 'react'
 
-import { MainPane, EventButton } from './ui/Containers.tsx';
+import { MainPane } from './ui/Containers.tsx';
+
+import { darkModeStyleBackground, lightModeStyleBackground } from './utils/helpers.tsx'
 
 import Dashboard from './ui/Dashboard.tsx';
 
@@ -15,15 +17,13 @@ export default function App() {
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     return (
-        <body style={{
-            background: isDarkMode ? 
-            "radial-gradient(circle,rgba(0, 45, 227, 1) 0%, rgba(3, 11, 89, 1) 50%, rgba(0, 61, 158, 1) 100%)"
-        :   "radial-gradient(circle,rgba(255, 255, 255, 1) 0%, rgba(65, 196, 240, 1) 50%, rgba(154, 216, 252, 1) 100%)"
-        }} className='body'>
-            <EventButton text="Toggle dark mode" disabled={false} onClick={() => setIsDarkMode(!isDarkMode)}/>
+        <div style={ isDarkMode ? darkModeStyleBackground : lightModeStyleBackground} id='bg'>
             <MainPane>
                 <Dashboard darkMode={isDarkMode}/>
             </MainPane>
-        </body>
+            <button id="darkModeBtn" disabled={false} onClick={() => setIsDarkMode(!isDarkMode)}>
+                {isDarkMode ? "🌕" : "☀️"}
+            </button>
+        </div>
     );
 }
