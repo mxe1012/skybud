@@ -65,7 +65,7 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
     useEffect(() => {
             const handleScroll = () => {
             const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-            setIsScrolled(scrollTop > 190);
+            setIsScrolled(scrollTop > 36);
         };
 
         window.addEventListener('scroll', handleScroll);
