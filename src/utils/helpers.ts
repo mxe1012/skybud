@@ -1,6 +1,6 @@
 
 export const darkModeStyle = { 
-    backgroundColor: "grey",
+    backgroundColor: "#3a3a3a",
     color: "white",
 }
 
@@ -10,7 +10,7 @@ export const lightModeStyle = {
 }
 
 export const darkModeStyleBackground = { 
-    backgroundImage: "radial-gradient(circle,rgba(107, 107, 107, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(61, 61, 61, 1) 100%)"
+    backgroundImage: "radial-gradient(circle, rgba(30,30,40,1) 0%, rgba(18,18,26,1) 50%, rgba(8,8,14,1) 100%)"
 }
 
 export const lightModeStyleBackground = { 
