@@ -79,6 +79,7 @@ export interface TempObjectProps {
 
 export interface HumidityProps {
     humidity: number;
+    darkMode: boolean;
 }
 
 export interface WindProps {
@@ -95,6 +96,7 @@ export interface WindObjectProps {
 export interface VisiblityProps {
     visiblity: number;
     units: boolean;
+    darkMode: boolean;
 }
 
 export interface SunriseAndSunsetProps {
