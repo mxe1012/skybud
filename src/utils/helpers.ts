@@ -17,6 +17,14 @@ export const lightModeStyleBackground = {
     backgroundImage: "radial-gradient(circle,rgba(255, 255, 255, 1) 0%, rgba(65, 196, 240, 1) 50%, rgba(154, 216, 252, 1) 100%)"
 }
 
+export function currentTime(): string {
+
+    const t = new Date()
+
+    return t.toLocaleTimeString();
+
+}
+
 export function optimizedCompass(degree: number): string {
 
     const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];

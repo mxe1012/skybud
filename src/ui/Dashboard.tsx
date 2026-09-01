@@ -4,6 +4,8 @@ import Controller from "./dashboard_components/Controller.tsx";
 
 import { useState, useEffect } from "react";
 
+import { currentTime } from "../utils/helpers.ts";
+
 import { getCoordinates, apiFetch, } from '../utils/data.ts';
 import type { ForecastEntry, DashboardProps} from "../utils/types.ts";
 
@@ -166,7 +168,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
             wind={wind} visibility={visiblity} sunrise={sunrise} sunset={sunset} units={units} darkMode={darkMode}/>
             <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
             <Forecast forecastList={forecastList} units={units} darkMode={darkMode}/>
-            
+            <p style={{textAlign: 'center'}}>{"Last updated: " + currentTime()}</p>
         </>
 
     );
