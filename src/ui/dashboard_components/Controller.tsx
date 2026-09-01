@@ -80,7 +80,7 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
         boxShadowStr = "0px 0px 10px"
     }
     else if (isScrolled && darkMode) {
-        bgColorStr = "rgba(23, 2, 2, 0.3)";
+        bgColorStr = "rgba(52, 52, 52, 0.5)";
         boxShadowStr = "0px 0px 10px 0px white"
     }
 
@@ -94,10 +94,10 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                 }}>
                 <div style={{textAlign: 'center'}}>
                     {" "}
-                    <EventInput styles={darkMode ? darkModeStyle : lightModeStyle} 
+                    <EventInput className={darkMode ? "EventInput dark" : "EventInput light"}
                     disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
                     {" "}
-                    <EventButton styles={darkMode ? darkModeStyle : lightModeStyle} 
+                    <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
                     text={isShowHisDrop ? "Hide History" : "Show History"} disabled={disabled} 
                     onClick={() => setisShowHisDrop(!isShowHisDrop)}/>
                     <ul className="locations">
@@ -125,11 +125,11 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                         <option value={"false"}>Metric</option>
                     </select>
                     {" "}
-                    <EventButton styles={darkMode ? darkModeStyle : lightModeStyle} 
+                    <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
                     text="Update Weather Information" disabled={disabled} 
                     onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
                     {" "}
-                    <EventButton styles={darkMode ? darkModeStyle : lightModeStyle} 
+                    <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
                     text="Use Current Location" disabled={disabled} 
                     onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat, true)} />
                     <br />
