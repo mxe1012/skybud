@@ -12,7 +12,7 @@ import Wind from './dashboard_components/Wind.tsx';
 import Visibility from './dashboard_components/Visiblity.tsx';
 import SunriseAndSunset from './dashboard_components/SunriseSunset.tsx';
 
-import type { CurrentWeatherProps } from "../utils/types.tsx";
+import type { CurrentWeatherProps } from "../utils/types.ts";
 
 export default function CurrentWeather({weather, temperature, humidity, wind, visibility, sunrise, sunset, units, darkMode}: CurrentWeatherProps) {
 

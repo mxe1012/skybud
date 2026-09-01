@@ -4,8 +4,8 @@ import Controller from "./dashboard_components/Controller.tsx";
 
 import { useState, useEffect } from "react";
 
-import { getCoordinates, apiFetch, } from '../utils/data.tsx';
-import type { ForecastEntry, DashboardProps} from "../utils/types.tsx";
+import { getCoordinates, apiFetch, } from '../utils/data.ts';
+import type { ForecastEntry, DashboardProps} from "../utils/types.ts";
 import Clock from "./dashboard_components/Clock.tsx";
 
 export default function Dashboard({darkMode}: DashboardProps) {

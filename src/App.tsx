@@ -8,7 +8,7 @@ import { useState } from 'react'
 
 import { MainPane } from './ui/Containers.tsx';
 
-import { darkModeStyleBackground, lightModeStyleBackground } from './utils/helpers.tsx'
+import { darkModeStyleBackground, lightModeStyleBackground } from './utils/helpers.ts'
 
 import Dashboard from './ui/Dashboard.tsx';
 
