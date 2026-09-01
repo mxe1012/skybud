@@ -307,12 +307,28 @@
     cursor: not-allowed;
 }
 
+.EventButton.light:hover {
+    background-color: rgb(215, 215, 215);
+}
+
+.EventButton.dark:hover {
+    background-color: rgb(148, 148, 148);
+}
+
 .EventInput.light:disabled {
     cursor: not-allowed;
 }
 
 .EventInput.dark:disabled {
     cursor: not-allowed;
+}
+
+.EventInput.light:hover {
+    background-color: rgb(215, 215, 215);
+}
+
+.EventInput.dark:hover {
+    background-color: rgb(148, 148, 148);
 }
 
 .TemperatureGrid {
