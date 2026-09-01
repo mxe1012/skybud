@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 
 import { getCoordinates, apiFetch, } from '../utils/data.ts';
 import type { ForecastEntry, DashboardProps} from "../utils/types.ts";
-import Clock from "./dashboard_components/Clock.tsx";
 
 export default function Dashboard({darkMode}: DashboardProps) {
 
@@ -65,7 +64,6 @@ export default function Dashboard({darkMode}: DashboardProps) {
 
         setNotice("Acquiring weather info...");
         setDisabled(true);
-
         setShowSnackbar(true);
 
         if (useExactLocation === true) {
@@ -157,7 +155,6 @@ export default function Dashboard({darkMode}: DashboardProps) {
     return (
 
         <>
-            <Clock darkMode={darkMode}/>
             <Controller disabled={disabled} units={units} 
             onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode}/>
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
