@@ -3,6 +3,7 @@ import './styles/snackbar.css'
 import './styles/history.css'
 import './styles/gauges.css'
 import './styles/class.css'
+import './styles/id.css'
 
 import { useState } from 'react'
 
