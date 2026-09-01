@@ -21,7 +21,7 @@ export default function App() {
             <MainPane>
                 <Dashboard darkMode={isDarkMode}/>
             </MainPane>
-            <button id="darkModeBtn" disabled={false} onClick={() => setIsDarkMode(!isDarkMode)}>
+            <button id="darkModeBtn" onClick={() => setIsDarkMode(!isDarkMode)}>
                 {isDarkMode ? "🌕" : "☀️"}
             </button>
         </div>
