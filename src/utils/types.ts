@@ -81,6 +81,7 @@ export interface HumidityProps {
 export interface WindProps {
     wind: WindObjectProps;
     units: boolean;
+    darkMode: boolean;
 }
 
 export interface WindObjectProps {
