@@ -9,13 +9,13 @@
     }
 }
 
-ul.history.hide > li.history.hide {
+ul.recents.hide > li.recents.hide {
     list-style-type: none;
     visibility: hidden;
     display: none;
 }
 
-ul.history.show > li.history.show {
+ul.recents.show > li.recents.show {
     animation-name: history-li-anim;
     animation-duration: 0.2s;
     list-style-type: none;
@@ -28,6 +28,6 @@ ul.history.show > li.history.show {
     cursor: pointer;
 }
 
-ul.history.show > li.history.show:hover {
+ul.recents.show > li.recents.show:hover {
     background-color: grey;
 }
