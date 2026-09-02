@@ -96,7 +96,11 @@ export interface VisiblityProps {
 }
 
 export interface SunriseAndSunsetProps {
-    sunrise: number
+    sunTime: SunriseAndSunsetObjectProps;
+}
+
+export interface SunriseAndSunsetObjectProps {
+    sunrise: number;
     sunset: number;
 }
 
@@ -131,8 +135,7 @@ export interface CurrentWeatherProps {
     humidity: number;
     wind: WindObjectProps;
     visibility: number;
-    sunset: number;
-    sunrise: number;
+    sunTime: SunriseAndSunsetObjectProps;
     units: boolean;
     darkMode: boolean;
 }

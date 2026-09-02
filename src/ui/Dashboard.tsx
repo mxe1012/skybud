@@ -49,8 +49,10 @@ export default function Dashboard({darkMode}: DashboardProps) {
     const [visiblity, setVisiblity] = useState(0);
 
     //Sunrise and sunset component
-    const [sunrise, setSunrise] = useState(0);
-    const [sunset, setSunset] = useState(0);
+    const [sunTime, setSunTime] = useState({
+        sunrise: 0,
+        sunset: 0,
+    })
     
     // Notices
     const [notice, setNotice] = useState("");
@@ -115,8 +117,11 @@ export default function Dashboard({darkMode}: DashboardProps) {
         setVisiblity(resultWeather.visibility);
 
         // Update Sunrise and Sunset related state
-        setSunrise(resultWeather.sys.sunrise);
-        setSunset(resultWeather.sys.sunset);
+        const {sunrise, sunset} = resultWeather.sys
+        setSunTime({
+            sunrise,
+            sunset
+        })
 
         const newForecastList: ForecastEntry[] = resultForecast.list.map((element) => {
 
@@ -165,7 +170,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
                 <b>{currentLocationName}</b>
             </h1>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
-            wind={wind} visibility={visiblity} sunrise={sunrise} sunset={sunset} units={units} darkMode={darkMode}/>
+            wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode}/>
             <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
             <Forecast forecastList={forecastList} units={units} darkMode={darkMode}/>
             <p style={{textAlign: 'center'}}>{"Last updated: " + currentTime()}</p>

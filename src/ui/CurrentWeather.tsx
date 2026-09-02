@@ -14,7 +14,7 @@ import SunriseAndSunset from './dashboard_components/SunriseSunset.tsx';
 
 import type { CurrentWeatherProps } from "../utils/types.ts";
 
-export default function CurrentWeather({weather, temperature, humidity, wind, visibility, sunrise, sunset, units, darkMode}: CurrentWeatherProps) {
+export default function CurrentWeather({weather, temperature, humidity, wind, visibility, sunTime, units, darkMode}: CurrentWeatherProps) {
 
     return (
         <>
@@ -39,7 +39,7 @@ export default function CurrentWeather({weather, temperature, humidity, wind, vi
                         <Visibility visiblity={visibility} units={units} darkMode={darkMode}/>
                     </InfoPane>
                     <InfoPane name="Sunrise/Sunset" icon="wi-horizon.svg">
-                        <SunriseAndSunset sunrise={sunrise} sunset= {sunset}/>
+                        <SunriseAndSunset sunTime={sunTime}/>
                     </InfoPane>
                 </ExtraInfoPaneContainer>
             </InfoPaneContainer>
