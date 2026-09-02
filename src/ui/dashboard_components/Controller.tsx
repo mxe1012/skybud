@@ -61,21 +61,12 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
             }
     }
 
-    function checkRecentsLength(list, element) {
-        if (list.length >= 5) {
-            list.shift()
-            setRecents([
-                ...list,
-                element
-            ])
-        }
-        else {
-            setRecents([
-                ...list,
-                element
-            ])
-        }
-
+    function checkRecentsLength(element) {
+        const updated = recents.length >= 5 ? recents.slice(1) : recents;
+        setRecents([
+            ...updated, 
+            element
+        ]);
     }
     
     useEffect(() => {
@@ -123,7 +114,7 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                             onHandleFetch(element.lon, element.lat);
                             setLocationCoords(element); 
                             setLocationList([]);
-                            checkRecentsLength(recents, element)
+                            checkRecentsLength(element)
                             }}>
                                 {element.state ? element.name + ", " + element.state + ", " + element.country : 
                                 element.name + ", " + element.country}
