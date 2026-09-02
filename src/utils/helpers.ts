@@ -25,6 +25,22 @@ export function currentTime(): string {
 
 }
 
+export function getVisibilityLabel(vis: number): string {
+
+    if (vis >= 7500) {
+        return "Unlimited";
+    }
+    else if (vis < 7500 && vis >= 5000) {
+        return "High";
+    }
+    else if (vis < 5000 && vis >= 2500) {
+        return "Medium";
+    }
+    else {
+        return "Low";
+    }
+}
+
 export function optimizedCompass(degree: number): string {
 
     const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
