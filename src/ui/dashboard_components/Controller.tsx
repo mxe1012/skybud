@@ -102,7 +102,7 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                 <div style={{textAlign: 'center'}}>
                     {" "}
                     <EventInput className={darkMode ? "EventInput dark" : "EventInput light"}
-                    disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
+                    disabled={disabled} value={locationName} placeholder="Search Location..." onChange={handleSearch}/>
                     {" "}
                     <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
                     text={isShowRecentsDrop ? "Hide Recents" : "Show Recents"} disabled={disabled} 

@@ -173,7 +173,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
             wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode}/>
             <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
             <Forecast forecastList={forecastList} units={units} darkMode={darkMode}/>
-            <p style={{textAlign: 'center'}}>{"Last updated: " + currentTime()}</p>
+            <p style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>{"Last updated: " + currentTime()}</p>
         </>
 
     );
