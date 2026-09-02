@@ -2,7 +2,7 @@ import type { WindProps } from "../../utils/types";
 
 import { optimizedCompass, milesPerHourtoMS } from "../../utils/helpers";
 
-export default function Wind({wind, units}: WindProps) {
+export default function Wind({wind, units, darkMode}: WindProps) {
     
     const {speed, deg, gust} = wind;
 
@@ -16,7 +16,7 @@ export default function Wind({wind, units}: WindProps) {
 
     return (
         <div>
-            <img style={{transform: compassIcon}} src="/assets/icons/wi-wind-deg.svg" width={50} height={50}/>
+            <img style={{filter: darkMode ? 'invert(1)' : "", transform: compassIcon}} src="/assets/icons/wi-wind-deg.svg" width={50} height={50}/>
             <br />
             <b>{speedStr}</b>
             <br />
