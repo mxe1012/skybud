@@ -16,6 +16,10 @@ ul.recents.hide > li.recents.hide {
 }
 
 ul.recents.show > li.recents.show {
+    background-image: url('/assets/icons/recent.png'); 
+    background-position: 10px ;
+    background-repeat: no-repeat; 
+    background-size: 25px;
     animation-name: history-li-anim;
     animation-duration: 0.2s;
     list-style-type: none;
