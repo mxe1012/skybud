@@ -284,6 +284,9 @@
 }
 
 .EventInput.light {
+    background-image: url('/assets/icons/search_icon_24.png'); 
+    background-position: 170px ;
+    background-repeat: no-repeat; 
     border-style: none;
     border-radius: 50px;
     Padding: 10px;
@@ -291,6 +294,9 @@
 }
 
 .EventInput.dark {
+    background-image: url('/assets/icons/search_icon_white_24.png'); 
+    background-position: 170px ;
+    background-repeat: no-repeat; 
     border-style: none;
     border-radius: 50px;
     background-color: #3a3a3a;
