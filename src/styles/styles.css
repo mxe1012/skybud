@@ -3,6 +3,8 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(55, 55, 55, 0.9) transparent;
 }
 
 button {
