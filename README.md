@@ -76,25 +76,11 @@ The app will be available at `http://localhost:5173` by default.
 weather-app/
 ├── netlify/
 ├── public/
-│   ├── assets/
-│   ├── favicon.svg
-│   └── icons.svg
+│   └── assets/
 ├── src/
 │   ├── styles/
-│   │   ├── snackbar.css
-│   │   └── styles.css
 │   ├── ui/
-│   │   ├── components/
-│   │   │   ├── ForecastItem.tsx
-│   │   │   ├── Humidity.tsx
-│   │   │   ├── SunriseSunset.tsx
-│   │   │   ├── Temperature.tsx
-│   │   │   ├── Weather.tsx
-│   │   │   └── Wind.tsx
-│   │   ├── Containers.tsx
-│   │   ├── CurrentWeather.tsx
-│   │   ├── Dashboard.tsx
-│   │   └── Forecast.tsx
+│   │   └── components/
 │   ├── utils/
 │   ├── App.tsx
 │   └── index.tsx
