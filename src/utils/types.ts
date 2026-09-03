@@ -26,21 +26,17 @@ export interface AppearanceProps {
 
 export interface EventButtonProps {
     text: string;
-    styles?: React.CSSProperties;
     disabled: boolean;
+    className?: string;
     onClick: any;
 }
 
 export interface EventInputProps {
     value: string;
-    styles?: React.CSSProperties;
+    className?: string;
     disabled: boolean;
     placeholder: string;
     onChange: any;
-}
-
-export interface ClockProps {
-    darkMode: boolean;
 }
 
 export interface InfoPaneProps {
@@ -79,11 +75,13 @@ export interface TempObjectProps {
 
 export interface HumidityProps {
     humidity: number;
+    darkMode: boolean;
 }
 
 export interface WindProps {
     wind: WindObjectProps;
     units: boolean;
+    darkMode: boolean;
 }
 
 export interface WindObjectProps {
@@ -95,10 +93,15 @@ export interface WindObjectProps {
 export interface VisiblityProps {
     visiblity: number;
     units: boolean;
+    darkMode: boolean;
 }
 
 export interface SunriseAndSunsetProps {
-    sunrise: number
+    sunTime: SunriseAndSunsetObjectProps;
+}
+
+export interface SunriseAndSunsetObjectProps {
+    sunrise: number;
     sunset: number;
 }
 
@@ -133,8 +136,7 @@ export interface CurrentWeatherProps {
     humidity: number;
     wind: WindObjectProps;
     visibility: number;
-    sunset: number;
-    sunrise: number;
+    sunTime: SunriseAndSunsetObjectProps;
     units: boolean;
     darkMode: boolean;
 }

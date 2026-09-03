@@ -1,14 +1,15 @@
 import './styles/styles.css'
 import './styles/snackbar.css'
-import './styles/history.css'
+import './styles/recents.css'
 import './styles/gauges.css'
 import './styles/class.css'
+import './styles/id.css'
 
 import { useState } from 'react'
 
 import { MainPane } from './ui/Containers.tsx';
 
-import { darkModeStyleBackground, lightModeStyleBackground } from './utils/helpers.tsx'
+import { darkModeStyleBackground, lightModeStyleBackground } from './utils/helpers.ts'
 
 import Dashboard from './ui/Dashboard.tsx';
 
@@ -21,7 +22,7 @@ export default function App() {
             <MainPane>
                 <Dashboard darkMode={isDarkMode}/>
             </MainPane>
-            <button id="darkModeBtn" disabled={false} onClick={() => setIsDarkMode(!isDarkMode)}>
+            <button id="darkModeBtn" onClick={() => setIsDarkMode(!isDarkMode)}>
                 {isDarkMode ? "🌕" : "☀️"}
             </button>
         </div>

@@ -35,23 +35,6 @@
     }
 }
 
-.Clock {
-    display: flex;
-    justify-content: center;
-}
-
-.ClockTimeDatePane {
-    animation-name: info-pane-fade;
-    animation-duration: 1s;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 1);
-    text-align: center;
-    box-shadow: 0px 0px 10px;
-    border-radius: 50px;
-    margin: 10px;
-}
-
-
 .ControllerPaneContainer {
     animation-name: info-pane-fade;
     animation-duration: 1s;
@@ -99,7 +82,7 @@
     margin-left: 30px;
     margin-right: 30px;
     border-radius: 35px;
-    box-shadow: 0px 0px 10px 0px white;
+    box-shadow: 0px 0px 10px 0px whitesmoke;
     background-color: #020749;
     background-repeat: no-repeat;
     background-size: cover;
@@ -121,13 +104,14 @@
     margin: auto;
     box-shadow: 0px 0px 10px;
     border-radius: 35px;
-    background-color: white;
-    /* background-image: url(/assets/backgrounds_light/bg_fore.jpg); */
+    background-color: whitesmoke;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     overflow-x: scroll;
     overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(55, 55, 55, 0.9) transparent;
     z-index: 0;
 }
 
@@ -141,15 +125,16 @@
     padding: 15px;
     max-width: 75%;
     margin: auto;
-    box-shadow: 0px 0px 10px 0px white;
+    box-shadow: 0px 0px 10px 0px whitesmoke;
     border-radius: 35px;
-    background-color: black;
-    /* background-image: url(/assets/backgrounds_light/bg_fore.jpg); */
+    background-color: rgb(57, 57, 57);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     overflow-x: scroll;
     overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(230, 230, 230, 0.9) transparent;
     z-index: 0;
 }
 
@@ -176,7 +161,7 @@
     animation-name: info-pane-fade;
     animation-duration: 1s;
     background-color: rgba(255, 255, 255, 0.3);
-    color: white;
+    color: whitesmoke;
     padding: 10px;
     text-align: center;
     border-radius: 25px;
@@ -216,10 +201,11 @@
     grid-template-columns: auto auto; */
     padding: 35px;
     font-weight: 400;
-    color: white;
+    /* border: 1px solid; */
+    color: whitesmoke;
     border-radius: 35px;
-    box-shadow: 0px 0px 10px 0px white;
-    background-color: rgba(23, 2, 2, 0.3);
+    box-shadow: 0px 0px 10px 0px whitesmoke;
+    background-color: rgba(52, 52, 52, 0.5);
     /* background-image: url(./src/assets/bg.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
@@ -253,10 +239,11 @@
     animation-duration: 0.5s;
     /* background-color: #0cacf1; */
     border-radius: 50px;
-    box-shadow: 0px 0px 10px 0px white;
+    box-shadow: 0px 0px 10px 0px whitesmoke;
     padding: 35px;
-    color: white;
-    background-color: rgba(23, 2, 2, 0.3);
+    /* border: 1px solid; */
+    color: whitesmoke;
+    background-color: rgba(52, 52, 52, 0.5);
     display: inline-grid;
     justify-content: center;
     align-content: center;
@@ -281,12 +268,7 @@
     z-index: 2;
 }
 
-.TimeDate {
-    font-family: "Inter", sans-serif;
-    opacity: 1;
-}
-
-.EventButton {
+.EventButton.light {
     border-style: none;
     border-radius: 50px;
     background-color: white;
@@ -294,11 +276,67 @@
     font-family: "Inter", sans-serif;
 }
 
-.EventInput {
+.EventButton.dark {
+    border-style: none;
+    border-radius: 50px;
+    color: whitesmoke;
+    background-color: #3a3a3a;
+    padding: 10px;
+    font-family: "Inter", sans-serif;
+}
+
+.EventInput.light {
+    background-image: url('/assets/icons/search_icon_24.png'); 
+    background-position: 170px ;
+    background-repeat: no-repeat; 
     border-style: none;
     border-radius: 50px;
     Padding: 10px;
     font-family: "Inter", sans-serif;
+}
+
+.EventInput.dark {
+    background-image: url('/assets/icons/search_icon_white_24.png'); 
+    background-position: 170px ;
+    background-repeat: no-repeat; 
+    border-style: none;
+    border-radius: 50px;
+    background-color: #3a3a3a;
+    color: whitesmoke;
+    Padding: 10px;
+    font-family: "Inter", sans-serif;
+}
+
+.EventButton.light:disabled {
+    cursor: not-allowed;
+}
+
+.EventButton.dark:disabled {
+    cursor: not-allowed;
+}
+
+.EventButton.light:hover {
+    background-color: rgb(215, 215, 215);
+}
+
+.EventButton.dark:hover {
+    background-color: rgb(148, 148, 148);
+}
+
+.EventInput.light:disabled {
+    cursor: not-allowed;
+}
+
+.EventInput.dark:disabled {
+    cursor: not-allowed;
+}
+
+.EventInput.light:hover {
+    background-color: rgb(215, 215, 215);
+}
+
+.EventInput.dark:hover {
+    background-color: rgb(148, 148, 148);
 }
 
 .TemperatureGrid {
@@ -319,15 +357,35 @@ ul.locations {
     list-style-type: none;
 }
 
-li.locations {
+li.locations.light {
+    background-image: url('/assets/icons/location.png'); 
+    background-position: 10px;
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-color: whitesmoke;
     animation-name: locations-li-anim;
     animation-duration: 0.2s;
     padding: 5px;
-    background-color: white;
     border-radius: 20px;
     margin: 3px;
     transition: background-color 0.2s ease;
     cursor: pointer;
+}
+
+li.locations.dark {
+    background-image: url('/assets/icons/location_white.png'); 
+    background-position: 10px ;
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-color: #3a3a3a; 
+    animation-name: locations-li-anim;
+    animation-duration: 0.2s;
+    padding: 5px;
+    border-radius: 20px;
+    margin: 3px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    color: whitesmoke;
 }
 
 li.locations:hover {

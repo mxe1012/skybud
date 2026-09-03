@@ -44,12 +44,12 @@ export function ForecastInfoContainer({className, children}: AppearanceProps) {
     );
 }
 
-export function EventButton({text="", styles, disabled=false, onClick}: EventButtonProps) {
-    return <button style={styles} className="EventButton" disabled={disabled} onClick={onClick}>{text}</button>
+export function EventButton({text="", className, disabled=false, onClick}: EventButtonProps) {
+    return <button className={className} disabled={disabled} onClick={onClick}>{text}</button>
 }
 
-export function EventInput({value="", styles, disabled=false, placeholder="Placeholder", onChange}: EventInputProps) {
-    return <input style={styles} className="EventInput" disabled={disabled} value={value} placeholder={placeholder} onChange={onChange}/>
+export function EventInput({value="", className, disabled=false, placeholder="Placeholder", onChange}: EventInputProps) {
+    return <input className={className} disabled={disabled} value={value} placeholder={placeholder} onChange={onChange}/>
 }
 
 export function InfoPaneIcon({src="wi-na.svg", size=25}: InfoPaneIconProps) {

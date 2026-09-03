@@ -12,9 +12,9 @@ import Wind from './dashboard_components/Wind.tsx';
 import Visibility from './dashboard_components/Visiblity.tsx';
 import SunriseAndSunset from './dashboard_components/SunriseSunset.tsx';
 
-import type { CurrentWeatherProps } from "../utils/types.tsx";
+import type { CurrentWeatherProps } from "../utils/types.ts";
 
-export default function CurrentWeather({weather, temperature, humidity, wind, visibility, sunrise, sunset, units, darkMode}: CurrentWeatherProps) {
+export default function CurrentWeather({weather, temperature, humidity, wind, visibility, sunTime, units, darkMode}: CurrentWeatherProps) {
 
     return (
         <>
@@ -30,16 +30,16 @@ export default function CurrentWeather({weather, temperature, humidity, wind, vi
                 </WeatherInfoPaneContainer>
                 <ExtraInfoPaneContainer className={darkMode ? "ExtraInfoPaneContainer dark" : "ExtraInfoPaneContainer light"}>
                     <InfoPane name='Humidity' icon="wi-humidity.svg">
-                        <Humidity humidity={humidity} />
+                        <Humidity humidity={humidity} darkMode={darkMode}/>
                     </InfoPane>
                     <InfoPane name='Wind' icon="wi-windy.svg">
-                        <Wind wind={wind} units={units}/>
+                        <Wind wind={wind} units={units} darkMode={darkMode}/>
                     </InfoPane>
                     <InfoPane name="Visibility" icon="wi-stars.svg">
-                        <Visibility visiblity={visibility} units={units}/>
+                        <Visibility visiblity={visibility} units={units} darkMode={darkMode}/>
                     </InfoPane>
                     <InfoPane name="Sunrise/Sunset" icon="wi-horizon.svg">
-                        <SunriseAndSunset sunrise={sunrise} sunset= {sunset}/>
+                        <SunriseAndSunset sunTime={sunTime}/>
                     </InfoPane>
                 </ExtraInfoPaneContainer>
             </InfoPaneContainer>

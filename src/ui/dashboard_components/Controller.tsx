@@ -16,9 +16,9 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
         lat: 0
     });
 
-    const [history, setHistory] = useState<LocationEntry[]>([]);
+    const [recents, setRecents] = useState<LocationEntry[]>([]);
+    const [isShowRecentsDrop, setisShowRecentsDrop] = useState(false)
 
-    const [isShowHisDrop, setisShowHisDrop] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false);
 
     const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -36,7 +36,7 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
             }, 400); // debounce delay
     }
     
-    async function fetchLocations(query) {
+    async function fetchLocations(query: string) {
             
         try {
             const result = await apiFetchLocations(query);
@@ -55,17 +55,24 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                 });
     
                 setLocationList(newLocationList);
-    
             }
             catch (e) {
                 console.error(e);
             }
     }
+
+    function checkRecentsLength(element) {
+        const updated = recents.length >= 5 ? recents.slice(1) : recents;
+        setRecents([
+            ...updated, 
+            element
+        ]);
+    }
     
     useEffect(() => {
             const handleScroll = () => {
             const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-            setIsScrolled(scrollTop > 190);
+            setIsScrolled(scrollTop > 36);
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -80,7 +87,7 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
         boxShadowStr = "0px 0px 10px"
     }
     else if (isScrolled && darkMode) {
-        bgColorStr = "rgba(23, 2, 2, 0.3)";
+        bgColorStr = "rgba(52, 52, 52, 0.5)";
         boxShadowStr = "0px 0px 10px 0px white"
     }
 
@@ -94,30 +101,27 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                 }}>
                 <div style={{textAlign: 'center'}}>
                     {" "}
-                    <EventInput styles={darkMode ? darkModeStyle : lightModeStyle} 
-                    disabled={disabled} value={locationName} placeholder="Location" onChange={handleSearch}/>
+                    <EventInput className={darkMode ? "EventInput dark" : "EventInput light"}
+                    disabled={disabled} value={locationName} placeholder="Search Location..." onChange={handleSearch}/>
                     {" "}
-                    <EventButton styles={darkMode ? darkModeStyle : lightModeStyle} 
-                    text={isShowHisDrop ? "Hide History" : "Show History"} disabled={disabled} 
-                    onClick={() => setisShowHisDrop(!isShowHisDrop)}/>
+                    <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
+                    text={isShowRecentsDrop ? "Hide Recents" : "Show Recents"} disabled={disabled} 
+                    onClick={() => setisShowRecentsDrop(!isShowRecentsDrop)}/>
                     <ul className="locations">
                         {locationList.length == 0 ? "" : locationList.map((element, index) => (
-                            <li style={darkMode ? darkModeStyle : lightModeStyle} 
-                            key={index} className="locations" onClick={() => {
+                            <li className={darkMode ? "locations dark" : "locations light"}
+                            key={index} onClick={() => {
                             onHandleFetch(element.lon, element.lat);
                             setLocationCoords(element); 
                             setLocationList([]);
-                            setHistory([
-                                ...history,
-                                element
-                                ])
+                            checkRecentsLength(element)
                             }}>
                                 {element.state ? element.name + ", " + element.state + ", " + element.country : 
                                 element.name + ", " + element.country}
                             </li>
                         ))}
                     </ul>
-                    Units: 
+                    <span style={{color: darkMode ? "white" : "black"}}>Units:</span> 
                     {" "}
                     <select style={darkMode ? darkModeStyle : lightModeStyle}
                     id="unit" value={String(units)} onChange={() => {onSetUnits(Boolean(!units))}} disabled={disabled}>
@@ -125,18 +129,18 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                         <option value={"false"}>Metric</option>
                     </select>
                     {" "}
-                    <EventButton styles={darkMode ? darkModeStyle : lightModeStyle} 
+                    <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
                     text="Update Weather Information" disabled={disabled} 
                     onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
                     {" "}
-                    <EventButton styles={darkMode ? darkModeStyle : lightModeStyle} 
+                    <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
                     text="Use Current Location" disabled={disabled} 
                     onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat, true)} />
                     <br />
-                    <ul className={isShowHisDrop ? "history show" : "history hide"}>
-                        {history.map((element, index) => (
+                    <ul className={isShowRecentsDrop ? "recents show" : "recents hide"}>
+                        {recents.map((element, index) => (
                             <li style={darkMode ? darkModeStyle : lightModeStyle}
-                            key={index} className={isShowHisDrop ? "history show" : "history hide"} onClick={() => {
+                            key={index} className={isShowRecentsDrop ? "recents show" : "recents hide"} onClick={() => {
                             onHandleFetch(element.lon, element.lat);
                             setLocationCoords(element);
                             setLocationName(element.name)

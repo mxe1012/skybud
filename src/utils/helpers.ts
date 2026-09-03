@@ -1,6 +1,6 @@
 
 export const darkModeStyle = { 
-    backgroundColor: "grey",
+    backgroundColor: "#3a3a3a",
     color: "white",
 }
 
@@ -10,11 +10,35 @@ export const lightModeStyle = {
 }
 
 export const darkModeStyleBackground = { 
-    backgroundImage: "radial-gradient(circle,rgba(107, 107, 107, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(61, 61, 61, 1) 100%)"
+    backgroundImage: "radial-gradient(circle, rgba(30,30,40,1) 0%, rgba(18,18,26,1) 50%, rgba(8,8,14,1) 100%)"
 }
 
 export const lightModeStyleBackground = { 
     backgroundImage: "radial-gradient(circle,rgba(255, 255, 255, 1) 0%, rgba(65, 196, 240, 1) 50%, rgba(154, 216, 252, 1) 100%)"
+}
+
+export function currentTime(): string {
+
+    const t = new Date()
+
+    return t.toLocaleTimeString();
+
+}
+
+export function getVisibilityLabel(vis: number): string {
+
+    if (vis >= 7500) {
+        return "Unlimited";
+    }
+    else if (vis < 7500 && vis >= 5000) {
+        return "High";
+    }
+    else if (vis < 5000 && vis >= 2500) {
+        return "Medium";
+    }
+    else {
+        return "Low";
+    }
 }
 
 export function optimizedCompass(degree: number): string {

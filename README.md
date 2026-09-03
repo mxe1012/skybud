@@ -17,6 +17,7 @@ A simple, fast weather application built with React, TypeScript, and Vite. Searc
 - [TypeScript](https://www.typescriptlang.org/) — static typing
 - [Vite](https://vitejs.dev/) — build tool & dev server
 - [npm](https://www.npmjs.com/) — package manager
+- [Netlify Functions](https://docs.netlify.com/functions/overview/) — serverless functions for server-to-server API calls
 
 ## Prerequisites
 
@@ -73,6 +74,7 @@ The app will be available at `http://localhost:5173` by default.
 
 ```
 weather-app/
+├── netlify/
 ├── public/
 │   ├── assets/
 │   ├── favicon.svg

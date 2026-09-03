@@ -1,0 +1,40 @@
+#root {
+  min-height: 100%;
+}
+
+#bg {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    min-height: 100%;
+}
+
+#darkModeBtn {
+    border-style: none;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    font-family: "Inter", sans-serif;
+    position: sticky;
+    box-shadow: 0px 0px 5px white;
+    outline: none;
+    bottom: 30px;
+    left: 15px;
+    z-index: 4;
+    font-size: 35px;
+    backdrop-filter: blur(2px);
+}
+
+#unit {
+    font-family: "Inter", sans-serif;
+    border-style: none;
+    border-radius: 50px;
+    padding: 10px;
+    background-color: white;
+}
+
+#MiniTempRow {
+    display: flex;
+    justify-content: center;
+}
