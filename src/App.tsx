@@ -4,6 +4,7 @@ import './styles/recents.css'
 import './styles/gauges.css'
 import './styles/class.css'
 import './styles/id.css'
+import './styles/media.css'
 
 import { useState } from 'react'
 
