@@ -73,7 +73,7 @@ The app will be available at `http://localhost:5173` by default.
 ## Project Structure
 
 ```
-weather-app/
+skybud/
 ├── netlify/
 ├── public/
 │   └── assets/
