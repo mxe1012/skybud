@@ -11,6 +11,8 @@ import type { ForecastEntry, DashboardProps} from "../utils/types.ts";
 
 export default function Dashboard({darkMode}: DashboardProps) {
 
+    const [time, setTime] = useState("");
+
     // Current name of location
     const [currentLocationName, setCurrentLocationName] = useState("");
 
@@ -139,10 +141,11 @@ export default function Dashboard({darkMode}: DashboardProps) {
         });
 
         setForecastList(newForecastList);
+        
 
         setNotice("Weather info acquired!");
         setTimeout(() => setShowSnackbar(false), 6000);
-
+        setTime(currentTime());
         setDisabled(false);
 
     } catch (e) {
@@ -151,12 +154,14 @@ export default function Dashboard({darkMode}: DashboardProps) {
     }
   }
 
-    
     useEffect(() => {
 
-        setTimeout(handleFetch, 200);
+        const id = setTimeout(() => {
+            handleFetch(0, 0, false)
+        }, 200);
+        
+        return () => clearTimeout(id);
 
-    
     }, []);
 
     return (
@@ -174,7 +179,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
             wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode}/>
             <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
             <Forecast forecastList={forecastList} units={units} darkMode={darkMode}/>
-            <p style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>{"Last updated: " + currentTime()}</p>
+            <p style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>{"Last updated: " + time}</p>
         </>
 
     );
