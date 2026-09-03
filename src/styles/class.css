@@ -360,7 +360,7 @@ ul.locations {
 li.locations.light {
     background-image: url('/assets/icons/location.png'); 
     background-position: 10px;
-    background-size: 15px;
+    background-size: 12px;
     background-repeat: no-repeat;
     background-color: whitesmoke;
     animation-name: locations-li-anim;
@@ -376,7 +376,7 @@ li.locations.dark {
     background-image: url('/assets/icons/location_white.png'); 
     background-position: 10px ;
     background-repeat: no-repeat;
-    background-size: 15px;
+    background-size: 12px;
     background-color: #3a3a3a; 
     animation-name: locations-li-anim;
     animation-duration: 0.2s;
