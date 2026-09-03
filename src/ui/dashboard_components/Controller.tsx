@@ -109,8 +109,8 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                     onClick={() => setisShowRecentsDrop(!isShowRecentsDrop)}/>
                     <ul className="locations">
                         {locationList.length == 0 ? "" : locationList.map((element, index) => (
-                            <li style={darkMode ? darkModeStyle : lightModeStyle} 
-                            key={index} className="locations" onClick={() => {
+                            <li className={darkMode ? "locations dark" : "locations light"}
+                            key={index} onClick={() => {
                             onHandleFetch(element.lon, element.lat);
                             setLocationCoords(element); 
                             setLocationList([]);

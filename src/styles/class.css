@@ -357,15 +357,35 @@ ul.locations {
     list-style-type: none;
 }
 
-li.locations {
+li.locations.light {
+    background-image: url('/assets/icons/location.png'); 
+    background-position: 10px;
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-color: whitesmoke;
     animation-name: locations-li-anim;
     animation-duration: 0.2s;
     padding: 5px;
-    background-color: white;
     border-radius: 20px;
     margin: 3px;
     transition: background-color 0.2s ease;
     cursor: pointer;
+}
+
+li.locations.dark {
+    background-image: url('/assets/icons/location_white.png'); 
+    background-position: 10px ;
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-color: #3a3a3a; 
+    animation-name: locations-li-anim;
+    animation-duration: 0.2s;
+    padding: 5px;
+    border-radius: 20px;
+    margin: 3px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    color: whitesmoke;
 }
 
 li.locations:hover {
