@@ -80,7 +80,7 @@ skybud/
 ├── src/
 │   ├── styles/
 │   ├── ui/
-│   │   └── components/
+│   │   └── dashboard_components/
 │   ├── utils/
 │   ├── App.tsx
 │   └── index.tsx
