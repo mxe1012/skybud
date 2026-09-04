@@ -105,21 +105,9 @@ export interface SunriseAndSunsetObjectProps {
     sunset: number;
 }
 
-export interface ForecastInfoProps {
-    dt: number;
-    weather: ForecastInfoObjectWeatherProps;
-    temperature: ForecastInfoObjectTemperatureProps;
+export interface ForecastItemProps {
+    forecast: ForecastEntry;
     units: boolean;
-}
-
-export interface ForecastInfoObjectWeatherProps {
-    main: string;
-    icon: string;
-}
-
-export interface ForecastInfoObjectTemperatureProps {
-    temp_max: number;
-    temp_min: number;
 }
 
 export interface ForecastEntry {
