@@ -49,6 +49,8 @@
 }
 
 .InfoPaneContainer.light {
+    animation-name: info-pane-container-fade;
+    animation-duration: 0.5s;
     display: flex;
     justify-content: space-around;
     /* align-content: center; */
@@ -65,8 +67,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    animation-name: info-pane-container-fade;
-    animation-duration: 0.5s;
     z-index: 0;
 }
 
