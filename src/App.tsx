@@ -6,7 +6,7 @@ import './styles/class.css'
 import './styles/id.css'
 import './styles/media.css'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { MainPane } from './ui/Containers.tsx';
 
@@ -16,7 +16,14 @@ import Dashboard from './ui/Dashboard.tsx';
 
 export default function App() {
 
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
+        const stored = localStorage.getItem("isDarkMode");
+        return stored === "true";
+    });
+
+    useEffect(() => {
+        localStorage.setItem("isDarkMode", String(isDarkMode));
+    }, [isDarkMode]);
 
     return (
         <div style={ isDarkMode ? darkModeStyleBackground : lightModeStyleBackground} id='bg'>
