@@ -5,9 +5,10 @@ import { apiFetchLocations } from "../../utils/data";
 
 import { lightModeStyle, darkModeStyle } from "../../utils/helpers";
 
-import type { LocationEntry } from "../../utils/types";
+import type { ControllerProps, LocationEntry } from "../../utils/types";
+import RecentsList from "../controller_components/RecentsList";
 
-export default function Controller({units, onSetUnits, disabled, onHandleFetch, darkMode}) {
+export default function Controller({units, onSetUnits, disabled, onHandleFetch, darkMode}: ControllerProps) {
 
     const [locationName, setLocationName] = useState("");
     const [locationList, setLocationList] = useState<LocationEntry[]>([]);
@@ -137,19 +138,8 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                     text="Use Current Location" disabled={disabled} 
                     onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat, true)} />
                     <br />
-                    <ul className={isShowRecentsDrop ? "recents show" : "recents hide"}>
-                        {recents.map((element, index) => (
-                            <li style={darkMode ? darkModeStyle : lightModeStyle}
-                            key={index} className={isShowRecentsDrop ? "recents show" : "recents hide"} onClick={() => {
-                            onHandleFetch(element.lon, element.lat);
-                            setLocationCoords(element);
-                            setLocationName(element.name)
-                        }}>
-                                {element.state ? element.name + ", " + element.state + ", " + element.country : 
-                                element.name + ", " + element.country}
-                            </li>
-                        ))}
-                    </ul>
+                    <RecentsList recents={recents} visible={isShowRecentsDrop} onLocationCoords={setLocationCoords}
+                    onLocationName={setLocationName} onHandleFetch={onHandleFetch} darkMode={darkMode}/>
                 </div>
             </ControllerPaneContainer>
         </>
