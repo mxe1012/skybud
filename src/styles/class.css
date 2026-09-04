@@ -388,6 +388,10 @@ li.locations.dark {
     color: whitesmoke;
 }
 
-li.locations:hover {
+li.locations.light:hover {
+    background-color: rgb(215, 215, 215);
+}
+
+li.locations.dark:hover {
     background-color: grey;
 }
