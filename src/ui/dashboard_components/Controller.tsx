@@ -7,6 +7,7 @@ import { lightModeStyle, darkModeStyle } from "../../utils/helpers";
 
 import type { ControllerProps, LocationEntry } from "../../utils/types";
 import RecentsList from "../controller_components/RecentsList";
+import SearchList from "../controller_components/SearchList";
 
 export default function Controller({units, onSetUnits, disabled, onHandleFetch, darkMode}: ControllerProps) {
 
@@ -46,23 +47,23 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
     
             const {name, country, state, lon, lat} = element;
     
-                return {
-                    name,
-                    country,
-                    state,
-                    lon,
-                    lat
-                    };
-                });
+            return {
+                name,
+                country,
+                state,
+                lon,
+                lat
+                };
+            });
     
-                setLocationList(newLocationList);
-            }
-            catch (e) {
+            setLocationList(newLocationList);
+
+        } catch (e) {
                 console.error(e);
-            }
+        }
     }
 
-    function checkRecentsLength(element) {
+    function checkRecentsLength(element: LocationEntry) {
         const updated = recents.length >= 5 ? recents.slice(1) : recents;
         setRecents([
             ...updated, 
@@ -99,7 +100,7 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                 backdropFilter: isScrolled ? "blur(2px)" : "",
                 boxShadow: boxShadowStr,
                 transition: "background-color 0.2s ease, backdrop-filter 0.2s ease, box-shadow 0.2s ease"
-                }}>
+            }}>
                 <div style={{textAlign: 'center'}}>
                     {" "}
                     <EventInput className={darkMode ? "EventInput dark" : "EventInput light"}
@@ -108,20 +109,8 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                     <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
                     text={isShowRecentsDrop ? "Hide Recents" : "Show Recents"} disabled={disabled} 
                     onClick={() => setisShowRecentsDrop(!isShowRecentsDrop)}/>
-                    <ul className="locations">
-                        {locationList.length == 0 ? "" : locationList.map((element, index) => (
-                            <li className={darkMode ? "locations dark" : "locations light"}
-                            key={index} onClick={() => {
-                            onHandleFetch(element.lon, element.lat);
-                            setLocationCoords(element); 
-                            setLocationList([]);
-                            checkRecentsLength(element)
-                            }}>
-                                {element.state ? element.name + ", " + element.state + ", " + element.country : 
-                                element.name + ", " + element.country}
-                            </li>
-                        ))}
-                    </ul>
+                    <SearchList locationList={locationList} onLocationCoords={setLocationCoords} onLocationList={setLocationList}
+                    onHandleFetch={onHandleFetch} checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
                     <span style={{color: darkMode ? "white" : "black"}}>Units:</span> 
                     {" "}
                     <select style={darkMode ? darkModeStyle : lightModeStyle}

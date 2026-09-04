@@ -178,3 +178,15 @@ export interface RecentListProps {
     onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
     darkMode: boolean;
 }
+
+export interface SearchListProps {
+    locationList: LocationEntry[];
+    onLocationCoords: Dispatch<SetStateAction<{
+        lon: number;
+        lat: number;
+    }>>;
+    onLocationList:  Dispatch<SetStateAction<LocationEntry[]>>;
+    onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
+    checkRecentsLength: (element: LocationEntry) => void;
+    darkMode: boolean;
+}
