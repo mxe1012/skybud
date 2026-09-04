@@ -7,7 +7,7 @@ export default function Humidity({humidity, darkMode}: HumidityProps) {
     return (
         <div>
             <div className="gauge1" style={{"--value": gaugeValue, "--size": "90px", 
-                "--background": darkMode ? "black" : "white"
+                "--background": darkMode ? "#3a3a3a" : "white"
             } as React.CSSProperties}>
                 <b>{humidity}%</b>
             </div>
