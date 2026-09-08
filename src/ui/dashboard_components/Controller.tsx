@@ -15,12 +15,12 @@ import FavoritesList from "../controller_components/FavoritesList";
 export default function Controller({currentLocationName, units, onSetUnits, disabled, onHandleFetch, darkMode}: ControllerProps) {
 
     const [currentLocationEntry, setCurrentLocationEntry] = useState<LocationEntry>({
-            name: "",
-            country: "",
-            state: "",
-            lat: 0,
-            lon: 0
-        })
+        name: "",
+        country: "",
+        state: "",
+        lat: 0,
+        lon: 0
+    });
 
     const [locationName, setLocationName] = useState("");
     const [locationList, setLocationList] = useState<LocationEntry[]>([]);
@@ -135,7 +135,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     text={isShowFavoritesDrop ? "Hide Favorites" : "Show Favorites"} disabled={disabled} 
                     onClick={() => setIsShowFavoritesDrop(!isShowFavoritesDrop)}/>
                     <SearchList locationList={locationList} onLocationCoords={setLocationCoords} onLocationList={setLocationList}
-                    onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry}checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
+                    onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
                     <span style={{color: darkMode ? "white" : "black"}}>Units:</span> 
                     {" "}
                     <select style={darkMode ? darkModeStyle : lightModeStyle}
@@ -153,7 +153,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat, true)} />
                     <br />
                     <RecentsList recents={recents} visible={isShowRecentsDrop} onLocationCoords={setLocationCoords}
-                    onLocationName={setLocationName} onHandleFetch={onHandleFetch} darkMode={darkMode}/>
+                    onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry}darkMode={darkMode}/>
                     <FavoritesList favorites={favorites} visible={isShowFavoritesDrop} onLocationCoords={setLocationCoords}
                     onLocationName={setLocationName} onHandleFetch={onHandleFetch} darkMode={darkMode}/>
                 </div>

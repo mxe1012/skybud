@@ -165,6 +165,7 @@ export interface RecentListProps {
     }>>;
     onLocationName: Dispatch<SetStateAction<string>>;
     onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
+    onCurrentLocation:  Dispatch<SetStateAction<LocationEntry>>;
     darkMode: boolean;
 }
 

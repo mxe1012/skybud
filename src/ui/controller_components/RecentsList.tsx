@@ -2,7 +2,7 @@ import { lightModeStyle, darkModeStyle } from "../../utils/helpers";
 
 import type { RecentListProps } from "../../utils/types";
 
-export default function RecentsList({recents, visible, onLocationCoords, onLocationName, onHandleFetch, darkMode}: RecentListProps) {
+export default function RecentsList({recents, visible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: RecentListProps) {
 
     return (
         <ul className={visible ? "recents show" : "recents hide"}>
@@ -12,6 +12,7 @@ export default function RecentsList({recents, visible, onLocationCoords, onLocat
                     onHandleFetch(element.lon, element.lat);
                     onLocationCoords(element);
                     onLocationName(element.name)
+                    onCurrentLocation(element)
                  }}>
                     {element.state ? element.name + ", " + element.state + ", " + element.country : 
                     element.name + ", " + element.country}
