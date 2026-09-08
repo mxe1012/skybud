@@ -1,6 +1,7 @@
 import './styles/styles.css'
 import './styles/snackbar.css'
 import './styles/recents.css'
+import './styles/favorites.css'
 import './styles/gauges.css'
 import './styles/class.css'
 import './styles/id.css'
