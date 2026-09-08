@@ -7,8 +7,9 @@
         flex-wrap: wrap;
         /* grid-template-rows: auto;
         grid-template-columns: auto auto; */
-        padding: 10px;
+        padding: 5px;
         font-weight: 400;
+        font-size: 15px;
         border-radius: 35px;
         box-shadow: 0px 0px 10px;
         background-color: rgba(255, 255, 255, 0.3);
@@ -29,7 +30,8 @@
         flex-wrap: wrap;
         /* grid-template-rows: auto;
         grid-template-columns: auto auto; */
-        padding: 10px;
+        padding: 5px;
+        font-size: 15px;
         font-weight: 400;
         /* border: 1px solid; */
         color: whitesmoke;
@@ -52,7 +54,8 @@
         /* background-color: #0cacf1; */
         border-radius: 50px;
         box-shadow: 0px 0px 10px;
-        padding: 10px;
+        padding: 5px;
+        font-size: 15px;
         background-color: rgba(255, 255, 255, 0.3);
         display: inline-grid;
         justify-content: center;
@@ -70,7 +73,8 @@
         /* background-color: #0cacf1; */
         border-radius: 50px;
         box-shadow: 0px 0px 10px 0px whitesmoke;
-        padding: 10px;
+        padding: 5px;
+        font-size: 15px;
         color: whitesmoke;
         background-color: rgba(52, 52, 52, 0.5);
         display: inline-grid;
@@ -82,5 +86,94 @@
         backdrop-filter: blur(3px);
         z-index: 1;
     }
-}
 
+    .InfoPane {
+        animation-name: info-pane-fade;
+        animation-duration: 1s;
+        padding: 3px;
+        /* background-color: rgba(255, 255, 255, 0.3); */
+        text-align: center;
+        /* box-shadow: 0px 0px 10px white; */
+        border-radius: 50px;
+        /* margin: 10px; */
+        /* backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px); */
+        z-index: 2;
+    }
+
+    .ForecastInfoContainer.light {
+        animation-name: info-pane-fade;
+        animation-duration: 1s;
+        display: grid;
+        justify-content: flex-start;
+        align-items: flex-start;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto; 
+        flex-wrap: nowrap; 
+        white-space: nowrap;
+        padding: 5px;
+        max-width: 75%;
+        margin: auto;
+        box-shadow: 0px 0px 2px;
+        border-radius: 35px;
+        background-color: whitesmoke;
+        /* overflow-x: scroll;
+        overflow-y: hidden; */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(55, 55, 55, 0.9) transparent;
+        z-index: 0;
+    }
+
+    .ForecastInfoContainer.dark {
+        animation-name: info-pane-fade;
+        animation-duration: 1s;
+        display: flex;
+        justify-content: flex-start; 
+        flex-wrap: nowrap; 
+        white-space: nowrap;
+        padding: 15px;
+        max-width: 75%;
+        margin: auto;
+        box-shadow: 0px 0px 2px 0px whitesmoke;
+        border-radius: 35px;
+        background-color: rgb(57, 57, 57);
+        overflow-x: scroll;
+        overflow-y: hidden;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(230, 230, 230, 0.9) transparent;
+        z-index: 0;
+    }
+
+    .ForecastInfoPane.light {
+        display: grid;
+        grid-template-columns: auto;
+        animation-name: info-pane-fade;
+        animation-duration: 1s;
+        box-shadow: 0px 0px 10px;
+        background-color: rgba(255, 255, 255, 0.3);
+        padding: 10px;
+        text-align: center;
+        min-width: 235px;
+        border-radius: 25px;
+        margin: 10px;
+        backdrop-filter: blur(8px);
+        z-index: 2;
+    }
+
+    .ForecastInfoPane.dark {
+        display: grid;
+        grid-template-columns: auto;
+        animation-name: info-pane-fade;
+        animation-duration: 1s;
+        background-color: rgba(255, 255, 255, 0.3);
+        color: whitesmoke;
+        padding: 10px;
+        text-align: center;
+        min-width: 235px;
+        border-radius: 25px;
+        margin: 10px;
+        backdrop-filter: blur(8px);
+        z-index: 2;
+    }
+
+}
