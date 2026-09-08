@@ -109,6 +109,9 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                     <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
                     text={isShowRecentsDrop ? "Hide Recents" : "Show Recents"} disabled={disabled} 
                     onClick={() => setisShowRecentsDrop(!isShowRecentsDrop)}/>
+                    {" "}
+                    <EventButton className={darkMode ? "EventButton dark" : "EventButton light"} 
+                    text="Show Favorites" disabled={disabled} onClick={undefined} />
                     <SearchList locationList={locationList} onLocationCoords={setLocationCoords} onLocationList={setLocationList}
                     onHandleFetch={onHandleFetch} checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
                     <span style={{color: darkMode ? "white" : "black"}}>Units:</span> 
