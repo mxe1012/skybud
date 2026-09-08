@@ -129,11 +129,11 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     {" "}
                     <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
                     text={isShowRecentsDrop ? "Hide Recents" : "Show Recents"} disabled={disabled} 
-                    onClick={() => setisShowRecentsDrop(!isShowRecentsDrop)}/>
+                    onClick={() => {setisShowRecentsDrop(!isShowRecentsDrop); setIsShowFavoritesDrop(false)}}/>
                     {" "}
                     <EventButton className={darkMode ? "EventButton dark" : "EventButton light"} 
                     text={isShowFavoritesDrop ? "Hide Favorites" : "Show Favorites"} disabled={disabled} 
-                    onClick={() => setIsShowFavoritesDrop(!isShowFavoritesDrop)}/>
+                    onClick={() => {setIsShowFavoritesDrop(!isShowFavoritesDrop); setisShowRecentsDrop(false)}}/>
                     <SearchList locationList={locationList} onLocationCoords={setLocationCoords} onLocationList={setLocationList}
                     onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
                     <span style={{color: darkMode ? "white" : "black"}}>Units:</span> 
