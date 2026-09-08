@@ -2,8 +2,6 @@ import CurrentWeather from "./CurrentWeather.tsx";
 import Forecast from "./Forecast.tsx";
 import Controller from "./dashboard_components/Controller.tsx";
 
-import { FavoriteButton } from "./Containers.tsx";
-
 import { useState, useEffect } from "react";
 
 import { currentTime } from "../utils/helpers.ts";
@@ -143,7 +141,6 @@ export default function Dashboard({darkMode}: DashboardProps) {
         });
 
         setForecastList(newForecastList);
-        
 
         setNotice("Weather info acquired!");
         setTimeout(() => setShowSnackbar(false), 6000);
@@ -169,14 +166,9 @@ export default function Dashboard({darkMode}: DashboardProps) {
     return (
 
         <>
-            <Controller disabled={disabled} units={units} 
+            <Controller currentLocationName={currentLocationName} disabled={disabled} units={units} 
             onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode}/>
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
-            <h1 style={{color: darkMode ? 'whitesmoke' : 'black', textAlign: 'center'}}>
-                <img style={{filter: darkMode ? "invert(1)" : ""}}src="/assets/icons/location.png" width={25} height={35}/>
-                {" "}
-                <b>{currentLocationName}</b> <FavoriteButton className="favoriteBtn" btnIconSrc="/assets/favorites/heart_empty.png"/>
-            </h1>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
             wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode}/>
             <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
