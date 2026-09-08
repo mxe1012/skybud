@@ -5,11 +5,22 @@ import { apiFetchLocations } from "../../utils/data";
 
 import { lightModeStyle, darkModeStyle } from "../../utils/helpers";
 
+import { FavoriteButton } from "../Containers";
+
 import type { ControllerProps, LocationEntry } from "../../utils/types";
 import RecentsList from "../controller_components/RecentsList";
 import SearchList from "../controller_components/SearchList";
+import FavoritesList from "../controller_components/FavoritesList";
 
-export default function Controller({units, onSetUnits, disabled, onHandleFetch, darkMode}: ControllerProps) {
+export default function Controller({currentLocationName, units, onSetUnits, disabled, onHandleFetch, darkMode}: ControllerProps) {
+
+    const [currentLocationEntry, setCurrentLocationEntry] = useState<LocationEntry>({
+            name: "",
+            country: "",
+            state: "",
+            lat: 0,
+            lon: 0
+        })
 
     const [locationName, setLocationName] = useState("");
     const [locationList, setLocationList] = useState<LocationEntry[]>([]);
@@ -19,7 +30,10 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
     });
 
     const [recents, setRecents] = useState<LocationEntry[]>([]);
-    const [isShowRecentsDrop, setisShowRecentsDrop] = useState(false)
+    const [isShowRecentsDrop, setisShowRecentsDrop] = useState(false);
+
+    const [favorites, setFavorites] = useState<LocationEntry[]>([]);
+    const [isShowFavoritesDrop, setIsShowFavoritesDrop] = useState(false)
 
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -70,6 +84,13 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
             element
         ]);
     }
+
+    function checkFavorites() {
+        setFavorites([
+            ...favorites,
+            currentLocationEntry
+        ]);
+    }
     
     useEffect(() => {
             const handleScroll = () => {
@@ -92,7 +113,7 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
         bgColorStr = "rgba(52, 52, 52, 0.5)";
         boxShadowStr = "0px 0px 10px 0px white"
     }
-
+   
     return (
         <>
             <ControllerPaneContainer styles={{
@@ -111,9 +132,10 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                     onClick={() => setisShowRecentsDrop(!isShowRecentsDrop)}/>
                     {" "}
                     <EventButton className={darkMode ? "EventButton dark" : "EventButton light"} 
-                    text="Show Favorites" disabled={disabled} onClick={undefined} />
+                    text={isShowFavoritesDrop ? "Hide Favorites" : "Show Favorites"} disabled={disabled} 
+                    onClick={() => setIsShowFavoritesDrop(!isShowFavoritesDrop)}/>
                     <SearchList locationList={locationList} onLocationCoords={setLocationCoords} onLocationList={setLocationList}
-                    onHandleFetch={onHandleFetch} checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
+                    onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry}checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
                     <span style={{color: darkMode ? "white" : "black"}}>Units:</span> 
                     {" "}
                     <select style={darkMode ? darkModeStyle : lightModeStyle}
@@ -132,8 +154,17 @@ export default function Controller({units, onSetUnits, disabled, onHandleFetch, 
                     <br />
                     <RecentsList recents={recents} visible={isShowRecentsDrop} onLocationCoords={setLocationCoords}
                     onLocationName={setLocationName} onHandleFetch={onHandleFetch} darkMode={darkMode}/>
+                    <FavoritesList favorites={favorites} visible={isShowFavoritesDrop} onLocationCoords={setLocationCoords}
+                    onLocationName={setLocationName} onHandleFetch={onHandleFetch} darkMode={darkMode}/>
                 </div>
             </ControllerPaneContainer>
+            <h1 style={{color: darkMode ? 'whitesmoke' : 'black', textAlign: 'center'}}>
+                <img style={{filter: darkMode ? "invert(1)" : ""}}src="/assets/icons/location.png" width={25} height={35}/>
+                {" "}
+                <b>{currentLocationName}</b> 
+                <FavoriteButton className="favoriteBtn" btnIconSrc="/assets/favorites/heart_empty.png"
+                onClick={checkFavorites}/>
+            </h1>
         </>
     );
 }
