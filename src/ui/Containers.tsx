@@ -63,10 +63,10 @@ export function ButtonIcon({className="", src="", size=25}) {
     return <img className={className} src={src} width={size} height={size}/>
 }
 
-export function FavoriteButton({className="", btnIconSrc=""}) {
+export function FavoriteButton({className="", btnIconSrc="", onClick}) {
     return (
         <>
-            <button className={className}>
+            <button className={className} onClick={onClick}>
                 <ButtonIcon src={btnIconSrc} size={25}/>
             </button>
         </>
