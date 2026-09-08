@@ -86,10 +86,15 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
     }
 
     function checkFavorites() {
+        const isInFavorites = 
+        favorites.some((element) => currentLocationEntry.lat == element.lat && currentLocationEntry.lon == element.lon);
+
+        if (isInFavorites == false) {
         setFavorites([
             ...favorites,
             currentLocationEntry
-        ]);
+            ]);
+        }
     }
     
     useEffect(() => {
