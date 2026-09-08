@@ -26,9 +26,9 @@ button {
     transition: background-color 0.2s ease-in-out;
 }
 
-button:hover {
+/* button:hover {
     background-color: #c3c3c3;
-}
+} */
 
 input {
     transition: background-color 0.2s ease-in-out;
