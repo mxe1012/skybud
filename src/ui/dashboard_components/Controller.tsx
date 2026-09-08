@@ -161,7 +161,8 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
             <h1 style={{color: darkMode ? 'whitesmoke' : 'black', textAlign: 'center'}}>
                 <img style={{filter: darkMode ? "invert(1)" : ""}}src="/assets/icons/location.png" width={25} height={35}/>
                 {" "}
-                <b>{currentLocationName}</b> 
+                <b>{currentLocationName}</b>
+                {" "} 
                 <FavoriteButton className="favoriteBtn" btnIconSrc="/assets/favorites/heart_empty.png"
                 onClick={checkFavorites}/>
             </h1>
