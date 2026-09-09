@@ -148,6 +148,7 @@ export interface DashboardProps {
 }
 
 export interface ControllerProps {
+    currentLocationName: string;
     units: boolean;
     onSetUnits: Dispatch<SetStateAction<boolean>>;
     disabled: boolean;
@@ -164,6 +165,7 @@ export interface RecentListProps {
     }>>;
     onLocationName: Dispatch<SetStateAction<string>>;
     onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
+    onCurrentLocation:  Dispatch<SetStateAction<LocationEntry>>;
     darkMode: boolean;
 }
 
@@ -175,6 +177,20 @@ export interface SearchListProps {
     }>>;
     onLocationList:  Dispatch<SetStateAction<LocationEntry[]>>;
     onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
+    onCurrentLocation:  Dispatch<SetStateAction<LocationEntry>>;
     checkRecentsLength: (element: LocationEntry) => void;
+    darkMode: boolean;
+}
+
+export interface FavoritesListProps {
+    favorites: LocationEntry[]
+    visible: boolean;
+    onLocationCoords: Dispatch<SetStateAction<{
+        lon: number;
+        lat: number;
+    }>>;
+    onLocationName: Dispatch<SetStateAction<string>>;
+    onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
+    onCurrentLocation: Dispatch<SetStateAction<LocationEntry>>;
     darkMode: boolean;
 }
