@@ -15,8 +15,8 @@ import FavoritesList from "../controller_components/FavoritesList";
 export default function Controller({currentLocationName, units, onSetUnits, disabled, onHandleFetch, darkMode}: ControllerProps) {
 
     const [currentLocationEntry, setCurrentLocationEntry] = useState<LocationEntry>({
-        name: "",
-        country: "",
+        name: "Globe",
+        country: "Earth",
         state: "",
         lat: 0,
         lon: 0
@@ -174,7 +174,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                 {" "}
                 <b>{currentLocationName}</b>
                 {" "} 
-                <FavoriteButton className="favoriteBtn" btnIconSrc="/assets/favorites/heart_empty.png"
+                <FavoriteButton className="favoriteBtn" btnIconSrc="/assets/favorites/heart_empty.png" disabled={disabled}
                 onClick={checkFavorites}/>
             </h1>
         </>
