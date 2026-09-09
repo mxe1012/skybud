@@ -10,7 +10,7 @@ export default function ForecastItem({forecast, units}: ForecastItemProps) {
     "High:" + fahrenheitToCelsius(forecast.temp_max) + "°C";
 
     const strTempMin = units ? "Low:" + Math.round(forecast.temp_min) + "°F" :
-    "High:" + fahrenheitToCelsius(forecast.temp_min) + "°C";
+    "Low:" + fahrenheitToCelsius(forecast.temp_min) + "°C";
     
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
