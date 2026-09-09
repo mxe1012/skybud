@@ -101,7 +101,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
             ]);
 
             setShowSnackbar(true)
-            setNotice("Location added to favorites!")
+            setNotice("Added to favorites")
             setTimeout(() => setShowSnackbar(false), 2000)
         }
         else if(isInFavorites == true) {
@@ -111,7 +111,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
             setFavorites(toggleFavorite);
 
             setShowSnackbar(true)
-            setNotice("Location removed from favorites!")
+            setNotice("Removed from favorites")
             setTimeout(() => setShowSnackbar(false), 2000)
         }
     }

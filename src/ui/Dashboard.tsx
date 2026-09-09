@@ -149,7 +149,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
 
     } catch (e) {
         console.error(e);
-        setNotice("Weather info fetching error!");
+        setNotice("Weather fetching error!");
     }
   }
 
