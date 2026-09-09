@@ -32,7 +32,9 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
     const [recents, setRecents] = useState<LocationEntry[]>([]);
     const [isShowRecentsDrop, setisShowRecentsDrop] = useState(false);
 
-    const [favorites, setFavorites] = useState<LocationEntry[]>([]);
+    const [favorites, setFavorites] = useState<LocationEntry[]>(
+        localStorage.getItem("favorites") != null ? JSON.parse(String(localStorage.getItem("favorites"))) : []
+    );
     const [isShowFavoritesDrop, setIsShowFavoritesDrop] = useState(false)
 
     const [isScrolled, setIsScrolled] = useState(false);
@@ -84,8 +86,8 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
             element
         ]);
     }
-
-    function checkFavorites() {
+    
+    function handleFavorites() {
         const isInFavorites = 
         favorites.some((element) => currentLocationEntry.lat == element.lat && currentLocationEntry.lon == element.lon);
 
@@ -102,6 +104,10 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
             setFavorites(toggleFavorite);
         }
     }
+
+    useEffect(() => {
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+    }, [favorites])
     
     useEffect(() => {
             const handleScroll = () => {
@@ -124,7 +130,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
         bgColorStr = "rgba(52, 52, 52, 0.5)";
         boxShadowStr = "0px 0px 10px 0px white"
     }
-   
+    
     return (
         <>
             <ControllerPaneContainer styles={{
@@ -175,7 +181,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                 <b>{currentLocationName}</b>
                 {" "} 
                 <FavoriteButton className="favoriteBtn" btnIconSrc="/assets/favorites/heart_empty.png" disabled={disabled}
-                onClick={checkFavorites}/>
+                onClick={handleFavorites}/>
             </h1>
         </>
     );
