@@ -180,7 +180,9 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                 {" "}
                 <b>{currentLocationName}</b>
                 {" "} 
-                <FavoriteButton className="favoriteBtn" btnIconSrc="/assets/favorites/heart_empty.png" disabled={disabled}
+                <FavoriteButton className="favoriteBtn" 
+                btnIconSrc={darkMode ? "/assets/favorites/heart_empty_dark.png" : "/assets/favorites/heart_empty.png"} 
+                disabled={disabled}
                 onClick={handleFavorites}/>
             </h1>
         </>
