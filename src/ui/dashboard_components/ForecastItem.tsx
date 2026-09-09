@@ -1,16 +1,16 @@
-import type { ForecastInfoProps } from "../../utils/types";
+import type { ForecastItemProps } from "../../utils/types";
 
 import { fahrenheitToCelsius } from "../../utils/helpers";
 
-export default function ForecastItem({dt, weather, temperature, units}: ForecastInfoProps) {
+export default function ForecastItem({forecast, units}: ForecastItemProps) {
 
-    const formattedDt = new Date(dt * 1000);
+    const formattedDt = new Date(forecast.dt * 1000);
 
-    const strTempMax = units ? "High:" + Math.round(temperature.temp_max) + "°F" :
-    "High:" + fahrenheitToCelsius(temperature.temp_max) + "°C";
+    const strTempMax = units ? "High:" + Math.round(forecast.temp_max) + "°F" :
+    "High:" + fahrenheitToCelsius(forecast.temp_max) + "°C";
 
-    const strTempMin = units ? "Low:" + Math.round(temperature.temp_min) + "°F" :
-    "High:" + fahrenheitToCelsius(temperature.temp_min) + "°C";
+    const strTempMin = units ? "Low:" + Math.round(forecast.temp_min) + "°F" :
+    "High:" + fahrenheitToCelsius(forecast.temp_min) + "°C";
     
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -22,8 +22,8 @@ export default function ForecastItem({dt, weather, temperature, units}: Forecast
                 {formattedDt.toLocaleTimeString()}
             </div>
             <div>
-                <h2>{weather.main}</h2>
-                <img src={weather.icon} width={50} height={50}/>
+                <h2>{forecast.main}</h2>
+                <img src={forecast.icon} width={50} height={50}/>
             </div>
             <br />
             <div id="MiniTempRow">

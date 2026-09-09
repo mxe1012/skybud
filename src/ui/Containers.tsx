@@ -59,6 +59,20 @@ export function InfoPaneIcon({src="wi-na.svg", size=25}: InfoPaneIconProps) {
     return <img src={img} width={size} height={size} />;
 }
 
+export function ButtonIcon({className="", src="", size=25}) {
+    return <img className={className} src={src} width={size} height={size}/>
+}
+
+export function FavoriteButton({className="", btnIconSrc="", disabled=false, onClick}) {
+    return (
+        <>
+            <button className={className} disabled={disabled} onClick={onClick}>
+                <ButtonIcon src={btnIconSrc} size={25}/>
+            </button>
+        </>
+    )
+}
+
 export function InfoPane({name="", icon="wi-na.svg", children}: InfoPaneProps) {
 
     return (

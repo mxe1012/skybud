@@ -10,6 +10,7 @@ A simple, fast weather application built with React, TypeScript, and Vite. Searc
 - 🗓️ Five-day/Three-hour forecast  
 - 📱 Responsive layout
 - 🌙 Dark mode
+- ❤️ Save favorite locations 
 
 ## Tech Stack
 
@@ -73,28 +74,14 @@ The app will be available at `http://localhost:5173` by default.
 ## Project Structure
 
 ```
-weather-app/
+skybud/
 ├── netlify/
 ├── public/
-│   ├── assets/
-│   ├── favicon.svg
-│   └── icons.svg
+│   └── assets/
 ├── src/
 │   ├── styles/
-│   │   ├── snackbar.css
-│   │   └── styles.css
 │   ├── ui/
-│   │   ├── components/
-│   │   │   ├── ForecastItem.tsx
-│   │   │   ├── Humidity.tsx
-│   │   │   ├── SunriseSunset.tsx
-│   │   │   ├── Temperature.tsx
-│   │   │   ├── Weather.tsx
-│   │   │   └── Wind.tsx
-│   │   ├── Containers.tsx
-│   │   ├── CurrentWeather.tsx
-│   │   ├── Dashboard.tsx
-│   │   └── Forecast.tsx
+│   │   └── dashboard_components/
 │   ├── utils/
 │   ├── App.tsx
 │   └── index.tsx

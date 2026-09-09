@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type React from "react";
-import type { ReactNode } from "react";
+import type { ReactNode, Dispatch, SetStateAction } from "react";
 
 export interface ChildrenProps {
     children: ReactNode;
@@ -105,21 +105,9 @@ export interface SunriseAndSunsetObjectProps {
     sunset: number;
 }
 
-export interface ForecastInfoProps {
-    dt: number;
-    weather: ForecastInfoObjectWeatherProps;
-    temperature: ForecastInfoObjectTemperatureProps;
+export interface ForecastItemProps {
+    forecast: ForecastEntry;
     units: boolean;
-}
-
-export interface ForecastInfoObjectWeatherProps {
-    main: string;
-    icon: string;
-}
-
-export interface ForecastInfoObjectTemperatureProps {
-    temp_max: number;
-    temp_min: number;
 }
 
 export interface ForecastEntry {
@@ -156,5 +144,53 @@ export interface LocationEntry {
 }
 
 export interface DashboardProps {
+    darkMode: boolean;
+}
+
+export interface ControllerProps {
+    currentLocationName: string;
+    units: boolean;
+    onSetUnits: Dispatch<SetStateAction<boolean>>;
+    disabled: boolean;
+    onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
+    darkMode: boolean;
+}
+
+export interface RecentListProps {
+    recents: LocationEntry[]
+    visible: boolean;
+    onLocationCoords: Dispatch<SetStateAction<{
+        lon: number;
+        lat: number;
+    }>>;
+    onLocationName: Dispatch<SetStateAction<string>>;
+    onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
+    onCurrentLocation:  Dispatch<SetStateAction<LocationEntry>>;
+    darkMode: boolean;
+}
+
+export interface SearchListProps {
+    locationList: LocationEntry[];
+    onLocationCoords: Dispatch<SetStateAction<{
+        lon: number;
+        lat: number;
+    }>>;
+    onLocationList:  Dispatch<SetStateAction<LocationEntry[]>>;
+    onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
+    onCurrentLocation:  Dispatch<SetStateAction<LocationEntry>>;
+    checkRecentsLength: (element: LocationEntry) => void;
+    darkMode: boolean;
+}
+
+export interface FavoritesListProps {
+    favorites: LocationEntry[]
+    visible: boolean;
+    onLocationCoords: Dispatch<SetStateAction<{
+        lon: number;
+        lat: number;
+    }>>;
+    onLocationName: Dispatch<SetStateAction<string>>;
+    onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
+    onCurrentLocation: Dispatch<SetStateAction<LocationEntry>>;
     darkMode: boolean;
 }

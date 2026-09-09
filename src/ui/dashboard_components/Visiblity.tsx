@@ -12,7 +12,7 @@ export default function Visibility({visiblity, units, darkMode}: VisiblityProps)
     return (
         <div>
             <div className="gauge2" style={{"--value": gaugeValue, "--size": "90px", fontSize: "15px",
-                "--background": darkMode ? "black" : "white"
+                "--background": darkMode ? "#3a3a3a" : "white"
             } as React.CSSProperties}>
                 <b>{formatVis}</b>
             </div>

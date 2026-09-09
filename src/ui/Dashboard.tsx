@@ -7,9 +7,11 @@ import { useState, useEffect } from "react";
 import { currentTime } from "../utils/helpers.ts";
 
 import { getCoordinates, apiFetch, } from '../utils/data.ts';
-import type { ForecastEntry, DashboardProps} from "../utils/types.ts";
+import type { ForecastEntry, DashboardProps, WeatherObjectProps, TempObjectProps, WindObjectProps, SunriseAndSunsetObjectProps} from "../utils/types.ts";
 
 export default function Dashboard({darkMode}: DashboardProps) {
+
+    const [time, setTime] = useState("");
 
     // Current name of location
     const [currentLocationName, setCurrentLocationName] = useState("");
@@ -18,7 +20,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
     const [units, setUnits] = useState(true);
 
     //Weather component
-    const [weather, setWeather] = useState({
+    const [weather, setWeather] = useState<WeatherObjectProps>({
         id: 0,
         main: "",
         description: "",
@@ -28,7 +30,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
     const iconUrl = "https://openweathermap.org/payload/api/media/file/";
 
     //Temperature component
-    const [temp, setTemp] = useState({
+    const [temp, setTemp] = useState<TempObjectProps>({
         temp: 0,
         feels_like: 0,
         temp_max: 0,
@@ -39,7 +41,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
     const [humidity, setHumidity] = useState(0);
 
     //Wind component
-    const [wind, setWind] = useState({
+    const [wind, setWind] = useState<WindObjectProps>({
         speed: 0,
         deg: 0,
         gust: 0,
@@ -49,7 +51,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
     const [visiblity, setVisiblity] = useState(0);
 
     //Sunrise and sunset component
-    const [sunTime, setSunTime] = useState({
+    const [sunTime, setSunTime] = useState<SunriseAndSunsetObjectProps>({
         sunrise: 0,
         sunset: 0,
     })
@@ -142,7 +144,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
 
         setNotice("Weather info acquired!");
         setTimeout(() => setShowSnackbar(false), 6000);
-
+        setTime(currentTime());
         setDisabled(false);
 
     } catch (e) {
@@ -151,30 +153,27 @@ export default function Dashboard({darkMode}: DashboardProps) {
     }
   }
 
-    
     useEffect(() => {
 
-        setTimeout(handleFetch, 200);
+        const id = setTimeout(() => {
+            handleFetch(0, 0, false)
+        }, 200);
+        
+        return () => clearTimeout(id);
 
-    
     }, []);
 
     return (
 
         <>
-            <Controller disabled={disabled} units={units} 
+            <Controller currentLocationName={currentLocationName} disabled={disabled} units={units} 
             onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode}/>
             <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
-            <h1 style={{color: darkMode ? 'whitesmoke' : 'black', textAlign: 'center'}}>
-                <img style={{filter: darkMode ? "invert(1)" : ""}}src="/assets/icons/location.png" width={25} height={35}/>
-                {" "}
-                <b>{currentLocationName}</b>
-            </h1>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
             wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode}/>
             <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
             <Forecast forecastList={forecastList} units={units} darkMode={darkMode}/>
-            <p style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>{"Last updated: " + currentTime()}</p>
+            <p style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>{"Last updated: " + time}</p>
         </>
 
     );
