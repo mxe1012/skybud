@@ -103,13 +103,16 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
             setShowSnackbar(true)
             setNotice("Location added to favorites!")
             setTimeout(() => setShowSnackbar(false), 2000)
-
         }
         else if(isInFavorites == true) {
             const toggleFavorite = 
             favorites.filter((element) => currentLocationEntry.lat != element.lat && currentLocationEntry.lon != element.lon)
             
             setFavorites(toggleFavorite);
+
+            setShowSnackbar(true)
+            setNotice("Location removed from favorites!")
+            setTimeout(() => setShowSnackbar(false), 2000)
         }
     }
 
