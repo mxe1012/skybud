@@ -39,6 +39,9 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
 
     const [isScrolled, setIsScrolled] = useState(false);
 
+    const [notice, setNotice] = useState("");
+    const [showSnackbar, setShowSnackbar] = useState(false);
+
     const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     
     function handleSearch(e) {
@@ -96,12 +99,20 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                 ...favorites,
                 currentLocationEntry
             ]);
+
+            setShowSnackbar(true)
+            setNotice("Added to favorites")
+            setTimeout(() => setShowSnackbar(false), 2000)
         }
         else if(isInFavorites == true) {
             const toggleFavorite = 
             favorites.filter((element) => currentLocationEntry.lat != element.lat && currentLocationEntry.lon != element.lon)
             
             setFavorites(toggleFavorite);
+
+            setShowSnackbar(true)
+            setNotice("Removed from favorites")
+            setTimeout(() => setShowSnackbar(false), 2000)
         }
     }
 
@@ -133,6 +144,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
     
     return (
         <>
+            <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
             <ControllerPaneContainer styles={{
                 backgroundColor: bgColorStr,
                 backdropFilter: isScrolled ? "blur(2px)" : "",
