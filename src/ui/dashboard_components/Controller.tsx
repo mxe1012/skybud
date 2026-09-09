@@ -90,10 +90,16 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
         favorites.some((element) => currentLocationEntry.lat == element.lat && currentLocationEntry.lon == element.lon);
 
         if (isInFavorites == false) {
-        setFavorites([
-            ...favorites,
-            currentLocationEntry
+            setFavorites([
+                ...favorites,
+                currentLocationEntry
             ]);
+        }
+        else if(isInFavorites == true) {
+            const toggleFavorite = 
+            favorites.filter((element) => currentLocationEntry.lat != element.lat && currentLocationEntry.lon != element.lon)
+            
+            setFavorites(toggleFavorite);
         }
     }
     
