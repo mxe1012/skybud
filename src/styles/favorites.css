@@ -14,8 +14,16 @@
     outline: none;
     border-style: none;
     padding: 0;
+    transition: transform 0.3s ease;
 }
 
+.favoriteBtn:active {
+    transform: scale(1.2);
+}
+
+.favoriteBtn:disabled {
+    cursor: not-allowed;
+}
 
 ul.favorites.hide > li.favorites.hide {
     list-style-type: none;
