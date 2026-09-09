@@ -6,7 +6,9 @@ import type {
     InfoPaneContainerProps,
     ControllerPaneContainerProps,
     EventButtonProps,
-    EventInputProps
+    EventInputProps,
+    ButtonIconProps,
+    FavoriteButtonProps,
 } from "../utils/types";
 
 import { backgroundImageLookup } from "../utils/helpers";
@@ -59,11 +61,11 @@ export function InfoPaneIcon({src="wi-na.svg", size=25}: InfoPaneIconProps) {
     return <img src={img} width={size} height={size} />;
 }
 
-export function ButtonIcon({className="", src="", size=25}) {
+export function ButtonIcon({className="", src="", size=25}: ButtonIconProps) {
     return <img className={className} src={src} width={size} height={size}/>
 }
 
-export function FavoriteButton({className="", btnIconSrc="", disabled=false, onClick}) {
+export function FavoriteButton({className="", btnIconSrc="", disabled=false, onClick}: FavoriteButtonProps) {
     return (
         <>
             <button className={className} disabled={disabled} onClick={onClick}>

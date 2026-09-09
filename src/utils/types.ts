@@ -45,6 +45,19 @@ export interface InfoPaneProps {
     children: ReactNode;
 }
 
+export interface ButtonIconProps {
+    className?: string;
+    src?: string;
+    size?: number;
+}
+
+export interface FavoriteButtonProps {
+    className?: string;
+    btnIconSrc?: string;
+    disabled: boolean;
+    onClick: any;
+}
+
 export interface InfoPaneIconProps {
     src?: string;
     size?: number;
