@@ -1,6 +1,7 @@
 import CurrentWeather from "./CurrentWeather.tsx";
 import Forecast from "./Forecast.tsx";
 import Controller from "./dashboard_components/Controller.tsx";
+import DataController from "./dashboard_components/DataController.tsx";
 
 import { useState, useEffect } from "react";
 
@@ -180,6 +181,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
             <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
             <Forecast forecastList={forecastList} units={units} darkMode={darkMode}/>
             <p style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>{"Last updated: " + time}</p>
+            <DataController />
         </>
 
     );
