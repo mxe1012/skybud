@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { currentTime } from "../utils/helpers.ts";
 
 import { getCoordinates, apiFetch, } from '../utils/data.ts';
-import type { ForecastEntry, DashboardProps, WeatherObjectProps, TempObjectProps, WindObjectProps, SunriseAndSunsetObjectProps, LocationEntry} from "../utils/types.ts";
+import type { ForecastEntry, DashboardProps, WeatherObjectProps, TempObjectProps, WindObjectProps, SunriseAndSunsetObjectProps} from "../utils/types.ts";
 
 export default function Dashboard({darkMode}: DashboardProps) {
 
@@ -15,8 +15,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
 
     // Current location and name 
     const [currentLocationName, setCurrentLocationName] = useState("");
-    const currentLocation: LocationEntry = JSON.parse(String(localStorage.getItem("current")));
-
+    
     // Unit Switcher
     const [units, setUnits] = useState(true);
 
@@ -156,13 +155,19 @@ export default function Dashboard({darkMode}: DashboardProps) {
 
     useEffect(() => {
 
+        const {lon, lat} = 
+        localStorage.getItem("current") != null ? JSON.parse(String(localStorage.getItem("current"))) : {
+            lon: 0,
+            lat: 0
+        }
+
         const id = setTimeout(() => {
-            handleFetch(currentLocation.lon, currentLocation.lat)
+            handleFetch(lon, lat)
         }, 200);
         
         return () => clearTimeout(id);
 
-    }, [currentLocation.lon, currentLocation.lat]);
+    }, []);
 
     return (
 
