@@ -21,24 +21,24 @@ export default function CurrentWeather({weather, temperature, humidity, wind, vi
             <InfoPaneContainer className={darkMode ? "InfoPaneContainer dark" : "InfoPaneContainer light"} 
                 id={weather.id} darkModeBG={darkMode}>
                 <WeatherInfoPaneContainer className={darkMode ? "WeatherInfoPaneContainer dark" : "WeatherInfoPaneContainer light"}>
-                    <InfoPane name="Weather" icon="wi-day-cloudy.svg">
+                    <InfoPane name="Weather" icon="wi-day-cloudy.svg" darkModeIcon={darkMode}>
                         <Weather weather={weather} />
                     </InfoPane>
-                    <InfoPane name="Temperature" icon="wi-thermometer.svg">
+                    <InfoPane name="Temperature" icon="wi-thermometer.svg" darkModeIcon={darkMode}>
                         <Temperature temperature={temperature} units={units}/>
                     </InfoPane>
                 </WeatherInfoPaneContainer>
                 <ExtraInfoPaneContainer className={darkMode ? "ExtraInfoPaneContainer dark" : "ExtraInfoPaneContainer light"}>
-                    <InfoPane name='Humidity' icon="wi-humidity.svg">
+                    <InfoPane name='Humidity' icon="wi-humidity.svg" darkModeIcon={darkMode}>
                         <Humidity humidity={humidity} darkMode={darkMode}/>
                     </InfoPane>
-                    <InfoPane name='Wind' icon="wi-windy.svg">
+                    <InfoPane name='Wind' icon="wi-windy.svg" darkModeIcon={darkMode}>
                         <Wind wind={wind} units={units} darkMode={darkMode}/>
                     </InfoPane>
-                    <InfoPane name="Visibility" icon="wi-stars.svg">
+                    <InfoPane name="Visibility" icon="wi-stars.svg" darkModeIcon={darkMode}>
                         <Visibility visiblity={visibility} units={units} darkMode={darkMode}/>
                     </InfoPane>
-                    <InfoPane name="Sunrise/Sunset" icon="wi-horizon.svg">
+                    <InfoPane name="Sunrise/Sunset" icon="wi-horizon.svg" darkModeIcon={darkMode}>
                         <SunriseAndSunset sunTime={sunTime}/>
                     </InfoPane>
                 </ExtraInfoPaneContainer>

@@ -42,6 +42,7 @@ export interface EventInputProps {
 export interface InfoPaneProps {
     name?: string;
     icon?: string;
+    darkModeIcon: boolean;
     children: ReactNode;
 }
 
@@ -60,6 +61,7 @@ export interface FavoriteButtonProps {
 
 export interface InfoPaneIconProps {
     src?: string;
+    darkMode: boolean;
     size?: number;
 }
 

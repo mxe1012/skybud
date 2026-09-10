@@ -16,7 +16,7 @@ ul.recents.hide > li.recents.hide {
 }
 
 ul.recents.show > li.recents.show {
-    background-image: url('/assets/icons/recent.png'); 
+    background-image: url('/assets/icons/recent.webp'); 
     background-position: 10px ;
     background-repeat: no-repeat; 
     background-size: 25px;

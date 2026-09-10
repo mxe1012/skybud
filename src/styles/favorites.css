@@ -32,7 +32,7 @@ ul.favorites.hide > li.favorites.hide {
 }
 
 ul.favorites.show > li.favorites.show {
-    background-image: url('/assets/favorites/heart_filled.png'); 
+    background-image: url('/assets/favorites/heart_filled.webp'); 
     background-position: 10px;
     background-repeat: no-repeat; 
     background-size: 20px;
