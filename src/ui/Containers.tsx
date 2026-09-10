@@ -58,11 +58,11 @@ export function InfoPaneIcon({src="wi-na.svg", size=25}: InfoPaneIconProps) {
 
     const img = "/assets/icons/" + src;
 
-    return <img src={img} width={size} height={size} />;
+    return <img src={img} width={size} height={size} alt="Icon"/>;
 }
 
 export function ButtonIcon({className="", src="", size=25}: ButtonIconProps) {
-    return <img className={className} src={src} width={size} height={size}/>
+    return <img className={className} src={src} width={size} height={size} alt="Favorite"/>
 }
 
 export function FavoriteButton({className="", btnIconSrc="", disabled=false, onClick}: FavoriteButtonProps) {

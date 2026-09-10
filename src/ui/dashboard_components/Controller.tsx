@@ -196,7 +196,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                 </div>
             </ControllerPaneContainer>
             <h1 style={{color: darkMode ? 'whitesmoke' : 'black', textAlign: 'center'}}>
-                <img style={{filter: darkMode ? "invert(1)" : ""}}src="/assets/icons/location.png" width={25} height={35}/>
+                <img style={{filter: darkMode ? "invert(1)" : ""}}src="/assets/icons/location.png" width={25} height={35} alt="Location"/>
                 {" "}
                 <b>{currentLocationName}</b>
                 {" "} 

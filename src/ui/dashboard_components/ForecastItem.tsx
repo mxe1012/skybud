@@ -23,7 +23,7 @@ export default function ForecastItem({forecast, units}: ForecastItemProps) {
             </div>
             <div>
                 <h2>{forecast.main}</h2>
-                <img src={forecast.icon} width={50} height={50}/>
+                <img src={forecast.icon} width={50} height={50} alt="Icon"/>
             </div>
             <br />
             <div id="MiniTempRow">
