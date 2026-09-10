@@ -54,13 +54,6 @@ export function EventInput({value="", className, disabled=false, placeholder="Pl
     return <input className={className} disabled={disabled} value={value} placeholder={placeholder} onChange={onChange}/>
 }
 
-export function InfoPaneIcon({src="wi-na.svg", size=25}: InfoPaneIconProps) {
-
-    const img = "/assets/icons/" + src;
-
-    return <img src={img} width={size} height={size} alt="Icon"/>;
-}
-
 export function ButtonIcon({className="", src="", size=25}: ButtonIconProps) {
     return <img className={className} src={src} width={size} height={size} alt="Favorite"/>
 }
@@ -75,12 +68,19 @@ export function FavoriteButton({className="", btnIconSrc="", disabled=false, onC
     )
 }
 
-export function InfoPane({name="", icon="wi-na.svg", children}: InfoPaneProps) {
+export function InfoPaneIcon({src="wi-na.svg", darkMode, size=25}: InfoPaneIconProps) {
+
+    const img = "/assets/icons/" + src;
+
+    return <img style={{filter: darkMode ? "invert(1)" : ""}} src={img} width={size} height={size} alt="Icon"/>;
+}
+
+export function InfoPane({name="", icon="wi-na.svg", darkModeIcon, children}: InfoPaneProps) {
 
     return (
         <>
             <span className="InfoPane">
-                <InfoPaneIcon src={icon} size={35} />
+                <InfoPaneIcon src={icon} size={35} darkMode={darkModeIcon} />
                 <p>{name}</p>
                 {children}
             </span>
