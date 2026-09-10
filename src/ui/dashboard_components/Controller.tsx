@@ -175,7 +175,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
                     <span style={{color: darkMode ? "white" : "black"}}>Units:</span> 
                     {" "}
-                    <select style={darkMode ? darkModeStyle : lightModeStyle}
+                    <select style={darkMode ? darkModeStyle : lightModeStyle} aria-label="Unit"
                     id="unit" value={String(units)} onChange={() => {onSetUnits(Boolean(!units))}} disabled={disabled}>
                         <option value={"true"}>Imperial</option>
                         <option value={"false"}>Metric</option>
