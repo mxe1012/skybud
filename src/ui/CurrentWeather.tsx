@@ -39,7 +39,7 @@ export default function CurrentWeather({weather, temperature, humidity, wind, vi
                         <Visibility visiblity={visibility} units={units} darkMode={darkMode}/>
                     </InfoPane>
                     <InfoPane name="Sunrise/Sunset" icon="wi-horizon.svg" darkModeIcon={darkMode}>
-                        <SunriseAndSunset sunTime={sunTime}/>
+                        <SunriseAndSunset sunTime={sunTime} darkMode={darkMode}/>
                     </InfoPane>
                 </ExtraInfoPaneContainer>
             </InfoPaneContainer>
