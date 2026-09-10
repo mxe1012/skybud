@@ -279,7 +279,7 @@
 }
 
 .EventInput.light {
-    background-image: url('/assets/icons/search_icon_24.png'); 
+    background-image: url('/assets/icons/search_icon_24.webp'); 
     background-position: 170px ;
     background-repeat: no-repeat; 
     border-style: none;
@@ -289,7 +289,7 @@
 }
 
 .EventInput.dark {
-    background-image: url('/assets/icons/search_icon_white_24.png'); 
+    background-image: url('/assets/icons/search_icon_white_24.webp'); 
     background-position: 170px ;
     background-repeat: no-repeat; 
     border-style: none;
@@ -358,7 +358,7 @@ ul.locations {
 }
 
 li.locations.light {
-    background-image: url('/assets/icons/location.png'); 
+    background-image: url('/assets/icons/location.webp'); 
     background-position: 10px;
     background-size: 12px;
     background-repeat: no-repeat;
@@ -373,7 +373,7 @@ li.locations.light {
 }
 
 li.locations.dark {
-    background-image: url('/assets/icons/location_white.png'); 
+    background-image: url('/assets/icons/location_white.webp'); 
     background-position: 10px ;
     background-repeat: no-repeat;
     background-size: 12px;
