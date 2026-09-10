@@ -18,7 +18,10 @@ export default function Dashboard({darkMode}: DashboardProps) {
     const [currentLocationName, setCurrentLocationName] = useState("");
     
     // Unit Switcher
-    const [units, setUnits] = useState(true);
+    const [units, setUnits] = useState<boolean>(() => {
+        const stored = localStorage.getItem("units");
+        return stored === "true";
+    });
 
     //Weather component
     const [weather, setWeather] = useState<WeatherObjectProps>({

@@ -126,7 +126,8 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
         localStorage.setItem("favorites", JSON.stringify(favorites));
         localStorage.setItem("current", JSON.stringify(currentLocationEntry))
         localStorage.setItem("recents", JSON.stringify(recents))
-    }, [favorites, currentLocationEntry, recents])
+        localStorage.setItem("units", String(units))
+    }, [favorites, currentLocationEntry, recents, units])
     
     useEffect(() => {
             const handleScroll = () => {
