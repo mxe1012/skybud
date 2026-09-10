@@ -33,7 +33,9 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
         } 
     );
 
-    const [recents, setRecents] = useState<LocationEntry[]>([]);
+    const [recents, setRecents] = useState<LocationEntry[]>(
+        localStorage.getItem("recents") != null ? JSON.parse(String(localStorage.getItem("recents"))) : []
+    );
     const [isShowRecentsDrop, setisShowRecentsDrop] = useState(false);
 
     const [favorites, setFavorites] = useState<LocationEntry[]>(
@@ -123,7 +125,8 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
     useEffect(() => {
         localStorage.setItem("favorites", JSON.stringify(favorites));
         localStorage.setItem("current", JSON.stringify(currentLocationEntry))
-    }, [favorites, currentLocationEntry])
+        localStorage.setItem("recents", JSON.stringify(recents))
+    }, [favorites, currentLocationEntry, recents])
     
     useEffect(() => {
             const handleScroll = () => {
