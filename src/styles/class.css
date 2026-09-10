@@ -344,6 +344,7 @@
 .DataController {
     display: flex;
     justify-content: center;
+    gap: 5px;
 }
 
 ul.forecast > li.forecast {

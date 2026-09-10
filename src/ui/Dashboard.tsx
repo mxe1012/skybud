@@ -181,7 +181,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
             <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
             <Forecast forecastList={forecastList} units={units} darkMode={darkMode}/>
             <p style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>{"Last updated: " + time}</p>
-            <DataController />
+            <DataController darkMode={darkMode}/>
         </>
 
     );
