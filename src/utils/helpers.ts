@@ -76,7 +76,7 @@ export function backgroundImageLookup(id: number, isDarkMode: boolean): string {
         case 230:
         case 231:
         case 232:
-            bg += "bg_thunder.png)";
+            bg += "bg_thunder.webp)";
             break;
         case 300: // Rainy (Drizzle) conditions
         case 301:
@@ -87,7 +87,7 @@ export function backgroundImageLookup(id: number, isDarkMode: boolean): string {
         case 313:
         case 314:
         case 321:
-            bg += "bg_drizzle.png)";
+            bg += "bg_drizzle.webp)";
             break;
         case 500: // Rainy conditions
         case 501:
@@ -99,7 +99,7 @@ export function backgroundImageLookup(id: number, isDarkMode: boolean): string {
         case 521:
         case 522:
         case 531:
-            bg += "bg_rain.png)";
+            bg += "bg_rain.webp)";
             break;
         case 600: // Snowy conditions
         case 601:
@@ -112,7 +112,7 @@ export function backgroundImageLookup(id: number, isDarkMode: boolean): string {
         case 620:
         case 621:
         case 622:
-            bg += "bg_snow.png)"; 
+            bg += "bg_snow.webp)"; 
             break;
         case 701: // Atmospheric conditions
         case 711:
@@ -124,21 +124,21 @@ export function backgroundImageLookup(id: number, isDarkMode: boolean): string {
         case 762:
         case 771:
         case 781:
-            bg += "bg_atmosphere.png)"; 
+            bg += "bg_atmosphere.webp)"; 
             break;
         case 800: // Clear condition
-            bg += "bg_clear.png)";
+            bg += "bg_clear.webp)";
             break;
         case 801: // Clear (few clouds) condition
-            bg += "bg_clear_clouds.png)";
+            bg += "bg_clear_clouds.webp)";
             break;
         case 802: // Cloudy conditions
         case 803:
         case 804:
-            bg += "bg_cloudy.png)";
+            bg += "bg_cloudy.webp)";
             break;
         default:
-            bg += "bg.jpg)";
+            bg += "bg_clear.webp)";
             break;
     }
     return bg;

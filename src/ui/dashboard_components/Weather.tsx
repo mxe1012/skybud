@@ -7,7 +7,7 @@ export default function Weather({weather}: WeatherProps) {
     return (
         <div>
             <h1>{main}</h1>
-            <img src={icon} alt="Icon" />
+            <img src={icon} width={115} height={115} alt="Icon" />
             <br />
             <h2>{description}</h2>
             <br />
