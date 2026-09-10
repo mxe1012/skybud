@@ -26,10 +26,12 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
 
     const [locationName, setLocationName] = useState("");
     const [locationList, setLocationList] = useState<LocationEntry[]>([]);
-    const [locationCoords, setLocationCoords] = useState({
-        lon: 0,
-        lat: 0
-    });
+    const [locationCoords, setLocationCoords] = useState(
+        localStorage.getItem("current") != null ? JSON.parse(String(localStorage.getItem("current"))) : {
+            lat: 0,
+            lon: 0
+        } 
+    );
 
     const [recents, setRecents] = useState<LocationEntry[]>([]);
     const [isShowRecentsDrop, setisShowRecentsDrop] = useState(false);
