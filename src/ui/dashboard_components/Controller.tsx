@@ -14,13 +14,15 @@ import FavoritesList from "../controller_components/FavoritesList";
 
 export default function Controller({currentLocationName, units, onSetUnits, disabled, onHandleFetch, darkMode}: ControllerProps) {
 
-    const [currentLocationEntry, setCurrentLocationEntry] = useState<LocationEntry>({
-        name: "Globe",
-        country: "Earth",
-        state: "",
-        lat: 0,
-        lon: 0
-    });
+    const [currentLocationEntry, setCurrentLocationEntry] = useState<LocationEntry>(
+        localStorage.getItem("current") != null ? JSON.parse(String(localStorage.getItem("current"))) : {
+            name: "Globe",
+            country: "Earth",
+            state: "",
+            lat: 0,
+            lon: 0
+        }   
+    );
 
     const [locationName, setLocationName] = useState("");
     const [locationList, setLocationList] = useState<LocationEntry[]>([]);
