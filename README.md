@@ -30,8 +30,8 @@ A simple, fast weather application built with React, TypeScript, and Vite. Searc
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/mxe1012/weather-app.git
-cd weather-app
+git clone https://github.com/mxe1012/skybud.git
+cd skybud
 ```
 
 ### 2. Install dependencies
