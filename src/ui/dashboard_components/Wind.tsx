@@ -16,7 +16,7 @@ export default function Wind({wind, units, darkMode}: WindProps) {
 
     return (
         <div>
-            <img style={{filter: darkMode ? 'invert(1)' : "", transform: compassIcon}} src="/assets/icons/wi-wind-deg.svg" width={50} height={50}/>
+            <img style={{filter: darkMode ? 'invert(1)' : "", transform: compassIcon}} src="/assets/icons/wi-wind-deg.svg" width={50} height={50} alt="Icon"/>
             <br />
             <b>{speedStr}</b>
             <br />

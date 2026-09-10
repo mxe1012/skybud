@@ -27,6 +27,6 @@ export default function Temperature({temperature, units}: TemperatureProps) {
                 </div>
             </div>
             <br/>
-            </div>
+        </div>
     );
 }

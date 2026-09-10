@@ -1,6 +1,7 @@
 import CurrentWeather from "./CurrentWeather.tsx";
 import Forecast from "./Forecast.tsx";
 import Controller from "./dashboard_components/Controller.tsx";
+import DataController from "./dashboard_components/DataController.tsx";
 
 import { useState, useEffect } from "react";
 
@@ -13,9 +14,9 @@ export default function Dashboard({darkMode}: DashboardProps) {
 
     const [time, setTime] = useState("");
 
-    // Current name of location
+    // Current location and name 
     const [currentLocationName, setCurrentLocationName] = useState("");
-
+    
     // Unit Switcher
     const [units, setUnits] = useState(true);
 
@@ -155,8 +156,14 @@ export default function Dashboard({darkMode}: DashboardProps) {
 
     useEffect(() => {
 
+        const {lon, lat} = 
+        localStorage.getItem("current") != null ? JSON.parse(String(localStorage.getItem("current"))) : {
+            lon: 0,
+            lat: 0
+        }
+
         const id = setTimeout(() => {
-            handleFetch(0, 0, false)
+            handleFetch(lon, lat)
         }, 200);
         
         return () => clearTimeout(id);
@@ -174,6 +181,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
             <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
             <Forecast forecastList={forecastList} units={units} darkMode={darkMode}/>
             <p style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>{"Last updated: " + time}</p>
+            <DataController darkMode={darkMode}/>
         </>
 
     );

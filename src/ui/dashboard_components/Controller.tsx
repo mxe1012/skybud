@@ -14,22 +14,28 @@ import FavoritesList from "../controller_components/FavoritesList";
 
 export default function Controller({currentLocationName, units, onSetUnits, disabled, onHandleFetch, darkMode}: ControllerProps) {
 
-    const [currentLocationEntry, setCurrentLocationEntry] = useState<LocationEntry>({
-        name: "Globe",
-        country: "Earth",
-        state: "",
-        lat: 0,
-        lon: 0
-    });
+    const [currentLocationEntry, setCurrentLocationEntry] = useState<LocationEntry>(
+        localStorage.getItem("current") != null ? JSON.parse(String(localStorage.getItem("current"))) : {
+            name: "Globe",
+            country: "Earth",
+            state: "",
+            lat: 0,
+            lon: 0
+        }   
+    );
 
     const [locationName, setLocationName] = useState("");
     const [locationList, setLocationList] = useState<LocationEntry[]>([]);
-    const [locationCoords, setLocationCoords] = useState({
-        lon: 0,
-        lat: 0
-    });
+    const [locationCoords, setLocationCoords] = useState(
+        localStorage.getItem("current") != null ? JSON.parse(String(localStorage.getItem("current"))) : {
+            lat: 0,
+            lon: 0
+        } 
+    );
 
-    const [recents, setRecents] = useState<LocationEntry[]>([]);
+    const [recents, setRecents] = useState<LocationEntry[]>(
+        localStorage.getItem("recents") != null ? JSON.parse(String(localStorage.getItem("recents"))) : []
+    );
     const [isShowRecentsDrop, setisShowRecentsDrop] = useState(false);
 
     const [favorites, setFavorites] = useState<LocationEntry[]>(
@@ -118,7 +124,9 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
 
     useEffect(() => {
         localStorage.setItem("favorites", JSON.stringify(favorites));
-    }, [favorites])
+        localStorage.setItem("current", JSON.stringify(currentLocationEntry))
+        localStorage.setItem("recents", JSON.stringify(recents))
+    }, [favorites, currentLocationEntry, recents])
     
     useEffect(() => {
             const handleScroll = () => {
@@ -167,7 +175,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
                     <span style={{color: darkMode ? "white" : "black"}}>Units:</span> 
                     {" "}
-                    <select style={darkMode ? darkModeStyle : lightModeStyle}
+                    <select style={darkMode ? darkModeStyle : lightModeStyle} aria-label="Unit"
                     id="unit" value={String(units)} onChange={() => {onSetUnits(Boolean(!units))}} disabled={disabled}>
                         <option value={"true"}>Imperial</option>
                         <option value={"false"}>Metric</option>
@@ -188,7 +196,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                 </div>
             </ControllerPaneContainer>
             <h1 style={{color: darkMode ? 'whitesmoke' : 'black', textAlign: 'center'}}>
-                <img style={{filter: darkMode ? "invert(1)" : ""}}src="/assets/icons/location.png" width={25} height={35}/>
+                <img style={{filter: darkMode ? "invert(1)" : ""}}src="/assets/icons/location.png" width={25} height={35} alt="Location"/>
                 {" "}
                 <b>{currentLocationName}</b>
                 {" "} 
