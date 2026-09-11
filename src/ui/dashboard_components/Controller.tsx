@@ -174,8 +174,8 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     {" "}
                     <select style={darkMode ? darkModeStyle : lightModeStyle} aria-label="Unit"
                     id="unit" value={String(units)} onChange={() => {onSetUnits(Boolean(!units))}} disabled={disabled}>
-                        <option value={"true"}>Imperial</option>
-                        <option value={"false"}>Metric</option>
+                        <option value={"true"} onClick={() => {showSnackbar("Switched to Imperial units")}}>Imperial</option>
+                        <option value={"false"} onClick={() => {showSnackbar("Switched to Metric units")}}>Metric</option>
                     </select>
                     {" "}
                     <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
