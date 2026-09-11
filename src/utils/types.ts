@@ -214,4 +214,3 @@ export interface FavoritesListProps {
 export interface SnackbarContextType {
     showSnackbar: (message: string, duration?: number) => void;
 }
-

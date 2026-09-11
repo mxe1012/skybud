@@ -1,11 +1,10 @@
 import { createContext, useState, useRef, useContext } from "react";
 
-import type { ReactNode } from 'react';
-import type { SnackbarContextType } from "../utils/types";
+import type { ChildrenProps, SnackbarContextType } from "../utils/types";
 
 const SnackbarContext = createContext<SnackbarContextType | undefined>(undefined);
 
-export default function SnackbarProvider({ children }: { children: ReactNode }) {
+export default function SnackbarProvider({ children }: ChildrenProps) {
     const [notice, setNotice] = useState("");
     const [visible, setVisible] = useState(false);
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
