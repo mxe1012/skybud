@@ -11,8 +11,7 @@ export default function SnackbarProvider({ children }: { children: ReactNode }) 
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     function showSnackbar(message: string, duration = 2000) {
-        // clear any existing timer so a new trigger resets the clock
-        // instead of letting a stale timeout hide it early
+        
         if (timeoutRef.current) {
             clearTimeout(timeoutRef.current);
         }
