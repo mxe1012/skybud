@@ -1,5 +1,5 @@
-import CurrentWeather from "./CurrentWeather.tsx";
-import Forecast from "./Forecast.tsx";
+import CurrentWeather from "./dashboard_components/CurrentWeather.tsx";
+import Forecast from "./dashboard_components/Forecast.tsx";
 import Controller from "./dashboard_components/Controller.tsx";
 import DataController from "./dashboard_components/DataController.tsx";
 

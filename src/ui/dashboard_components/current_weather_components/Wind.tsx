@@ -1,6 +1,6 @@
-import type { WindProps } from "../../utils/types";
+import type { WindProps } from "../../../utils/types";
 
-import { optimizedCompass, milesPerHourtoMS } from "../../utils/helpers";
+import { optimizedCompass, milesPerHourtoMS } from "../../../utils/helpers";
 
 export default function Wind({wind, units, darkMode}: WindProps) {
     

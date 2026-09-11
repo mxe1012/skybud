@@ -1,4 +1,4 @@
-import type { SearchListProps, LocationEntry } from "../../utils/types";
+import type { SearchListProps, LocationEntry } from "../../../utils/types";
 
 export default function SearchList({locationList, onLocationCoords, onLocationList, onHandleFetch, onCurrentLocation, checkRecentsLength, darkMode}: SearchListProps) {
 

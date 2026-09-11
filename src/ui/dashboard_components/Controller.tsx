@@ -10,9 +10,9 @@ import { useSnackbar } from "../SnackbarContext";
 import { FavoriteButton } from "../Containers";
 
 import type { ControllerProps, LocationEntry } from "../../utils/types";
-import RecentsList from "../controller_components/RecentsList";
-import SearchList from "../controller_components/SearchList";
-import FavoritesList from "../controller_components/FavoritesList";
+import RecentsList from "./controller_components/RecentsList";
+import SearchList from "./controller_components/SearchList";
+import FavoritesList from "./controller_components/FavoritesList";
 
 export default function Controller({currentLocationName, units, onSetUnits, disabled, onHandleFetch, darkMode}: ControllerProps) {
 

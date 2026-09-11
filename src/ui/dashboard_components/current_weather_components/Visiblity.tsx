@@ -1,6 +1,6 @@
-import type { VisiblityProps } from "../../utils/types";
+import type { VisiblityProps } from "../../../utils/types";
 
-import { getVisibilityLabel, kmToMi } from "../../utils/helpers";
+import { getVisibilityLabel, kmToMi } from "../../../utils/helpers";
 
 export default function Visibility({visiblity, units, darkMode}: VisiblityProps) {
 

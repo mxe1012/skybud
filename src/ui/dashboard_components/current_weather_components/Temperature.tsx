@@ -1,6 +1,6 @@
-import type { TemperatureProps } from "../../utils/types";
+import type { TemperatureProps } from "../../../utils/types";
 
-import { fahrenheitToCelsius } from "../../utils/helpers";
+import { fahrenheitToCelsius } from "../../../utils/helpers";
 
 export default function Temperature({temperature, units}: TemperatureProps) {
 

@@ -1,6 +1,6 @@
-import type { SunriseAndSunsetProps } from "../../utils/types";
+import type { SunriseAndSunsetProps } from "../../../utils/types";
 
-import { InfoPaneIcon } from "../Containers";
+import { InfoPaneIcon } from "../../Containers";
 
 export default function SunriseAndSunset({sunTime, darkMode}: SunriseAndSunsetProps) {
 

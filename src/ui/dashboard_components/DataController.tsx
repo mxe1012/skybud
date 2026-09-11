@@ -1,4 +1,4 @@
-import { EventButton } from "../Containers"
+import { EventButton } from "../Containers";
 
 import { useSnackbar } from "../SnackbarContext";
 
