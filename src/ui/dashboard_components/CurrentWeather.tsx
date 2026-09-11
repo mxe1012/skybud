@@ -3,16 +3,16 @@ import {
     InfoPane, 
     WeatherInfoPaneContainer, 
     ExtraInfoPaneContainer, 
-} from './Containers.tsx';
+} from '../Containers.tsx';
     
-import Weather from './dashboard_components/Weather.tsx';
-import Temperature from './dashboard_components/Temperature.tsx';
-import Humidity from './dashboard_components/Humidity.tsx';
-import Wind from './dashboard_components/Wind.tsx';
-import Visibility from './dashboard_components/Visiblity.tsx';
-import SunriseAndSunset from './dashboard_components/SunriseSunset.tsx';
+import Weather from './current_weather_components/Weather.tsx';
+import Temperature from './current_weather_components/Temperature.tsx';
+import Humidity from './current_weather_components/Humidity.tsx';
+import Wind from './current_weather_components/Wind.tsx';
+import Visibility from './current_weather_components/Visiblity.tsx';
+import SunriseAndSunset from './current_weather_components/SunriseSunset.tsx';
 
-import type { CurrentWeatherProps } from "../utils/types.ts";
+import type { CurrentWeatherProps } from "../../utils/types.ts";
 
 export default function CurrentWeather({weather, temperature, humidity, wind, visibility, sunTime, units, darkMode}: CurrentWeatherProps) {
 

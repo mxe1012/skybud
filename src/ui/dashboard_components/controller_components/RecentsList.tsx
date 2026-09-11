@@ -1,6 +1,6 @@
-import { lightModeStyle, darkModeStyle } from "../../utils/helpers";
+import { lightModeStyle, darkModeStyle } from "../../../utils/helpers";
 
-import type { LocationEntry, RecentListProps } from "../../utils/types";
+import type { LocationEntry, RecentListProps } from "../../../utils/types";
 
 export default function RecentsList({recents, visible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: RecentListProps) {
 

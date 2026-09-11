@@ -1,6 +1,6 @@
-import type { ForecastItemProps } from "../../utils/types";
+import type { ForecastItemProps } from "../../../utils/types";
 
-import { fahrenheitToCelsius } from "../../utils/helpers";
+import { fahrenheitToCelsius } from "../../../utils/helpers";
 
 export default function ForecastItem({forecast, units}: ForecastItemProps) {
 

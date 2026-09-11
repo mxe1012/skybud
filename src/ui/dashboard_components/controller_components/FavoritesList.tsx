@@ -1,6 +1,6 @@
-import { lightModeStyle, darkModeStyle } from "../../utils/helpers";
+import { lightModeStyle, darkModeStyle } from "../../../utils/helpers";
 
-import type { FavoritesListProps, LocationEntry } from "../../utils/types";
+import type { FavoritesListProps, LocationEntry } from "../../../utils/types";
 
 export default function FavoritesList({favorites, visible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: FavoritesListProps ){
 
