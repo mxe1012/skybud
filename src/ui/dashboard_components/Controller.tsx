@@ -3,7 +3,9 @@ import { useRef, useState, useEffect } from "react";
 
 import { apiFetchLocations } from "../../utils/data";
 
-import { lightModeStyle, darkModeStyle } from "../../utils/helpers";
+import { lightModeStyle, darkModeStyle} from "../../utils/helpers";
+
+import { useSnackbar } from "../SnackbarContext";
 
 import { FavoriteButton } from "../Containers";
 
@@ -45,8 +47,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
 
     const [isScrolled, setIsScrolled] = useState(false);
 
-    const [notice, setNotice] = useState("");
-    const [showSnackbar, setShowSnackbar] = useState(false);
+    const { showSnackbar } = useSnackbar();
 
     const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     
@@ -106,9 +107,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                 currentLocationEntry
             ]);
 
-            setShowSnackbar(true)
-            setNotice("Added to favorites")
-            setTimeout(() => setShowSnackbar(false), 2000)
+            showSnackbar("Added to favorites");
         }
         else if(isInFavorites == true) {
             const toggleFavorite = 
@@ -116,9 +115,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
             
             setFavorites(toggleFavorite);
 
-            setShowSnackbar(true)
-            setNotice("Removed from favorites")
-            setTimeout(() => setShowSnackbar(false), 2000)
+            showSnackbar("Removed favorites");
         }
     }
 
@@ -153,7 +150,6 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
     
     return (
         <>
-            <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
             <ControllerPaneContainer styles={{
                 backgroundColor: bgColorStr,
                 backdropFilter: isScrolled ? "blur(2px)" : "",
