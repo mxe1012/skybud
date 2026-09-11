@@ -14,6 +14,7 @@ import { MainPane } from './ui/Containers.tsx';
 import { darkModeStyleBackground, lightModeStyleBackground } from './utils/helpers.ts'
 
 import Dashboard from './ui/Dashboard.tsx';
+import SnackbarProvider from './ui/SnackbarContext.tsx'
 
 export default function App() {
 
@@ -29,7 +30,9 @@ export default function App() {
     return (
         <div style={ isDarkMode ? darkModeStyleBackground : lightModeStyleBackground} id='bg'>
             <MainPane>
-                <Dashboard darkMode={isDarkMode}/>
+                <SnackbarProvider>
+                    <Dashboard darkMode={isDarkMode}/>
+                </SnackbarProvider>
             </MainPane>
             <button id="darkModeBtn" onClick={() => setIsDarkMode(!isDarkMode)}>
                 {isDarkMode ? "🌕" : "☀️"}

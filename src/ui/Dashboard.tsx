@@ -5,6 +5,8 @@ import DataController from "./dashboard_components/DataController.tsx";
 
 import { useState, useEffect } from "react";
 
+import { useSnackbar } from "./SnackbarContext.tsx";
+
 import { currentTime } from "../utils/helpers.ts";
 
 import { getCoordinates, apiFetch, } from '../utils/data.ts';
@@ -61,8 +63,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
     })
     
     // Notices
-    const [notice, setNotice] = useState("");
-    const [showSnackbar, setShowSnackbar] = useState(false);
+    const { showSnackbar } = useSnackbar();
 
     // Button states
     const [disabled, setDisabled] = useState(false);
@@ -70,11 +71,10 @@ export default function Dashboard({darkMode}: DashboardProps) {
     // Forecast component
     const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
 
-    async function handleFetch(lon, lat, useExactLocation=false) {
+    async function handleFetch(lon: number, lat: number, useExactLocation=false) {
 
-        setNotice("Acquiring weather info...");
+        showSnackbar("Acquiring weather info...", 6000)
         setDisabled(true);
-        setShowSnackbar(true);
 
         if (useExactLocation === true) {
             const exactCoords = await getCoordinates();
@@ -82,83 +82,82 @@ export default function Dashboard({darkMode}: DashboardProps) {
             lat = exactCoords.lat;
         }
 
-    try {
-        const resultWeather = await apiFetch(lon, lat, "weather");
-        const resultForecast = await apiFetch(lon, lat, "forecast");
+        try {
+            const resultWeather = await apiFetch(lon, lat, "weather");
+            const resultForecast = await apiFetch(lon, lat, "forecast");
 
-        // Update location name
-        const current = resultWeather.sys.country ? resultWeather.name + ", " + resultWeather.sys.country
-        : resultWeather.name;
-        setCurrentLocationName(current);
-      
-        // Update Weather-related state
-        const {id, main, description} = resultWeather.weather[0];
-        setWeather({
-            id,
-            main,
-            description,
-            icon: iconUrl + resultWeather.weather[0].icon + ".png"
-        });
+            // Update location name
+            const current = resultWeather.sys.country ? resultWeather.name + ", " + resultWeather.sys.country
+            : resultWeather.name;
+            setCurrentLocationName(current);
+        
+            // Update Weather-related state
+            const {id, main, description} = resultWeather.weather[0];
+            setWeather({
+                id,
+                main,
+                description,
+                icon: iconUrl + resultWeather.weather[0].icon + ".png"
+            });
 
-        // Update Temperature-related state
-        const {temp, feels_like, temp_max, temp_min} = resultWeather.main;
-        setTemp({
-            temp, 
-            feels_like, 
-            temp_max, 
-            temp_min
-        });
+            // Update Temperature-related state
+            const {temp, feels_like, temp_max, temp_min} = resultWeather.main;
+            setTemp({
+                temp, 
+                feels_like, 
+                temp_max, 
+                temp_min
+            });
 
-        // Update Humidity-related state
-        setHumidity(resultWeather.main.humidity);
+            // Update Humidity-related state
+            setHumidity(resultWeather.main.humidity);
 
-        //Update Wind-related state
-        const {speed, deg, gust} = resultWeather.wind;
-        setWind({
-            speed, 
-            deg, 
-            gust
-        });
+            //Update Wind-related state
+            const {speed, deg, gust} = resultWeather.wind;
+            setWind({
+                speed, 
+                deg, 
+                gust
+            });
 
-        setVisiblity(resultWeather.visibility);
+            setVisiblity(resultWeather.visibility);
 
-        // Update Sunrise and Sunset related state
-        const {sunrise, sunset} = resultWeather.sys
-        setSunTime({
-            sunrise,
-            sunset
-        })
+            // Update Sunrise and Sunset related state
+            const {sunrise, sunset} = resultWeather.sys
+            setSunTime({
+                sunrise,
+                sunset
+            })
 
-        const newForecastList: ForecastEntry[] = resultForecast.list.map((element) => {
+            const newForecastList: ForecastEntry[] = resultForecast.list.map((element) => {
 
-        const dt = element.dt;
+            const dt = element.dt;
 
-        const { main, icon } = element.weather[0];
-        const { temp_max, temp_min } = element.main;
-        return {
-            dt,
-            main,
-            icon: iconUrl + icon + ".png",
-            temp_max,
-            temp_min,
-            };
-        });
+            const { main, icon } = element.weather[0];
+            const { temp_max, temp_min } = element.main;
+            return {
+                dt,
+                main,
+                icon: iconUrl + icon + ".png",
+                temp_max,
+                temp_min,
+                };
+            });
 
-        setForecastList(newForecastList);
+            setForecastList(newForecastList);
 
-        setNotice("Weather info acquired!");
-        setTimeout(() => setShowSnackbar(false), 6000);
-        setTime(currentTime());
-        setDisabled(false);
+            showSnackbar("Weather info acquired!");
+            setTime(currentTime());
+            setDisabled(false);
 
-    } catch (e) {
-        console.error(e);
-        setNotice("Weather fetching error!");
+        } catch (e) {
+            console.error(e);
+            showSnackbar("Weather fetching error!", 6000);
     }
   }
 
     useEffect(() => {
-
+        
         const {lon, lat} = 
         localStorage.getItem("current") != null ? JSON.parse(String(localStorage.getItem("current"))) : {
             lon: 0,
@@ -178,7 +177,6 @@ export default function Dashboard({darkMode}: DashboardProps) {
         <>
             <Controller currentLocationName={currentLocationName} disabled={disabled} units={units} 
             onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode}/>
-            <div id="snackbar" className={showSnackbar ? "show" : ""}>{notice}</div>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
             wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode}/>
             <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
