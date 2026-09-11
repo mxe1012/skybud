@@ -210,3 +210,8 @@ export interface FavoritesListProps {
     onCurrentLocation: Dispatch<SetStateAction<LocationEntry>>;
     darkMode: boolean;
 }
+
+export interface SnackbarContextType {
+    showSnackbar: (message: string, duration?: number) => void;
+}
+
