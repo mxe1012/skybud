@@ -5,7 +5,7 @@ import DataController from "./dashboard_components/DataController.tsx";
 
 import { useState, useEffect } from "react";
 
-import { useSnackbar } from "./SnackbarContext.tsx";
+import { useSnackbar } from "../hooks/SnackbarContext.tsx";
 
 import { currentTime } from "../utils/helpers.ts";
 

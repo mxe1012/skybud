@@ -6,6 +6,7 @@ import './styles/gauges.css'
 import './styles/class.css'
 import './styles/id.css'
 import './styles/media.css'
+import './styles/dc.css'
 
 import { useEffect, useState } from 'react'
 
@@ -14,7 +15,7 @@ import { MainPane } from './ui/Containers.tsx';
 import { darkModeStyleBackground, lightModeStyleBackground } from './utils/helpers.ts'
 
 import Dashboard from './ui/Dashboard.tsx';
-import SnackbarProvider from './ui/SnackbarContext.tsx'
+import SnackbarProvider from './hooks/SnackbarContext.tsx'
 
 export default function App() {
 
