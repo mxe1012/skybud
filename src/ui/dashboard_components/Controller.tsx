@@ -5,7 +5,7 @@ import { apiFetchLocations } from "../../utils/data";
 
 import { lightModeStyle, darkModeStyle} from "../../utils/helpers";
 
-import { useSnackbar } from "../SnackbarContext";
+import { useSnackbar } from "../../hooks/SnackbarContext";
 
 import { FavoriteButton } from "../Containers";
 

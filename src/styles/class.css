@@ -341,12 +341,6 @@
     grid-template-columns: auto auto;
 }
 
-.DataController {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-}
-
 ul.forecast > li.forecast {
     display: inline-block;
     padding-left: 5px;
