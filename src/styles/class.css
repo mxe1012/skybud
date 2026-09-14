@@ -333,9 +333,22 @@ ul.forecast > li.forecast {
     padding-left: 5px;
 }
 
-ul.locations {
+ul.locations.light {
     list-style-type: none;
-    padding: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px;
+    backdrop-filter: blur(2px);
+}
+
+ul.locations.dark {
+    list-style-type: none;
+    background-color: rgba(52, 52, 52, 0.5);
+    padding: 5px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 0px whitesmoke;
+    backdrop-filter: blur(2px);
 }
 
 li.locations.light {

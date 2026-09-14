@@ -1,12 +1,13 @@
-import type { SearchListProps, LocationEntry } from "../../../utils/types";
+import type { SearchListProps } from "../../../utils/types";
 
 export default function SearchList({locationList, onLocationCoords, onLocationList, onHandleFetch, onCurrentLocation, checkRecentsLength, darkMode}: SearchListProps) {
 
-    const list: LocationEntry[] = locationList;
-
     return (
-        <ul className="locations">
-            {list.map((element) => (
+        <ul style={{
+            visibility: locationList.length == 0 ? "hidden" : "visible",
+            display: locationList.length == 0 ? "none" : ""
+        }} className={darkMode ? "locations dark" : "locations light"}>
+            {locationList.map((element) => (
                 <li className={darkMode ? "locations dark" : "locations light"}
                     key={`${element.lon}, ${element.lat}`} onClick={() => {
                     onHandleFetch(element.lon, element.lat);
