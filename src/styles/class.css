@@ -35,19 +35,6 @@
     }
 }
 
-.ControllerPaneContainer {
-    animation-name: info-pane-fade;
-    animation-duration: 1s;
-    display: flex;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    padding: 10px;
-    justify-content: center;
-    top: 0;
-    position: sticky;
-    z-index: 3;
-}
-
 .InfoPaneContainer.light {
     animation-name: info-pane-container-fade;
     animation-duration: 0.5s;
