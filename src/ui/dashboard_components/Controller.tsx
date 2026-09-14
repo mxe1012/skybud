@@ -155,9 +155,17 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                 backdropFilter: isScrolled ? "blur(2px)" : "",
                 boxShadow: boxShadowStr,
                 transition: "background-color 0.2s ease, backdrop-filter 0.2s ease, box-shadow 0.2s ease"
-            }}>
-                <div style={{textAlign: 'center'}}>
+            }}> 
+                <div>
+                    <span style={{color: darkMode ? "white" : "black"}}>Units:</span> 
                     {" "}
+                    <select style={darkMode ? darkModeStyle : lightModeStyle} aria-label="Unit"
+                    id="unit" value={String(units)} onChange={() => {onSetUnits(Boolean(!units))}} disabled={disabled}>
+                        <option value={"true"} onClick={() => {showSnackbar("Switched to Imperial units")}}>Imperial</option>
+                        <option value={"false"} onClick={() => {showSnackbar("Switched to Metric units")}}>Metric</option>
+                    </select>
+                </div>
+                <div style={{textAlign: 'center'}}>
                     <EventInput className={darkMode ? "EventInput dark" : "EventInput light"}
                     disabled={disabled} value={locationName} placeholder="Search Location..." onChange={handleSearch}/>
                     {" "}
@@ -170,14 +178,12 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     onClick={() => {setIsShowFavoritesDrop(!isShowFavoritesDrop); setisShowRecentsDrop(false)}}/>
                     <SearchList locationList={locationList} onLocationCoords={setLocationCoords} onLocationList={setLocationList}
                     onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
-                    <span style={{color: darkMode ? "white" : "black"}}>Units:</span> 
-                    {" "}
-                    <select style={darkMode ? darkModeStyle : lightModeStyle} aria-label="Unit"
-                    id="unit" value={String(units)} onChange={() => {onSetUnits(Boolean(!units))}} disabled={disabled}>
-                        <option value={"true"} onClick={() => {showSnackbar("Switched to Imperial units")}}>Imperial</option>
-                        <option value={"false"} onClick={() => {showSnackbar("Switched to Metric units")}}>Metric</option>
-                    </select>
-                    {" "}
+                    <RecentsList list={recents} visible={isShowRecentsDrop} onVisible={setisShowRecentsDrop} onLocationCoords={setLocationCoords}
+                    onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry}darkMode={darkMode}/>
+                    <FavoritesList list={favorites} visible={isShowFavoritesDrop} onVisible={setIsShowFavoritesDrop} onLocationCoords={setLocationCoords}
+                    onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} darkMode={darkMode}/>
+                </div>
+                <div>
                     <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
                     text="Update Weather Information" disabled={disabled} 
                     onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
@@ -186,10 +192,6 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     text="Use Current Location" disabled={disabled} 
                     onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat, true)} />
                     <br />
-                    <RecentsList list={recents} visible={isShowRecentsDrop} onVisible={setisShowRecentsDrop} onLocationCoords={setLocationCoords}
-                    onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry}darkMode={darkMode}/>
-                    <FavoritesList list={favorites} visible={isShowFavoritesDrop} onVisible={setIsShowFavoritesDrop} onLocationCoords={setLocationCoords}
-                    onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} darkMode={darkMode}/>
                 </div>
             </ControllerPaneContainer>
             <h1 style={{color: darkMode ? 'whitesmoke' : 'black', textAlign: 'center'}}>
