@@ -115,7 +115,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
             
             setFavorites(toggleFavorite);
 
-            showSnackbar("Removed favorites");
+            showSnackbar("Removed from favorites");
         }
     }
 
