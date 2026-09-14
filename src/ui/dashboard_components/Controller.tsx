@@ -165,13 +165,13 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                         <option value={"false"} onClick={() => {showSnackbar("Switched to Metric units")}}>Metric</option>
                     </select>
                 </div>
-                <div style={{textAlign: 'center'}}>
-                    <EventInput className={darkMode ? "EventInput dark" : "EventInput light"}
-                    disabled={disabled} value={locationName} placeholder="Search Location..." onChange={handleSearch}/>
-                    {" "}
+                <div style={{textAlign: 'center', position: 'absolute', left: '50%', transform: 'translateX(-50%)'}}>
                     <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
                     text={isShowRecentsDrop ? "Hide Recents" : "Show Recents"} disabled={disabled} 
                     onClick={() => {setisShowRecentsDrop(!isShowRecentsDrop); setIsShowFavoritesDrop(false)}}/>
+                    {" "}
+                    <EventInput className={darkMode ? "EventInput dark" : "EventInput light"}
+                    disabled={disabled} value={locationName} placeholder="Search Location..." onChange={handleSearch}/>
                     {" "}
                     <EventButton className={darkMode ? "EventButton dark" : "EventButton light"} 
                     text={isShowFavoritesDrop ? "Hide Favorites" : "Show Favorites"} disabled={disabled} 
