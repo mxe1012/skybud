@@ -9,7 +9,11 @@ export default function SearchList({locationList, onLocationCoords, onLocationLi
         }} className={darkMode ? "locations dark" : "locations light"}>
             {locationList.map((element) => (
                 <li className={darkMode ? "locations dark" : "locations light"}
-                    key={`${element.lon}, ${element.lat}`} onClick={() => {
+                    key={`${element.lon}, ${element.lat}`}
+                    onMouseDown={(e) => {
+                        e.preventDefault();
+                    }}
+                    onClick={() => {
                     onHandleFetch(element.lon, element.lat);
                     onLocationCoords(element); 
                     onLocationList([]);
