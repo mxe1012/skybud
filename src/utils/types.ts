@@ -188,6 +188,7 @@ export interface SearchListProps {
 export interface RecentListProps {
     recents: LocationEntry[]
     visible: boolean;
+    onVisible: Dispatch<SetStateAction<boolean>>;
     onLocationCoords: Dispatch<SetStateAction<{
         lon: number;
         lat: number;
