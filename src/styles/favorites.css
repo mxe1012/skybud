@@ -52,6 +52,8 @@ ul.favorites.light.show {
     border-radius: 15px;
     box-shadow: 0px 0px 10px;
     backdrop-filter: blur(2px);
+    max-height: 184px;
+    overflow: auto;
 }
 
 ul.favorites.dark.show {
@@ -64,6 +66,8 @@ ul.favorites.dark.show {
     border-radius: 15px;
     box-shadow: 0px 0px 10px whitesmoke;
     backdrop-filter: blur(2px);
+    max-height: 184px;
+    overflow: auto;
 }
 
 li.favorites.show {
