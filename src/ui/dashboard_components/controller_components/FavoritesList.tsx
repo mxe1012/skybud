@@ -2,7 +2,7 @@ import { lightModeStyle, darkModeStyle } from "../../../utils/helpers";
 
 import type { FavoritesListProps, LocationEntry } from "../../../utils/types";
 
-export default function FavoritesList({favorites, visible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: FavoritesListProps ){
+export default function FavoritesList({favorites, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: FavoritesListProps ){
 
     const list: LocationEntry[] = favorites;
 
@@ -14,7 +14,8 @@ export default function FavoritesList({favorites, visible, onLocationCoords, onL
                     onHandleFetch(element.lon, element.lat);
                     onLocationCoords(element); 
                     onLocationName(element.name);
-                    onCurrentLocation(element)
+                    onCurrentLocation(element);
+                    onVisible(false)
                 }}>
                     {element.state ? element.name + ", " + element.state + ", " + element.country : 
                     element.name + ", " + element.country} 

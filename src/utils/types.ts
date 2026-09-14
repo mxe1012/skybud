@@ -201,6 +201,7 @@ export interface SearchListProps {
 export interface FavoritesListProps {
     favorites: LocationEntry[]
     visible: boolean;
+    onVisible: Dispatch<SetStateAction<boolean>>;
     onLocationCoords: Dispatch<SetStateAction<{
         lon: number;
         lat: number;
