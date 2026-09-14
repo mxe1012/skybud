@@ -1,10 +1,8 @@
 import { lightModeStyle, darkModeStyle } from "../../../utils/helpers";
 
-import type { LocationEntry, RecentListProps } from "../../../utils/types";
+import type { AuxListProps } from "../../../utils/types";
 
-export default function RecentsList({recents, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: RecentListProps) {
-
-    const list: LocationEntry[] = recents;
+export default function RecentsList({list, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: AuxListProps) {
 
     return (
         <ul className={visible ? "recents show" : "recents hide"}>

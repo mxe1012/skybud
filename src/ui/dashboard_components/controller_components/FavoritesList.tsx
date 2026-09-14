@@ -1,10 +1,8 @@
 import { lightModeStyle, darkModeStyle } from "../../../utils/helpers";
 
-import type { FavoritesListProps, LocationEntry } from "../../../utils/types";
+import type { AuxListProps } from "../../../utils/types";
 
-export default function FavoritesList({favorites, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: FavoritesListProps ){
-
-    const list: LocationEntry[] = favorites;
+export default function FavoritesList({list, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: AuxListProps ){
 
     return (
         <ul className={visible ? "favorites show" : "favorites hide"}>
