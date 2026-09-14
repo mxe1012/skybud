@@ -9,6 +9,17 @@
     }
 }
 
+@keyframes recents-pane-container-fade {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 ul.recents.hide > li.recents.hide {
     list-style-type: none;
     visibility: hidden;
@@ -16,6 +27,8 @@ ul.recents.hide > li.recents.hide {
 }
 
 ul.recents.light.show {
+    animation-name: recents-pane-container-fade;
+    animation-duration: 0.3s;
     list-style-type: none;
     visibility: visible;
     background-color: rgba(255, 255, 255, 0.5);
@@ -26,6 +39,8 @@ ul.recents.light.show {
 }
 
 ul.recents.dark.show {
+    animation-name: recents-pane-container-fade;
+    animation-duration: 0.3s;
     list-style-type: none;
     visibility: visible;
     background-color: rgba(52, 52, 52, 0.5);
