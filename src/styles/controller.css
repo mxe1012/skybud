@@ -1,0 +1,12 @@
+.ControllerPaneContainer {
+    display: flex;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px;
+    justify-content: space-between;
+    top: 0;
+    position: sticky;
+    z-index: 3;
+}

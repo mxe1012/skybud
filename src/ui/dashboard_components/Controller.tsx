@@ -7,12 +7,11 @@ import { lightModeStyle, darkModeStyle} from "../../utils/helpers";
 
 import { useSnackbar } from "../../hooks/SnackbarContext";
 
-import { FavoriteButton } from "../Containers";
-
 import type { ControllerProps, LocationEntry } from "../../utils/types";
 import RecentsList from "./controller_components/RecentsList";
 import SearchList from "./controller_components/SearchList";
 import FavoritesList from "./controller_components/FavoritesList";
+import LocationName from "./controller_components/LocationName";
 
 export default function Controller({currentLocationName, units, onSetUnits, disabled, onHandleFetch, darkMode}: ControllerProps) {
 
@@ -115,7 +114,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
             
             setFavorites(toggleFavorite);
 
-            showSnackbar("Removed favorites");
+            showSnackbar("Removed from favorites");
         }
     }
 
@@ -136,40 +135,15 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
     
-    let bgColorStr;
-    let boxShadowStr;
-
-    if (isScrolled && darkMode == false) {
-        bgColorStr = "rgba(255, 255, 255, 0.5)";
-        boxShadowStr = "0px 0px 10px"
-    }
-    else if (isScrolled && darkMode) {
-        bgColorStr = "rgba(52, 52, 52, 0.5)";
-        boxShadowStr = "0px 0px 10px 0px white"
-    }
-    
     return (
         <>
             <ControllerPaneContainer styles={{
-                backgroundColor: bgColorStr,
+                backgroundColor: isScrolled ? (darkMode ? "rgba(52, 52, 52, 0.5)" : "rgba(255, 255, 255, 0.5)") : "",
                 backdropFilter: isScrolled ? "blur(2px)" : "",
-                boxShadow: boxShadowStr,
+                boxShadow: isScrolled ? (darkMode ? "0px 0px 10px 0px white" : "0px 0px 10px") : "",
                 transition: "background-color 0.2s ease, backdrop-filter 0.2s ease, box-shadow 0.2s ease"
-            }}>
-                <div style={{textAlign: 'center'}}>
-                    {" "}
-                    <EventInput className={darkMode ? "EventInput dark" : "EventInput light"}
-                    disabled={disabled} value={locationName} placeholder="Search Location..." onChange={handleSearch}/>
-                    {" "}
-                    <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
-                    text={isShowRecentsDrop ? "Hide Recents" : "Show Recents"} disabled={disabled} 
-                    onClick={() => {setisShowRecentsDrop(!isShowRecentsDrop); setIsShowFavoritesDrop(false)}}/>
-                    {" "}
-                    <EventButton className={darkMode ? "EventButton dark" : "EventButton light"} 
-                    text={isShowFavoritesDrop ? "Hide Favorites" : "Show Favorites"} disabled={disabled} 
-                    onClick={() => {setIsShowFavoritesDrop(!isShowFavoritesDrop); setisShowRecentsDrop(false)}}/>
-                    <SearchList locationList={locationList} onLocationCoords={setLocationCoords} onLocationList={setLocationList}
-                    onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
+            }}> 
+                <div>
                     <span style={{color: darkMode ? "white" : "black"}}>Units:</span> 
                     {" "}
                     <select style={darkMode ? darkModeStyle : lightModeStyle} aria-label="Unit"
@@ -177,7 +151,28 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                         <option value={"true"} onClick={() => {showSnackbar("Switched to Imperial units")}}>Imperial</option>
                         <option value={"false"} onClick={() => {showSnackbar("Switched to Metric units")}}>Metric</option>
                     </select>
+                </div>
+                <div style={{textAlign: 'center', position: 'absolute', left: '50%', transform: 'translateX(-50%)'}}>
+                    <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
+                    text={isShowRecentsDrop ? "Hide Recents" : "Show Recents"} disabled={disabled} 
+                    onClick={() => {setisShowRecentsDrop(!isShowRecentsDrop); setIsShowFavoritesDrop(false)}}/>
                     {" "}
+                    <EventInput className={darkMode ? "EventInput dark" : "EventInput light"}
+                    disabled={disabled} value={locationName} placeholder="Search Location..." onChange={handleSearch}
+                    onBlur={() => {setLocationList([])}}
+                    />
+                    {" "}
+                    <EventButton className={darkMode ? "EventButton dark" : "EventButton light"} 
+                    text={isShowFavoritesDrop ? "Hide Favorites" : "Show Favorites"} disabled={disabled} 
+                    onClick={() => {setIsShowFavoritesDrop(!isShowFavoritesDrop); setisShowRecentsDrop(false)}}/>
+                    <SearchList locationList={locationList} onLocationCoords={setLocationCoords} onLocationList={setLocationList}
+                    onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
+                    <RecentsList list={recents} visible={isShowRecentsDrop} onVisible={setisShowRecentsDrop} onLocationCoords={setLocationCoords}
+                    onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry}darkMode={darkMode}/>
+                    <FavoritesList list={favorites} visible={isShowFavoritesDrop} onVisible={setIsShowFavoritesDrop} onLocationCoords={setLocationCoords}
+                    onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} darkMode={darkMode}/>
+                </div>
+                <div>
                     <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
                     text="Update Weather Information" disabled={disabled} 
                     onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
@@ -186,22 +181,9 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     text="Use Current Location" disabled={disabled} 
                     onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat, true)} />
                     <br />
-                    <RecentsList list={recents} visible={isShowRecentsDrop} onVisible={setisShowRecentsDrop} onLocationCoords={setLocationCoords}
-                    onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry}darkMode={darkMode}/>
-                    <FavoritesList list={favorites} visible={isShowFavoritesDrop} onVisible={setIsShowFavoritesDrop} onLocationCoords={setLocationCoords}
-                    onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} darkMode={darkMode}/>
                 </div>
             </ControllerPaneContainer>
-            <h1 style={{color: darkMode ? 'whitesmoke' : 'black', textAlign: 'center'}}>
-                <img style={{filter: darkMode ? "invert(1)" : ""}}src="/assets/icons/location.webp" width={25} height={35} alt="Location"/>
-                {" "}
-                <b>{currentLocationName}</b>
-                {" "} 
-                <FavoriteButton className="favoriteBtn" 
-                btnIconSrc={darkMode ? "/assets/favorites/heart_empty_dark.webp" : "/assets/favorites/heart_empty.webp"} 
-                disabled={disabled}
-                onClick={handleFavorites}/>
-            </h1>
+            <LocationName currentLocationName={currentLocationName} disabled={disabled} onHandleFavorites={handleFavorites} darkMode={darkMode}/>
         </>
     );
 }

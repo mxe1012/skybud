@@ -5,8 +5,8 @@ import type { AuxListProps } from "../../../utils/types";
 export default function FavoritesList({list, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: AuxListProps ){
 
     return (
-        <ul className={visible ? "favorites show" : "favorites hide"}>
-            {list.map((element) => (
+        <ul className={visible ? (darkMode ? "favorites dark show" : "favorites light show") : "favorites hide"}>
+            {list.length == 0 && visible ? "No favorite locations" : list.map((element) => (
                 <li style={darkMode ? darkModeStyle : lightModeStyle}
                     key={`${element.lon}, ${element.lat}`} className={visible ? "favorites show" : "favorites hide"} onClick={() => {
                     onHandleFetch(element.lon, element.lat);

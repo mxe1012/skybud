@@ -37,6 +37,7 @@ export interface EventInputProps {
     disabled: boolean;
     placeholder: string;
     onChange: any;
+    onBlur?: any;
 }
 
 export interface InfoPaneProps {
@@ -197,6 +198,13 @@ export interface AuxListProps {
     onLocationName: Dispatch<SetStateAction<string>>;
     onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
     onCurrentLocation: Dispatch<SetStateAction<LocationEntry>>;
+    darkMode: boolean;
+}
+
+export interface LocationNameProps {
+    currentLocationName: string;
+    disabled: boolean;
+    onHandleFavorites: () => void;
     darkMode: boolean;
 }
 

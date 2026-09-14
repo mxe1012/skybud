@@ -1,4 +1,5 @@
 import './styles/styles.css'
+import './styles/controller.css'
 import './styles/snackbar.css'
 import './styles/recents.css'
 import './styles/favorites.css'

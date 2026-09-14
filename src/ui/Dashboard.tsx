@@ -17,7 +17,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
     const [time, setTime] = useState("");
 
     // Current location and name 
-    const [currentLocationName, setCurrentLocationName] = useState("");
+    const [currentLocationName, setCurrentLocationName] = useState("Globe, Earth");
     
     // Unit Switcher
     const [units, setUnits] = useState<boolean>(() => {
