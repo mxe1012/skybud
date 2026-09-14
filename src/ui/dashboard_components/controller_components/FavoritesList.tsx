@@ -6,7 +6,7 @@ export default function FavoritesList({list, visible, onVisible, onLocationCoord
 
     return (
         <ul className={visible ? "favorites show" : "favorites hide"}>
-            {list.length == 0 ? "" : list.map((element) => (
+            {list.map((element) => (
                 <li style={darkMode ? darkModeStyle : lightModeStyle}
                     key={`${element.lon}, ${element.lat}`} className={visible ? "favorites show" : "favorites hide"} onClick={() => {
                     onHandleFetch(element.lon, element.lat);
