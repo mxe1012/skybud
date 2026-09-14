@@ -338,8 +338,8 @@ ul.locations.light {
     animation-duration: 0.3s;
     list-style-type: none;
     background-color: rgba(255, 255, 255, 0.5);
-    padding: 5px;
-    border-radius: 15px;
+    padding: 10px;
+    border-radius: 35px;
     box-shadow: 0px 0px 10px;
     backdrop-filter: blur(2px);
 }
@@ -349,8 +349,8 @@ ul.locations.dark {
     animation-duration: 0.3s;
     list-style-type: none;
     background-color: rgba(52, 52, 52, 0.5);
-    padding: 5px;
-    border-radius: 15px;
+    padding: 10px;
+    border-radius: 35px;
     box-shadow: 0px 0px 10px 0px whitesmoke;
     backdrop-filter: blur(2px);
 }
