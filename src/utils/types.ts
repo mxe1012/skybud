@@ -201,6 +201,13 @@ export interface AuxListProps {
     darkMode: boolean;
 }
 
+export interface LocationNameProps {
+    currentLocationName: string;
+    disabled: boolean;
+    onHandleFavorites: () => void;
+    darkMode: boolean;
+}
+
 export interface SnackbarContextType {
     showSnackbar: (message: string, duration?: number) => void;
 }
