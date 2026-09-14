@@ -172,19 +172,6 @@ export interface ControllerProps {
     darkMode: boolean;
 }
 
-export interface RecentListProps {
-    recents: LocationEntry[]
-    visible: boolean;
-    onLocationCoords: Dispatch<SetStateAction<{
-        lon: number;
-        lat: number;
-    }>>;
-    onLocationName: Dispatch<SetStateAction<string>>;
-    onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
-    onCurrentLocation:  Dispatch<SetStateAction<LocationEntry>>;
-    darkMode: boolean;
-}
-
 export interface SearchListProps {
     locationList: LocationEntry[];
     onLocationCoords: Dispatch<SetStateAction<{
@@ -195,6 +182,19 @@ export interface SearchListProps {
     onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
     onCurrentLocation:  Dispatch<SetStateAction<LocationEntry>>;
     checkRecentsLength: (element: LocationEntry) => void;
+    darkMode: boolean;
+}
+
+export interface RecentListProps {
+    recents: LocationEntry[]
+    visible: boolean;
+    onLocationCoords: Dispatch<SetStateAction<{
+        lon: number;
+        lat: number;
+    }>>;
+    onLocationName: Dispatch<SetStateAction<string>>;
+    onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
+    onCurrentLocation:  Dispatch<SetStateAction<LocationEntry>>;
     darkMode: boolean;
 }
 
