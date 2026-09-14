@@ -14,11 +14,11 @@ export default function RecentsList({list, visible, onVisible, onLocationCoords,
                     onLocationName(element.name);
                     onCurrentLocation(element);
                     onVisible(false)
-                 }}>
+                }}>
                     {element.state ? element.name + ", " + element.state + ", " + element.country : 
                     element.name + ", " + element.country}
                 </li>
             ))}
-         </ul>
+        </ul>
     );
 }
