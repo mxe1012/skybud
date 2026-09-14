@@ -6,7 +6,7 @@ export default function RecentsList({list, visible, onVisible, onLocationCoords,
 
     return (
         <ul className={visible ? (darkMode ? "recents dark show" : "recents light show") : "recents hide"}>
-            {list.map((element) => (
+            {list.length == 0 && visible ? "No recent locations" : list.map((element) => (
                 <li style={darkMode ? darkModeStyle : lightModeStyle}
                     key={`${element.lon}, ${element.lat}`} className={visible ? "recents show" : "recents hide"} onClick={() => {
                     onHandleFetch(element.lon, element.lat);
