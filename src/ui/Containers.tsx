@@ -50,8 +50,8 @@ export function EventButton({text="", className, disabled=false, onClick}: Event
     return <button className={className} disabled={disabled} onClick={onClick}>{text}</button>
 }
 
-export function EventInput({value="", className, disabled=false, placeholder="Placeholder", onChange}: EventInputProps) {
-    return <input className={className} disabled={disabled} value={value} placeholder={placeholder} onChange={onChange}/>
+export function EventInput({value="", className, disabled=false, placeholder="Placeholder", onChange, onBlur}: EventInputProps) {
+    return <input className={className} disabled={disabled} value={value} placeholder={placeholder} onChange={onChange} onBlur={onBlur}/>
 }
 
 export function ButtonIcon({className="", src="", size=25}: ButtonIconProps) {

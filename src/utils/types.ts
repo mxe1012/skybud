@@ -37,6 +37,7 @@ export interface EventInputProps {
     disabled: boolean;
     placeholder: string;
     onChange: any;
+    onBlur?: any;
 }
 
 export interface InfoPaneProps {
