@@ -7,12 +7,11 @@ import { lightModeStyle, darkModeStyle} from "../../utils/helpers";
 
 import { useSnackbar } from "../../hooks/SnackbarContext";
 
-import { FavoriteButton } from "../Containers";
-
 import type { ControllerProps, LocationEntry } from "../../utils/types";
 import RecentsList from "./controller_components/RecentsList";
 import SearchList from "./controller_components/SearchList";
 import FavoritesList from "./controller_components/FavoritesList";
+import LocationName from "./controller_components/LocationName";
 
 export default function Controller({currentLocationName, units, onSetUnits, disabled, onHandleFetch, darkMode}: ControllerProps) {
 
@@ -184,16 +183,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     <br />
                 </div>
             </ControllerPaneContainer>
-            <h1 style={{color: darkMode ? 'whitesmoke' : 'black', textAlign: 'center'}}>
-                <img style={{filter: darkMode ? "invert(1)" : ""}}src="/assets/icons/location.webp" width={25} height={35} alt="Location"/>
-                {" "}
-                <b>{currentLocationName}</b>
-                {" "} 
-                <FavoriteButton className="favoriteBtn" 
-                btnIconSrc={darkMode ? "/assets/favorites/heart_empty_dark.webp" : "/assets/favorites/heart_empty.webp"} 
-                disabled={disabled}
-                onClick={handleFavorites}/>
-            </h1>
+            <LocationName currentLocationName={currentLocationName} disabled={disabled} onHandleFavorites={handleFavorites} darkMode={darkMode}/>
         </>
     );
 }
