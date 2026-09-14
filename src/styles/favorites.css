@@ -31,22 +31,40 @@ ul.favorites.hide > li.favorites.hide {
     display: none;
 }
 
-ul.favorites.show > li.favorites.show {
+ul.favorites.light.show {
+    list-style-type: none;
+    visibility: visible;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px;
+    backdrop-filter: blur(2px);
+}
+
+ul.favorites.dark.show {
+    list-style-type: none;
+    visibility: visible;
+    background-color: rgba(52, 52, 52, 0.5);
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px whitesmoke;
+    backdrop-filter: blur(2px);
+}
+
+li.favorites.show {
     background-image: url('/assets/favorites/heart_filled.webp'); 
     background-position: 10px;
     background-repeat: no-repeat; 
     background-size: 20px;
     animation-name: history-li-anim;
     animation-duration: 0.2s;
-    list-style-type: none;
-    visibility: visible;
-    padding: 5px;
     background-color: white;
     border-radius: 20px;
     margin: 3px;
+    padding: 5px;
     cursor: pointer;
 }
 
-ul.favorites.show > li.favorites.show:hover {
+li.favorites.show:hover {
     background-color: grey;
 }
