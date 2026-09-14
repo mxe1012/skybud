@@ -136,24 +136,12 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
     
-    let bgColorStr;
-    let boxShadowStr;
-
-    if (isScrolled && darkMode == false) {
-        bgColorStr = "rgba(255, 255, 255, 0.5)";
-        boxShadowStr = "0px 0px 10px"
-    }
-    else if (isScrolled && darkMode) {
-        bgColorStr = "rgba(52, 52, 52, 0.5)";
-        boxShadowStr = "0px 0px 10px 0px white"
-    }
-    
     return (
         <>
             <ControllerPaneContainer styles={{
-                backgroundColor: bgColorStr,
+                backgroundColor: isScrolled ? (darkMode ? "rgba(52, 52, 52, 0.5)" : "rgba(255, 255, 255, 0.5)") : "",
                 backdropFilter: isScrolled ? "blur(2px)" : "",
-                boxShadow: boxShadowStr,
+                boxShadow: isScrolled ? (darkMode ? "0px 0px 10px 0px white" : "0px 0px 10px") : "",
                 transition: "background-color 0.2s ease, backdrop-filter 0.2s ease, box-shadow 0.2s ease"
             }}> 
                 <div>
