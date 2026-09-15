@@ -178,7 +178,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
                     {" "}
                     <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
-                    text="Use Current Location" disabled={disabled} 
+                    text="Use Exact Location" disabled={disabled} 
                     onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat, true)} />
                     <br />
                 </div>
