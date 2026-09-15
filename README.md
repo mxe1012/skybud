@@ -1,6 +1,10 @@
 # Skybud
 
+![Skybud Logo](/assets/meta/skybud-og-image.png "Skybud")
+
 A simple, fast weather application built with React, TypeScript, and Vite. Search for a city and view current conditions pulled from Openweather API.
+
+https://skybud.netlify.app/
 
 ## Features
 
@@ -16,9 +20,13 @@ A simple, fast weather application built with React, TypeScript, and Vite. Searc
 
 - [React](https://react.dev/) — UI library
 - [TypeScript](https://www.typescriptlang.org/) — static typing
+  * Typescript is used in liue of Javascript to enforce typing throughout the app. This, in turn, makes the app easier to reason about, debug, and reduce type errors.
 - [Vite](https://vitejs.dev/) — build tool & dev server
+  * Easily preview and debug the app with features such as fast refresh and hot module replacement.
 - [npm](https://www.npmjs.com/) — package manager
 - [Netlify Functions](https://docs.netlify.com/functions/overview/) — serverless functions for server-to-server API calls
+  * Netlify Functions is employed to allow for private server-to-server communication of all API keys. Thus, no API key is exposed to the client, preventing potential leaks. This was done to facilitate secure communication between the client and the API.  
+
 
 ## Prerequisites
 
@@ -79,9 +87,13 @@ skybud/
 ├── public/
 │   └── assets/
 ├── src/
+│   ├── hooks/
 │   ├── styles/
 │   ├── ui/
 │   │   └── dashboard_components/
+│   │       ├── controller_components/
+│   │       ├── current_weather_components/
+│   │       └── forecast_components/
 │   ├── utils/
 │   ├── App.tsx
 │   └── index.tsx
