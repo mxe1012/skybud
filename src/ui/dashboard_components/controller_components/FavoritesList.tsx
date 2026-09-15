@@ -8,13 +8,14 @@ export default function FavoritesList({list, visible, onVisible, onLocationCoord
         <ul className={visible ? (darkMode ? "favorites dark show" : "favorites light show") : "favorites hide"}>
             {list.length == 0 && visible ? "No favorite locations" : list.map((element) => (
                 <li style={darkMode ? darkModeStyle : lightModeStyle}
-                    key={`${element.lon}, ${element.lat}`} className={visible ? "favorites show" : "favorites hide"} onClick={() => {
-                    onHandleFetch(element.lon, element.lat);
-                    onLocationCoords(element); 
-                    onLocationName(element.name);
-                    onCurrentLocation(element);
-                    onVisible(false)
-                }}>
+                    key={`${element.lon}, ${element.lat}`} className={visible ? "favorites show" : "favorites hide"} 
+                    onClick={() => {
+                        onHandleFetch(element.lon, element.lat);
+                        onLocationCoords(element); 
+                        onLocationName(element.name);
+                        onCurrentLocation(element);
+                        onVisible(false)
+                    }}>
                     {element.state ? element.name + ", " + element.state + ", " + element.country : 
                     element.name + ", " + element.country} 
                 </li> 

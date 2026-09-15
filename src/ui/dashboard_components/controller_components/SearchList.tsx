@@ -14,12 +14,12 @@ export default function SearchList({locationList, onLocationCoords, onLocationLi
                         e.preventDefault();
                     }}
                     onClick={() => {
-                    onHandleFetch(element.lon, element.lat);
-                    onLocationCoords(element); 
-                    onLocationList([]);
-                    onCurrentLocation(element)
-                    checkRecentsLength(element)
-                }}>
+                        onHandleFetch(element.lon, element.lat);
+                        onLocationCoords(element); 
+                        onLocationList([]);
+                        onCurrentLocation(element)
+                        checkRecentsLength(element)
+                    }}>
                     {element.state ? element.name + ", " + element.state + ", " + element.country : 
                     element.name + ", " + element.country}
                 </li>

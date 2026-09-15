@@ -2,9 +2,11 @@
 
 A simple, fast weather application built with React, TypeScript, and Vite. Search for a city and view current conditions pulled from Openweather API.
 
+https://skybud.netlify.app/
+
 ## Features
 
-- 🔍 Search weather by city name 
+- 🔍 Search weather by city name, state, and/or country 
 - 📍 Geolocation support ("use my current location")
 - 🌡️ Current conditions (e.g., temperature, feels-like, humidity, wind)
 - 🗓️ Five-day/Three-hour forecast  
@@ -16,13 +18,17 @@ A simple, fast weather application built with React, TypeScript, and Vite. Searc
 
 - [React](https://react.dev/) — UI library
 - [TypeScript](https://www.typescriptlang.org/) — static typing
+  * TypeScript is used in lieu of JavaScript to enforce typing throughout the app. This, in turn, makes the app easier to reason about, debug, and reduce type errors.
 - [Vite](https://vitejs.dev/) — build tool & dev server
+  * Easily preview and debug the app with features such as fast refresh and hot module replacement.
 - [npm](https://www.npmjs.com/) — package manager
 - [Netlify Functions](https://docs.netlify.com/functions/overview/) — serverless functions for server-to-server API calls
+  * Netlify Functions is employed to allow for private server-to-server communication of all API keys. Thus, no API key is exposed to the client, preventing potential leaks. This was done to facilitate secure communication between the client and the API.
+  * `@netlify/vite-plugin` runs the Functions runtime locally alongside Vite's dev server, so the same server-to-server flow works in local development.
 
 ## Prerequisites
 
-- Node.js 18+
+- Node.js 20.19+ or 22.12+ (required by Vite 8)
 - npm (bundled with Node.js)
 
 ## Getting Started
@@ -45,12 +51,12 @@ npm install
 Create a `.env` file in the project root (see `.env.example`):
 
 ```bash
-VITE_API_KEY=https://api.example.com
-VITE_WEATHER_API_BASE_URL=https://api.example.com
-VITE_GEOLOCATION_API_KEY=https://api.example.com
+API_KEY=your_openweather_api_key_here
+GEOLOCATION_API_KEY=your_geolocation_api_key_here
+VITE_WEATHER_API_BASE_URL=https://api.openweathermap.org/data/2.5
 ```
 
-> Note: Vite only exposes env variables prefixed with `VITE_` to client-side code.
+> Note: Vite only exposes env variables prefixed with `VITE_` to client-side code. `API_KEY` and `GEOLOCATION_API_KEY` intentionally omit that prefix — they're read only inside the Netlify Functions, never bundled into the client. `VITE_WEATHER_API_BASE_URL` isn't sensitive, so it's safe to expose.
 
 ### 4. Run the dev server
 
@@ -68,8 +74,6 @@ The app will be available at `http://localhost:5173` by default.
 | `npm run build`  | Type-check and build for production        |
 | `npm run preview`| Preview the production build locally       |
 | `npm run lint`   | Run ESLint against the codebase            |
-| `npm run format` | Run Prettier to format the codebase        |
-| `npm test`       | Run the test suite                         |
 
 ## Project Structure
 
@@ -79,9 +83,13 @@ skybud/
 ├── public/
 │   └── assets/
 ├── src/
+│   ├── hooks/
 │   ├── styles/
 │   ├── ui/
 │   │   └── dashboard_components/
+│   │       ├── controller_components/
+│   │       ├── current_weather_components/
+│   │       └── forecast_components/
 │   ├── utils/
 │   ├── App.tsx
 │   └── index.tsx

@@ -15,13 +15,11 @@ export default function Forecast({forecastList, units, darkMode}: ForecastProps)
                         <ForecastItem
                             forecast={element}
                             units={units}
-                    />
+                        />
                     </ForecastInfoPane>
                 </li>
-                )
-            )}
+            ))}
             </ForecastInfoContainer>
         </>
     );
-
 }
