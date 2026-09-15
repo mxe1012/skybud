@@ -4,7 +4,7 @@ export default async (req: Request, context: Context) => {
     const url = new URL(req.url)
     const query = url.searchParams.get("query") || ""
 
-    const key = Netlify.env.get("VITE_GEOLOCATION_API_KEY")
+    const key = Netlify.env.get("GEOLOCATION_API_KEY")
 
     try {
         const result = await fetch(
