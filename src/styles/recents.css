@@ -47,6 +47,7 @@ ul.recents.dark.show {
     padding: 10px;
     border-radius: 15px;
     box-shadow: 0px 0px 10px whitesmoke;
+    color: whitesmoke;
     backdrop-filter: blur(2px);
 }
 
