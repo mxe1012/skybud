@@ -1,14 +1,12 @@
 # Skybud
 
-![Skybud Logo](/assets/meta/skybud-og-image.png "Skybud")
-
 A simple, fast weather application built with React, TypeScript, and Vite. Search for a city and view current conditions pulled from Openweather API.
 
 https://skybud.netlify.app/
 
 ## Features
 
-- 🔍 Search weather by city name 
+- 🔍 Search weather by city name, state, and/or country 
 - 📍 Geolocation support ("use my current location")
 - 🌡️ Current conditions (e.g., temperature, feels-like, humidity, wind)
 - 🗓️ Five-day/Three-hour forecast  
