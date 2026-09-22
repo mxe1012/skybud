@@ -2,6 +2,7 @@ import CurrentWeather from "./dashboard_components/CurrentWeather.tsx";
 import Forecast from "./dashboard_components/Forecast.tsx";
 import Controller from "./dashboard_components/Controller.tsx";
 import DataController from "./dashboard_components/DataController.tsx";
+import MiniClock from "./dashboard_components/MiniClock.tsx";
 
 import { useState, useEffect } from "react";
 
@@ -179,9 +180,8 @@ export default function Dashboard({darkMode}: DashboardProps) {
             onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode}/>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
             wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode}/>
-            <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
             <Forecast forecastList={forecastList} units={units} darkMode={darkMode}/>
-            <p style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>{"Last updated: " + time}</p>
+            <MiniClock darkMode={darkMode} time={time} />
             <DataController darkMode={darkMode}/>
         </>
 

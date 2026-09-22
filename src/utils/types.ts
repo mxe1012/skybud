@@ -211,3 +211,8 @@ export interface LocationNameProps {
 export interface SnackbarContextType {
     showSnackbar: (message: string, duration?: number) => void;
 }
+
+export interface MiniClockProps {
+    time: string;
+    darkMode: boolean;
+}
