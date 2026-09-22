@@ -39,8 +39,6 @@ const options = {
 
 export function getCoordinates(): Promise<{ lat: number; lon: number }> {
 
-    console.log("Getting Latitude and Longitude...");
-
     return new Promise((resolve, reject) => {
         if (!navigator.geolocation) {
             alert("Geolocation is not supported by this browser.");
