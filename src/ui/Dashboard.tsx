@@ -180,7 +180,6 @@ export default function Dashboard({darkMode}: DashboardProps) {
             onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode}/>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
             wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode}/>
-            <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
             <Forecast forecastList={forecastList} units={units} darkMode={darkMode}/>
             <MiniClock darkMode={darkMode} time={time} />
             <DataController darkMode={darkMode}/>
