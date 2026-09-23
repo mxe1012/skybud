@@ -204,6 +204,7 @@ export interface AuxListProps {
 export interface LocationNameProps {
     currentLocationName: string;
     disabled: boolean;
+    isFavorited: boolean;
     onHandleFavorites: () => void;
     darkMode: boolean;
 }

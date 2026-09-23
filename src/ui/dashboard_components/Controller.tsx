@@ -1,5 +1,5 @@
 import { ControllerPaneContainer, EventInput, EventButton } from "../Containers";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, } from "react";
 
 import { apiFetchLocations } from "../../utils/data";
 
@@ -43,6 +43,12 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
         localStorage.getItem("favorites") != null ? JSON.parse(String(localStorage.getItem("favorites"))) : []
     );
     const [isShowFavoritesDrop, setIsShowFavoritesDrop] = useState(false)
+
+    const isFavorited = favorites.some(
+    element =>
+        currentLocationEntry.lat === element.lat &&
+        currentLocationEntry.lon === element.lon
+    );
 
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -96,6 +102,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
         ]);
     }
     
+
     function handleFavorites() {
         const isInFavorites = 
         favorites.some((element) => currentLocationEntry.lat == element.lat && currentLocationEntry.lon == element.lon);
@@ -183,7 +190,8 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     <br />
                 </div>
             </ControllerPaneContainer>
-            <LocationName currentLocationName={currentLocationName} disabled={disabled} onHandleFavorites={handleFavorites} darkMode={darkMode}/>
+            <LocationName currentLocationName={currentLocationName} disabled={disabled} isFavorited={isFavorited} 
+            onHandleFavorites={handleFavorites} darkMode={darkMode}/>
         </>
     );
 }
