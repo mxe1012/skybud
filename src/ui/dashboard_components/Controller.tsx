@@ -44,11 +44,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
     );
     const [isShowFavoritesDrop, setIsShowFavoritesDrop] = useState(false)
 
-    const isFavorited = favorites.some(
-    element =>
-        currentLocationEntry.lat === element.lat &&
-        currentLocationEntry.lon === element.lon
-    );
+    const isFavorited = favorites.some(element => currentLocationEntry.lat === element.lat && currentLocationEntry.lon === element.lon);
 
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -104,10 +100,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
     
 
     function handleFavorites() {
-        const isInFavorites = 
-        favorites.some((element) => currentLocationEntry.lat == element.lat && currentLocationEntry.lon == element.lon);
-
-        if (isInFavorites == false) {
+        if (isFavorited == false) {
             setFavorites([
                 ...favorites,
                 currentLocationEntry
@@ -115,7 +108,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
 
             showSnackbar("Added to favorites");
         }
-        else if(isInFavorites == true) {
+        else {
             const toggleFavorite = 
             favorites.filter((element) => currentLocationEntry.lat != element.lat && currentLocationEntry.lon != element.lon)
             
