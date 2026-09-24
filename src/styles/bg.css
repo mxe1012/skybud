@@ -1,0 +1,22 @@
+#root {
+  min-height: 100%;
+}
+
+.bg.light {
+    /* radial-gradient(circle,rgba(255, 255, 255, 1) 0%, rgba(65, 196, 240, 1) 50%, rgba(154, 216, 252, 1) 100%) */
+    background-image: radial-gradient(circle,rgb(183, 228, 255) 0%, rgba(65, 196, 240, 1) 50%, rgb(105, 195, 247) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    min-height: 100%;
+}
+
+.bg.dark {
+    background-image: radial-gradient(circle, rgba(30,30,40,1) 0%, rgba(18,18,26,1) 50%, rgba(8,8,14,1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    min-height: 100%;
+}
