@@ -1,4 +1,3 @@
-
 export const darkModeStyle = { 
     backgroundColor: "#3a3a3a",
     color: "white",
@@ -7,14 +6,6 @@ export const darkModeStyle = {
 export const lightModeStyle = { 
     backgroundColor: "white",
     color: "black",
-}
-
-export const darkModeStyleBackground = { 
-    backgroundImage: "radial-gradient(circle, rgba(30,30,40,1) 0%, rgba(18,18,26,1) 50%, rgba(8,8,14,1) 100%)"
-}
-// radial-gradient(circle,rgba(255, 255, 255, 1) 0%, rgba(65, 196, 240, 1) 50%, rgba(154, 216, 252, 1) 100%)
-export const lightModeStyleBackground = { 
-    backgroundImage: "radial-gradient(circle,rgb(183, 228, 255) 0%, rgba(65, 196, 240, 1) 50%, rgb(105, 195, 247) 100%)"
 }
 
 export function currentTime(): string {
