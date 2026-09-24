@@ -3,7 +3,7 @@
     --cutout: 50%;
     --color-start: rgb(223, 246, 255);
     --color-end: #7fd0ff;
-    --background: white;
+    --background: whitesmoke;
     font-size: 25px;
     width: var(--size);
     height: var(--size);
@@ -26,7 +26,7 @@
     --cutout: 50%;
     --color-start: rgb(150, 15, 223);
     --color-end: #d97fff;
-    --background: white;
+    --background: whitesmoke;
     font-size: 25px;
     width: var(--size);
     height: var(--size);
