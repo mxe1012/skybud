@@ -56,7 +56,7 @@ GEOLOCATION_API_KEY=your_geolocation_api_key_here
 VITE_WEATHER_API_BASE_URL=https://api.openweathermap.org/data/2.5
 ```
 
-> Note: Vite only exposes env variables prefixed with `VITE_` to client-side code. `API_KEY` and `GEOLOCATION_API_KEY` intentionally omit that prefix — they're read only inside the Netlify Functions, never bundled into the client. `VITE_WEATHER_API_BASE_URL` isn't sensitive, so it's safe to expose.
+> Note: Vite only exposes env variables prefixed with `VITE_` to client-side code. `API_KEY` and `GEOLOCATION_API_KEY` intentionally omit that prefix. Thus, they're read only inside the Netlify Functions and never bundled into the client. `VITE_WEATHER_API_BASE_URL` isn't sensitive, so it's safe to expose.
 
 ### 4. Run the dev server
 
