@@ -17,8 +17,8 @@ export default function MiniClock({time, darkMode}: MiniClockProps) {
 
     return (
         <>
-            <p style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>{clock.toLocaleTimeString()}</p>
-            <p style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>{"Last updated: " + time}</p>
+            <p style={{color: darkMode ? 'whitesmoke' : 'black', textAlign: 'center'}}>{clock.toLocaleTimeString()}</p>
+            <p style={{color: darkMode ? 'whitesmoke' : 'black', textAlign: 'center'}}>{"Last updated: " + time}</p>
         </>
     )
 }

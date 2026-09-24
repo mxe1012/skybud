@@ -8,7 +8,7 @@ export default function Forecast({forecastList, units, darkMode}: ForecastProps)
 
     return (
         <>
-            <h1 style={{color: darkMode ? 'white' : 'black', textAlign: 'center'}}>Forecast</h1>
+            <h1 style={{color: darkMode ? 'whitesmoke' : 'black', textAlign: 'center'}}>Forecast</h1>
             <ForecastInfoContainer className={darkMode ? 'ForecastInfoContainer dark' : 'ForecastInfoContainer light'}>
                 {forecastList.map((element) => (
                 <li key={element.dt} className="forecast">
