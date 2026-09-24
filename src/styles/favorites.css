@@ -28,8 +28,12 @@
     transition: transform 0.1s ease;
 }
 
-.favoriteBtn:active {
+.favoriteBtn:hover {
     transform: scale(1.2);
+}
+
+.favoriteBtn:active {
+    transform: scale(1);
 }
 
 .favoriteBtn:disabled {
