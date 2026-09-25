@@ -102,6 +102,7 @@ export interface WindProps {
     wind: WindObjectProps;
     units: boolean;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface WindObjectProps {
