@@ -2,10 +2,35 @@ import type { TemperatureProps } from "../../../utils/types";
 
 import { fahrenheitToCelsius } from "../../../utils/helpers";
 
-export default function Temperature({temperature, units}: TemperatureProps) {
+export default function Temperature({temperature, units, darkMode, isLoaded}: TemperatureProps) {
 
     const {temp, feels_like, temp_max, temp_min} = temperature
 
+    if(!isLoaded) {
+        return (
+            <div>
+            <div className="TemperatureGrid">
+                <div style={{padding: '10px'}}>
+                    <div className={darkMode ? "skeleton dark skeleton-temperature-head" : "skeleton light skeleton-temperature-head"}></div>
+                    <div className={darkMode ? "skeleton dark skeleton-temperature" : "skeleton light skeleton-temperature"}></div>
+                </div>
+                <div style={{padding: '10px'}}>
+                    <div className={darkMode ? "skeleton dark skeleton-temperature-head" : "skeleton light skeleton-temperature-head"}></div>
+                    <div className={darkMode ? "skeleton dark skeleton-temperature" : "skeleton light skeleton-temperature"}></div>
+                </div>
+                <div style={{padding: '10px'}}>
+                    <div className={darkMode ? "skeleton dark skeleton-temperature-head" : "skeleton light skeleton-temperature-head"}></div>
+                    <div className={darkMode ? "skeleton dark skeleton-temperature" : "skeleton light skeleton-temperature"}></div>
+                </div>
+                <div style={{padding: '10px'}}>
+                    <div className={darkMode ? "skeleton dark skeleton-temperature-head" : "skeleton light skeleton-temperature-head"}></div>
+                    <div className={darkMode ? "skeleton dark skeleton-temperature" : "skeleton light skeleton-temperature"}></div>
+                </div>
+            </div>
+            <br/>
+        </div>
+        )
+    }
     return (
         <div>
             <div className="TemperatureGrid">

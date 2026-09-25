@@ -14,7 +14,7 @@ import SunriseAndSunset from './current_weather_components/SunriseSunset.tsx';
 
 import type { CurrentWeatherProps } from "../../utils/types.ts";
 
-export default function CurrentWeather({weather, temperature, humidity, wind, visibility, sunTime, units, darkMode}: CurrentWeatherProps) {
+export default function CurrentWeather({weather, temperature, humidity, wind, visibility, sunTime, units, darkMode, isLoaded}: CurrentWeatherProps) {
 
     return (
         <>
@@ -25,7 +25,7 @@ export default function CurrentWeather({weather, temperature, humidity, wind, vi
                         <Weather weather={weather} />
                     </InfoPane>
                     <InfoPane name="Temperature" icon="wi-thermometer.svg" darkModeIcon={darkMode}>
-                        <Temperature temperature={temperature} units={units}/>
+                        <Temperature temperature={temperature} units={units} darkMode={darkMode} isLoaded={isLoaded}/>
                     </InfoPane>
                 </WeatherInfoPaneContainer>
                 <ExtraInfoPaneContainer className={darkMode ? "ExtraInfoPaneContainer dark" : "ExtraInfoPaneContainer light"}>

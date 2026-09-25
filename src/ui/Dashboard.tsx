@@ -182,7 +182,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
             <Controller currentLocationName={currentLocationName} disabled={disabled} units={units} 
             onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode} isLoaded={isLoaded}/>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
-            wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode}/>
+            wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode} isLoaded={isLoaded}/>
             <Forecast forecastList={forecastList} units={units} darkMode={darkMode}/>
             <MiniClock darkMode={darkMode} time={time} />
             <DataController darkMode={darkMode}/>

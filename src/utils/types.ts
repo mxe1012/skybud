@@ -80,6 +80,8 @@ export interface WeatherObjectProps {
 export interface TemperatureProps {
     temperature: TempObjectProps;
     units: boolean;
+    darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface TempObjectProps {
@@ -144,6 +146,7 @@ export interface CurrentWeatherProps {
     sunTime: SunriseAndSunsetObjectProps;
     units: boolean;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface ForecastProps {
