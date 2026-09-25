@@ -39,3 +39,24 @@
   margin: 24px;
   border-radius: 10px;
 }
+
+.skeleton-weather-main {
+  height: 25px;
+  width: 100px;
+  margin: 24px;
+  border-radius: 10px;
+}
+
+.skeleton-weather-icon {
+  height: 115px;
+  width: 115px;
+  margin: 24px;
+  border-radius: 100px;
+}
+
+.skeleton-weather-desc {
+  height: 25px;
+  width: 100px;
+  margin: 24px;
+  border-radius: 10px;
+}
