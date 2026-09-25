@@ -1,8 +1,17 @@
 import type { LocationNameProps } from "../../../utils/types";
 import { FavoriteButton } from "../../Containers";
 
-export default function LocationName({currentLocationName, disabled, isFavorited, onHandleFavorites, darkMode}: LocationNameProps) {
+export default function LocationName({currentLocationName, disabled, isFavorited, onHandleFavorites, darkMode, isLoaded}: LocationNameProps) {
     
+    if(!isLoaded) {
+        return (
+            <>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <div className={ darkMode ? "skeleton dark skeleton-name" : "skeleton light skeleton-name"}></div>
+                </div>
+            </>
+        )
+    }
     return (
         <>
             <h1 style={{color: darkMode ? 'whitesmoke' : 'black', textAlign: 'center'}}>
@@ -12,7 +21,7 @@ export default function LocationName({currentLocationName, disabled, isFavorited
                 {" "} 
                 <FavoriteButton className="favoriteBtn" 
                 btnIconSrc=
-                {isFavorited == false ? (darkMode ? "/assets/favorites/heart_empty_dark.webp" : "/assets/favorites/heart_empty.webp") : "/assets/favorites/heart_filled.webp"} 
+                {isFavorited ? "/assets/favorites/heart_filled.webp" : (darkMode ? "/assets/favorites/heart_empty_dark.webp" : "/assets/favorites/heart_empty.webp")}
                 disabled={disabled}
                 onClick={onHandleFavorites}/>
             </h1>

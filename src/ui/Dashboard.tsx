@@ -69,6 +69,8 @@ export default function Dashboard({darkMode}: DashboardProps) {
     // Button states
     const [disabled, setDisabled] = useState(false);
 
+    const [isLoaded, setIsLoaded] = useState(false);
+
     // Forecast component
     const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
 
@@ -146,7 +148,8 @@ export default function Dashboard({darkMode}: DashboardProps) {
             });
 
             setForecastList(newForecastList);
-
+            
+            setIsLoaded(true);
             showSnackbar("Weather info acquired!");
             setTime(currentTime());
             setDisabled(false);
@@ -177,7 +180,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
 
         <>
             <Controller currentLocationName={currentLocationName} disabled={disabled} units={units} 
-            onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode}/>
+            onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode} isLoaded={isLoaded}/>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
             wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode}/>
             <Forecast forecastList={forecastList} units={units} darkMode={darkMode}/>
