@@ -171,6 +171,7 @@ export interface ControllerProps {
     disabled: boolean;
     onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface SearchListProps {
@@ -207,6 +208,7 @@ export interface LocationNameProps {
     isFavorited: boolean;
     onHandleFavorites: () => void;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface SnackbarContextType {
