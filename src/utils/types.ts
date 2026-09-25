@@ -222,3 +222,9 @@ export interface MiniClockProps {
     time: string;
     darkMode: boolean;
 }
+
+export interface SkeletonProps {
+    children: ReactNode;
+    isLoaded: boolean;
+    darkMode: boolean;
+}
