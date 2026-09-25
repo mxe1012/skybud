@@ -1,38 +1,15 @@
 import type { TemperatureProps } from "../../../utils/types";
 
 import { fahrenheitToCelsius } from "../../../utils/helpers";
+import SkeletonTemperature from "../../skeletons/SkeletonTemperature";
 
 export default function Temperature({temperature, units, darkMode, isLoaded}: TemperatureProps) {
 
     const {temp, feels_like, temp_max, temp_min} = temperature
 
-    if(!isLoaded) {
-        return (
-            <div>
-            <div className="TemperatureGrid">
-                <div style={{padding: '10px'}}>
-                    <div className={darkMode ? "skeleton dark skeleton-temperature-head" : "skeleton light skeleton-temperature-head"}></div>
-                    <div className={darkMode ? "skeleton dark skeleton-temperature" : "skeleton light skeleton-temperature"}></div>
-                </div>
-                <div style={{padding: '10px'}}>
-                    <div className={darkMode ? "skeleton dark skeleton-temperature-head" : "skeleton light skeleton-temperature-head"}></div>
-                    <div className={darkMode ? "skeleton dark skeleton-temperature" : "skeleton light skeleton-temperature"}></div>
-                </div>
-                <div style={{padding: '10px'}}>
-                    <div className={darkMode ? "skeleton dark skeleton-temperature-head" : "skeleton light skeleton-temperature-head"}></div>
-                    <div className={darkMode ? "skeleton dark skeleton-temperature" : "skeleton light skeleton-temperature"}></div>
-                </div>
-                <div style={{padding: '10px'}}>
-                    <div className={darkMode ? "skeleton dark skeleton-temperature-head" : "skeleton light skeleton-temperature-head"}></div>
-                    <div className={darkMode ? "skeleton dark skeleton-temperature" : "skeleton light skeleton-temperature"}></div>
-                </div>
-            </div>
-            <br/>
-        </div>
-        )
-    }
     return (
         <div>
+            <SkeletonTemperature isLoaded={isLoaded} darkMode={darkMode}>
             <div className="TemperatureGrid">
                 <div style={{padding: '10px'}}>
                     Current {" "}
@@ -52,6 +29,7 @@ export default function Temperature({temperature, units, darkMode, isLoaded}: Te
                 </div>
             </div>
             <br/>
+            </SkeletonTemperature>
         </div>
     );
 }
