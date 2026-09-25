@@ -68,6 +68,8 @@ export interface InfoPaneIconProps {
 
 export interface WeatherProps {
     weather: WeatherObjectProps;
+    isLoaded: boolean;
+    darkMode: boolean;
 }
 
 export interface WeatherObjectProps {
