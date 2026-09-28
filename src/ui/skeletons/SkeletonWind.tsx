@@ -6,6 +6,7 @@ export default function SkeletonWind({children, isLoaded, darkMode}: SkeletonPro
         return (
             <div>
                 {/* <div className={darkMode ? "skeleton dark skeleton-wind-deg" : "skeleton light skeleton-wind-deg"}></div> */}
+                <br />
                 <div className={darkMode ? "skeleton dark skeleton-wind-info" : "skeleton light skeleton-wind-info"}></div>
             </div>
         )
