@@ -30,7 +30,7 @@ export default function CurrentWeather({weather, temperature, humidity, wind, vi
                 </WeatherInfoPaneContainer>
                 <ExtraInfoPaneContainer className={darkMode ? "ExtraInfoPaneContainer dark" : "ExtraInfoPaneContainer light"}>
                     <InfoPane name='Humidity' icon="wi-humidity.svg" darkModeIcon={darkMode}>
-                        <Humidity humidity={humidity} darkMode={darkMode}/>
+                        <Humidity humidity={humidity} darkMode={darkMode} isLoaded={isLoaded}/>
                     </InfoPane>
                     <InfoPane name='Wind' icon="wi-windy.svg" darkModeIcon={darkMode}>
                         <Wind wind={wind} units={units} darkMode={darkMode} isLoaded={isLoaded}/>
