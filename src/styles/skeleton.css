@@ -8,14 +8,25 @@
 }
 
 .skeleton.light {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg,
+    rgba(255, 255, 255, 0.25) 25%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.25) 75%
+  );
   background-size: 200% 100%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   animation: loading 1.5s infinite;
 }
 
 .skeleton.dark {
-  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.08) 25%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.08) 75%
+  );
   background-size: 200% 100%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   animation: loading 1.5s infinite;
 }
 
@@ -23,7 +34,7 @@
   height: 28px;
   width: 500px;
   margin: 30px;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 .skeleton-temperature-head {
