@@ -96,6 +96,7 @@ export interface TempObjectProps {
 export interface HumidityProps {
     humidity: number;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface WindProps {
