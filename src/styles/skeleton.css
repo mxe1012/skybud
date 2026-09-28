@@ -1,87 +1,95 @@
 @keyframes loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+	from {
+		background-position: 200% 0;
+	}
+	to {
+		background-position: -200% 0;
+	}
 }
 
 .skeleton.light {
-  background: linear-gradient(90deg,
-    rgba(255, 255, 255, 0.25) 25%,
-    rgba(255, 255, 255, 0.5) 50%,
-    rgba(255, 255, 255, 0.25) 75%
-  );
-  background-size: 200% 100%;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  animation: loading 1.5s infinite;
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 0.25) 25%,
+		rgba(255, 255, 255, 0.5) 50%,
+		rgba(255, 255, 255, 0.25) 75%
+	);
+	background-size: 200% 100%;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	animation: loading 1.5s infinite;
 }
 
 .skeleton.dark {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.08) 25%,
-    rgba(255, 255, 255, 0.18) 50%,
-    rgba(255, 255, 255, 0.08) 75%
-  );
-  background-size: 200% 100%;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  animation: loading 1.5s infinite;
+	background: linear-gradient(
+    	90deg,
+		rgba(255, 255, 255, 0.08) 25%,
+		rgba(255, 255, 255, 0.18) 50%,
+		rgba(255, 255, 255, 0.08) 75%
+	);
+	background-size: 200% 100%;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	animation: loading 1.5s infinite;
 }
 
 .skeleton-name {
-  height: 28px;
-  width: 500px;
-  margin: 30px;
-  border-radius: 15px;
+	height: 28px;
+	width: 500px;
+	margin: 30px;
+	border-radius: 15px;
 }
 
 .skeleton-temperature-head {
-  height: 10px;
-  width: 90px;
-  margin: 5px;
-  border-radius: 10px;
+	height: 10px;
+	width: 90px;
+	margin: 5px;
+	border-radius: 10px;
 }
 
 .skeleton-temperature {
-  height: 25px;
-  width: 50px;
-  margin: 24px;
-  border-radius: 10px;
+	height: 25px;
+	width: 50px;
+	margin: 24px;
+	border-radius: 10px;
 }
 
 .skeleton-weather-main {
-  height: 25px;
-  width: 100px;
-  margin: 24px;
-  border-radius: 10px;
+	height: 25px;
+	width: 100px;
+	margin: 24px;
+	border-radius: 10px;
 }
 
 .skeleton-weather-icon {
-  height: 115px;
-  width: 115px;
-  margin: 24px;
-  border-radius: 100px;
+	height: 115px;
+	width: 115px;
+	margin: 24px;
+	border-radius: 100px;
 }
 
 .skeleton-weather-desc {
-  height: 25px;
-  width: 100px;
-  margin: 24px;
-  border-radius: 10px;
+	height: 25px;
+	width: 100px;
+	margin: 24px;
+	border-radius: 10px;
 }
 
 .skeleton-wind-deg {
-  height: 25px;
-  width: 100px;
-  margin: 4px;
-  border-radius: 10px;
+	height: 25px;
+	width: 100px;
+	margin: 4px;
+	border-radius: 10px;
 }
 
 .skeleton-wind-info {
-  height: 25px;
-  width: 100px;
-  margin: 2px;
-  border-radius: 10px;
+	height: 25px;
+	width: 100px;
+	margin: 2px;
+	border-radius: 10px;
+}
+
+.skeleton-suntime {
+	height: 25px;
+	width: 110px;
+	margin: 2px;
+	border-radius: 10px;
 }
