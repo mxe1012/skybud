@@ -182,6 +182,7 @@ export interface ControllerProps {
     onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
     darkMode: boolean;
     isLoaded: boolean;
+    isFailed: boolean;
 }
 
 export interface SearchListProps {
