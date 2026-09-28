@@ -35,7 +35,11 @@ export default function App() {
                 <SnackbarProvider>
                     <Dashboard darkMode={isDarkMode}/>
                 </SnackbarProvider>
-                <footer>
+            </MainPane>
+            <button id="darkModeBtn" onClick={() => setIsDarkMode(!isDarkMode)}>
+                {isDarkMode ? "🌕" : "☀️"}
+            </button>
+            <footer>
                 <p style={{textAlign: 'center'}}>
                     Built by Manny Estevez · {" "}
                     <a href="https://github.com/mxe1012" target="_blank" rel="noopener noreferrer">
@@ -43,10 +47,6 @@ export default function App() {
                     </a>
                 </p>
             </footer>
-            </MainPane>
-            <button id="darkModeBtn" onClick={() => setIsDarkMode(!isDarkMode)}>
-                {isDarkMode ? "🌕" : "☀️"}
-            </button>
         </div>
     );
 }
