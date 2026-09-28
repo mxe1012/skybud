@@ -13,7 +13,7 @@ import SearchList from "./controller_components/SearchList";
 import FavoritesList from "./controller_components/FavoritesList";
 import LocationName from "./controller_components/LocationName";
 
-export default function Controller({currentLocationName, units, onSetUnits, disabled, onHandleFetch, darkMode, isLoaded}: ControllerProps) {
+export default function Controller({currentLocationName, units, onSetUnits, disabled, onHandleFetch, darkMode, isLoaded, isFailed}: ControllerProps) {
 
     const [currentLocationEntry, setCurrentLocationEntry] = useState<LocationEntry>(
         localStorage.getItem("current") != null ? JSON.parse(String(localStorage.getItem("current"))) : {
@@ -185,6 +185,8 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
             </ControllerPaneContainer>
             <LocationName currentLocationName={currentLocationName} disabled={disabled} isFavorited={isFavorited} 
             onHandleFavorites={handleFavorites} darkMode={darkMode} isLoaded={isLoaded}/>
+            <EventButton text="Retry" className={isFailed ? (darkMode ? "EventButton dark" : "EventButton light") : "retry hidden"} 
+            disabled={false} onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
         </>
     );
 }
