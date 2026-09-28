@@ -3,11 +3,13 @@ import {ForecastInfoContainer, ForecastInfoPane} from '../Containers.tsx';
 import ForecastItem from './forecast_components/ForecastItem.tsx';
 
 import type { ForecastProps } from '../../utils/types.ts';
+import SkeletonForecast from '../skeletons/SkeletonForecast.tsx';
 
-export default function Forecast({forecastList, units, darkMode}: ForecastProps) {
+export default function Forecast({forecastList, units, darkMode, isLoaded}: ForecastProps) {
 
     return (
         <>
+            <SkeletonForecast isLoaded={isLoaded} darkMode={darkMode}>
             <h1 style={{color: darkMode ? 'whitesmoke' : 'black', textAlign: 'center'}}>Forecast</h1>
             <ForecastInfoContainer className={darkMode ? 'ForecastInfoContainer dark' : 'ForecastInfoContainer light'}>
                 {forecastList.map((element) => (
@@ -21,6 +23,7 @@ export default function Forecast({forecastList, units, darkMode}: ForecastProps)
                 </li>
             ))}
             </ForecastInfoContainer>
+            </SkeletonForecast>
         </>
     );
 }
