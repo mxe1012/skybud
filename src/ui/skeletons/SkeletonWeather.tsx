@@ -5,10 +5,13 @@ export default function SkeletonWeather({children, isLoaded, darkMode}: Skeleton
     if(!isLoaded) {
         return (
             <div>
-                <div className={darkMode ? "skeleton dark skeleton-weather-main" : "skeleton light skeleton-weather-main"}></div>
+                <div style={{display: "flex", justifyContent: "center"}}>
+                    <div className={darkMode ? "skeleton dark skeleton-weather-main" : "skeleton light skeleton-weather-main"}></div>
+                </div>
                 <div className={darkMode ? "skeleton dark skeleton-weather-icon" : "skeleton light skeleton-weather-icon"}></div>
-                <br />
-                <div className={darkMode ? "skeleton dark skeleton-weather-desc" : "skeleton light skeleton-weather-desc"}></div>
+                <div style={{display: "flex", justifyContent: "center"}}>
+                    <div className={darkMode ? "skeleton dark skeleton-weather-desc" : "skeleton light skeleton-weather-desc"}></div>
+                </div>
                 <br />
             </div>
         );
