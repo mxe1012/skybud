@@ -100,3 +100,10 @@
 	/* margin: 4px; */
 	border-radius: 100px;
 }
+
+.skeleton-visibility-text {
+	height: 10px;
+	width: 100px;
+	margin: 5px;
+	border-radius: 10px;
+}
