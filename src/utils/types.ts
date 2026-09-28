@@ -159,6 +159,7 @@ export interface ForecastProps {
     forecastList: ForecastEntry[];
     units: boolean;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface LocationEntry {
