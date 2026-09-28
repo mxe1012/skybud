@@ -1,8 +1,9 @@
 import type { VisiblityProps } from "../../../utils/types";
 
 import { getVisibilityLabel, kmToMi } from "../../../utils/helpers";
+import SkeletonVisibility from "../../skeletons/SkeletonVisibility";
 
-export default function Visibility({visiblity, units, darkMode}: VisiblityProps) {
+export default function Visibility({visiblity, units, darkMode, isLoaded}: VisiblityProps) {
 
     const visStr = getVisibilityLabel(visiblity);
     const formatVis = units ? String(kmToMi(visiblity / 1000)) + " mi" : String(Math.round(visiblity / 1000)) + " km";
@@ -11,12 +12,14 @@ export default function Visibility({visiblity, units, darkMode}: VisiblityProps)
 
     return (
         <div>
-            <div className="gauge2" style={{"--value": gaugeValue, "--size": "90px", fontSize: "15px",
-                "--background": darkMode ? "#3a3a3a" : "whitesmoke"
-            } as React.CSSProperties}>
-                <b>{formatVis}</b>
-            </div>
-            {visStr}
+            <SkeletonVisibility isLoaded={isLoaded} darkMode={darkMode}>
+                <div className="gauge2" style={{"--value": gaugeValue, "--size": "90px", fontSize: "15px",
+                    "--background": darkMode ? "#3a3a3a" : "whitesmoke"
+                } as React.CSSProperties}>
+                    <b>{formatVis}</b>
+                </div>
+                {visStr}
+            </SkeletonVisibility>
         </div>
     );
 }

@@ -13,7 +13,7 @@ import SearchList from "./controller_components/SearchList";
 import FavoritesList from "./controller_components/FavoritesList";
 import LocationName from "./controller_components/LocationName";
 
-export default function Controller({currentLocationName, units, onSetUnits, disabled, onHandleFetch, darkMode}: ControllerProps) {
+export default function Controller({currentLocationName, units, onSetUnits, disabled, onHandleFetch, darkMode, isLoaded}: ControllerProps) {
 
     const [currentLocationEntry, setCurrentLocationEntry] = useState<LocationEntry>(
         localStorage.getItem("current") != null ? JSON.parse(String(localStorage.getItem("current"))) : {
@@ -184,7 +184,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                 </div>
             </ControllerPaneContainer>
             <LocationName currentLocationName={currentLocationName} disabled={disabled} isFavorited={isFavorited} 
-            onHandleFavorites={handleFavorites} darkMode={darkMode}/>
+            onHandleFavorites={handleFavorites} darkMode={darkMode} isLoaded={isLoaded}/>
         </>
     );
 }

@@ -68,6 +68,8 @@ export interface InfoPaneIconProps {
 
 export interface WeatherProps {
     weather: WeatherObjectProps;
+    isLoaded: boolean;
+    darkMode: boolean;
 }
 
 export interface WeatherObjectProps {
@@ -80,6 +82,8 @@ export interface WeatherObjectProps {
 export interface TemperatureProps {
     temperature: TempObjectProps;
     units: boolean;
+    darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface TempObjectProps {
@@ -92,12 +96,14 @@ export interface TempObjectProps {
 export interface HumidityProps {
     humidity: number;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface WindProps {
     wind: WindObjectProps;
     units: boolean;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface WindObjectProps {
@@ -110,11 +116,13 @@ export interface VisiblityProps {
     visiblity: number;
     units: boolean;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface SunriseAndSunsetProps {
     sunTime: SunriseAndSunsetObjectProps;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface SunriseAndSunsetObjectProps {
@@ -144,12 +152,14 @@ export interface CurrentWeatherProps {
     sunTime: SunriseAndSunsetObjectProps;
     units: boolean;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface ForecastProps {
     forecastList: ForecastEntry[];
     units: boolean;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface LocationEntry {
@@ -171,6 +181,7 @@ export interface ControllerProps {
     disabled: boolean;
     onHandleFetch: (lon: number, lat: number, useExactLocation?: boolean) => Promise<void>;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface SearchListProps {
@@ -207,6 +218,7 @@ export interface LocationNameProps {
     isFavorited: boolean;
     onHandleFavorites: () => void;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface SnackbarContextType {
@@ -215,5 +227,11 @@ export interface SnackbarContextType {
 
 export interface MiniClockProps {
     time: string;
+    darkMode: boolean;
+}
+
+export interface SkeletonProps {
+    children: ReactNode;
+    isLoaded: boolean;
     darkMode: boolean;
 }

@@ -14,7 +14,7 @@ import SunriseAndSunset from './current_weather_components/SunriseSunset.tsx';
 
 import type { CurrentWeatherProps } from "../../utils/types.ts";
 
-export default function CurrentWeather({weather, temperature, humidity, wind, visibility, sunTime, units, darkMode}: CurrentWeatherProps) {
+export default function CurrentWeather({weather, temperature, humidity, wind, visibility, sunTime, units, darkMode, isLoaded}: CurrentWeatherProps) {
 
     return (
         <>
@@ -22,24 +22,24 @@ export default function CurrentWeather({weather, temperature, humidity, wind, vi
                 id={weather.id} darkModeBG={darkMode}>
                 <WeatherInfoPaneContainer className={darkMode ? "WeatherInfoPaneContainer dark" : "WeatherInfoPaneContainer light"}>
                     <InfoPane name="Weather" icon="wi-day-cloudy.svg" darkModeIcon={darkMode}>
-                        <Weather weather={weather} />
+                        <Weather weather={weather} darkMode={darkMode} isLoaded={isLoaded}/>
                     </InfoPane>
                     <InfoPane name="Temperature" icon="wi-thermometer.svg" darkModeIcon={darkMode}>
-                        <Temperature temperature={temperature} units={units}/>
+                        <Temperature temperature={temperature} units={units} darkMode={darkMode} isLoaded={isLoaded}/>
                     </InfoPane>
                 </WeatherInfoPaneContainer>
                 <ExtraInfoPaneContainer className={darkMode ? "ExtraInfoPaneContainer dark" : "ExtraInfoPaneContainer light"}>
                     <InfoPane name='Humidity' icon="wi-humidity.svg" darkModeIcon={darkMode}>
-                        <Humidity humidity={humidity} darkMode={darkMode}/>
+                        <Humidity humidity={humidity} darkMode={darkMode} isLoaded={isLoaded}/>
                     </InfoPane>
                     <InfoPane name='Wind' icon="wi-windy.svg" darkModeIcon={darkMode}>
-                        <Wind wind={wind} units={units} darkMode={darkMode}/>
+                        <Wind wind={wind} units={units} darkMode={darkMode} isLoaded={isLoaded}/>
                     </InfoPane>
                     <InfoPane name="Visibility" icon="wi-stars.svg" darkModeIcon={darkMode}>
-                        <Visibility visiblity={visibility} units={units} darkMode={darkMode}/>
+                        <Visibility visiblity={visibility} units={units} darkMode={darkMode} isLoaded={isLoaded}/>
                     </InfoPane>
                     <InfoPane name="Sunrise/Sunset" icon="wi-horizon.svg" darkModeIcon={darkMode}>
-                        <SunriseAndSunset sunTime={sunTime} darkMode={darkMode}/>
+                        <SunriseAndSunset sunTime={sunTime} darkMode={darkMode} isLoaded={isLoaded}/>
                     </InfoPane>
                 </ExtraInfoPaneContainer>
             </InfoPaneContainer>
