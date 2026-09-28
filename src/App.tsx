@@ -17,6 +17,7 @@ import { MainPane } from './ui/Containers.tsx';
 
 import Dashboard from './ui/Dashboard.tsx';
 import SnackbarProvider from './hooks/SnackbarContext.tsx'
+import CreditFooter from './ui/CreditFooter.tsx'
 
 export default function App() {
 
@@ -39,14 +40,7 @@ export default function App() {
             <button id="darkModeBtn" onClick={() => setIsDarkMode(!isDarkMode)}>
                 {isDarkMode ? "🌕" : "☀️"}
             </button>
-            <footer>
-                <p style={{textAlign: 'center'}}>
-                    Built by Manny Estevez · {" "}
-                    <a href="https://github.com/mxe1012" target="_blank" rel="noopener noreferrer">
-                        GitHub
-                    </a>
-                </p>
-            </footer>
+            <CreditFooter />
         </div>
     );
 }
