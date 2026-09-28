@@ -107,3 +107,13 @@
 	margin: 5px;
 	border-radius: 10px;
 }
+
+.skeleton-forecast {
+	height: 343.667px;
+	width: 1182px;
+	padding: 15px;
+    max-width: 75%;
+	margin: auto;
+	z-index: 0;
+	border-radius: 35px;
+}
