@@ -116,6 +116,7 @@ export interface VisiblityProps {
     visiblity: number;
     units: boolean;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface SunriseAndSunsetProps {
