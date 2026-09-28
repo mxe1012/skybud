@@ -93,3 +93,10 @@
 	margin: 2px;
 	border-radius: 10px;
 }
+
+.skeleton-gauge {
+	height: 90px;
+	width: 90px;
+	/* margin: 4px; */
+	border-radius: 100px;
+}
