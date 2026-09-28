@@ -120,6 +120,7 @@ export interface VisiblityProps {
 export interface SunriseAndSunsetProps {
     sunTime: SunriseAndSunsetObjectProps;
     darkMode: boolean;
+    isLoaded: boolean;
 }
 
 export interface SunriseAndSunsetObjectProps {
