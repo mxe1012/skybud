@@ -70,6 +70,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
     const [disabled, setDisabled] = useState(false);
 
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isFailed, setIsFailed] = useState(false);
 
     // Forecast component
     const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
@@ -150,12 +151,14 @@ export default function Dashboard({darkMode}: DashboardProps) {
             setForecastList(newForecastList);
             
             setIsLoaded(true);
+            setIsFailed(false);
             showSnackbar("Weather info acquired!");
             setTime(currentTime());
             setDisabled(false);
 
         } catch (e) {
             console.error(e);
+            setIsFailed(true);
             showSnackbar("Weather fetching error!", 6000);
     }
   }
@@ -180,7 +183,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
 
         <>
             <Controller currentLocationName={currentLocationName} disabled={disabled} units={units} 
-            onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode} isLoaded={isLoaded}/>
+            onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode} isLoaded={isLoaded} isFailed={isFailed}/>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
             wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode} isLoaded={isLoaded}/>
             <Forecast forecastList={forecastList} units={units} darkMode={darkMode} isLoaded={isLoaded}/>
