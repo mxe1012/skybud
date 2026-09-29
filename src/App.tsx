@@ -17,7 +17,7 @@ import { MainPane } from './ui/Containers.tsx';
 
 import Dashboard from './ui/Dashboard.tsx';
 import SnackbarProvider from './hooks/SnackbarContext.tsx'
-import CreditFooter from './ui/CreditFooter.tsx'
+import CreditFooter from './CreditFooter.tsx'
 
 export default function App() {
 
