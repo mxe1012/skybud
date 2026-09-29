@@ -204,6 +204,7 @@ export interface AuxListProps {
     onList: Dispatch<SetStateAction<LocationEntry[]>>;
     onDelete: (list: LocationEntry[], element: LocationEntry) => LocationEntry[];
     onFavorite?: (element: LocationEntry) => void;
+    isFavorited?: boolean;
     visible: boolean;
     onVisible: Dispatch<SetStateAction<boolean>>;
     onLocationCoords: Dispatch<SetStateAction<{
