@@ -16,17 +16,22 @@ export default function FavoritesList({list, onList, onDelete, visible, onVisibl
                         onCurrentLocation(element);
                         onVisible(false)
                     }}>
-                    {element.state ? element.name + ", " + element.state + ", " + element.country : 
-                    element.name + ", " + element.country} 
-                    {" "}
-                    <button className="ListButton"
-                    onClick={(e) => {
-                        e.stopPropagation(); 
-                        onList(onDelete(list, element));
-                    }}
-                    >
-                        X
-                    </button>
+                    <div style={{display: "flex", justifyContent: "space-between"}}>
+                        <div>
+                            {element.state ? element.name + ", " + element.state + ", " + element.country : 
+                            element.name + ", " + element.country} 
+                        </div>
+                        <div>
+                            <button className="ListButton"
+                            onClick={(e) => {
+                                e.stopPropagation(); 
+                                onList(onDelete(list, element));
+                            }}
+                            >
+                                X
+                            </button>
+                        </div>
+                    </div>
                 </li> 
             ))}
         </ul>

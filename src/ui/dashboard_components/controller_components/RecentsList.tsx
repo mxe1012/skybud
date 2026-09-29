@@ -16,26 +16,31 @@ export default function RecentsList({list, onList, onDelete, onFavorite, isFavor
                         onCurrentLocation(element);
                         onVisible(false)
                     }}>
-                    {element.state ? element.name + ", " + element.state + ", " + element.country : 
-                    element.name + ", " + element.country}
-                    {" "}
-                    <button className="ListButton"
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        onFavorite?.(element);
-                    }}>
-                        <img src=
-                        {isFavorited ? "/assets/favorites/heart_filled.webp" : "/assets/favorites/heart_empty.webp"} 
-                        width={10} height={10}/>
-                    </button>
-                    {" "}
-                    <button className="ListButton" 
-                    onClick={(e) => {
-                        e.stopPropagation(); 
-                        onList(onDelete(list, element));
-                    }}>
-                        X
-                    </button>
+                    <div style={{display: "flex", justifyContent: "space-between"}}>
+                        <div>
+                            {element.state ? element.name + ", " + element.state + ", " + element.country : 
+                            element.name + ", " + element.country}
+                        </div>
+                        <div>
+                            <button className="ListButton"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onFavorite?.(element);
+                            }}>
+                                <img src=
+                                {isFavorited ? "/assets/favorites/heart_filled.webp" : "/assets/favorites/heart_empty.webp"} 
+                                width={10} height={10}/>
+                            </button>
+                            {" "}
+                            <button className="ListButton" 
+                            onClick={(e) => {
+                                e.stopPropagation(); 
+                                onList(onDelete(list, element));
+                            }}>
+                                X
+                            </button>
+                        </div>
+                    </div>
                 </li>
             ))}
         </ul>

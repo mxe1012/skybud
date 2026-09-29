@@ -20,8 +20,12 @@ export default function SearchList({locationList, onLocationCoords, onLocationLi
                         onCurrentLocation(element)
                         checkRecentsLength(element)
                     }}>
-                    {element.state ? element.name + ", " + element.state + ", " + element.country : 
-                    element.name + ", " + element.country}
+                    <div style={{display: "flex", justifyContent: "space-between"}}>
+                        <div>
+                            {element.state ? element.name + ", " + element.state + ", " + element.country : 
+                            element.name + ", " + element.country}
+                        </div>
+                    </div>
                 </li>
             ))}
         </ul>
