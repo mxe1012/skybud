@@ -44,8 +44,11 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
     );
     const [isShowFavoritesDrop, setIsShowFavoritesDrop] = useState(false)
 
-    const isFavorited = favorites.some(element => currentLocationEntry.lat === element.lat && currentLocationEntry.lon === element.lon);
+    const isSameLocation = (a: LocationEntry, b: LocationEntry) =>
+        a.lat === b.lat && a.lon === b.lon;
 
+    const isFavorited = favorites.some(element => isSameLocation(element, currentLocationEntry));
+    
     const [isScrolled, setIsScrolled] = useState(false);
 
     const { showSnackbar } = useSnackbar();
@@ -99,22 +102,18 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
     }
     
 
-    function handleFavorites() {
-        if (!isFavorited) {
-            setFavorites([
-                ...favorites,
-                currentLocationEntry
-            ]);
+    function handleFavorites(entry: LocationEntry) {
+        const alreadyFavorited = favorites.some(element => isSameLocation(element, entry));
 
-            showSnackbar("Added to favorites");
-        }
-        else {
-            const toggleFavorite = 
-            favorites.filter((element) => currentLocationEntry.lat != element.lat && currentLocationEntry.lon != element.lon)
-            
-            setFavorites(toggleFavorite);
-
+        if (alreadyFavorited) {
+            setFavorites(favorites.filter(element => !isSameLocation(element, entry)));
             showSnackbar("Removed from favorites");
+        } else {
+            setFavorites([
+                ...favorites, 
+                entry
+            ]);
+            showSnackbar("Added to favorites");
         }
     }
 
@@ -173,7 +172,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     onClick={() => {setIsShowFavoritesDrop(!isShowFavoritesDrop); setisShowRecentsDrop(false)}}/>
                     <SearchList locationList={locationList} onLocationCoords={setLocationCoords} onLocationList={setLocationList}
                     onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
-                    <RecentsList list={recents} onList={setRecents} onDelete={deleteEntry} visible={isShowRecentsDrop} onVisible={setisShowRecentsDrop} onLocationCoords={setLocationCoords}
+                    <RecentsList list={recents} onList={setRecents} onDelete={deleteEntry} onFavorite={handleFavorites} visible={isShowRecentsDrop} onVisible={setisShowRecentsDrop} onLocationCoords={setLocationCoords}
                     onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry}darkMode={darkMode}/>
                     <FavoritesList list={favorites} onList={setFavorites} onDelete={deleteEntry} visible={isShowFavoritesDrop} onVisible={setIsShowFavoritesDrop} onLocationCoords={setLocationCoords}
                     onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} darkMode={darkMode}/>
@@ -190,7 +189,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                 </div>
             </ControllerPaneContainer>
             <LocationName currentLocationName={currentLocationName} disabled={disabled} isFavorited={isFavorited} 
-            onHandleFavorites={handleFavorites} darkMode={darkMode} isLoaded={isLoaded}/>
+            onHandleFavorites={() => {handleFavorites(currentLocationEntry)}} darkMode={darkMode} isLoaded={isLoaded}/>
             <EventButton text="Retry" className={isFailed ? (darkMode ? "EventButton dark" : "EventButton light") : "retry hidden"} 
             disabled={false} onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
         </>
