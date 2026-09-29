@@ -100,7 +100,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
     
 
     function handleFavorites() {
-        if (isFavorited == false) {
+        if (!isFavorited) {
             setFavorites([
                 ...favorites,
                 currentLocationEntry
