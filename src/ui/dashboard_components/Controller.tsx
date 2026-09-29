@@ -118,6 +118,12 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
         }
     }
 
+    function removeEntry(list: LocationEntry[], element: LocationEntry) {
+        const removed = list.filter((e) => e.lat !== element.lat && e.lon !== element.lon);
+        showSnackbar("Removed " + element.name + ", " + element.country);
+        return removed;
+    }
+
     useEffect(() => {
         localStorage.setItem("favorites", JSON.stringify(favorites));
         localStorage.setItem("current", JSON.stringify(currentLocationEntry))
@@ -167,9 +173,9 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     onClick={() => {setIsShowFavoritesDrop(!isShowFavoritesDrop); setisShowRecentsDrop(false)}}/>
                     <SearchList locationList={locationList} onLocationCoords={setLocationCoords} onLocationList={setLocationList}
                     onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
-                    <RecentsList list={recents} visible={isShowRecentsDrop} onVisible={setisShowRecentsDrop} onLocationCoords={setLocationCoords}
+                    <RecentsList list={recents} onList={setRecents} onDelete={removeEntry} visible={isShowRecentsDrop} onVisible={setisShowRecentsDrop} onLocationCoords={setLocationCoords}
                     onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry}darkMode={darkMode}/>
-                    <FavoritesList list={favorites} visible={isShowFavoritesDrop} onVisible={setIsShowFavoritesDrop} onLocationCoords={setLocationCoords}
+                    <FavoritesList list={favorites} onList={setFavorites} onDelete={removeEntry} visible={isShowFavoritesDrop} onVisible={setIsShowFavoritesDrop} onLocationCoords={setLocationCoords}
                     onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} darkMode={darkMode}/>
                 </div>
                 <div>
