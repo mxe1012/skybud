@@ -3,7 +3,7 @@ import { lightModeStyle, darkModeStyle } from "../../../utils/helpers";
 import type { AuxListProps } from "../../../utils/types";
 import { EventButton } from "../../Containers";
 
-export default function RecentsList({list, onList, onDelete, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: AuxListProps) {
+export default function RecentsList({list, onList, onDelete, onFavorite, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: AuxListProps) {
 
     return (
         <ul className={visible ? (darkMode ? "recents dark show" : "recents light show") : "recents hide"}>
@@ -19,6 +19,14 @@ export default function RecentsList({list, onList, onDelete, visible, onVisible,
                     }}>
                     {element.state ? element.name + ", " + element.state + ", " + element.country : 
                     element.name + ", " + element.country}
+                    {" "}
+                    <button 
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onFavorite?.(element);
+                    }}>
+                        <img src="/assets/favorites/heart_empty.webp" width={10} height={10}/>
+                    </button>
                     {" "}
                     <EventButton text="X" className="Delete"
                     onClick={(e) => {
