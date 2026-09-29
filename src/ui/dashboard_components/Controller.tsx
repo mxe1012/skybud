@@ -171,10 +171,13 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     text={isShowFavoritesDrop ? "Hide Favorites" : "Show Favorites"} disabled={disabled} 
                     onClick={() => {setIsShowFavoritesDrop(!isShowFavoritesDrop); setisShowRecentsDrop(false)}}/>
                     <SearchList locationList={locationList} onLocationCoords={setLocationCoords} onLocationList={setLocationList}
-                    onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
-                    <RecentsList list={recents} onList={setRecents} onDelete={deleteEntry} onFavorite={handleFavorites} visible={isShowRecentsDrop} onVisible={setisShowRecentsDrop} onLocationCoords={setLocationCoords}
+                    onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} 
+                    checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
+                    <RecentsList list={recents} onList={setRecents} onDelete={deleteEntry} onFavorite={handleFavorites} isFavorited={isFavorited} 
+                    visible={isShowRecentsDrop} onVisible={setisShowRecentsDrop} onLocationCoords={setLocationCoords}
                     onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry}darkMode={darkMode}/>
-                    <FavoritesList list={favorites} onList={setFavorites} onDelete={deleteEntry} visible={isShowFavoritesDrop} onVisible={setIsShowFavoritesDrop} onLocationCoords={setLocationCoords}
+                    <FavoritesList list={favorites} onList={setFavorites} onDelete={deleteEntry} 
+                    visible={isShowFavoritesDrop} onVisible={setIsShowFavoritesDrop} onLocationCoords={setLocationCoords}
                     onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} darkMode={darkMode}/>
                 </div>
                 <div>
