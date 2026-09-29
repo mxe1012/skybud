@@ -2,7 +2,7 @@ import { lightModeStyle, darkModeStyle } from "../../../utils/helpers";
 
 import type { AuxListProps } from "../../../utils/types";
 
-export default function RecentsList({list, onList, onDelete, onFavorite, isFavorited, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: AuxListProps) {
+export default function RecentsList({list, onList, onDelete, onFavorite, isFavorite, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: AuxListProps) {
 
     return (
         <ul className={visible ? (darkMode ? "recents dark show" : "recents light show") : "recents hide"}>
@@ -28,7 +28,7 @@ export default function RecentsList({list, onList, onDelete, onFavorite, isFavor
                                 onFavorite?.(element);
                             }}>
                                 <img src=
-                                {isFavorited ? "/assets/favorites/heart_filled.webp" : "/assets/favorites/heart_empty.webp"} 
+                                {isFavorite?.(element) ? "/assets/favorites/heart_filled.webp" : "/assets/favorites/heart_empty.webp"} 
                                 width={10} height={10}/>
                             </button>
                             {" "}
