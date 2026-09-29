@@ -10,6 +10,7 @@ import './styles/media.css'
 import './styles/dc.css'
 import './styles/bg.css'
 import './styles/skeleton.css'
+import './styles/search.css'
 
 import { useEffect, useState } from 'react'
 
