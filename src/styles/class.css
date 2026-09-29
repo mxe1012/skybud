@@ -319,6 +319,17 @@
     background-color: rgb(148, 148, 148);
 }
 
+.Delete {
+    border-style: none;
+    border-radius: 50px;
+    background-color: #c3c3c5;
+    font-family: "Inter", sans-serif;
+}
+
+.Delete:hover {
+    background-color: rgb(215, 215, 215);
+}
+
 .TemperatureGrid {
     padding: 20px;
     display: inline-grid;
