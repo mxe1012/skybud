@@ -26,7 +26,7 @@ export interface AppearanceProps {
 
 export interface EventButtonProps {
     text: string;
-    disabled: boolean;
+    disabled?: boolean;
     className?: string;
     onClick: any;
 }
@@ -201,6 +201,8 @@ export interface SearchListProps {
 
 export interface AuxListProps {
     list: LocationEntry[]
+    onList: Dispatch<SetStateAction<LocationEntry[]>>;
+    onDelete: (list: LocationEntry[], element: LocationEntry) => LocationEntry[];
     visible: boolean;
     onVisible: Dispatch<SetStateAction<boolean>>;
     onLocationCoords: Dispatch<SetStateAction<{
