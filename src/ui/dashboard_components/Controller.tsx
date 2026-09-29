@@ -122,7 +122,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
 
     function deleteEntry(list: LocationEntry[], element: LocationEntry) {
         const deleted = list.filter((e) => e.lat !== element.lat && e.lon !== element.lon);
-        showSnackbar("Removed " + element.name + ", " + element.country);
+        showSnackbar("Removed " + element.name + ", " + element.state + ", " + element.country);
         return deleted;
     }
 
