@@ -1,8 +1,9 @@
 import { lightModeStyle, darkModeStyle } from "../../../utils/helpers";
 
 import type { AuxListProps } from "../../../utils/types";
+import { EventButton } from "../../Containers";
 
-export default function FavoritesList({list, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: AuxListProps ){
+export default function FavoritesList({list, onList, onDelete, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: AuxListProps ){
 
     return (
         <ul className={visible ? (darkMode ? "favorites dark show" : "favorites light show") : "favorites hide"}>
@@ -18,6 +19,12 @@ export default function FavoritesList({list, visible, onVisible, onLocationCoord
                     }}>
                     {element.state ? element.name + ", " + element.state + ", " + element.country : 
                     element.name + ", " + element.country} 
+                    {" "}
+                    <EventButton text="X" className="Delete"
+                    onClick={(e) => {
+                        e.stopPropagation(); 
+                        onList(onDelete(list, element));
+                    }}/>
                 </li> 
             ))}
         </ul>
