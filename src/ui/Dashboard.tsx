@@ -156,7 +156,8 @@ export default function Dashboard({darkMode}: DashboardProps) {
             setTime(currentTime());
             setDisabled(false);
 
-        } catch (e) {
+        } 
+        catch (e) {
             console.error(e);
             setIsFailed(true);
             if(!isLoaded) {
@@ -164,10 +165,9 @@ export default function Dashboard({darkMode}: DashboardProps) {
             }
             else {
                 showSnackbar("Weather fetching error!\nShowing data for previous location", 6000);
-            }
-            
+            }        
+        }
     }
-  }
 
     useEffect(() => {
         
