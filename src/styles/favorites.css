@@ -76,16 +76,20 @@ ul.favorites.dark.show {
 }
 
 li.favorites.show {
+    --icon-size: 20px;
+    --icon-offset: 10px;
+    --icon-gap: 10px;
     background-image: url('/assets/favorites/heart_filled.webp'); 
-    background-position: 10px;
+    background-position: var(--icon-offset) center;
     background-repeat: no-repeat; 
-    background-size: 20px;
+    background-size: var(--icon-size) var(--icon-size);
     animation-name: history-li-anim;
     animation-duration: 0.2s;
     background-color: white;
     border-radius: 20px;
     margin: 3px;
     padding: 5px;
+    padding-left: calc(var(--icon-offset) + var(--icon-size) + var(--icon-gap));
     cursor: pointer;
 }
 

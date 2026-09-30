@@ -2,7 +2,7 @@ import { lightModeStyle, darkModeStyle } from "../../../utils/helpers";
 
 import type { AuxListProps } from "../../../utils/types";
 
-export default function FavoritesList({list, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: AuxListProps ){
+export default function FavoritesList({list, onList, onDelete, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: AuxListProps ){
 
     return (
         <ul className={visible ? (darkMode ? "favorites dark show" : "favorites light show") : "favorites hide"}>
@@ -16,8 +16,22 @@ export default function FavoritesList({list, visible, onVisible, onLocationCoord
                         onCurrentLocation(element);
                         onVisible(false)
                     }}>
-                    {element.state ? element.name + ", " + element.state + ", " + element.country : 
-                    element.name + ", " + element.country} 
+                    <div style={{display: "flex", justifyContent: "space-between"}}>
+                        <div>
+                            {element.state ? element.name + ", " + element.state + ", " + element.country : 
+                            element.name + ", " + element.country} 
+                        </div>
+                        <div>
+                            <button className="ListButton"
+                            onClick={(e) => {
+                                e.stopPropagation(); 
+                                onList(onDelete(list, element));
+                            }}
+                            >
+                                X
+                            </button>
+                        </div>
+                    </div>
                 </li> 
             ))}
         </ul>

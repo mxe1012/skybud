@@ -2,7 +2,7 @@ import { lightModeStyle, darkModeStyle } from "../../../utils/helpers";
 
 import type { AuxListProps } from "../../../utils/types";
 
-export default function RecentsList({list, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: AuxListProps) {
+export default function RecentsList({list, onList, onDelete, onFavorite, isFavorite, visible, onVisible, onLocationCoords, onLocationName, onHandleFetch, onCurrentLocation, darkMode}: AuxListProps) {
 
     return (
         <ul className={visible ? (darkMode ? "recents dark show" : "recents light show") : "recents hide"}>
@@ -16,8 +16,31 @@ export default function RecentsList({list, visible, onVisible, onLocationCoords,
                         onCurrentLocation(element);
                         onVisible(false)
                     }}>
-                    {element.state ? element.name + ", " + element.state + ", " + element.country : 
-                    element.name + ", " + element.country}
+                    <div style={{display: "flex", justifyContent: "space-between"}}>
+                        <div>
+                            {element.state ? element.name + ", " + element.state + ", " + element.country : 
+                            element.name + ", " + element.country}
+                        </div>
+                        <div>
+                            <button className="ListButton"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onFavorite?.(element);
+                            }}>
+                                <img src=
+                                {isFavorite?.(element) ? "/assets/favorites/heart_filled.webp" : "/assets/favorites/heart_empty.webp"} 
+                                width={10} height={10}/>
+                            </button>
+                            {" "}
+                            <button className="ListButton" 
+                            onClick={(e) => {
+                                e.stopPropagation(); 
+                                onList(onDelete(list, element));
+                            }}>
+                                X
+                            </button>
+                        </div>
+                    </div>
                 </li>
             ))}
         </ul>

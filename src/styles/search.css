@@ -1,0 +1,90 @@
+@keyframes search-li-anim {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes search-pane-container-fade {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+ul.locations.light {
+    animation-name: search-pane-container-fade;
+    animation-duration: 0.3s;
+    list-style-type: none;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px;
+    backdrop-filter: blur(2px);
+}
+
+ul.locations.dark {
+    animation-name: search-pane-container-fade;
+    animation-duration: 0.3s;
+    list-style-type: none;
+    background-color: rgba(52, 52, 52, 0.5);
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 0px whitesmoke;
+    backdrop-filter: blur(2px);
+}
+
+li.locations.light {
+    --icon-size: 20px;
+    --icon-offset: 10px;
+    --icon-gap: 10px;
+    background-image: url('/assets/icons/location.webp'); 
+    background-position: var(--icon-offset) center;
+    background-size: auto 22px;
+    background-repeat: no-repeat;
+    background-color: whitesmoke;
+    animation-name: search-li-anim;
+    animation-duration: 0.2s;
+    padding: 5px;
+    padding-left: calc(var(--icon-offset) + var(--icon-size) + var(--icon-gap));
+    border-radius: 20px;
+    margin: 3px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+li.locations.dark {
+    --icon-size: 20px;
+    --icon-offset: 10px;
+    --icon-gap: 10px;
+    background-image: url('/assets/icons/location_white.webp'); 
+    background-position: var(--icon-offset) center;
+    background-repeat: no-repeat;
+    background-size: auto 22px;
+    background-color: #3a3a3a; 
+    animation-name: search-li-anim;
+    animation-duration: 0.2s;
+    padding: 5px;
+    padding-left: calc(var(--icon-offset) + var(--icon-size) + var(--icon-gap));
+    border-radius: 20px;
+    margin: 3px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+li.locations.light:hover {
+    background-color: rgb(215, 215, 215);
+}
+
+li.locations.dark:hover {
+    background-color: grey;
+}
