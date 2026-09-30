@@ -197,7 +197,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
             <LocationName currentLocationName={currentLocationName} disabled={disabled} isFavorited={isCurrentLocationFavorited} 
             onHandleFavorites={() => {handleFavorites(currentLocationEntry)}} darkMode={darkMode} isLoaded={isLoaded}/>
             <EventButton text="Retry" className={isFailed ? (darkMode ? "EventButton dark" : "EventButton light") : "retry hidden"} 
-            disabled={false} onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
+            onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
         </>
     );
 }
