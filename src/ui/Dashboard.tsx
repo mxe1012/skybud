@@ -159,7 +159,13 @@ export default function Dashboard({darkMode}: DashboardProps) {
         } catch (e) {
             console.error(e);
             setIsFailed(true);
-            showSnackbar("Weather fetching error!", 6000);
+            if(!isLoaded) {
+                showSnackbar("Weather fetching error!", 6000);
+            }
+            else {
+                showSnackbar("Weather fetching error!\nShowing data for previous location", 6000);
+            }
+            
     }
   }
 
