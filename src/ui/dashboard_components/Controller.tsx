@@ -94,7 +94,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
         } catch (e) {
             console.error(e);
             setLocationList([]);
-            showSnackbar("Couldn't search for locations right now.", 4000);
+            showSnackbar("Couldn't search for locations right now.", 6000);
         }
     }
 
