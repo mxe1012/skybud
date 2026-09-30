@@ -184,6 +184,9 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     onLocationName={setLocationName} onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} darkMode={darkMode}/>
                 </div>
                 <div>
+                    <EventButton text="Retry" className={isFailed ? (darkMode ? "EventButton dark" : "EventButton light") : "retry hidden"} 
+                    onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
+                    {" "}
                     <EventButton className={darkMode ? "EventButton dark" : "EventButton light"}
                     text="Update Weather Information" disabled={disabled} 
                     onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
@@ -196,8 +199,6 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
             </ControllerPaneContainer>
             <LocationName currentLocationName={currentLocationName} disabled={disabled} isFavorited={isCurrentLocationFavorited} 
             onHandleFavorites={() => {handleFavorites(currentLocationEntry)}} darkMode={darkMode} isLoaded={isLoaded}/>
-            <EventButton text="Retry" className={isFailed ? (darkMode ? "EventButton dark" : "EventButton light") : "retry hidden"} 
-            onClick={() => onHandleFetch(locationCoords.lon, locationCoords.lat)} />
         </>
     );
 }
