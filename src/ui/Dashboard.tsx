@@ -182,6 +182,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
         
         return () => clearTimeout(id);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
