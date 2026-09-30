@@ -156,8 +156,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
             setTime(currentTime());
             setDisabled(false);
 
-        } 
-        catch (e) {
+        } catch (e) {
             console.error(e);
             setIsFailed(true);
             if(!isLoaded) {

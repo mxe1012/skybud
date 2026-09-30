@@ -92,7 +92,7 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
             setLocationList(newLocationList);
 
         } catch (e) {
-                console.error(e);
+            console.error(e);
         }
     }
 
