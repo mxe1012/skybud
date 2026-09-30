@@ -79,6 +79,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
 
         showSnackbar("Acquiring weather info...", 6000)
         setDisabled(true);
+        setIsFailed(false);
 
         if (useExactLocation === true) {
             const exactCoords = await getCoordinates();
@@ -151,7 +152,6 @@ export default function Dashboard({darkMode}: DashboardProps) {
             setForecastList(newForecastList);
             
             setIsLoaded(true);
-            setIsFailed(false);
             showSnackbar("Weather info acquired!");
             setTime(currentTime());
             setDisabled(false);
