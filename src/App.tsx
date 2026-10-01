@@ -41,7 +41,7 @@ export default function App() {
             <button id="darkModeBtn" onClick={() => setIsDarkMode(!isDarkMode)}>
                 {isDarkMode ? "🌕" : "☀️"}
             </button>
-            <CreditFooter />
+            <CreditFooter darkMode={isDarkMode}/>
         </div>
     );
 }

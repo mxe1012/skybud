@@ -238,6 +238,10 @@ export interface MiniClockProps {
     darkMode: boolean;
 }
 
+export interface CreditFooterProps {
+    darkMode: boolean;
+}
+
 export interface SkeletonProps {
     children: ReactNode;
     isLoaded: boolean;
