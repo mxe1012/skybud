@@ -38,10 +38,11 @@ export default function App() {
                     <Dashboard darkMode={isDarkMode}/>
                 </SnackbarProvider>
             </MainPane>
+            
+            <CreditFooter darkMode={isDarkMode}/>
             <button id="darkModeBtn" onClick={() => setIsDarkMode(!isDarkMode)}>
                 {isDarkMode ? "🌕" : "☀️"}
             </button>
-            <CreditFooter darkMode={isDarkMode}/>
         </div>
     );
 }
