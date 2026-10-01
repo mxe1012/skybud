@@ -69,7 +69,7 @@ export default function Dashboard({darkMode}: DashboardProps) {
     // Button states
     const [disabled, setDisabled] = useState(false);
 
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoadedWeather, setIsLoadedWeather] = useState(false);
     const [isLoadedForecast, setIsLoadedForecast] = useState(false);
 
     const [isFailed, setIsFailed] = useState(false);
@@ -188,14 +188,14 @@ export default function Dashboard({darkMode}: DashboardProps) {
             }
 
             setTime(currentTime());
-            setIsLoaded(true);
+            setIsLoadedWeather(true);
             setDisabled(false);
 
         } catch (e) {
             console.error(e);
             setIsFailed(true);
 
-            if(isLoaded) {
+            if(isLoadedWeather) {
                 showSnackbar("Weather fetching error!\nShowing data for previous location", 6000);
             }
             else {
@@ -225,9 +225,9 @@ export default function Dashboard({darkMode}: DashboardProps) {
 
         <>
             <Controller currentLocationName={currentLocationName} disabled={disabled} units={units} 
-            onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode} isLoaded={isLoaded} isFailed={isFailed}/>
+            onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode} isLoaded={isLoadedWeather} isFailed={isFailed}/>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
-            wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode} isLoaded={isLoaded}/>
+            wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode} isLoaded={isLoadedWeather}/>
             <Forecast forecastList={forecastList} units={units} darkMode={darkMode} isLoaded={isLoadedForecast}/>
             <MiniClock darkMode={darkMode} time={time} />
             <DataController darkMode={darkMode}/>
