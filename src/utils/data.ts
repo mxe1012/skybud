@@ -1,5 +1,5 @@
 
-export async function apiFetch(lon=0, lat=0, endpoint="none") {
+export async function apiFetchWeather(lon=0, lat=0, endpoint="none") {
 
     try {
         const result = await fetch(`/api/current?endpoint=${endpoint}&lon=${encodeURIComponent(lon)}&lat=${encodeURIComponent(lat)}`)

@@ -10,7 +10,7 @@ import { useSnackbar } from "../hooks/SnackbarContext.tsx";
 
 import { currentTime } from "../utils/helpers.ts";
 
-import { getCoordinates, apiFetch, isOnline, } from '../utils/data.ts';
+import { getCoordinates, apiFetchWeather, isOnline, } from '../utils/data.ts';
 import type { ForecastEntry, DashboardProps, WeatherObjectProps, TempObjectProps, WindObjectProps, SunriseAndSunsetObjectProps} from "../utils/types.ts";
 
 export default function Dashboard({darkMode}: DashboardProps) {
@@ -98,8 +98,8 @@ export default function Dashboard({darkMode}: DashboardProps) {
             }
 
             const [weatherSettled, forecastSettled] = await Promise.allSettled([
-                apiFetch(lon, lat, "weather"),
-                apiFetch(lon, lat, "forecast"),
+                apiFetchWeather(lon, lat, "weather"),
+                apiFetchWeather(lon, lat, "forecast"),
             ]);
 
             // Weather is required: without it there's no location name or current conditions
