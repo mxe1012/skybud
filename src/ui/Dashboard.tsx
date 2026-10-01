@@ -222,7 +222,6 @@ export default function Dashboard({darkMode}: DashboardProps) {
     }, []);
 
     return (
-
         <>
             <Controller currentLocationName={currentLocationName} disabled={disabled} units={units} 
             onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode} isLoaded={isLoadedWeather} isFailed={isFailed}/>
@@ -232,6 +231,5 @@ export default function Dashboard({darkMode}: DashboardProps) {
             <MiniClock darkMode={darkMode} time={time} />
             <DataController darkMode={darkMode}/>
         </>
-
     );
 }
