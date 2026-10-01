@@ -187,6 +187,7 @@ export interface ControllerProps {
 
 export interface SearchListProps {
     locationList: LocationEntry[];
+    noResults: boolean;
     onFavorite: (element: LocationEntry) => void;
     isFavorite: (element: LocationEntry) => boolean;
     onLocationCoords: Dispatch<SetStateAction<{
