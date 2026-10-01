@@ -1,13 +1,14 @@
 import type { SearchListProps } from "../../../utils/types";
 
-export default function SearchList({locationList, onFavorite, isFavorite, onLocationCoords, onLocationList, onHandleFetch, onCurrentLocation, checkRecentsLength, darkMode}: SearchListProps) {
+export default function SearchList({locationList, noResults, onFavorite, isFavorite, onLocationCoords, onLocationList, onHandleFetch, onCurrentLocation, checkRecentsLength, darkMode}: SearchListProps) {
 
     return (
         <ul style={{
-            visibility: locationList.length == 0 ? "hidden" : "visible",
-            display: locationList.length == 0 ? "none" : ""
-        }} className={darkMode ? "locations dark" : "locations light"}>
-            {locationList.map((element) => (
+            visibility: locationList.length == 0 && !noResults ? "hidden" : "visible",
+            display: locationList.length == 0 && !noResults ? "none" : ""
+            }} 
+            className={darkMode ? "locations dark" : "locations light"}>
+            {noResults ? "No locations found" : locationList.map((element) => (
                 <li className={darkMode ? "locations dark" : "locations light"}
                     key={`${element.lon}, ${element.lat}`}
                     onMouseDown={(e) => {
