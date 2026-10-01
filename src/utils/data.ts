@@ -9,7 +9,6 @@ export async function apiFetch(lon=0, lat=0, endpoint="none") {
         }
         
         throw new Error(`Request to ${endpoint} failed with status ${result.status}`);
-
     } catch (e) {
         console.log(e);
         throw e;
