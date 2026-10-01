@@ -1,19 +1,18 @@
 
-export async function apiFetch(lon=0, lat=0, endpoint="none") {
+export async function apiFetchWeather(lon=0, lat=0, endpoint="none") {
 
     try {
         const result = await fetch(`/api/current?endpoint=${endpoint}&lon=${encodeURIComponent(lon)}&lat=${encodeURIComponent(lat)}`)
         
         if (result.ok) {
-            const data = await result.json();
-            // console.log(data);
-            return data;
+            return await result.json();
         }
-
-  } catch (e) {
-    console.log(e);
-    alert("Error occured in fetching.");
-  }
+        
+        throw new Error(`Request to ${endpoint} failed with status ${result.status}`);
+    } catch (e) {
+        console.log(e);
+        throw e;
+    }
 };
 
 export async function apiFetchLocations(query="") {
@@ -22,15 +21,14 @@ export async function apiFetchLocations(query="") {
         const result = await fetch(`/api/geolocation?query=${encodeURIComponent(query)}`);
 
         if (result.ok) {
-            const data = await result.json();
-            // console.log(data);
-            return data;
+            return await result.json();
         }
 
-  } catch (e) {
-    console.log(e);
-    alert("Error occured in fetching.");
-  }
+        throw new Error(`Geolocation search failed with status ${result.status}`);
+    } catch (e) {
+        console.log(e);
+        throw e;
+    }
 };
 
 const options = {
@@ -55,4 +53,8 @@ export function getCoordinates(): Promise<{ lat: number; lon: number }> {
         );
     }
     );
+}
+
+export function isOnline(): boolean {
+    return navigator.onLine;
 }

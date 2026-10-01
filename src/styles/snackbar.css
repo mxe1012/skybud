@@ -64,4 +64,5 @@
     visibility: visible; 
     -webkit-animation: fadein 0.2s;
     animation: fadein 0.2s;
+    white-space: pre-line;
 }

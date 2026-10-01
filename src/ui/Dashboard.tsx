@@ -10,7 +10,7 @@ import { useSnackbar } from "../hooks/SnackbarContext.tsx";
 
 import { currentTime } from "../utils/helpers.ts";
 
-import { getCoordinates, apiFetch, } from '../utils/data.ts';
+import { getCoordinates, apiFetchWeather, isOnline, } from '../utils/data.ts';
 import type { ForecastEntry, DashboardProps, WeatherObjectProps, TempObjectProps, WindObjectProps, SunriseAndSunsetObjectProps} from "../utils/types.ts";
 
 export default function Dashboard({darkMode}: DashboardProps) {
@@ -69,34 +69,54 @@ export default function Dashboard({darkMode}: DashboardProps) {
     // Button states
     const [disabled, setDisabled] = useState(false);
 
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoadedWeather, setIsLoadedWeather] = useState(false);
+    const [isLoadedForecast, setIsLoadedForecast] = useState(false);
+
     const [isFailed, setIsFailed] = useState(false);
 
     // Forecast component
     const [forecastList, setForecastList] = useState<ForecastEntry[]>([]);
 
-    async function handleFetch(lon: number, lat: number, useExactLocation=false) {
+    async function handleFetch(lon: number, lat: number, useExactLocation = false) {
 
-        showSnackbar("Acquiring weather info...", 6000)
-        setDisabled(true);
-
-        if (useExactLocation === true) {
-            const exactCoords = await getCoordinates();
-            lon = exactCoords.lon;
-            lat = exactCoords.lat;
+        if (!isOnline()) {
+            showSnackbar("You are offline!\nConnect to the internet to fetch weather info.", 6000);
+            setDisabled(true);
+            setIsFailed(true);
+            return;
         }
 
+        showSnackbar("Acquiring weather info...", 6000);
+        setDisabled(true);
+        setIsFailed(false);
+
         try {
-            const resultWeather = await apiFetch(lon, lat, "weather");
-            const resultForecast = await apiFetch(lon, lat, "forecast");
+            if (useExactLocation) {
+                const exactCoords = await getCoordinates();
+                lon = exactCoords.lon;
+                lat = exactCoords.lat;
+            }
+
+            const [weatherSettled, forecastSettled] = await Promise.allSettled([
+                apiFetchWeather(lon, lat, "weather"),
+                apiFetchWeather(lon, lat, "forecast"),
+            ]);
+
+            // Weather is required: without it there's no location name or current conditions
+            if (weatherSettled.status === "rejected") {
+                throw weatherSettled.reason;
+            }
+
+            const resultWeather = weatherSettled.value;
 
             // Update location name
-            const current = resultWeather.sys.country ? resultWeather.name + ", " + resultWeather.sys.country
-            : resultWeather.name;
+            const current = resultWeather.sys.country
+                ? resultWeather.name + ", " + resultWeather.sys.country
+                : resultWeather.name;
             setCurrentLocationName(current);
-        
+
             // Update Weather-related state
-            const {id, main, description} = resultWeather.weather[0];
+            const { id, main, description } = resultWeather.weather[0];
             setWeather({
                 id,
                 main,
@@ -105,63 +125,84 @@ export default function Dashboard({darkMode}: DashboardProps) {
             });
 
             // Update Temperature-related state
-            const {temp, feels_like, temp_max, temp_min} = resultWeather.main;
-            setTemp({
+            const { temp, feels_like, temp_max, temp_min } = resultWeather.main;
+            setTemp({ 
                 temp, 
                 feels_like, 
                 temp_max, 
-                temp_min
+                temp_min 
             });
 
             // Update Humidity-related state
             setHumidity(resultWeather.main.humidity);
 
-            //Update Wind-related state
-            const {speed, deg, gust} = resultWeather.wind;
-            setWind({
+            // Update Wind-related state
+            const { speed, deg, gust } = resultWeather.wind;
+            setWind({ 
                 speed, 
                 deg, 
-                gust
+                gust 
             });
 
             setVisiblity(resultWeather.visibility);
 
             // Update Sunrise and Sunset related state
-            const {sunrise, sunset} = resultWeather.sys
-            setSunTime({
-                sunrise,
-                sunset
-            })
-
-            const newForecastList: ForecastEntry[] = resultForecast.list.map((element) => {
-
-            const dt = element.dt;
-
-            const { main, icon } = element.weather[0];
-            const { temp_max, temp_min } = element.main;
-            return {
-                dt,
-                main,
-                icon: iconUrl + icon + ".png",
-                temp_max,
-                temp_min,
-                };
+            const { sunrise, sunset } = resultWeather.sys;
+            setSunTime({ 
+                sunrise, 
+                sunset 
             });
 
-            setForecastList(newForecastList);
-            
-            setIsLoaded(true);
-            setIsFailed(false);
-            showSnackbar("Weather info acquired!");
+            // Forecast is optional: show what loaded if it fails
+            if (forecastSettled.status === "fulfilled") {
+
+                const resultForecast = forecastSettled.value;
+
+                const newForecastList: ForecastEntry[] = resultForecast.list.map((element) => {
+
+                    const dt = element.dt;
+
+                    const { main, icon } = element.weather[0];
+
+                    const { temp_max, temp_min } = element.main;
+
+                    return {
+                        dt,
+                        main,
+                        icon: iconUrl + icon + ".png",
+                        temp_max,
+                        temp_min,
+                    };
+                });
+
+                setForecastList(newForecastList);
+
+                showSnackbar("Weather info acquired!");
+                setIsLoadedForecast(true)
+
+            } else {
+                console.error(forecastSettled.reason);
+                setIsLoadedForecast(false)
+                setIsFailed(true);
+                showSnackbar("Weather info acquired!\nForecast could not be retrieved.", 6000);
+            }
+
             setTime(currentTime());
+            setIsLoadedWeather(true);
             setDisabled(false);
 
         } catch (e) {
             console.error(e);
             setIsFailed(true);
-            showSnackbar("Weather fetching error!", 6000);
+
+            if(isLoadedWeather) {
+                showSnackbar("Weather fetching error!\nShowing data for previous location", 6000);
+            }
+            else {
+                showSnackbar("Weather fetching error!", 6000);
+            }
+        }
     }
-  }
 
     useEffect(() => {
         
@@ -177,19 +218,18 @@ export default function Dashboard({darkMode}: DashboardProps) {
         
         return () => clearTimeout(id);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
-
         <>
             <Controller currentLocationName={currentLocationName} disabled={disabled} units={units} 
-            onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode} isLoaded={isLoaded} isFailed={isFailed}/>
+            onSetUnits={setUnits} onHandleFetch={handleFetch} darkMode={darkMode} isLoaded={isLoadedWeather} isFailed={isFailed}/>
             <CurrentWeather weather={weather} temperature={temp} humidity={humidity} 
-            wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode} isLoaded={isLoaded}/>
-            <Forecast forecastList={forecastList} units={units} darkMode={darkMode} isLoaded={isLoaded}/>
+            wind={wind} visibility={visiblity} sunTime={sunTime} units={units} darkMode={darkMode} isLoaded={isLoadedWeather}/>
+            <Forecast forecastList={forecastList} units={units} darkMode={darkMode} isLoaded={isLoadedForecast}/>
             <MiniClock darkMode={darkMode} time={time} />
             <DataController darkMode={darkMode}/>
         </>
-
     );
 }
