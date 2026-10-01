@@ -126,7 +126,6 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
         ]);
     }
     
-
     function handleFavorites(entry: LocationEntry) {
         const alreadyFavorited = favorites.some(element => isSameLocation(element, entry));
 
