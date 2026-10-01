@@ -1,5 +1,5 @@
 import { ControllerPaneContainer, EventInput, EventButton } from "../Containers";
-import { useRef, useState, useEffect, } from "react";
+import React, { useRef, useState, useEffect, } from "react";
 
 import { apiFetchLocations } from "../../utils/data";
 
@@ -34,6 +34,8 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
         } 
     );
 
+    const [noResults, setNoResults] = useState(false);
+
     const [recents, setRecents] = useState<LocationEntry[]>(
         localStorage.getItem("recents") != null ? JSON.parse(String(localStorage.getItem("recents"))) : []
     );
@@ -57,25 +59,38 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
     const { showSnackbar } = useSnackbar();
 
     const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const latestQuery = useRef<string>("");
     
-    function handleSearch(e) {
+    function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
         const query = e.target.value;
         setLocationName(query);
-    
+        
         if (debounceTimer.current) {
             clearTimeout(debounceTimer.current);
         }
+
+        latestQuery.current = query;
+
+        if (query.trim().length == 0) {
+            setLocationList([]);
+            setNoResults(false);
+            return;
+        }
     
         debounceTimer.current = setTimeout(() => {
-                fetchLocations(query);
-            }, 400); // debounce delay
+            fetchLocations(query);
+        }, 400); // debounce delay
     }
     
     async function fetchLocations(query: string) {
             
         try {
             const result = await apiFetchLocations(query);
-    
+            
+            if (latestQuery.current !== query) {
+                return;
+            }
+
             const newLocationList: LocationEntry[] = result.map((element) => {
     
             const {name, country, state, lon, lat} = element;
@@ -90,10 +105,15 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
             });
     
             setLocationList(newLocationList);
+            setNoResults(newLocationList.length == 0);
 
         } catch (e) {
+            if (latestQuery.current !== query) {
+                return;
+            }
             console.error(e);
             setLocationList([]);
+            setNoResults(false);
             showSnackbar("Couldn't search for locations right now.", 6000);
         }
     }
@@ -169,13 +189,18 @@ export default function Controller({currentLocationName, units, onSetUnits, disa
                     {" "}
                     <EventInput className={darkMode ? "EventInput dark" : "EventInput light"}
                     disabled={disabled} value={locationName} placeholder="Search Location..." onChange={handleSearch}
-                    onBlur={() => {setLocationList([])}}
+                    onBlur={() => {
+                        if (debounceTimer.current) clearTimeout(debounceTimer.current);
+                        latestQuery.current = "";
+                        setLocationList([]); 
+                        setNoResults(false);
+                    }}
                     />
                     {" "}
                     <EventButton className={darkMode ? "EventButton dark" : "EventButton light"} 
                     text={isShowFavoritesDrop ? "Hide Favorites" : "Show Favorites"} disabled={disabled} 
                     onClick={() => {setIsShowFavoritesDrop(!isShowFavoritesDrop); setisShowRecentsDrop(false)}}/>
-                    <SearchList locationList={locationList} onFavorite={handleFavorites} isFavorite={isFavorite} onLocationCoords={setLocationCoords} onLocationList={setLocationList}
+                    <SearchList locationList={locationList} noResults={noResults} onFavorite={handleFavorites} isFavorite={isFavorite} onLocationCoords={setLocationCoords} onLocationList={setLocationList}
                     onHandleFetch={onHandleFetch} onCurrentLocation={setCurrentLocationEntry} 
                     checkRecentsLength={checkRecentsLength} darkMode={darkMode}/>
                     <RecentsList list={recents} onList={setRecents} onDelete={deleteEntry} onFavorite={handleFavorites} isFavorite={isFavorite} 
